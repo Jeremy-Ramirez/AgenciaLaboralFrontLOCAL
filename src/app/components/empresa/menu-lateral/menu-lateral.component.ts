@@ -28,7 +28,7 @@ export class MenuLateralComponent {
   }
 
   logout(): void {
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/logoutempresa/', {}, {withCredentials: true})
+    this.http.post('http://localhost:8000/api/logoutempresa/', {}, {withCredentials: true})
       .subscribe(() => this.authenticated = false);
   }
 

@@ -25,7 +25,7 @@ export class SugerenciasComentariosComponent implements OnInit {
       }
     )*/
 
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
+    this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
         this.message = `Hi ${res.idusuario}`;
         this.id=res.idusuario
@@ -76,7 +76,7 @@ export class SugerenciasComentariosComponent implements OnInit {
     formData.append('imagen',this.file)
     formData.append('usuario_idusuario',this.id)
     
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/sugerencias/', formData,options).subscribe(
+    this.http.post('http://localhost:8000/api/sugerencias/', formData,options).subscribe(
       resp => console.log(resp),
       err => console.log(err)
     )

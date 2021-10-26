@@ -11,6 +11,6 @@ export class SectorService {
   }
   
   getSector(){
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/sectores/')
+    return this.httpClient.get('http://localhost:8000/api/sectores/')
   }
 }

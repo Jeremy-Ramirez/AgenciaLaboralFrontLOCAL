@@ -25,14 +25,14 @@ export class AspirantesAceptadosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios=doc
       
       console.log(this.usuarios)
 
     })
 
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/').subscribe((doc:any)=>{
+    this.http.get('http://localhost:8000/api/aspirantes/').subscribe((doc:any)=>{
       this.aspirantes=doc
       
       console.log(this.usuarios)

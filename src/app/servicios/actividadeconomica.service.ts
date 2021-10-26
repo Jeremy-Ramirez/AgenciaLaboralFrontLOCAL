@@ -11,6 +11,6 @@ export class ActividadeconomicaService {
   }
   
   getActividadeconomicas(){
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/actividadeconomica/')
+    return this.httpClient.get('http://localhost:8000/api/actividadeconomica/')
   }
 }

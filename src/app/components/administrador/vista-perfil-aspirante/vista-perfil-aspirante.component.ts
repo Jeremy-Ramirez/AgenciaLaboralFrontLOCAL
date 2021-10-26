@@ -40,14 +40,14 @@ export class VistaPerfilAspiranteComponent implements OnInit {
 
 
   getAspirantes(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/aspirantes/').subscribe((resp:any)=>{
       this.aspirantes=resp;
       console.log(this.aspirantes)
     })
   }
 
   getUsuarios(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((resp:any)=>{
       this.usuarios=resp;
       console.log(this.usuarios)
     })
@@ -89,7 +89,7 @@ export class VistaPerfilAspiranteComponent implements OnInit {
   }
 
   getCategoria(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/categoriadocumento/').subscribe((cat:any)=>{
+    this.http.get('http://localhost:8000/api/categoriadocumento/').subscribe((cat:any)=>{
       this.categoria = cat;
       console.log(this.categoria)
     })
@@ -116,7 +116,7 @@ export class VistaPerfilAspiranteComponent implements OnInit {
 
 
     console.log(this.miFormulario.value);
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/archivosaspirante/', formData).subscribe(
+    this.http.post('http://localhost:8000/api/archivosaspirante/', formData).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 

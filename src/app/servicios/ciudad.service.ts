@@ -11,6 +11,6 @@ export class CiudadService {
   }
   
   getCiudades(){
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/ciudades/')
+    return this.httpClient.get('http://localhost:8000/api/ciudades/')
   }
 }

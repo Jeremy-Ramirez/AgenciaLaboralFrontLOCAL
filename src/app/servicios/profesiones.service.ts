@@ -13,6 +13,6 @@ export class ProfesionesService {
 
 
   getProfesiones(){
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/profesiones/')
+    return this.httpClient.get('http://localhost:8000/api/profesiones/')
   }
 }

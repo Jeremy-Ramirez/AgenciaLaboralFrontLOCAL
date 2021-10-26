@@ -20,7 +20,7 @@ export class AspirantesNuevosComponent implements OnInit {
   }
   
   getRepresentantes(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/representantes/').subscribe((doc:any)=>{
+    this.http.get('http://localhost:8000/api/representantes/').subscribe((doc:any)=>{
       this.representantes=doc
         console.log(this.representantes)
 
@@ -28,7 +28,7 @@ export class AspirantesNuevosComponent implements OnInit {
   }
 
   getAspirantesNuevos(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios =doc
       console.log(this.usuarios)
       /*doc.forEach(user => {

@@ -11,6 +11,6 @@ export class GeneroService {
   }
   
   getGeneros(){
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/genero/')
+    return this.httpClient.get('http://localhost:8000/api/genero/')
   }
 }

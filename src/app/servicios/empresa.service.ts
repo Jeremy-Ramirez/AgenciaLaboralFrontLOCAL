@@ -11,15 +11,15 @@ export class EmpresaService {
   }
   
   getEmpresas(){
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/')
+    return this.httpClient.get('http://localhost:8000/api/empresas/')
   }
   
   create(empresa) {    
-    return this.httpClient.post('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/', JSON.stringify(empresa));
+    return this.httpClient.post('http://localhost:8000/api/empresas/', JSON.stringify(empresa));
   }
 
   loginEmpresa() {    
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/userempresa/', {withCredentials: true});
+    return this.httpClient.get('http://localhost:8000/api/userempresa/', {withCredentials: true});
   }
   
   

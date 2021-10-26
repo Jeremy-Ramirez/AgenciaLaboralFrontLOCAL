@@ -113,7 +113,7 @@ get generoNoValido(){
 
 
   getTipodocumento(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/tipodocumento/').subscribe((doc:any)=>{
+    this.http.get('http://localhost:8000/api/tipodocumento/').subscribe((doc:any)=>{
       this.tipoDocumento=doc;
     console.log(this.tipoDocumento)
     })
@@ -124,7 +124,7 @@ get generoNoValido(){
 
 
   getGenero(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/genero/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/genero/').subscribe((resp:any)=>{
       this.generos=resp
      
      console.log(this.generos)
@@ -133,14 +133,14 @@ get generoNoValido(){
   }
 
   getProvincias(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/provincias/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/provincias/').subscribe((resp:any)=>{
     this.provincias=resp
     console.log(this.provincias)
     })
   }
 
   getCiudades(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/ciudades/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/ciudades/').subscribe((resp:any)=>{
     this.ciudades=resp
     console.log(this.ciudades)
     })
@@ -157,7 +157,7 @@ get generoNoValido(){
     }
   
       console.log(this.miFormulario.value);
-      this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/', this.miFormulario.value).subscribe(
+      this.http.post('http://localhost:8000/api/usuarios/', this.miFormulario.value).subscribe(
         resp => console.log(resp),
         err => console.log(err)
   

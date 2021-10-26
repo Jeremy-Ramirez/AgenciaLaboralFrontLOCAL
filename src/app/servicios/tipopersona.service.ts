@@ -12,6 +12,6 @@ export class TipopersonaService {
   }
   
   getTipopersonas(){
-    return this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/tipopersona/')
+    return this.http.get('http://localhost:8000/api/tipopersona/')
   }
 }

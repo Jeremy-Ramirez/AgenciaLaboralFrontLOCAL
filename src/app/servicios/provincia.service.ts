@@ -11,6 +11,6 @@ export class ProvinciaService {
   }
   
   getProvincias(){
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/provincias/')
+    return this.httpClient.get('http://localhost:8000/api/provincias/')
   }
 }

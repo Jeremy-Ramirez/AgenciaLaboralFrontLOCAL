@@ -16,14 +16,14 @@ export class RevisarSugerenciasComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios=doc
       
       console.log(this.usuarios)
 
     })
 
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/sugerencias/').subscribe((doc:any)=>{
+    this.http.get('http://localhost:8000/api/sugerencias/').subscribe((doc:any)=>{
       this.sugerencias=doc
         console.log(this.sugerencias)
         

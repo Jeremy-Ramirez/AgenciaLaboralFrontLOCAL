@@ -58,14 +58,14 @@ export class RegistroFullRepresentanteComponent implements OnInit {
 
 
   getTipodocumento(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/tipodocumento/').subscribe((doc:any)=>{
+    this.http.get('http://localhost:8000/api/tipodocumento/').subscribe((doc:any)=>{
       this.tipoDocumento=doc;
     console.log(this.tipoDocumento)
     })
   }
 
   getGenero(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/genero/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/genero/').subscribe((resp:any)=>{
       this.genero=resp
       //console.log(resp)
      console.log(this.genero)
@@ -76,14 +76,14 @@ export class RegistroFullRepresentanteComponent implements OnInit {
   }
 
   getProvincias(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/provincias/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/provincias/').subscribe((resp:any)=>{
     this.provincia=resp
     console.log(this.provincia)
     })
   }
 
   getCiudades(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/ciudades/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/ciudades/').subscribe((resp:any)=>{
     this.ciudad=resp
     console.log(this.ciudad)
     })
@@ -101,7 +101,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
 
   createUsuario(){
     console.log(this.miFormulario.value);
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/', this.miFormulario.value).subscribe(
+    this.http.post('http://localhost:8000/api/usuarios/', this.miFormulario.value).subscribe(
       resp => console.log(resp),
       err => console.log(err)
     )
@@ -111,7 +111,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
     //this.correo=this.miFormulario.get("correo").value;
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    this.http.put<any>("https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/"+this.id,this.miFormulario.value,{headers: headers}).subscribe(
+    this.http.put<any>("http://localhost:8000/api/usuarios/"+this.id,this.miFormulario.value,{headers: headers}).subscribe(
       resp => console.log(resp),
       err => console.log(err)
         );

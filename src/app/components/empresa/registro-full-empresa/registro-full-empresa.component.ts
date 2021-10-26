@@ -120,7 +120,7 @@ export class RegistroFullEmpresaComponent implements OnInit {
     }
   
       console.log(this.formEmpresa.value);
-      this.httpClient.post('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/', this.formEmpresa.value).subscribe(
+      this.httpClient.post('http://localhost:8000/api/empresas/', this.formEmpresa.value).subscribe(
         resp => console.log(resp),
         err => console.log(err)
   

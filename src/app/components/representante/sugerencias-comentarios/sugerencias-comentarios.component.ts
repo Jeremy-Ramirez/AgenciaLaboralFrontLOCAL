@@ -53,7 +53,7 @@ export class SugerenciasComentariosComponent implements OnInit {
     formData.append('imagen',this.file)
     formData.append('usuario_idusuario',this.miFormulario.controls['usuario_idusuario'].value)
     
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/sugerencias/', formData,options).subscribe(
+    this.http.post('http://localhost:8000/api/sugerencias/', formData,options).subscribe(
       resp => console.log(resp),
       err => console.log(err)
     )

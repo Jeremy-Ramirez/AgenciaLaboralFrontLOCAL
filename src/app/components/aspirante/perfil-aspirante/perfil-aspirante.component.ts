@@ -17,7 +17,7 @@ export class PerfilAspiranteComponent implements OnInit {
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
+    this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
         this.message = `Hi ${res.idusuario}`;
         this.id=res.idusuario
@@ -57,21 +57,21 @@ export class PerfilAspiranteComponent implements OnInit {
   })
 
   getAspirantes(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/aspirantes/').subscribe((resp:any)=>{
       this.aspirantes=resp;
       console.log(this.aspirantes)
     })
   }
 
   getUsuarios(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((resp:any)=>{
       this.usuarios=resp;
       console.log(this.usuarios)
     })
   }
 
   getArchivos(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/archivosaspirante/').subscribe((resp:any)=>{
+    this.http.get('http://localhost:8000/api/archivosaspirante/').subscribe((resp:any)=>{
       this.archivos=resp;
       console.log(this.archivos)
     })

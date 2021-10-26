@@ -54,14 +54,14 @@ export class RegistroRepresentanteComponent implements OnInit {
 
 
   getTipodocumento(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/tipodocumento/').subscribe((doc:any)=>{
+    this.http.get('http://localhost:8000/api/tipodocumento/').subscribe((doc:any)=>{
       this.tipoDocumento=doc;
     console.log(this.tipoDocumento)
     })
   }
 
   getUsuarios(){
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/').subscribe((doc:any)=>{
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios=doc;
     console.log("getusuarios",this.usuarios)
     })
@@ -71,7 +71,7 @@ export class RegistroRepresentanteComponent implements OnInit {
     this.numUsuario= this.numUsuario+1;
 
     console.log(this.miFormulario.value);
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/usuarios/', this.miFormulario.value).subscribe(
+    this.http.post('http://localhost:8000/api/usuarios/', this.miFormulario.value).subscribe(
       resp => {
         this.correo=Object.values(resp)[6]},
       err => console.log(err),
@@ -89,7 +89,7 @@ export class RegistroRepresentanteComponent implements OnInit {
     let formData = new FormData();
     formData.append("empresa_idempresa", "1");
     formData.append("usuario_idusuario",idFinal)
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/representantes/', formData).subscribe(
+    this.http.post('http://localhost:8000/api/representantes/', formData).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 

@@ -14,7 +14,7 @@ export class PerfilEmpresaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userempresa/', {withCredentials: true}).subscribe(
+    this.http.get('http://localhost:8000/api/userempresa/', {withCredentials: true}).subscribe(
       (res: any) => {
         this.message = `Hi ${res.name}`;
         Emitters.authEmitter.emit(true);

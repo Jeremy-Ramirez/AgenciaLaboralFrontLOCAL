@@ -11,10 +11,10 @@ export class SolicitudService {
   }
   
   getSolicitudes(){
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/solicitudes/')
+    return this.httpClient.get('http://localhost:8000/api/solicitudes/')
   }
 
   loginUsuario() {    
-    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true});
+    return this.httpClient.get('http://localhost:8000/api/userusuario/', {withCredentials: true});
   }
 }

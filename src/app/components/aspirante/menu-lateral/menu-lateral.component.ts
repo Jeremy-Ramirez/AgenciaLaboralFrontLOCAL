@@ -44,7 +44,7 @@ export class MenuLateralComponent implements OnInit {
   getUsuarioActual(){
     console.log(this.usuarioActual)
 
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/',{ withCredentials: true}).subscribe(
+    this.http.get('http://localhost:8000/api/userusuario/',{ withCredentials: true}).subscribe(
       
     
       (res: any) => {
@@ -68,7 +68,7 @@ export class MenuLateralComponent implements OnInit {
   }
   
   logout(): void {
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/logoutusuario/', {}, {withCredentials: true})
+    this.http.post('http://localhost:8000/api/logoutusuario/', {}, {withCredentials: true})
       .subscribe(() => this.authenticated = false);
   }
 }

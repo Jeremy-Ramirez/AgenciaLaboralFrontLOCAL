@@ -46,7 +46,7 @@ export class AspiranteProfesionalComponent implements OnInit {
       }
     )*/
 
-    this.http.get('https://agencialaboralproyecto.pythonanywhere.com/api/userusuario/', {withCredentials: true}).subscribe(
+    this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
         this.message = `Hi ${res.idusuario}`;
         this.id=res.idusuario
