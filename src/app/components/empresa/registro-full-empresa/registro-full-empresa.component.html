@@ -1,0 +1,296 @@
+<div id="container">
+    <form autocomplete="off" [formGroup]="formEmpresa" (ngSubmit)="crear()">
+        
+     
+        <div class="row">
+            <div class="col-25">
+              <!-- Documanto -->
+            <label>Tipo de Documento:</label>
+            </div>
+            <div class="col-sm-9">
+                
+            <select formControlName="tipodocumento_idtipodocumento" >
+                <option *ngFor="let t of tipodocumentos"  value="{{t.idtipodocumento}}"> 
+                    {{t.descripcion}} 
+                </option>
+            </select>
+            <span class="form-text text-danger" *ngIf="campoEsValido('tipodocumento_idtipodocumento')">
+                Campo Requerido
+            </span>
+            
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <!-- No del Documento  -->
+            <label>RUC/Cédula </label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" formControlName="ruc_cedula" placeholder="No Documento">
+                <span class="form-text text-danger" *ngIf="campoEsValido('ruc_cedula')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+            <label >Tipo de Persona</label>
+            </div>
+            <div class="col-sm-9">
+           
+            <select  formControlName="tipopersona_idtipopersona" >
+                <option *ngFor="let t of tipopersonas" value="{{t.idtipopersona}}">
+                    {{t.descripcion}}
+                </option>
+            </select>
+            <span class="form-text text-danger" *ngIf="campoEsValido('tipopersona_idtipopersona')">
+                Campo Requerido
+            </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <!-- Razón Social -->
+            <label >Razón Social</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text"  formControlName="razonsocial" placeholder="razon social">
+                <span class="form-text text-danger" *ngIf="campoEsValido('razonsocial')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <!-- Nombres -->
+        <label>Nombre Comercial</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" formControlName="nombrecomercial"  placeholder="Nombre Comercial">
+                <span class="form-text text-danger" *ngIf="campoEsValido('nombrecomercial')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <!-- Tipo de Empresa -->
+            <label>Tipo de Empresa </label>
+            </div>
+            <div class="col-sm-9">
+                <select formControlName="tipoempresa_idtipoempresa"  >
+                    <option *ngFor="let t of tipoempresas" value="{{t.idtipoempresa}}" >
+                        {{t.descripcion}}
+                    </option>
+                </select>
+                <span class="form-text text-danger" *ngIf="campoEsValido('tipoempresa_idtipoempresa')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <!-- Actividad Economica -->
+            <label > Actividad Economica</label>
+            </div>
+            <div class="col-sm-9">
+                <select formControlName="actividadeconomica_idactividadeconomica">
+                <option *ngFor="let a of actividadeconomicas" value="{{a.idactividadeconomica}}">
+                    {{a.descripcion}}
+                </option>
+                </select >
+                <span class="form-text text-danger" *ngIf="campoEsValido('actividadeconomica_idactividadeconomica')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <!-- Rama de Actividad -->
+            <label > Rama de Actividad </label>
+            </div>
+            <div  class="col-sm-9">
+                <select formControlName="ramaactividad_idramaactividad" >
+                    <option *ngFor="let r of ramaactividads" value="{{r.idramaactividad}}">
+                        {{r.descripcion}}
+                    </option>
+                </select>
+                <span class="form-text text-danger" *ngIf="campoEsValido('ramaactividad_idramaactividad')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <!-- Ciudad  -->
+            <label>Ciudad: </label>
+            </div>
+            <div class="col-sm-9">
+                <select formControlName="ciudad_idciudad">
+                    <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
+                        {{c.nombreciudad}}
+                    </option>
+                </select>
+                <span class="form-text text-danger" *ngIf="campoEsValido('ciudad_idciudad')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <!-- Provincia -->
+                <label>Provincia:</label>
+            </div>
+            <div class="col-sm-9" >
+                <select formControlName="provincia_idprovincia">
+                    <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                        {{p.nombreprovincia}}
+                    </option>
+                </select>
+                <span class="form-text text-danger" *ngIf="campoEsValido('provincia_idprovincia')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <!-- Sector -->
+                <label >Sector</label>
+            </div>
+            <div class="col-sm-9">
+                <select formControlName="sector_idsector" >
+                    <option *ngFor="let s of sectores" value="{{s.idsector}}">
+                        {{s.descripcion}}
+                    </option>
+                </select>
+                <span class="form-text text-danger" *ngIf="campoEsValido('sector_idsector')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <!-- Calle Principal -->
+                <label>Calle Principal</label>
+            </div>
+            <div  class="col-sm-9">
+                <input type="text" formControlName="calleprincipal" placeholder="calle Principal">
+                <span class="form-text text-danger" *ngIf="campoEsValido('calleprincipal')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <!-- Calle Secundaria -->
+                <label>Calle Secundaria</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" formControlName="callesecundaria"  placeholder="calle Secundaria">
+                <span class="form-text text-danger" *ngIf="campoEsValido('callesecundaria')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>Manzana</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" formControlName="mz"  placeholder="Manzana">
+                <span class="form-text text-danger" *ngIf="campoEsValido('mz')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>Villa</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" formControlName="villa"  placeholder="No de Villa">
+                <span class="form-text text-danger" *ngIf="campoEsValido('villa')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <!-- Referencia -->
+                <label> Referencia</label>
+            </div>
+            <div  class="col-sm-9">
+                <input type="text"  formControlName="referencia" placeholder=" Referencia">
+                <span class="form-text text-danger" *ngIf="campoEsValido('referencia')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label>Teléfono Celular</label>
+            </div>
+            <div  class="col-sm-9">
+                <input type="text" formControlName="celular"  placeholder=" numero de telefono">
+                <span class="form-text text-danger" *ngIf="campoEsValido('celular')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <!-- Numero de telefono de oficina -->
+                <label>Teléfono de Oficina</label>
+            </div>
+            <div  class="col-sm-9">
+                <input type="text" formControlName="telefonooficina"  placeholder=" numero de telefono">
+                <span class="form-text text-danger" *ngIf="campoEsValido('telefonooficina')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <!-- Web -->
+                <label>Pagina Web:</label>
+            </div>
+            <div  class="col-sm-9">
+                <input type="text" formControlName="paginaweb"  placeholder="Pagina Web">
+                <span class="form-text text-danger" *ngIf="campoEsValido('paginaweb')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <!-- Correo -->
+                <label>Correo electrónico:</label>
+            </div>
+            <div  class="col-sm-9">
+                <input type="text"  formControlName="correoelectronico" placeholder="correo">
+                <span class="form-text text-danger" *ngIf="campoEsValido('correoelectronico')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <!-- Contraseña -->
+                <label >Contraseña:</label>  
+            </div>
+            <div  class="col-sm-9">
+                <input type="password"  class="form-control" formControlName="contrasenia" placeholder="password">
+                <span class="form-text text-danger" *ngIf="campoEsValido('contrasenia')">
+                    Campo Requerido
+                </span>
+            </div>
+        </div>
+       
+        <div id="lower">
+            <button type="submit" class="btn btn-primary float-end" >
+                Registrarse
+            </button>
+
+        </div>
+    </form>       
+</div>

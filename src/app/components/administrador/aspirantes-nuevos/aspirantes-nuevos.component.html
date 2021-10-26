@@ -1,0 +1,18 @@
+<div>
+    <section>
+        <h1>Aspirantes Nuevos</h1>
+    </section>
+    <section>
+        <!-- <button class="btn btn-primary float-end" (click)="getUsuarios()"></button> -->
+        <br>
+        <br>
+        <br>
+        <div *ngFor="let user of usuarios">
+            <div class="aspiranteIndividual" *ngIf="user.rol_idrol==2">
+                <br>
+                Usuario: {{user.nombreusuario}} Nombres: {{user.nombre}} {{user.apellido}}
+                <br>
+            </div>
+        </div>
+    </section>
+</div>

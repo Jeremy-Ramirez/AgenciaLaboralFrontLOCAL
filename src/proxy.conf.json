@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "https://agencialaboralproyecto.pythonanywhere.com",
+      "secure": false
+    }
+}

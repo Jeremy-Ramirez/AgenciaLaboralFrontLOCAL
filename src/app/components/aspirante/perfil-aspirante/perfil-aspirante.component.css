@@ -1,0 +1,15 @@
+.contenedor{
+    border: 1px solid black;
+    
+}
+
+.imgperfil{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #5cb855;
+}
+
+.contenedorInformacion{
+    border: 1px solid black;
+}

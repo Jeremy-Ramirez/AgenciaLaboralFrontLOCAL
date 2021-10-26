@@ -1,0 +1,128 @@
+<!-- <p>perfil-aspirante works!</p> -->
+
+
+
+<div class="contenedor">
+     
+
+<div class='imgperfil'>
+
+</div>
+
+<div *ngFor="let u of usuarios">
+    <div *ngIf="u.idusuario==idAspirante">
+    <p> {{u.nombre}} {{u.apellido}}</p>
+</div>
+</div>
+
+
+<h1>Datos Personales</h1>
+
+
+
+<div class="contenedorInformacion" *ngFor="let u of usuarios" >
+    <div *ngIf="u.idusuario==idAspirante">
+    <p>Número documento: {{u.nodocumento}}</p>
+    <p>Correo: {{u.correo}}</p>
+    <p>Teléfono: {{u.telefono}}</p>
+    <p>Dirección: {{u.direccion}}</p>
+</div>
+</div>
+
+<h1>Datos Profesionales</h1>
+
+<div class="contenedorInformacion" *ngFor="let a of aspirantes" >
+    <!-- <div *ngFor="let u of usuarios"> -->
+    <div *ngIf="a.usuario_idusuario==idAspirante">
+    <p>Número de hijos: {{a.numerohijos}}</p>
+    <p>Experiencia Laboral: {{a.experiencialaboral}}</p>
+    <p>Experticia: {{a.experticia}}</p>
+    <p>Años de experiencia: {{a.aniosexperiencia}}</p>
+    <p>Fecha de Nacimiento: {{a.fechanacimiento}}</p>
+    <p>Posibilidad de viajar: {{a.posibilidadviajar}}</p>
+    <div class="mb-3 row">
+        <div class="col-sm-9">
+            <video controls src="https://agencialaboralproyecto.pythonanywhere.com{{a.videopresentacion}}"></video>
+        </div>
+    </div>
+</div>
+<!-- </div> -->
+        
+</div>
+
+<h2>Agregar Archivos</h2>
+<form autocomplete="off" [formGroup]="miFormulario" enctype="multipart/form-data">
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Documento</label>
+        <div class="col-sm-9">
+            <input type="text"
+                class="form-control"
+                formControlName="nombredocumento"
+                placeholder=""
+                >
+            <span class="form-text text-danger"
+                *ngIf="campoEsValido('nombredocumento')">
+                
+                Campo Requerido
+            </span>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Categoría</label>
+        <div class="col-sm-9">
+            <select name="doc" id="doc" formControlName="categoriaDocumento_idcategoriadocumento">
+                <option *ngFor="let cat of categoria" value="{{cat.idcategoriadocumento}}">
+                    {{cat.descripcion}}
+                </option>
+            </select>
+            <span class="form-text text-danger"
+                *ngIf="campoEsValido('categoriaDocumento_idcategoriadocumento')">
+                
+                Campo Requerido
+            </span>
+        </div>
+    </div>
+
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">archivo</label>
+        <div class="col-sm-9">
+            <input type="file"
+                id="archivo"
+                class="form-control"
+                formControlName="archivo"
+                placeholder=""
+                (change)="handleFileInput($event)"
+                >
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Fecha Ingreso</label>
+        <div class="col-sm-9">
+            <input type="date"
+                class="form-control"
+                formControlName="fechacreacion"
+                placeholder=""
+                >
+            <span class="form-text text-danger"
+                *ngIf="campoEsValido('fechacreacion')">
+                
+                Campo Requerido
+            </span>
+        </div>
+    </div>
+    
+    <button type="submit"
+                            
+            (click)="subirArchivo()"
+            class="btn btn-primary float-end" 
+                            
+            >
+                            
+            Guardar
+    </button>
+
+</form>
+    <br>
+    <br>
+</div>

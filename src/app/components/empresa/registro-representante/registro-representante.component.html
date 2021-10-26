@@ -1,0 +1,138 @@
+<div class="row">
+    <div class="col">
+
+        <form autocomplete="off" [formGroup]="miFormulario" enctype="multipart/form-data">
+            
+            <!-- Campo de producto -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Tipo de Documento</label>
+                <div class="col-sm-9">
+                    
+                    <select name="doc" id="doc" formControlName="tipodocumento_idtipodocumento">
+                        <option *ngFor="let documento of tipoDocumento" value="{{documento.idtipodocumento}}">
+                            {{documento.descripcion}}
+                        </option>
+                    </select>
+
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('tipodocumento_idtipodocumento')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo de producto -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">No de Documento</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName ="nodocumento" 
+                           placeholder="Numero">
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('nodocumento')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo de existencias -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Nombres Completos</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="nombre"
+                           placeholder="Nombres Completos">
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('nombre')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Apellidos Completos</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="apellido"
+                           placeholder="Apellidos">
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('apellido')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Correo </label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="correo"
+                           placeholder="correo">
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('correo')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Contraseña </label>
+                <div class="col-sm-9">
+                    <input type="password"
+                           class="form-control"
+                           formControlName="contrasenia"
+                           placeholder="contrasenia">
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('contrasenia')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <!-- <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Confirmacion de Contraseña  </label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="confirmacion"
+                           placeholder="confirmacion">
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('confirmacion')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div> -->
+
+            
+            
+
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit"
+                            (click)="createUsuario()"
+                            class="btn btn-primary float-end" 
+                            
+                            >
+                            
+                        Guardar
+                    </button>
+                </div>
+            </div>
+            <!-- routerLink="['/registroRepresentante', id ]" -->
+
+
+        </form>
+
+    </div>
+</div>

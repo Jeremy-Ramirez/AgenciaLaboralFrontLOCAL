@@ -1,0 +1,208 @@
+<div id="container">
+     
+
+
+    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
+           
+    
+
+        
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Usuario</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName ="nombreusuario" 
+                       placeholder="Numero" [class.is-invalid]="usuarioNoValido" >
+
+                       <small *ngIf="usuarioNoValido" class="text-danger">
+                        Campo Requerido
+                    </small>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Tipo de Documento</label>
+            <div class="col-sm-9">
+                
+                <select name="doc" id="doc" formControlName="tipodocumento_idtipodocumento">
+                    <option *ngFor="let documento of tipoDocumento" value="{{documento.idtipodocumento}}">
+                        {{documento.descripcion}}
+                    </option>
+                </select>
+
+                <small *ngIf="usuarioNoValido" class="text-danger">
+                    Campo Requerido
+                </small>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">No de Documento</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName ="nodocumento" 
+                       placeholder="Numero" [class.is-invalid]="numDocumentoNoValido" >
+
+                       <small *ngIf="numDocumentoNoValido" class="text-danger">
+                        Escriba un número de documento válido
+                    </small>
+            </div>
+        </div>
+
+        <!-- Campo de existencias -->
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Nombres Completos</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName="nombre"
+                       placeholder="Nombres Completos" [class.is-invalid]="nombresNoValido">
+                    
+                       <small *ngIf="nombresNoValido" class="text-danger">
+                        Campo requerido
+                    </small>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Apellidos Completos</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName="apellido"
+                       placeholder="Apellidos" [class.is-invalid]="apellidosNoValido">
+                       
+                       <small *ngIf="apellidosNoValido" class="text-danger">
+                        Campo requerido
+                    </small>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Teléfono</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName="telefono"
+                       placeholder="Teléfono" [class.is-invalid]="telefonoNoValido">
+                       
+                       <small *ngIf="telefonoNoValido" class="text-danger">
+                        Campo requerido
+                    </small>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Dirección</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName="direccion"
+                       placeholder="Dirección" [class.is-invalid]="direccionNoValido">
+                       
+                       <small *ngIf="direccionNoValido" class="text-danger">
+                        Campo requerido
+                    </small>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Povincia</label>
+            <div class="col-sm-9">
+
+                <select  formControlName="provincia_idprovincia" [class.is-invalid]="provinciaNoValido" >
+                    <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                        {{p.nombreprovincia}}
+                        
+                    </option>
+                </select>
+                <small *ngIf="provinciaNoValido" class="text-danger">
+                    Seleccione una provincia
+                </small>
+
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Ciudad </label>
+            <div class="col-sm-9">
+                <select   formControlName="ciudad_idciudad" [class.is-invalid]="ciudadNoValido">
+                    <option *ngFor="let c of ciudades" value="{{c.idciudad}}">
+
+                        {{c.nombreciudad}}
+                    </option>
+                </select>
+                <small *ngIf="ciudadNoValido" class="text-danger">
+                    Seleccione una ciudad
+                </small>
+               
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Correo </label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName="correo"
+                       placeholder="correo" [class.is-invalid]="correoNoValido">
+                     
+                       <small *ngIf="correoNoValido" class="text-danger">
+                        Escriba un correo válido
+                    </small>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Contraseña </label>
+            <div class="col-sm-9">
+                <input type="password"
+                       class="form-control"
+                       formControlName="contrasenia"
+                       placeholder="contraseña">
+                       
+            </div>
+        </div>
+        
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Género  </label>
+            <div class="col-sm-9">
+             
+                <select formControlName="genero_idgenero">
+                    <option *ngFor="let g of generos" value=" {{g.idgenero}}">
+                        {{g.genero}}
+                    </option>
+                    
+                </select>
+
+            </div>
+        </div>
+        
+
+        <div id="lower">
+            <button type="submit" class="btn btn-primary float-end"  >
+                Registrarse
+            </button>
+
+        </div>
+
+        
+
+
+
+    </form>
+
+
+
+
+
+    
+</div>

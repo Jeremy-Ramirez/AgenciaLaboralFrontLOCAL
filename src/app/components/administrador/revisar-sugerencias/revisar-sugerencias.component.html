@@ -1,0 +1,15 @@
+<p>revisar-sugerencias works!</p>
+<div>
+    <div class="aspiranteIndividual" *ngFor="let sugerencia of sugerencias">
+        <div *ngFor="let user of usuarios">
+            <div *ngIf="user.idusuario==sugerencia.usuario_idusuario">
+                Nombres: {{user.nombre}} {{user.apellido}}
+            </div>
+        </div>
+        Descripción: {{sugerencia.descripcion}}
+        <div >
+            <img class="imgsug" src="https://agencialaboralproyecto.pythonanywhere.com{{sugerencia.imagen}}">      
+        </div>
+        
+    </div>
+</div>

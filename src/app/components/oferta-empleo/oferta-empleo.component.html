@@ -1,0 +1,21 @@
+<div class="col-sm-9">
+    <h4><small>OFERTAS DE EMPLEO</small></h4>
+    <div class="inner-addon right-addon">
+        <i class="glyphicon glyphicon-search"></i>
+        <input type="text" class="form-control" placeholder="Search" />
+    </div>
+    <div class= "contenedor-empleo" >
+        <div class="empleo"  #empleos>
+            <h2 *ngFor="let s of solicitudes"><a >{{s.cargo}}</a></h2>                
+            <p>Descripcion, Ciudad, Provincia</p>
+            <div class="card" style="width:400px">
+           <div class="card-body">
+                <p class="card-text" *ngFor="let s of solicitudes">{{s.descripcioncargo}}</p>
+                <button type="button">Responder</button>            
+                <button type="button">Eliminar</button>
+            </div>
+            </div>
+        </div>
+       
+    </div>
+  </div>

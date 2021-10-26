@@ -1,0 +1,147 @@
+
+<div id="container">
+     
+
+
+    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
+      
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Número de hijos</label>
+            <div class="col-sm-9">
+                <input type="number"
+                       class="form-control"
+                       formControlName ="numerohijos" 
+                       placeholder="Numero" >
+
+                       
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Experiencia Laboral</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName ="experiencialaboral" 
+                       placeholder="" >
+
+                       
+            </div>
+        </div>
+
+        
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Campo Laboral</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName ="campolaboral" 
+                       placeholder="" >
+
+                       
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Experticia</label>
+            <div class="col-sm-9">
+                <input type="text"
+                       class="form-control"
+                       formControlName ="experticia" 
+                       placeholder="" >
+
+                       
+            </div>
+        </div>
+
+       
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Video</label>
+            <div class="col-sm-9">
+                <input type="file"
+                       id="videoPresentacion"
+                       class="form-control"
+                       formControlName="videopresentacion"
+                       placeholder=""
+                       (change)="handleFileInput($event)"
+                       >
+            </div>
+        </div>
+
+
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Años de experiencia</label>
+            <div class="col-sm-9">
+                <input type="number"
+                       class="form-control"
+                       formControlName ="aniosexperiencia" 
+                       placeholder="Numero" >
+
+                       
+            </div>
+        </div>
+
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Fecha de Nacimiento</label>
+            <div class="col-sm-9">
+                <input type="date"
+                   
+                       class="form-control"
+                       formControlName ="fechanacimiento" 
+                       
+                       placeholder="Numero" 
+                       >
+
+                       
+            </div>
+        </div>
+
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Posibilidad Viajar</label>
+            <div class="col-sm-9">
+                <input type="number"
+                       class="form-control"
+                       formControlName ="posibilidadviajar" 
+                       placeholder="Numero" >
+
+                       
+            </div>
+        </div>
+
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Profesiones</label>
+            <div class="col-sm-9">
+                
+                <select name="doc" id="doc" formControlName="profesiones_idprofesiones">
+                    <option *ngFor="let p of profesiones" value="{{p.idprofesiones}}">
+                        {{p.profesion}}
+                    </option>
+                </select>
+
+              
+            </div>
+        </div>
+
+        <div id="lower">
+            <button type="submit" class="btn btn-primary float-end"
+            >
+                Registrarse
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+
+
+
+
+    
+</div>

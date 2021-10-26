@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col">
+
+        <form autocomplete="off" [formGroup]="miFormulario" enctype="multipart/form-data">
+
+            <!-- Campo de existencias -->
+            <div class="mb-3 row">
+                <h1>Sugerencias y Comentarios</h1>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Título</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="titulo"
+                           placeholder="título"
+                           >
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('titulo')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <!-- <label class="col-sm-3 col-form-label">Ingresa la sugerencia...</label> -->
+                <div class="col-sm-9">
+                    <textarea type="text"
+                           class="form-control"
+                           formControlName="descripcion"
+                           placeholder="Ingresa la sugerencia..."
+                           name="" id="" cols="30" rows="10" maxlength="30" [maxlength]="30">
+                    </textarea>
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('descripcion')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Suba una imagen</label>
+                <div class="col-sm-9">
+                    <input type="file"
+                           id="cambioImagen"
+                           class="form-control"
+                           formControlName="imagen"
+                           placeholder="Nombres Completos"
+                           (change)="handleFileInput($event)"
+                           >
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('imagen')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit"
+                            class="btn btn-primary float-end" 
+                            (click)="createSugerencia()"
+                            
+                            >
+                            
+                        Guardar
+                    </button>
+                </div>
+            </div>
+
+
+
+        </form>
+
+    </div>
+</div>
