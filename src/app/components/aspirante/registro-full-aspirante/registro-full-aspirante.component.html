@@ -88,7 +88,7 @@
                        placeholder="Teléfono" [class.is-invalid]="telefonoNoValido">
                        
                        <small *ngIf="telefonoNoValido" class="text-danger">
-                        Campo requerido
+                        Ingrese un teléfono válido
                     </small>
             </div>
         </div>
@@ -163,12 +163,19 @@
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Contraseña </label>
             <div class="col-sm-9">
-                <input type="password"
+                <input 
                        class="form-control"
                        formControlName="contrasenia"
-                       placeholder="contraseña">
+                       placeholder="contraseña"
+                       id="password"
+                       type="password">
+                       
+                       
+                       <button class="btn btn-primary" type="button" (click)="mostrarPassword()" >Mostrar</button>
+
                        
             </div>
+         
         </div>
         
 

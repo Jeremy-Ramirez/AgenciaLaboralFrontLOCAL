@@ -27,7 +27,7 @@ export class RegistroFullAspiranteComponent implements OnInit {
     nombre: ["", [Validators.required]],
     apellido: ["", [Validators.required]],
     correo:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
-    telefono:["",[Validators.required,Validators.minLength(10)]],
+    telefono:["",[Validators.required,Validators.pattern("^[0-9-+]{9,10}$"),Validators.maxLength(10)]],
     direccion:["",[Validators.required]],
     estadoCuenta:null,
     ciudad_idciudad:["", [Validators.required]],
@@ -172,7 +172,19 @@ get generoNoValido(){
 
 
 
+  mostrarPassword(){
+   
+    
+    const tipo = <HTMLInputElement>document.getElementById('password');
+    //console.log(tipo.type)
 
+    if(tipo.type == 'password'){
+      tipo.type= 'text';
+    }else{
+      tipo.type='password';
+    }
+
+  }
 
 
 
