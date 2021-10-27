@@ -168,8 +168,12 @@
                        formControlName="contrasenia"
                        placeholder="contraseña"
                        id="password"
-                       type="password">
-                       
+                       type="password"
+                       [class.is-invalid]="contraseniaNoValido"
+                       >
+                       <small *ngIf="contraseniaNoValido" class="text-danger">
+                        Campo requerido
+                    </small>
                        
                        <button class="btn btn-primary" type="button" (click)="mostrarPassword()" >Mostrar</button>
 
@@ -183,12 +187,15 @@
             <label class="col-sm-3 col-form-label">Género  </label>
             <div class="col-sm-9">
              
-                <select formControlName="genero_idgenero">
+                <select formControlName="genero_idgenero" [class.is-invalid]="generoNoValido">
                     <option *ngFor="let g of generos" value=" {{g.idgenero}}">
                         {{g.genero}}
                     </option>
                     
                 </select>
+                <small *ngIf="generoNoValido" class="text-danger">
+                    Campo requerido
+                </small>
 
             </div>
         </div>

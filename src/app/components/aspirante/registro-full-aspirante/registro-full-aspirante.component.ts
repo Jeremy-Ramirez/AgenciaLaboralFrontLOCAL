@@ -99,7 +99,7 @@ get correoNoValido(){
 }
 
 
-get contraseñaNoValido(){
+get contraseniaNoValido(){
   return this.miFormulario.get('contrasenia').invalid && this.miFormulario.get('contrasenia').touched
 }
 
