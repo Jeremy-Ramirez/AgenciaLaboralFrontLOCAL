@@ -255,10 +255,7 @@
                 <label>Pagina Web:</label>
             </div>
             <div  class="col-sm-9">
-                <input type="text" formControlName="paginaweb"  placeholder="Pagina Web">
-                <span class="form-text text-danger" *ngIf="campoEsValido('paginaweb')">
-                    Campo Requerido
-                </span>
+                <input type="text" formControlName="paginaweb"  placeholder="Pagina Web Opcional">
             </div>
         </div>
         <div class="row">
@@ -278,12 +275,17 @@
                 <!-- Contraseña -->
                 <label >Contraseña:</label>  
             </div>
+            
             <div  class="col-sm-9">
-                <input type="password"  class="form-control" formControlName="contrasenia" placeholder="password">
+                <div class="col">
+                    <input type="password" [type]="hide ? 'password' : 'text'"  class="form-control" formControlName="contrasenia" placeholder="password">
+                    <mat-icon class=" field-icon " (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </div>
                 <span class="form-text text-danger" *ngIf="campoEsValido('contrasenia')">
                     Campo Requerido
                 </span>
             </div>
+            
         </div>
        
         <div id="lower">

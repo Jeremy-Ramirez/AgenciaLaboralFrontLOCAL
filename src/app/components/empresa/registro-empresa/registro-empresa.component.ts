@@ -10,7 +10,8 @@ import {Router} from '@angular/router';
 })
 export class RegistroEmpresaComponent implements OnInit {
   form: FormGroup;
-
+  
+  hide: boolean = true;
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -30,5 +31,8 @@ export class RegistroEmpresaComponent implements OnInit {
       this.router.navigate(['/empresa/sesionEmpresa/perfilEmpresa'])
       console.log(res.id)
     });
+  }
+  show() {
+    this.hide = !this.hide;
   }
 }

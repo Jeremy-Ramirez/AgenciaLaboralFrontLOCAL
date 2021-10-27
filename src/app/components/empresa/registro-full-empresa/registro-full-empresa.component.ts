@@ -28,6 +28,8 @@ export class RegistroFullEmpresaComponent implements OnInit {
   sectores: any[]=[];
   empresas: any []=[];
   new_empresa: any []=[];
+  hide: boolean = true;
+
   constructor(
     private _tipodocumentoService: TipodocumentoService,
     private _tipopersonaService: TipopersonaService,
@@ -41,7 +43,6 @@ export class RegistroFullEmpresaComponent implements OnInit {
     private form: FormBuilder,
     private httpClient:HttpClient
     ) { 
-      
   }
   
   ngOnInit() {
@@ -104,11 +105,11 @@ export class RegistroFullEmpresaComponent implements OnInit {
     mz: ["", [Validators.required]],
     villa: ["", [Validators.required]],
     referencia: ["", [Validators.required]],
-    paginaweb: ["", [Validators.required]],
+    paginaweb: [""],
     ciudad_idciudad: ["",[Validators.required]],
     correoelectronico:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
-    celular:["",[Validators.required,Validators.minLength(10)]],
-    telefonooficina:["",[Validators.required,Validators.minLength(10)]],
+    celular:["",[Validators.required,Validators.pattern("^[0-9-+]{9,10}$"),Validators.maxLength(10)]],
+    telefonooficina:["",[Validators.required,Validators.minLength(9)]],
     contrasenia:["", [Validators.required]],
   })
 
@@ -134,6 +135,8 @@ export class RegistroFullEmpresaComponent implements OnInit {
   campoEsValido( campo: string){
     return this.formEmpresa.controls[campo].errors  && this.formEmpresa.controls[campo].touched;
   }
-
+  show() {
+    this.hide = !this.hide;
+  }
   
 }

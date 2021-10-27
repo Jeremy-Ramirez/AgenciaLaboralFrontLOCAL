@@ -36,7 +36,7 @@
                 <label >Razón Social</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text"  formControlName="razonsocial" placeholder="razon social">
+                    <input type="text"  formControlName="razonsocial" placeholder={{razonsocial}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('razonsocial')">
                         Campo Requerido
                     </span>
@@ -48,7 +48,7 @@
             <label>Nombre Comercial</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="nombrecomercial"  placeholder="Nombre Comercial">
+                    <input type="text" formControlName="nombrecomercial"  placeholder={{nombrecomercial}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('nombrecomercial')">
                         Campo Requerido
                     </span>
@@ -60,8 +60,9 @@
                 <label>Tipo de Empresa </label>
                 </div>
                 <div class="col-sm-9">
-                    <select formControlName="tipoempresas"  >
-                        <option *ngFor="let t of tipoempresas" value="{{t.idtipoempresa}}" >
+                    <select  formControlName="tipoempresas"  >
+                        <option value="" disabled selected>{{tipoempresaDesc}}</option>
+                        <option *ngFor="let t of tipoempresas" value="{{t.idtipoempresa}}"  >
                             {{t.descripcion}}
                         </option>
                     </select>
@@ -77,6 +78,7 @@
                 </div>
                 <div class="col-sm-9">
                     <select formControlName="actividadeconomicas">
+                    <option value="" disabled selected>{{actDesc}}</option>
                     <option *ngFor="let a of actividadeconomicas" value="{{a.idactividadeconomica}}">
                         {{a.descripcion}}
                     </option>
@@ -93,6 +95,7 @@
                 </div>
                 <div  class="col-sm-9">
                     <select formControlName="ramaactividads" >
+                        <option value="" disabled selected>{{ramaDesc}}</option>
                         <option *ngFor="let r of ramaactividads" value="{{r.idramaactividad}}">
                             {{r.descripcion}}
                         </option>
@@ -109,6 +112,7 @@
                 </div>
                 <div class="col-sm-9">
                     <select formControlName="ciudades">
+                        <option value="" disabled selected>{{ciudadDesc}}</option>
                         <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
                             {{c.nombreciudad}}
                         </option>
@@ -125,6 +129,7 @@
                 </div>
                 <div class="col-sm-9" >
                     <select formControlName="provincias">
+                        <option value="" disabled selected>{{provinciaDesc}}</option>
                         <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
                             {{p.nombreprovincia}}
                         </option>
@@ -141,6 +146,7 @@
                 </div>
                 <div class="col-sm-9">
                     <select formControlName="sectores" >
+                        <option value="" disabled selected>{{sectorDesc}}</option>
                         <option *ngFor="let s of sectores" value="{{s.idsector}}">
                             {{s.descripcion}}
                         </option>
@@ -156,7 +162,7 @@
                     <label>Calle Principal</label>
                 </div>
                 <div  class="col-sm-9">
-                    <input type="text" formControlName="calleprincipal" placeholder="calle Principal">
+                    <input type="text" formControlName="calleprincipal" placeholder={{calleprincipal}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('calleprincipal')">
                         Campo Requerido
                     </span>
@@ -168,7 +174,7 @@
                     <label>Calle Secundaria</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="callesecundaria"  placeholder="calle Secundaria">
+                    <input type="text" formControlName="callesecundaria"  placeholder={{callesecundaria}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('callesecundaria')">
                         Campo Requerido
                     </span>
@@ -179,7 +185,7 @@
                     <label>Manzana</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="mz"  placeholder="Manzana">
+                    <input type="text" formControlName="mz"  placeholder={{mz}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('mz')">
                         Campo Requerido
                     </span>
@@ -190,7 +196,7 @@
                     <label>Villa</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="villa"  placeholder="No de Villa">
+                    <input type="text" formControlName="villa"  placeholder={{villa}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('villa')">
                         Campo Requerido
                     </span>
@@ -202,7 +208,7 @@
                     <label> Referencia</label>
                 </div>
                 <div  class="col-sm-9">
-                    <input type="text"  formControlName="referencia" placeholder=" Referencia">
+                    <input type="text"  formControlName="referencia" placeholder={{referencia}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('referencia')">
                         Campo Requerido
                     </span>
@@ -213,7 +219,7 @@
                     <label>Teléfono Celular</label>
                 </div>
                 <div  class="col-sm-9">
-                    <input type="text" formControlName="celular"  placeholder=" numero de telefono">
+                    <input type="text" formControlName="celular"  placeholder={{celular}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('celular')">
                         Campo Requerido
                     </span>
@@ -225,7 +231,7 @@
                     <label>Teléfono de Oficina</label>
                 </div>
                 <div  class="col-sm-9">
-                    <input type="text" formControlName="telefonooficina"  placeholder=" numero de telefono">
+                    <input type="text" formControlName="telefonooficina"  placeholder={{telefonooficina}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('telefonooficina')">
                         Campo Requerido
                     </span>
@@ -237,7 +243,7 @@
                     <label>Pagina Web:</label>
                 </div>
                 <div  class="col-sm-9">
-                    <input type="text" formControlName="paginaweb"  placeholder="Pagina Web">
+                    <input type="text" formControlName="paginaweb"  placeholder={{paginaweb}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('paginaweb')">
                         Campo Requerido
                     </span>
@@ -249,7 +255,7 @@
                     <label>Correo electrónico:</label>
                 </div>
                 <div  class="col-sm-9">
-                    <input type="text"  formControlName="correoelectronico" placeholder="correo">
+                    <input type="text"  formControlName="correoelectronico" placeholder={{correoelectronico}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('correoelectronico')">
                         Campo Requerido
                     </span>
