@@ -77,7 +77,7 @@ export class RegistroAspiranteComponent implements OnInit {
         //localStorage.setItem('auth_token', res.token);
 
         
-      },
+      },err => alert('USUARIO O CONTRASEÑA INCORRECTA')
     )
   }
 
