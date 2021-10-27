@@ -23,7 +23,7 @@ export class RegistroFullAspiranteComponent implements OnInit {
     nombreusuario: ["", [Validators.required]],
     contrasenia:["", [Validators.required]],
     tipodocumento_idtipodocumento: ["", Validators.required],
-    nodocumento:["",[Validators.required, Validators.minLength(10)]],
+    nodocumento:["",[Validators.required, Validators.pattern("^[0-9]{10}$")]],
     nombre: ["", [Validators.required]],
     apellido: ["", [Validators.required]],
     correo:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
