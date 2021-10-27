@@ -109,7 +109,7 @@ export class RegistroFullEmpresaComponent implements OnInit {
     ciudad_idciudad: ["",[Validators.required]],
     correoelectronico:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
     celular:["",[Validators.required,Validators.pattern("^[0-9-+]{9,10}$"),Validators.maxLength(10)]],
-    telefonooficina:["",[Validators.required,Validators.minLength(9)]],
+    telefonooficina:["",[Validators.required,Validators.maxLength(9)]],
     contrasenia:["", [Validators.required]],
   })
 
