@@ -38,13 +38,29 @@ export class OfertaEmpleoComponent implements OnInit {
       if(this.aspirantessolicitados2[i].aspirante_idaspirante.idaspirante==this.idAspirante){
         
         this.inner+=`
-        <div class="empleo" >
-        <h2 ><a >${this.aspirantessolicitados2[i].solicitud_idsolicitud.profesion}</a></h2>                
-        <p>Descripcion, Ciudad, Provincia</p>
-        <div class="card" style="width:400px">
+        <div class="empleo" >        
+        <div class="card">
         <div class="card-body"> 
-            <p class="card-text">${this.aspirantessolicitados2[i].solicitud_idsolicitud.descripcioncargo}</p>
-            <p class="card-text">${this.aspirantessolicitados2[i].solicitud_idsolicitud.representante_idrepresentante.empresa_idempresa.nombrecomercial}</p>
+            <h2 class="card-title">Cargo: ${this.aspirantessolicitados2[i].solicitud_idsolicitud.cargo}</h2>
+            <h3>${this.aspirantessolicitados2[i].solicitud_idsolicitud.profesion}</h3> 
+            <p></p>
+            <ul>
+              <li >Descripción: ${this.aspirantessolicitados2[i].solicitud_idsolicitud.descripcioncargo}</li>
+              <p></p>
+              <li >Educacion minima: ${this.aspirantessolicitados2[i].solicitud_idsolicitud.educacion_minima}</li>
+              <li >Jornada:  ${this.aspirantessolicitados2[i].solicitud_idsolicitud.jornada} </li>
+              <li >Licencia: ${this.aspirantessolicitados2[i].solicitud_idsolicitud.licencia}</li>
+              <li >Idiomas: ${this.aspirantessolicitados2[i].solicitud_idsolicitud.idiomas}</li>
+              <li >Personas con discapacidad: ${this.aspirantessolicitados2[i].solicitud_idsolicitud.discapacidad}</li>
+              <li >Disponibilidad de viajar: ${this.aspirantessolicitados2[i].solicitud_idsolicitud.disponibilidad_viajar} </li>              
+              <li >Disponibilidad de cambio de residencia: ${this.aspirantessolicitados2[i].solicitud_idsolicitud.disponibilidad_viajar} </li>
+            </ul>
+            <p class="card-text">Empresa: ${this.aspirantessolicitados2[i].solicitud_idsolicitud.representante_idrepresentante.empresa_idempresa.nombrecomercial}</p>
+            <ul>
+              <li>Fecha de inicio ${this.aspirantessolicitados2[i].solicitud_idsolicitud.fechainicio}</li>
+              <li>Fecha de cierre ${this.aspirantessolicitados2[i].solicitud_idsolicitud.fechacierre}</li>
+            </ul>
+            
             <button type="button">Aceptar</button>            
             <button type="button">Eliminar</button>
         </div>
