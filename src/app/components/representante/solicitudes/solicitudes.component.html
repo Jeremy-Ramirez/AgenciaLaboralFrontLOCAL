@@ -1,0 +1,238 @@
+<div class="row">
+    <div class="col">
+
+        <form autocomplete="off" [formGroup]="formEmpresa" (ngSubmit)="crear()">
+            <div class="row">
+                <div class="col-25">
+                  <!-- Profesion -->
+                <label >Profesion</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text"  formControlName="profesion" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('profesion')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- Años de experiencia -->
+                <label>Años de experiencia</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="aniosexperiencia" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('aniosexperiencia')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- Rango de Edad -->
+                <label>Rango de Edad</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="rangoedad" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('rangoedad')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- Experticia -->
+                <label>Experticia</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="experticia" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('experticia')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- Sueldo -->
+                <label>Sueldo</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="sueldo" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('sueldo')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- fechainicio -->
+                <label>Fecha de inicio</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="fechainicio" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('fechainicio')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- fechacierre -->
+                <label>Fecha de cierre</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="fechacierre" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('fechacierre')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- cargo -->
+                <label>Cargo</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="cargo" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('cargo')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- cargo -->
+                <label>Descripcion del cargo</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="descripcioncargo" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('descripcioncargo')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                  <!-- Ciudad  -->
+                <label>Ciudad: </label>
+                </div>
+                <div class="col-sm-9">
+                    <select formControlName="ciudad_idciudad">
+                        <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
+                            {{c.nombreciudad}}
+                        </option>
+                    </select>
+                    <span class="form-text text-danger" *ngIf="campoEsValido('ciudad_idciudad')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <!-- Provincia -->
+                    <label>Provincia:</label>
+                </div>
+                <div class="col-sm-9" >
+                    <select formControlName="provincia_idprovincia">
+                        <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                            {{p.nombreprovincia}}
+                        </option>
+                    </select>
+                    <span class="form-text text-danger" *ngIf="campoEsValido('provincia_idprovincia')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- educacion_minima -->
+                <label>Educación mínima</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="educacion_minima" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('educacion_minima')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- jornada -->
+                <label>Jornada laboral</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="jornada" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('jornada')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- Personas con discapacidad -->
+                <label>Personas con discapacidad</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="discapacidad" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('discapacidad')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- disponibilidad_viajar -->
+                <label>Disponibilidad de viajar </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="disponibilidad_viajar" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('disponibilidad_viajar')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- disponibilidad_cambioresidencia -->
+                <label>Disponibilidad de cambio de residencia </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="disponibilidad_cambioresidencia" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('disponibilidad_cambioresidencia')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- licencia -->
+                <label>Licencia </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="licencia" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('licencia')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- idiomas -->
+                <label>Idiomas </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" formControlName="idiomas" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('idiomas')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div id="lower">
+                <button type="submit" class="btn btn-primary float-end" >
+                    Guardar
+                </button>
+    
+            </div>
+        </form>       
+
+    </div>
+</div>
