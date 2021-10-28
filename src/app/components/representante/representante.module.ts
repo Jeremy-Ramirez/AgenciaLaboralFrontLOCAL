@@ -21,6 +21,8 @@ import { RepresentanteRoutingModule } from './representante-routing.module';
 import { RegistroFullRepresentanteComponent } from './registro-full-representante/registro-full-representante.component';
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
 
+import { SolicitudesComponent } from '../representante/solicitudes/solicitudes.component';
+import { ShowsolicitudesComponent } from './showsolicitudes/showsolicitudes.component';
 @NgModule({
   declarations: [
     MenuLateralComponent,
@@ -28,7 +30,8 @@ import { SugerenciasComentariosComponent } from './sugerencias-comentarios/suger
     SesionRepresentanteComponent,
     RegistroFullRepresentanteComponent,
     SugerenciasComentariosComponent,
-
+    SolicitudesComponent,
+    ShowsolicitudesComponent,
 
   ],
   imports: [

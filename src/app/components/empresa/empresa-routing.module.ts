@@ -10,7 +10,6 @@ import { RegistroFullEmpresaComponent } from './registro-full-empresa/registro-f
 import { RegistroFullRepresentanteComponent } from '../representante/registro-full-representante/registro-full-representante.component';
 import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
 import { InformacionComponent } from './informacion/informacion.component';
-
   
 const routes: Routes = [
     {
