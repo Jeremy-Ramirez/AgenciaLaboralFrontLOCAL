@@ -93,3 +93,11 @@
       margin-top: 0;
     }
   }
+
+  .field-icon {
+    float: right;
+    margin-left: -40px;
+    margin-top: -32px;
+    position: relative;
+    z-index: 2;
+  }

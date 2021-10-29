@@ -15,8 +15,11 @@ export class RegistroFullRepresentanteComponent implements OnInit {
   provincia:any[]=[];
   ciudad:any[]=[];
   usuarios:any[]=[];
+  estadoCivil: any[]=[];
+
   correo:any='';
   id:'';
+  hide: boolean = true;
 
   seleccionado:string;
   seleccionuser:string;
@@ -26,17 +29,17 @@ export class RegistroFullRepresentanteComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
     nombreusuario: ["", Validators.required],
     contrasenia:["", [Validators.required]],
-    tipodocumento_idtipodocumento: ["", Validators.required],
-    nodocumento:["",[Validators.required, Validators.minLength(10)]],
+    tipodocumento_idtipodocumento: ["", [Validators.required]],
+    nodocumento:["",[Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
     nombre: ["", [Validators.required]],
     apellido: ["", [Validators.required]],
     correo:["", [Validators.required, Validators.email]],
-    telefono: null,
-    direccion: null,
+    telefono: ["", [Validators.required, Validators.maxLength(10), Validators.minLength(9)]],
+    direccion: ["", [Validators.required]],
     estadocuenta: "cad",
     genero_idgenero:["", [Validators.required]],
     rol_idrol: 1,
-    estadocivil_idestadocivil: 1,
+    estadocivil_idestadocivil: ["",[Validators.required]],
     provincia_idprovincia:["", [Validators.required]],
     ciudad_idciudad:["", [Validators.required]],
     //confirmacion:["", [Validators.required]],
@@ -49,6 +52,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
     this.getTipodocumento();
     this.getProvincias();
     this.getCiudades();
+    this.getEstadoCivil();
   }
   
   campoEsValido( campo: string){
@@ -61,6 +65,13 @@ export class RegistroFullRepresentanteComponent implements OnInit {
     this.http.get('http://localhost:8000/api/tipodocumento/').subscribe((doc:any)=>{
       this.tipoDocumento=doc;
     console.log(this.tipoDocumento)
+    })
+  }
+
+  getEstadoCivil(){
+    this.http.get('http://localhost:8000/api/estadocivils/').subscribe((doc:any)=>{
+      this.estadoCivil=doc;
+    console.log(this.estadoCivil)
     })
   }
 
@@ -130,5 +141,10 @@ export class RegistroFullRepresentanteComponent implements OnInit {
 
     //this.getUsuarios();
   }
+  show() {
+    this.hide = !this.hide;
+  }
+
+
 
 }

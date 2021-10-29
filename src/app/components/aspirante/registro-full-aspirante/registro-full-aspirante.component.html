@@ -13,7 +13,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName ="nombreusuario" 
-                       placeholder="Numero" [class.is-invalid]="usuarioNoValido" >
+                       placeholder="" [class.is-invalid]="usuarioNoValido" >
 
                        <small *ngIf="usuarioNoValido" class="text-danger">
                         Campo Requerido
@@ -24,13 +24,13 @@
             <label class="col-sm-3 col-form-label">Tipo de Documento</label>
             <div class="col-sm-9">
                 
-                <select name="doc" id="doc" formControlName="tipodocumento_idtipodocumento">
+                <select name="doc" id="doc" [class.is-invalid]="tipoDocumentoNoValido" formControlName="tipodocumento_idtipodocumento">
                     <option *ngFor="let documento of tipoDocumento" value="{{documento.idtipodocumento}}">
                         {{documento.descripcion}}
                     </option>
                 </select>
 
-                <small *ngIf="usuarioNoValido" class="text-danger">
+                <small *ngIf="tipoDocumentoNoValido" class="text-danger">
                     Campo Requerido
                 </small>
             </div>
@@ -42,7 +42,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName ="nodocumento" 
-                       placeholder="Numero" [class.is-invalid]="numDocumentoNoValido" >
+                       placeholder="" [class.is-invalid]="numDocumentoNoValido" >
 
                        <small *ngIf="numDocumentoNoValido" class="text-danger">
                         Escriba un número de documento válido
@@ -57,7 +57,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName="nombre"
-                       placeholder="Nombres Completos" [class.is-invalid]="nombresNoValido">
+                       placeholder="" [class.is-invalid]="nombresNoValido">
                     
                        <small *ngIf="nombresNoValido" class="text-danger">
                         Campo requerido
@@ -71,7 +71,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName="apellido"
-                       placeholder="Apellidos" [class.is-invalid]="apellidosNoValido">
+                       placeholder="" [class.is-invalid]="apellidosNoValido">
                        
                        <small *ngIf="apellidosNoValido" class="text-danger">
                         Campo requerido
@@ -85,7 +85,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName="telefono"
-                       placeholder="Teléfono" [class.is-invalid]="telefonoNoValido">
+                       placeholder="" [class.is-invalid]="telefonoNoValido">
                        
                        <small *ngIf="telefonoNoValido" class="text-danger">
                         Ingrese un teléfono válido
@@ -99,7 +99,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName="direccion"
-                       placeholder="Dirección" [class.is-invalid]="direccionNoValido">
+                       placeholder="" [class.is-invalid]="direccionNoValido">
                        
                        <small *ngIf="direccionNoValido" class="text-danger">
                         Campo requerido
@@ -169,13 +169,16 @@
                        placeholder="contraseña"
                        id="password"
                        type="password"
+                       [type]="hide ? 'password' : 'text'"
                        [class.is-invalid]="contraseniaNoValido"
                        >
+                       <mat-icon class=" field-icon " (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
                        <small *ngIf="contraseniaNoValido" class="text-danger">
                         Campo requerido
                     </small>
                        
-                       <button class="btn btn-primary" type="button" (click)="mostrarPassword()" >Mostrar</button>
+                       <!-- <button class="btn btn-primary" type="button" (click)="mostrarPassword()" >Mostrar</button> -->
 
                        
             </div>

@@ -8,7 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegistroFullAspiranteComponent implements OnInit {
 
-  
+  hide: boolean = true;
+
   generos:any[]=[];
   
   provincias:any[]=[];
@@ -55,7 +56,7 @@ export class RegistroFullAspiranteComponent implements OnInit {
   }
 
 get tipoDocumentoNoValido(){
-  return this.miFormulario.get('tipoDocumento').invalid && this.miFormulario.get('tipoDocumento').touched
+  return this.miFormulario.get('tipodocumento_idtipodocumento').invalid && this.miFormulario.get('tipodocumento_idtipodocumento').touched
 }
 get usuarioNoValido(){
   return this.miFormulario.get('nombreusuario').invalid && this.miFormulario.get('nombreusuario').touched
@@ -184,6 +185,10 @@ get generoNoValido(){
       tipo.type='password';
     }
 
+  }
+
+  show() {
+    this.hide = !this.hide;
   }
 
 

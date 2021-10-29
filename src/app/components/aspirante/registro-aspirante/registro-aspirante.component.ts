@@ -19,7 +19,8 @@ import jwt_decode from 'jwt-decode';
 export class RegistroAspiranteComponent implements OnInit {
   id='';
   usuarioActual:any;
-  miFormulario: FormGroup
+  miFormulario: FormGroup;
+  hide: boolean = true;
   httpOptions={
     headers: new HttpHeaders({
       'Content-Type' : 'Application/json'
@@ -83,6 +84,10 @@ export class RegistroAspiranteComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('currentUser');
+  }
+
+  show() {
+    this.hide = !this.hide;
   }
 
 }

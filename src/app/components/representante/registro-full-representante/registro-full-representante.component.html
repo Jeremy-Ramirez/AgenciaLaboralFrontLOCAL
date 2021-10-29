@@ -29,7 +29,7 @@
                     <input type="text"
                            class="form-control"
                            formControlName ="nodocumento" 
-                           placeholder="Numero">
+                           placeholder="">
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('nodocumento')">
                         
@@ -45,7 +45,7 @@
                     <input type="text"
                            class="form-control"
                            formControlName="nombre"
-                           placeholder="Nombres Completos"
+                           placeholder=""
                            >
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('nombre')">
@@ -61,7 +61,7 @@
                     <input type="text"
                            class="form-control"
                            formControlName="apellido"
-                           placeholder="Apellidos">
+                           placeholder="">
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('apellido')">
                         
@@ -76,7 +76,7 @@
                     <input type="text"
                            class="form-control"
                            formControlName="nombreusuario"
-                           placeholder="usuario">
+                           placeholder="">
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('nombreusuario')">
                         
@@ -116,6 +116,26 @@
                     </span>
                 </div>
             </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Estado Civil  </label>
+                <div class="col-sm-9">
+                    <select name="estadoCivil" id="estadoCivil" formControlName="estadocivil_idestadocivil">
+                        <option *ngFor="let estado of estadoCivil" value="{{estado.idestadocivil}}">
+                            {{estado.estadocivil}}
+                        </option>
+                        
+                        <!-- <option value="f">Femenino</option>
+                        <option value="o">Otro</option> -->
+                    </select>
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('estadocivil_idestadocivil')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Género  </label>
                 <div class="col-sm-9">
@@ -136,12 +156,43 @@
             </div>
 
             <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Dirección</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="direccion"
+                           placeholder="">
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('direccion')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Teléfono</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="telefono"
+                           placeholder="">
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('telefono')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Correo </label>
                 <div class="col-sm-9">
                     <input type="text"
                            class="form-control"
                            formControlName="correo"
-                           placeholder="correo">
+                           placeholder="">
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('correo')">
                         
@@ -154,9 +205,13 @@
                 <label class="col-sm-3 col-form-label">Contraseña </label>
                 <div class="col-sm-9">
                     <input type="password"
-                           class="form-control"
-                           formControlName="contrasenia"
-                           placeholder="contrasenia">
+                        [type]="hide ? 'password' : 'text'"
+                        class="form-control"
+                        formControlName="contrasenia"
+                        placeholder="">
+
+                    <mat-icon class=" field-icon " (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('contrasenia')">
                         

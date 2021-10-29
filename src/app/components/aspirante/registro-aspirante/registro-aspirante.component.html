@@ -8,12 +8,19 @@
         <input type="name" formControlName="correo">
         <!-- Password -->
         <label for="username">Contraseña:</label>
-        <p><a href="#">Olvidaste tu contraseña?</a>    
-        <input type="password" formControlName="contrasenia">
+        <div  class="col">
+            <p><a href="#">Olvidaste tu contraseña?</a>    
+            <input type="password" [type]="hide ? 'password' : 'text'"  class="form-control" formControlName="contrasenia" placeholder="password">
+            <mat-icon class=" field-icon " (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </div>
+        
+        
+
         <div id="lower">
             <!-- Submit Button -->
             <input type="submit" value="Login " (click)="login()">
             <input type="submit" routerLink="/aspirante/registroFullAspirante" value="Register">
+
         </div>
     </form>       
 </div>

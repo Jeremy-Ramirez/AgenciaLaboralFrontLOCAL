@@ -30,7 +30,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     experticia:["",[Validators.required]],
     videopresentacion:["",[Validators.required]],
     aniosexperiencia:["",[Validators.required]],
-    fechanacimiento:["",[Validators.required]],
+    fechanacimiento:["",[Validators.required, ]],
     posibilidadviajar:["",[Validators.required]],
     profesiones_idprofesiones:["",[Validators.required]],
     usuario_idusuario:null,
@@ -90,7 +90,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     formData.append('usuario_idusuario',this.id)
 
     console.log(this.miFormulario.value);
-    this.http.post('https://agencialaboralproyecto.pythonanywhere.com/api/aspirantes/', formData).subscribe(
+    this.http.post('http://localhost:8000/api/aspirantes/', formData).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 

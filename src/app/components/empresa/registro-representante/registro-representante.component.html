@@ -29,7 +29,7 @@
                     <input type="text"
                            class="form-control"
                            formControlName ="nodocumento" 
-                           placeholder="Numero">
+                           placeholder="">
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('nodocumento')">
                         
@@ -45,7 +45,7 @@
                     <input type="text"
                            class="form-control"
                            formControlName="nombre"
-                           placeholder="Nombres Completos">
+                           placeholder="">
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('nombre')">
                         
@@ -60,7 +60,7 @@
                     <input type="text"
                            class="form-control"
                            formControlName="apellido"
-                           placeholder="Apellidos">
+                           placeholder="">
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('apellido')">
                         
@@ -88,9 +88,12 @@
                 <label class="col-sm-3 col-form-label">Contraseña </label>
                 <div class="col-sm-9">
                     <input type="password"
+                    [type]="hide ? 'password' : 'text'"
                            class="form-control"
                            formControlName="contrasenia"
                            placeholder="contrasenia">
+                    <mat-icon class=" field-icon " (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('contrasenia')">
                         
