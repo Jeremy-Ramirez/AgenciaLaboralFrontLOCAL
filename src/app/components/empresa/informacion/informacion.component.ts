@@ -37,7 +37,7 @@ export class InformacionComponent implements OnInit {
   referencia ='';
   telefonooficina ='';
   celular ='';
-  correoelectronico ='';
+  correo ='';
   paginaweb ='';
   actDesc='';
   tipopersonas:any[]=[];
@@ -112,7 +112,7 @@ export class InformacionComponent implements OnInit {
       this.referencia=resp.referencia
       this.telefonooficina=resp.telefonooficina            
       this.celular=resp.celular
-      this.correoelectronico=resp.correoelectronico
+      this.correo=resp.correo
       this.paginaweb=resp.paginaweb
       this._tipodocumentoService.getTipodocumentos().subscribe((resp1:any)=>{
         this.tipodocumentos=resp1
@@ -226,7 +226,7 @@ export class InformacionComponent implements OnInit {
     referencia: ["", [Validators.required]],
     paginaweb: ["", [Validators.required]],
     ciudades: ["", Validators.required],
-    correoelectronico:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
+    correo:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
     celular:["",[Validators.required,Validators.minLength(10)]],
     telefonooficina:["",[Validators.required,Validators.minLength(10)]],
     contrasenia:["", [Validators.required]],
