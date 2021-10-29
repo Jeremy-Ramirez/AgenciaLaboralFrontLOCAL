@@ -10,6 +10,7 @@
             <div class="col-sm-9">
                 
             <select formControlName="tipodocumento_idtipodocumento" >
+                <option value="" disabled selected>Seleccione un documento</option>
                 <option *ngFor="let t of tipodocumentos"  value="{{t.idtipodocumento}}"> 
                     {{t.descripcion}} 
                 </option>
@@ -26,7 +27,7 @@
             <label>RUC/Cédula </label>
             </div>
             <div class="col-sm-9">
-                <input type="text" formControlName="ruc_cedula" placeholder="">
+                <input type="text" formControlName="ruc_cedula" placeholder="Ingrese número del documento">
                 <span class="form-text text-danger" *ngIf="campoEsValido('ruc_cedula')">
                     Campo Requerido
                 </span>
@@ -39,6 +40,7 @@
             <div class="col-sm-9">
            
             <select  formControlName="tipopersona_idtipopersona" >
+                <option value="" disabled selected>Seleccione un tipo</option>
                 <option *ngFor="let t of tipopersonas" value="{{t.idtipopersona}}">
                     {{t.descripcion}}
                 </option>
@@ -54,7 +56,7 @@
             <label >Razón Social</label>
             </div>
             <div class="col-sm-9">
-                <input type="text"  formControlName="razonsocial" placeholder="">
+                <input type="text"  formControlName="razonsocial" placeholder="Ingrese la razón social">
                 <span class="form-text text-danger" *ngIf="campoEsValido('razonsocial')">
                     Campo Requerido
                 </span>
@@ -66,7 +68,7 @@
         <label>Nombre Comercial</label>
             </div>
             <div class="col-sm-9">
-                <input type="text" formControlName="nombrecomercial"  placeholder="">
+                <input type="text" formControlName="nombrecomercial"  placeholder="Ingrese el nombre comercial de la empresa">
                 <span class="form-text text-danger" *ngIf="campoEsValido('nombrecomercial')">
                     Campo Requerido
                 </span>
@@ -79,6 +81,7 @@
             </div>
             <div class="col-sm-9">
                 <select formControlName="tipoempresa_idtipoempresa"  >
+                    <option value="" disabled selected>Seleccione un tipo</option>
                     <option *ngFor="let t of tipoempresas" value="{{t.idtipoempresa}}" >
                         {{t.descripcion}}
                     </option>
@@ -95,6 +98,7 @@
             </div>
             <div class="col-sm-9">
                 <select formControlName="actividadeconomica_idactividadeconomica">
+                <option value="" disabled selected>Seleccione una actividad</option>
                 <option *ngFor="let a of actividadeconomicas" value="{{a.idactividadeconomica}}">
                     {{a.descripcion}}
                 </option>
@@ -111,6 +115,7 @@
             </div>
             <div  class="col-sm-9">
                 <select formControlName="ramaactividad_idramaactividad" >
+                    <option value="" disabled selected>Seleccione una rama</option>
                     <option *ngFor="let r of ramaactividads" value="{{r.idramaactividad}}">
                         {{r.descripcion}}
                     </option>
@@ -127,6 +132,7 @@
             </div>
             <div class="col-sm-9">
                 <select formControlName="ciudad_idciudad">
+                    <option value="" disabled selected>Seleccione una ciudad</option>
                     <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
                         {{c.nombreciudad}}
                     </option>
@@ -143,6 +149,7 @@
             </div>
             <div class="col-sm-9" >
                 <select formControlName="provincia_idprovincia">
+                    <option value="" disabled selected>Seleccione una provincia</option>
                     <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
                         {{p.nombreprovincia}}
                     </option>
@@ -159,6 +166,7 @@
             </div>
             <div class="col-sm-9">
                 <select formControlName="sector_idsector" >
+                    <option value="" disabled selected>Seleccione un sector</option>
                     <option *ngFor="let s of sectores" value="{{s.idsector}}">
                         {{s.descripcion}}
                     </option>
@@ -174,7 +182,7 @@
                 <label>Calle Principal</label>
             </div>
             <div  class="col-sm-9">
-                <input type="text" formControlName="calleprincipal" placeholder="">
+                <input type="text" formControlName="calleprincipal" placeholder="Ingrese la calle o avenida principal">
                 <span class="form-text text-danger" *ngIf="campoEsValido('calleprincipal')">
                     Campo Requerido
                 </span>
@@ -186,7 +194,7 @@
                 <label>Calle Secundaria</label>
             </div>
             <div class="col-sm-9">
-                <input type="text" formControlName="callesecundaria"  placeholder="">
+                <input type="text" formControlName="callesecundaria"  placeholder="Ingrese la calle o avenida secundaria">
                 <span class="form-text text-danger" *ngIf="campoEsValido('callesecundaria')">
                     Campo Requerido
                 </span>
@@ -197,7 +205,7 @@
                 <label>Manzana</label>
             </div>
             <div class="col-sm-9">
-                <input type="text" formControlName="mz"  placeholder="">
+                <input type="text" formControlName="mz"  placeholder="Ingrese el número de mz">
                 <span class="form-text text-danger" *ngIf="campoEsValido('mz')">
                     Campo Requerido
                 </span>
@@ -208,7 +216,7 @@
                 <label>Villa</label>
             </div>
             <div class="col-sm-9">
-                <input type="text" formControlName="villa"  placeholder="">
+                <input type="text" formControlName="villa"  placeholder="Ingrese el número de villa">
                 <span class="form-text text-danger" *ngIf="campoEsValido('villa')">
                     Campo Requerido
                 </span>
@@ -220,7 +228,7 @@
                 <label> Referencia</label>
             </div>
             <div  class="col-sm-9">
-                <input type="text"  formControlName="referencia" placeholder="">
+                <input type="text"  formControlName="referencia" placeholder="Ingrese una referencia de la dirección">
                 <span class="form-text text-danger" *ngIf="campoEsValido('referencia')">
                     Campo Requerido
                 </span>
@@ -231,7 +239,7 @@
                 <label>Teléfono Celular</label>
             </div>
             <div  class="col-sm-9">
-                <input type="text" formControlName="celular"  placeholder="">
+                <input type="text" formControlName="celular"  placeholder="Ingrese su número celular">
                 <span class="form-text text-danger" *ngIf="campoEsValido('celular')">
                     Campo Requerido
                 </span>
@@ -243,7 +251,7 @@
                 <label>Teléfono de Oficina</label>
             </div>
             <div  class="col-sm-9">
-                <input type="text" formControlName="telefonooficina"  placeholder="">
+                <input type="text" formControlName="telefonooficina"  placeholder="Ingrese su número de teléfono">
                 <span class="form-text text-danger" *ngIf="campoEsValido('telefonooficina')">
                     Campo Requerido
                 </span>
@@ -264,7 +272,7 @@
                 <label>Correo electrónico:</label>
             </div>
             <div  class="col-sm-9">
-                <input type="text"  formControlName="correoelectronico" placeholder="correo">
+                <input type="text"  formControlName="correoelectronico" placeholder="Ingrese su correo electrónico">
                 <span class="form-text text-danger" *ngIf="campoEsValido('correoelectronico')">
                     Campo Requerido
                 </span>
@@ -278,7 +286,7 @@
             
             <div  class="col-sm-9">
                 <div class="col">
-                    <input type="password" [type]="hide ? 'password' : 'text'"  class="form-control" formControlName="contrasenia" placeholder="password">
+                    <input type="password" [type]="hide ? 'password' : 'text'"  class="form-control" formControlName="contrasenia" placeholder="Ingrese una contraseña">
                     <mat-icon class=" field-icon " (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </div>
                 <span class="form-text text-danger" *ngIf="campoEsValido('contrasenia')">

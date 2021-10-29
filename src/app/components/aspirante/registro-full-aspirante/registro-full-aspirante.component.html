@@ -13,7 +13,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName ="nombreusuario" 
-                       placeholder="" [class.is-invalid]="usuarioNoValido" >
+                       placeholder="Ingrese un nombre de usuario" [class.is-invalid]="usuarioNoValido" >
 
                        <small *ngIf="usuarioNoValido" class="text-danger">
                         Campo Requerido
@@ -25,6 +25,7 @@
             <div class="col-sm-9">
                 
                 <select name="doc" id="doc" [class.is-invalid]="tipoDocumentoNoValido" formControlName="tipodocumento_idtipodocumento">
+                    <option value="" disabled selected>Seleccione un documento</option>
                     <option *ngFor="let documento of tipoDocumento" value="{{documento.idtipodocumento}}">
                         {{documento.descripcion}}
                     </option>
@@ -42,7 +43,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName ="nodocumento" 
-                       placeholder="" [class.is-invalid]="numDocumentoNoValido" >
+                       placeholder="Ingrese el número de su documento" [class.is-invalid]="numDocumentoNoValido" >
 
                        <small *ngIf="numDocumentoNoValido" class="text-danger">
                         Escriba un número de documento válido
@@ -57,7 +58,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName="nombre"
-                       placeholder="" [class.is-invalid]="nombresNoValido">
+                       placeholder="Ingrese sus nombres completos" [class.is-invalid]="nombresNoValido">
                     
                        <small *ngIf="nombresNoValido" class="text-danger">
                         Campo requerido
@@ -71,7 +72,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName="apellido"
-                       placeholder="" [class.is-invalid]="apellidosNoValido">
+                       placeholder="Ingrese sus apellidos completos" [class.is-invalid]="apellidosNoValido">
                        
                        <small *ngIf="apellidosNoValido" class="text-danger">
                         Campo requerido
@@ -85,7 +86,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName="telefono"
-                       placeholder="" [class.is-invalid]="telefonoNoValido">
+                       placeholder="Ingrese su número de teléfono" [class.is-invalid]="telefonoNoValido">
                        
                        <small *ngIf="telefonoNoValido" class="text-danger">
                         Ingrese un teléfono válido
@@ -99,7 +100,7 @@
                 <input type="text"
                        class="form-control"
                        formControlName="direccion"
-                       placeholder="" [class.is-invalid]="direccionNoValido">
+                       placeholder="Ingrese la dirección de su domicilio" [class.is-invalid]="direccionNoValido">
                        
                        <small *ngIf="direccionNoValido" class="text-danger">
                         Campo requerido
@@ -107,33 +108,11 @@
             </div>
         </div>
 
-
-
-
-
-
-
-        <div class="mb-3 row">
-            <label class="col-sm-3 col-form-label">Povincia</label>
-            <div class="col-sm-9">
-
-                <select  formControlName="provincia_idprovincia" [class.is-invalid]="provinciaNoValido" >
-                    <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
-                        {{p.nombreprovincia}}
-                        
-                    </option>
-                </select>
-                <small *ngIf="provinciaNoValido" class="text-danger">
-                    Seleccione una provincia
-                </small>
-
-            </div>
-        </div>
-
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Ciudad </label>
             <div class="col-sm-9">
                 <select   formControlName="ciudad_idciudad" [class.is-invalid]="ciudadNoValido">
+                    <option value="" disabled selected>Seleccione una ciudad</option>
                     <option *ngFor="let c of ciudades" value="{{c.idciudad}}">
 
                         {{c.nombreciudad}}
@@ -147,12 +126,29 @@
         </div>
 
         <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Povincia</label>
+            <div class="col-sm-9">
+
+                <select  formControlName="provincia_idprovincia" [class.is-invalid]="provinciaNoValido" >
+                    <option value="" disabled selected>Seleccione una provincia</option>
+                    <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                        {{p.nombreprovincia}}
+                        
+                    </option>
+                </select>
+                <small *ngIf="provinciaNoValido" class="text-danger">
+                    Seleccione una provincia
+                </small>
+
+            </div>
+        </div>
+        <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Correo </label>
             <div class="col-sm-9">
                 <input type="text"
                        class="form-control"
                        formControlName="correo"
-                       placeholder="correo" [class.is-invalid]="correoNoValido">
+                       placeholder="Ingrese su correo electrónico" [class.is-invalid]="correoNoValido">
                      
                        <small *ngIf="correoNoValido" class="text-danger">
                         Escriba un correo válido
@@ -166,7 +162,7 @@
                 <input 
                        class="form-control"
                        formControlName="contrasenia"
-                       placeholder="contraseña"
+                       placeholder="Ingrese una contraseña"
                        id="password"
                        type="password"
                        [type]="hide ? 'password' : 'text'"
@@ -191,6 +187,7 @@
             <div class="col-sm-9">
              
                 <select formControlName="genero_idgenero" [class.is-invalid]="generoNoValido">
+                    <option value="" disabled selected>Seleccione un género</option>
                     <option *ngFor="let g of generos" value=" {{g.idgenero}}">
                         {{g.genero}}
                     </option>

@@ -8,7 +8,7 @@
                 <label >Profesion</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text"  formControlName="profesion" >
+                    <input type="text"  formControlName="profesion" placeholder="Ingrese una profesión" >
                     <span class="form-text text-danger" *ngIf="campoEsValido('profesion')">
                         Campo Requerido
                     </span>
@@ -20,7 +20,7 @@
                 <label>Años de experiencia</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="aniosexperiencia" >
+                    <input type="text" formControlName="aniosexperiencia" placeholder="Ingrese los años requeridos de experiencia ">
                     <span class="form-text text-danger" *ngIf="campoEsValido('aniosexperiencia')">
                         Campo Requerido
                     </span>
@@ -32,7 +32,7 @@
                 <label>Rango de Edad</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="rangoedad" >
+                    <input type="text" formControlName="rangoedad" placeholder="Ingrese un rango de edad">
                     <span class="form-text text-danger" *ngIf="campoEsValido('rangoedad')">
                         Campo Requerido
                     </span>
@@ -44,7 +44,7 @@
                 <label>Experticia</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="experticia" >
+                    <input type="text" formControlName="experticia" placeholder="Ingrese datos de experticia necesarios">
                     <span class="form-text text-danger" *ngIf="campoEsValido('experticia')">
                         Campo Requerido
                     </span>
@@ -56,7 +56,7 @@
                 <label>Sueldo</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="sueldo" >
+                    <input type="text" formControlName="sueldo" placeholder="Ingrese la cantidad de sueldo">
                     <span class="form-text text-danger" *ngIf="campoEsValido('sueldo')">
                         Campo Requerido
                     </span>
@@ -68,7 +68,7 @@
                 <label>Fecha de inicio</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="fechainicio" >
+                    <input type="date" formControlName="fechainicio" placeholder="Ingrese la fecha de inicio ">
                     <span class="form-text text-danger" *ngIf="campoEsValido('fechainicio')">
                         Campo Requerido
                     </span>
@@ -80,7 +80,7 @@
                 <label>Fecha de cierre</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="fechacierre" >
+                    <input type="date" formControlName="fechacierre" placeholder="Ingrese la fecha de cierre" >
                     <span class="form-text text-danger" *ngIf="campoEsValido('fechacierre')">
                         Campo Requerido
                     </span>
@@ -92,7 +92,7 @@
                 <label>Cargo</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="cargo" >
+                    <input type="text" formControlName="cargo" placeholder="Ingrese el cargo ">
                     <span class="form-text text-danger" *ngIf="campoEsValido('cargo')">
                         Campo Requerido
                     </span>
@@ -104,7 +104,7 @@
                 <label>Descripcion del cargo</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="descripcioncargo" >
+                    <input type="text" formControlName="descripcioncargo" placeholder="Ingrese una descripción del cargo">
                     <span class="form-text text-danger" *ngIf="campoEsValido('descripcioncargo')">
                         Campo Requerido
                     </span>
@@ -117,6 +117,7 @@
                 </div>
                 <div class="col-sm-9">
                     <select formControlName="ciudad_idciudad">
+                        <option value="" disabled selected>Seleccione una ciudad</option>
                         <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
                             {{c.nombreciudad}}
                         </option>
@@ -133,6 +134,8 @@
                 </div>
                 <div class="col-sm-9" >
                     <select formControlName="provincia_idprovincia">
+                        <option value="" disabled selected>Seleccione una provincia</option>
+                    
                         <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
                             {{p.nombreprovincia}}
                         </option>
@@ -148,7 +151,7 @@
                 <label>Educación mínima</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="educacion_minima" >
+                    <input type="text" formControlName="educacion_minima" placeholder="Ingrese el nivel mínimo de educación requerido">
                     <span class="form-text text-danger" *ngIf="campoEsValido('educacion_minima')">
                         Campo Requerido
                     </span>
@@ -160,7 +163,7 @@
                 <label>Jornada laboral</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="jornada" >
+                    <input type="text" formControlName="jornada" placeholder="Ingrese el tiempo de jornada laboral" >
                     <span class="form-text text-danger" *ngIf="campoEsValido('jornada')">
                         Campo Requerido
                     </span>
@@ -172,7 +175,7 @@
                 <label>Personas con discapacidad</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="discapacidad" >
+                    <input type="text" formControlName="discapacidad" placeholder="Ingrese detalles" >
                     <span class="form-text text-danger" *ngIf="campoEsValido('discapacidad')">
                         Campo Requerido
                     </span>
@@ -184,7 +187,7 @@
                 <label>Disponibilidad de viajar </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="disponibilidad_viajar" >
+                    <input type="text" formControlName="disponibilidad_viajar" placeholder="Ingrese detalles" >
                     <span class="form-text text-danger" *ngIf="campoEsValido('disponibilidad_viajar')">
                         Campo Requerido
                     </span>
@@ -196,7 +199,7 @@
                 <label>Disponibilidad de cambio de residencia </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="disponibilidad_cambioresidencia" >
+                    <input type="text" formControlName="disponibilidad_cambioresidencia" placeholder="Ingrese detalles" >
                     <span class="form-text text-danger" *ngIf="campoEsValido('disponibilidad_cambioresidencia')">
                         Campo Requerido
                     </span>
@@ -208,7 +211,7 @@
                 <label>Licencia </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="licencia" >
+                    <input type="text" formControlName="licencia" placeholder="Ingrese detalles"  >
                     <span class="form-text text-danger" *ngIf="campoEsValido('licencia')">
                         Campo Requerido
                     </span>
@@ -220,7 +223,7 @@
                 <label>Idiomas </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" formControlName="idiomas" >
+                    <input type="text" formControlName="idiomas" placeholder="Ingrese idiomas requeridos"  >
                     <span class="form-text text-danger" *ngIf="campoEsValido('idiomas')">
                         Campo Requerido
                     </span>
