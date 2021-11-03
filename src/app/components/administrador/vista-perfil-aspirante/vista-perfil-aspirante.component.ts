@@ -18,6 +18,7 @@ export class VistaPerfilAspiranteComponent implements OnInit {
   usuariosId:any;
   categoria:any[]=[];
   profesiones:any[]=[];
+  archivos:any[]=[];
   id='';
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) {
     //this.idAspirante=3;
@@ -33,8 +34,9 @@ export class VistaPerfilAspiranteComponent implements OnInit {
     )
     this.getAspirantes();
     this.getUsuarios();
-    this.getCategoria()
-    this.getUsuariosId()
+    this.getCategoria();
+    this.getUsuariosId();
+    this.getArchivos();
   }
 
 
@@ -59,6 +61,13 @@ export class VistaPerfilAspiranteComponent implements OnInit {
     this.http.get('http://localhost:8000/api/usuarios/'+ this.id).subscribe((resp:any)=>{
       this.usuariosId=resp;
       console.log(this.usuariosId)
+    })
+  }
+
+  getArchivos(){
+    this.http.get('http://localhost:8000/api/archivosaspirante/').subscribe((resp:any)=>{
+      this.archivos=resp;
+      console.log(this.archivos)
     })
   }
 

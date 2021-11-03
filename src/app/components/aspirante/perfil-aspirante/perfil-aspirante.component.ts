@@ -14,6 +14,9 @@ export class PerfilAspiranteComponent implements OnInit {
   id='';
   message = '';
   usuarioActual: any;
+  aspirantes:any[]=[];
+  usuarios:any[]=[];
+  archivos:any[]=[];
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -34,13 +37,11 @@ export class PerfilAspiranteComponent implements OnInit {
 
     this.getAspirantes();
     this.getUsuarios();
-    this.getAspirantes()
-    this.getArchivos()
+    this.getAspirantes();
+    this.getArchivos();
   }
 
-  aspirantes:any[]=[];
-  usuarios:any[]=[];
-  archivos:any[]=[];
+  
 
   miFormulario: FormGroup= this.fb.group({
     

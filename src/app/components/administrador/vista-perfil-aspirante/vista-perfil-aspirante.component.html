@@ -52,6 +52,21 @@
             <video controls src="http://localhost:8000{{a.videopresentacion}}"></video>
         </div>
     </div>
+
+    <div *ngFor="let ar of archivos">
+        <div *ngIf="a.idaspirante==ar.aspirante_idaspirante">
+            <a href="http://localhost:8000{{ar.archivo}}" download="A.pdf"> {{ar.nombredocumento}}</a>
+            
+            
+            </div>
+            </div>
+            <!-- </div> -->
+            <br>
+            <br>
+
+
+
+
 </div>
 <!-- </div> -->
         
