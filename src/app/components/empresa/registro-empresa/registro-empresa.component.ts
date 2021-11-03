@@ -67,15 +67,17 @@ export class RegistroEmpresaComponent implements OnInit {
       console.log("rep",rep.correo)
       console.log("inicio",this.form.getRawValue().correo)
       if(rep.correo==this.form.getRawValue().correo){
-        this.http.post('http://localhost:8000/api/loginusuario/', this.form.getRawValue(), {
+        if(rep.rol_idrol==1){
+          this.http.post('http://localhost:8000/api/loginusuario/', this.form.getRawValue(), {
           withCredentials: true
-        }).subscribe((res: any)=>{
+          }).subscribe((res: any)=>{
           console.log(res.jwt)
           console.log(this.getDecodedAccessToken(res.jwt));
           this.id=this.getDecodedAccessToken(res.jwt).id;
           this.router.navigate(['/representante/sesionRepresentante'])
           console.log(res.id)
-        },err => alert('USUARIO O CONTRASEÑA INCORRECTA'));
+          },err => alert('USUARIO O CONTRASEÑA INCORRECTA'));
+        }
       }
     }
   }

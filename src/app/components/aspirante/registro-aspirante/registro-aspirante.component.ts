@@ -21,6 +21,7 @@ export class RegistroAspiranteComponent implements OnInit {
   usuarioActual:any;
   miFormulario: FormGroup;
   hide: boolean = true;
+  aspirantes: any[]=[];
   httpOptions={
     headers: new HttpHeaders({
       'Content-Type' : 'Application/json'
@@ -42,6 +43,7 @@ export class RegistroAspiranteComponent implements OnInit {
         this.id = params.id;
       }
     )*/
+    this.getAspirante()
   }
 
   /*getUsuarioActual(){
@@ -62,24 +64,39 @@ export class RegistroAspiranteComponent implements OnInit {
     }
   }
 
+  getAspirante(){
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
+      this.aspirantes=doc;
+    console.log(this.aspirantes)
+    })
+  }
+
   login(){
     console.log(this.miFormulario.value);
-    this.http.post('http://localhost:8000/api/loginusuario/', this.miFormulario.getRawValue(),
-     {
-       withCredentials: true
-      }).subscribe(
-      (res: any)=>{
-        console.log(res.jwt)
-        console.log(this.getDecodedAccessToken(res.jwt));
-        this.id=this.getDecodedAccessToken(res.jwt).id;
-        ///${this.id}
-          //this.getUsuarioActual()
-        this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
-        //localStorage.setItem('auth_token', res.token);
 
-        
-      },err => alert('USUARIO O CONTRASEÑA INCORRECTA')
-    )
+    for(let asp of this.aspirantes){
+      if(asp.correo==this.miFormulario.getRawValue().correo){
+        if(asp.rol_idrol==2){
+          this.http.post('http://localhost:8000/api/loginusuario/', this.miFormulario.getRawValue(),
+          {
+            withCredentials: true
+           }).subscribe(
+           (res: any)=>{
+             console.log(res.jwt)
+             console.log(this.getDecodedAccessToken(res.jwt));
+             this.id=this.getDecodedAccessToken(res.jwt).id;
+             ///${this.id}
+               //this.getUsuarioActual()
+             this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+             //localStorage.setItem('auth_token', res.token);
+     
+             
+           },err => alert('USUARIO O CONTRASEÑA INCORRECTA')
+          )
+        }
+      }
+    }
+    
   }
 
   logout(){

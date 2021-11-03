@@ -44,7 +44,7 @@ export class AspirantesAceptadosComponent implements OnInit {
     console.log("NUEVOID",id)
     this.idAspirante=id,
     setTimeout(function(){ 
-      document.getElementById("").innerHTML=`<app-vista-perfil-aspirante [idAspirante]="${id}"></app-vista-perfil-aspirante>
+      document.getElementsByClassName("hey")[0].innerHTML=`<app-vista-perfil-aspirante [idAspirante]="${id}"></app-vista-perfil-aspirante>
     `
      }, 3000);
     

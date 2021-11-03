@@ -19,7 +19,7 @@ const routes: Routes = [
           children:[
             { path: 'aspirantesAceptados', component: AspirantesAceptadosComponent},
             { path: 'aspirantesNuevos', component: AspirantesNuevosComponent},
-            { path: 'perfilAspirante', component: VistaPerfilAspiranteComponent},
+            { path: 'perfilAspirante/:id', component: VistaPerfilAspiranteComponent},
             { path: 'empresas', component: RevisarEmpresasComponent},
             { path: 'sugerencias', component: RevisarSugerenciasComponent},
           ]

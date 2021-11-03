@@ -11,29 +11,36 @@
 
 <div *ngFor="let u of usuarios">
     <div *ngIf="u.idusuario==idAspirante">
-    <p> {{u.nombre}} {{u.apellido}}</p>
+    <p> vista perfil {{u.nombre}} {{u.apellido}}</p>
 </div>
 </div>
 
+<div>
+    USUARIOOOO
+    {{usuariosId}}
+</div>
+<div class="hey">
+
+</div>
 
 <h1>Datos Personales</h1>
 
 
 
-<div class="contenedorInformacion" *ngFor="let u of usuarios" >
-    <div *ngIf="u.idusuario==idAspirante">
-    <p>Número documento: {{u.nodocumento}}</p>
-    <p>Correo: {{u.correo}}</p>
-    <p>Teléfono: {{u.telefono}}</p>
-    <p>Dirección: {{u.direccion}}</p>
-</div>
-</div>
+<!-- <div class="contenedorInformacion" *ngFor="let u of usuarios" > -->
+    <!-- <div *ngIf="u.idusuario==idAspirante"> -->
+    <p>Número documento: {{usuariosId.nodocumento}}</p>
+    <p>Correo: {{usuariosId.correo}}</p>
+    <p>Teléfono: {{usuariosId.telefono}}</p>
+    <p>Dirección: {{usuariosId.direccion}}</p>
+<!-- </div> -->
+<!-- </div> -->
 
 <h1>Datos Profesionales</h1>
 
 <div class="contenedorInformacion" *ngFor="let a of aspirantes" >
     <!-- <div *ngFor="let u of usuarios"> -->
-    <div *ngIf="a.usuario_idusuario==idAspirante">
+    <div *ngIf="a.usuario_idusuario==id">
     <p>Número de hijos: {{a.numerohijos}}</p>
     <p>Experiencia Laboral: {{a.experiencialaboral}}</p>
     <p>Experticia: {{a.experticia}}</p>
@@ -42,7 +49,7 @@
     <p>Posibilidad de viajar: {{a.posibilidadviajar}}</p>
     <div class="mb-3 row">
         <div class="col-sm-9">
-            <video controls src="http://localhost:8000/{{a.videopresentacion}}"></video>
+            <video controls src="http://localhost:8000{{a.videopresentacion}}"></video>
         </div>
     </div>
 </div>

@@ -9,9 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegistroFullAspiranteComponent implements OnInit {
 
   hide: boolean = true;
+  public validador= true; 
 
   generos:any[]=[];
-  
+  usuarios:any[]=[];
+
   provincias:any[]=[];
   ciudades:any[]=[];
   tipoDocumento:any[]=[];
@@ -22,9 +24,9 @@ export class RegistroFullAspiranteComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
     
     nombreusuario: ["", [Validators.required]],
-    contrasenia:["", [Validators.required]],
+    contrasenia:["", [Validators.required, Validators.maxLength(10)]],
     tipodocumento_idtipodocumento: ["", Validators.required],
-    nodocumento:["",[Validators.required, Validators.pattern("^[0-9]{10}$")]],
+    nodocumento:["",[Validators.required]],
     nombre: ["", [Validators.required]],
     apellido: ["", [Validators.required]],
     correo:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
@@ -147,6 +149,14 @@ get generoNoValido(){
     })
   }
 
+  getUsuarios(){
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
+      this.usuarios=doc;
+    console.log("getusuarios",this.usuarios)
+    })
+  }
+
+
   
   guardar(){
 
@@ -163,6 +173,33 @@ get generoNoValido(){
         err => console.log(err)
   
       )
+      
+
+      setTimeout(()=>{ 
+        this.getUsuarios();
+        setTimeout(()=>{
+          let idFinal=this.usuarios.pop().idusuario;
+      console.log(idFinal)
+      
+      console.log(idFinal)
+      let formData = new FormData();
+
+
+   
+
+
+      formData.append("usuario_idusuario",idFinal)
+      this.http.post('http://localhost:8000/api/aspirantes/', formData).subscribe(
+        resp => console.log(resp),
+        err => console.log(err)
+  
+      )
+        },3000)
+  
+      
+      }, 3000);
+
+      
     
     
     alert('USUARIO CREADO')
@@ -190,6 +227,58 @@ get generoNoValido(){
   show() {
     this.hide = !this.hide;
   }
+
+
+  //esta es la variable de validación
+  validadorDeCedula() {
+    let cedulaCorrecta = false;
+    console.log("entró al validador")
+    let cedula=this.miFormulario.controls['nodocumento'].value
+    console.log(cedula.length)
+    if (cedula.length == 10)
+    {   
+        console.log("igual a 10")
+        let tercerDigito = parseInt(cedula.substring(2, 3));
+        if (tercerDigito < 6) {
+          console.log("menor a 6")
+        
+            // El ultimo digito se lo considera dígito verificador
+            let coefValCedula = [2, 1, 2, 1, 2, 1, 2, 1, 2];       
+            let verificador = parseInt(cedula.substring(9, 10));
+            let suma:number = 0;
+            let digito:number = 0;
+            for (let i = 0; i < (cedula.length - 1); i++) {
+                digito = parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];      
+                suma += ((parseInt((digito % 10)+'') + (parseInt((digito / 10)+''))));
+          //      console.log(suma+" suma"+coefValCedula[i]); 
+            }
+            
+            suma= Math.round(suma);
+          
+          //  console.log(verificador);
+          //  console.log(suma);
+          //  console.log(digito);
+  
+            if ((Math.round(suma % 10) == 0) && (Math.round(suma % 10)== verificador)) {
+                cedulaCorrecta = true;
+            } else if ((10 - (Math.round(suma % 10))) == verificador) {
+                cedulaCorrecta = true;
+            } else {
+                cedulaCorrecta = false;
+            }
+        } else {
+            cedulaCorrecta = false;
+        }
+    } else {
+        cedulaCorrecta = false;
+    }
+  
+  
+  this.validador= cedulaCorrecta;
+  
+    
+  }
+
 
 
 

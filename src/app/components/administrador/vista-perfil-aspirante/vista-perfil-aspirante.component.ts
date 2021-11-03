@@ -15,6 +15,7 @@ export class VistaPerfilAspiranteComponent implements OnInit {
   documento: any;
   aspirantes:any[]=[];
   usuarios:any[]=[];
+  usuariosId:any;
   categoria:any[]=[];
   profesiones:any[]=[];
   id='';
@@ -33,6 +34,7 @@ export class VistaPerfilAspiranteComponent implements OnInit {
     this.getAspirantes();
     this.getUsuarios();
     this.getCategoria()
+    this.getUsuariosId()
   }
 
 
@@ -50,6 +52,13 @@ export class VistaPerfilAspiranteComponent implements OnInit {
     this.http.get('http://localhost:8000/api/usuarios/').subscribe((resp:any)=>{
       this.usuarios=resp;
       console.log(this.usuarios)
+    })
+  }
+
+  getUsuariosId(){
+    this.http.get('http://localhost:8000/api/usuarios/'+ this.id).subscribe((resp:any)=>{
+      this.usuariosId=resp;
+      console.log(this.usuariosId)
     })
   }
 
@@ -106,21 +115,28 @@ export class VistaPerfilAspiranteComponent implements OnInit {
 
  subirArchivo(){
 
-    let formData= new FormData();
-    formData.append('nombredocumento',this.miFormulario.controls['nombredocumento'].value)
-    formData.append('categoriaDocumento_idcategoriadocumento',this.miFormulario.controls['categoriaDocumento_idcategoriadocumento'].value)
-    formData.append('fechacreacion',this.miFormulario.controls['fechacreacion'].value)
-    formData.append('aspirante_idaspirante',this.miFormulario.controls['aspirante_idaspirante'].value)
-    formData.append('usuario_idusuario',this.miFormulario.controls['usuario_idusuario'].value)
-    formData.append('archivo',this.file)
+    for (let asp of this.aspirantes){
+      if(asp.usuario_idusuario==this.id){
 
+        let formData= new FormData();
+        formData.append('nombredocumento',this.miFormulario.controls['nombredocumento'].value)
+        formData.append('categoriaDocumento_idcategoriadocumento',this.miFormulario.controls['categoriaDocumento_idcategoriadocumento'].value)
+        formData.append('fechacreacion',this.miFormulario.controls['fechacreacion'].value)
+        formData.append('aspirante_idaspirante',asp.idaspirante)
+        formData.append('usuario_idusuario',this.id)
+        formData.append('archivo',this.file)
+    
+    
+        console.log(this.miFormulario.value);
+        this.http.post('http://localhost:8000/api/archivosaspirante/', formData).subscribe(
+          resp => console.log(resp),
+          err => console.log(err)
+    
+        )
+      }
+    }
 
-    console.log(this.miFormulario.value);
-    this.http.post('http://localhost:8000/api/archivosaspirante/', formData).subscribe(
-      resp => console.log(resp),
-      err => console.log(err)
-
-    )
+    
     
   
   }

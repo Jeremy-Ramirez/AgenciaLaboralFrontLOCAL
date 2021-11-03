@@ -29,9 +29,11 @@
                     <input type="text"
                            class="form-control"
                            formControlName ="nodocumento" 
-                           placeholder="">
+                           placeholder=""
+                           (change)="validadorDeCedula()" 
+                           >
                     <span class="form-text text-danger"
-                        *ngIf="campoEsValido('nodocumento')">
+                        *ngIf="!validador">
                         
                         Campo Requerido
                     </span>

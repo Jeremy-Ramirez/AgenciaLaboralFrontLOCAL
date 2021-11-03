@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Emitters } from '../emitters/emitters';
 
 @Component({
   selector: 'app-registro-full-representante',
@@ -19,6 +20,8 @@ export class RegistroFullRepresentanteComponent implements OnInit {
 
   correo:any='';
   id:'';
+  message = '';
+  usuarioActual: any;
   hide: boolean = true;
 
   seleccionado:string;
@@ -36,7 +39,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
     correo:["", [Validators.required, Validators.email]],
     telefono: ["", [Validators.required, Validators.maxLength(10), Validators.minLength(9)]],
     direccion: ["", [Validators.required]],
-    estadocuenta: "cad",
+    estado_idestado: 1,
     genero_idgenero:["", [Validators.required]],
     rol_idrol: 1,
     estadocivil_idestadocivil: ["",[Validators.required]],
@@ -126,18 +129,34 @@ export class RegistroFullRepresentanteComponent implements OnInit {
       resp => console.log(resp),
       err => console.log(err)
         );
-    }
+        
+    alert('INFORMACIÓN ACTUALIZADA');
+
+  }
 
   public register() {
     const user = this.miFormulario.value;
     console.log(user);
   }
   ngOnInit(): void {
-    this.rutaActiva.params.subscribe(
+    /*this.rutaActiva.params.subscribe(
       (params:  Params) => {
         this.id = params.id;
       }
-    )
+    )*/
+
+    this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
+      (res: any) => {
+        this.message = `Hi ${res.idusuario}`;
+        this.id=res.idusuario
+        this.usuarioActual=res;
+        Emitters.authEmitter.emit(true);
+      },
+      err => {
+        this.message = 'You are not logged in';
+        Emitters.authEmitter.emit(false);
+      }
+    );
 
     //this.getUsuarios();
   }

@@ -31,7 +31,7 @@
                            class="form-control"
                            formControlName="descripcion"
                            placeholder="Ingresa la sugerencia..."
-                           name="" id="" cols="30" rows="10" maxlength="30" [maxlength]="30">
+                           name="" id="" cols="30" rows="10">
                     </textarea>
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('descripcion')">
@@ -55,8 +55,15 @@
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('imagen')">
                         
-                        Campo Requerido
+                        El archivo debe ser una imagen.
                     </span>
+                    <span class="form-text text-danger"
+                        *ngIf="!imagenValida">
+                        
+                        El archivo supera los 6Mb.
+                        
+                    </span>
+                    
                 </div>
             </div>
 
@@ -66,6 +73,7 @@
                     <button type="submit"
                             class="btn btn-primary float-end" 
                             (click)="createSugerencia()"
+                            [disabled]="miFormulario.invalid || !imagenValida"
                             
                             >
                             

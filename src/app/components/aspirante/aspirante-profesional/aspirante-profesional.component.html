@@ -66,6 +66,18 @@
                        placeholder=""
                        (change)="handleFileInput($event)"
                        >
+                       <span class="form-text text-danger"
+                        *ngIf="!videoValido">
+                        
+                        El archivo supera los 6Mb.
+                        
+                    </span>
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('videopresentacion')">
+                        
+                        El archivo debe ser un video.
+                        
+                    </span>
             </div>
         </div>
 
@@ -91,9 +103,19 @@
                    
                        class="form-control"
                        formControlName ="fechanacimiento" 
-                       
+                       (change)="validarFechaNacimiento()"
                        placeholder="Numero" 
                        >
+                       <span class="form-text text-danger"
+                        *ngIf="!fechaCorrecta">
+                        
+                        Debe ser mayor de 18 años para poder registrarse en la aplicación
+                    </span>
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('fechanacimiento')">
+                        
+                        Campo obligatorio
+                    </span>
 
                        
             </div>
@@ -129,6 +151,7 @@
 
         <div id="lower">
             <button type="submit" class="btn btn-primary float-end"
+            [disabled]="miFormulario.invalid || !fechaCorrecta || !videoValido"
             >
                 Registrarse
             </button>

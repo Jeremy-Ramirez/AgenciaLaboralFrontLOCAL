@@ -43,11 +43,16 @@
                 <input type="text"
                        class="form-control"
                        formControlName ="nodocumento" 
-                       placeholder="Ingrese el número de su documento" [class.is-invalid]="numDocumentoNoValido" >
-
-                       <small *ngIf="numDocumentoNoValido" class="text-danger">
+                       placeholder="Ingrese el número de su documento" [class.is-invalid]="numDocumentoNoValido"
+                       (change)="validadorDeCedula()" 
+                       >
+                       
+                       <small *ngIf="!validador" class="text-danger">
                         Escriba un número de documento válido
-                    </small>
+                        </small>
+                        <small *ngIf="numDocumentoNoValido" class="text-danger">
+                            Campo Obligatorio
+                        </small>
             </div>
         </div>
 
@@ -202,7 +207,7 @@
         
 
         <div id="lower">
-            <button type="submit" class="btn btn-primary float-end"  >
+            <button type="submit" class="btn btn-primary float-end" [disabled]="miFormulario.invalid || !validador" >
                 Registrarse
             </button>
 
