@@ -200,10 +200,12 @@ get generoNoValido(){
       }, 3000);
 
       
+    setTimeout(() => {
+      alert('USUARIO CREADO')
+      window.location.href='/aspirante/registroAspirante';
+    }, 6000);
     
-    
-    alert('USUARIO CREADO')
-    window.location.href='/aspirante/registroAspirante';
+   
 
   }
 

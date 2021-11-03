@@ -124,14 +124,15 @@
 
             <div class="row">
                 <div class="col">
-                    <button type="submit"
-                            (click)="createUsuario()"
-                            class="btn btn-primary float-end" 
+                    <button type="submit" class="btn btn-primary float-end" (click)="createUsuario()"
+            [disabled]="miFormulario.invalid "
+            >
+                Registrar Representante
+            </button>
+                    
                             
-                            >
-                            
-                        Guardar
-                    </button>
+                        
+                    
                 </div>
             </div>
             <!-- routerLink="['/registroRepresentante', id ]" -->
