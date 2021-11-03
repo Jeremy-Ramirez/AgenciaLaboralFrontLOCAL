@@ -11,9 +11,14 @@
                 <input type="number"
                        class="form-control"
                        formControlName ="numerohijos" 
-                       placeholder="Numero" >
+                       placeholder="Ingrese la cantidad de hijos que tiene" >
 
+                       <span class="form-text text-danger"
+                       *ngIf="campoEsValido('numerohijos')">
                        
+                       Campo requerido
+                       
+                   </span> 
             </div>
         </div>
 
@@ -23,9 +28,14 @@
                 <input type="text"
                        class="form-control"
                        formControlName ="experiencialaboral" 
-                       placeholder="" >
+                       placeholder="Ingrese su experiencia laboral" >
 
+                       <span class="form-text text-danger"
+                       *ngIf="campoEsValido('experiencialaboral')">
                        
+                       Campo requerido
+                       
+                   </span> 
             </div>
         </div>
 
@@ -36,9 +46,14 @@
                 <input type="text"
                        class="form-control"
                        formControlName ="campolaboral" 
-                       placeholder="" >
+                       placeholder="Ingrese su campo laboral" >
 
+                       <span class="form-text text-danger"
+                       *ngIf="campoEsValido('campolaboral')">
                        
+                       Campo requerido
+                       
+                   </span> 
             </div>
         </div>
 
@@ -48,9 +63,14 @@
                 <input type="text"
                        class="form-control"
                        formControlName ="experticia" 
-                       placeholder="" >
+                       placeholder="Ingrese su experticia" >
 
+                       <span class="form-text text-danger"
+                       *ngIf="campoEsValido('experticia')">
                        
+                       Campo requerido
+                       
+                   </span> 
             </div>
         </div>
 
@@ -89,9 +109,14 @@
                 <input type="number"
                        class="form-control"
                        formControlName ="aniosexperiencia" 
-                       placeholder="Numero" >
+                       placeholder="Ingrese sus años de experiencia" >
 
-                       
+                       <span class="form-text text-danger"
+                        *ngIf="campoEsValido('aniosexperiencia')">
+                        
+                        Campo requerido
+                        
+                    </span>
             </div>
         </div>
 
@@ -125,12 +150,16 @@
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Posibilidad Viajar</label>
             <div class="col-sm-9">
-                <input type="number"
+                <input type="text"
                        class="form-control"
                        formControlName ="posibilidadviajar" 
-                       placeholder="Numero" >
+                       placeholder="Escriba si o no" >
 
-                       
+                       <span class="form-text text-danger"
+                        *ngIf="campoEsValido('posibilidadviajar')">
+                        
+                        Campo obligatorio
+                    </span>
             </div>
         </div>
 
@@ -145,7 +174,11 @@
                     </option>
                 </select>
 
-              
+                <span class="form-text text-danger"
+                *ngIf="campoEsValido('profesiones_idprofesiones')">
+                
+                Campo obligatorio
+            </span>
             </div>
         </div>
 
