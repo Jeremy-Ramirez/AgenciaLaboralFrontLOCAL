@@ -33,7 +33,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     videopresentacion:["",[Validators.required, Validators.pattern("^.*\.(mp4|mkv|avi)$")]],
     aniosexperiencia:["",[Validators.required]],
     fechanacimiento:["",[Validators.required, ]],
-    posibilidadviajar:["",[Validators.required,Validators.pattern("(si|no)+"),Validators.maxLength(2)]],
+    posibilidadviajar:["",[Validators.required,Validators.maxLength(2),Validators.pattern("(si|no)+")]],
     profesiones_idprofesiones:["",[Validators.required]],
     usuario_idusuario:null,
   })
@@ -72,7 +72,7 @@ export class AspiranteProfesionalComponent implements OnInit {
       console.log(this.profesiones)
     })
 
-    this.getAspirantes()
+    this.getAspirantes();
 
   }
 
