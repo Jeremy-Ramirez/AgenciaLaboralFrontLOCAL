@@ -126,7 +126,11 @@ export class AspiranteProfesionalComponent implements OnInit {
     formData.append('fechanacimiento',this.miFormulario.controls['fechanacimiento'].value)
     formData.append('videopresentacion',this.file)
     formData.append('posibilidadviajar',this.miFormulario.controls['posibilidadviajar'].value)
+    formData.append('posibilidadcambioresidencia',this.miFormulario.controls['posibilidadcambioresidencia'].value)
+    formData.append('estadoestudios',this.miFormulario.controls['estadoestudios'].value)
     formData.append('profesiones_idprofesiones',this.miFormulario.controls['profesiones_idprofesiones'].value)
+    formData.append('idiomas',this.miFormulario.controls['idiomas'].value)
+    formData.append('nivelestudios_idnivelestudios',this.miFormulario.controls['nivelestudios_idnivelestudios'].value)
     formData.append('usuario_idusuario',this.id)
 
 
