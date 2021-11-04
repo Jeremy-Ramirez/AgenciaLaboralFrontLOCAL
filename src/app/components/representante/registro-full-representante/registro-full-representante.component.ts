@@ -1,4 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -26,18 +28,18 @@ export class RegistroFullRepresentanteComponent implements OnInit {
 
   seleccionado:string;
   seleccionuser:string;
-
+  nombredoc:any;
   
 
   miFormulario: FormGroup = this.fb.group({
     nombreusuario: ["", Validators.required],
     contrasenia:["", [Validators.required]],
-    tipodocumento_idtipodocumento: ["", [Validators.required]],
+    tipodocumento_idtipodocumento: ["", [Validators.required, Validators.pattern("^[0-9]{10}$")]],
     nodocumento:["",[Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
     nombre: ["", [Validators.required]],
     apellido: ["", [Validators.required]],
     correo:["", [Validators.required, Validators.email]],
-    telefono: ["", [Validators.required, Validators.maxLength(10), Validators.minLength(9)]],
+    telefono: ["", [Validators.required, Validators.maxLength(10), Validators.minLength(9), Validators.pattern("^[0-9-+]{9,10}$")]],
     direccion: ["", [Validators.required]],
     estado_idestado: 1,
     genero_idgenero:["", [Validators.required]],
@@ -56,6 +58,9 @@ export class RegistroFullRepresentanteComponent implements OnInit {
     this.getProvincias();
     this.getCiudades();
     this.getEstadoCivil();
+
+
+    
   }
   
   campoEsValido( campo: string){
@@ -69,6 +74,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
       this.tipoDocumento=doc;
     console.log(this.tipoDocumento)
     })
+    
   }
 
   getEstadoCivil(){
@@ -138,12 +144,36 @@ export class RegistroFullRepresentanteComponent implements OnInit {
     const user = this.miFormulario.value;
     console.log(user);
   }
+
+
+  obtenerNumero(){
+    for( let doc of this.tipoDocumento){
+      console.log(doc.idtipodocumento)
+      if(doc.idtipodocumento == this.usuarioActual.tipodocumento_idtipodocumento)
+        this.nombredoc=  doc.descripcion;
+    }
+  }
+
+
   ngOnInit(): void {
     /*this.rutaActiva.params.subscribe(
       (params:  Params) => {
         this.id = params.id;
       }
     )*/
+    this.getGenero();
+    this.getTipodocumento();
+    this.getProvincias();
+    this.getCiudades();
+    this.getEstadoCivil();
+
+    setTimeout(()=>{ 
+      this.obtenerNumero()
+
+
+    
+    }, 100);
+
 
     this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {

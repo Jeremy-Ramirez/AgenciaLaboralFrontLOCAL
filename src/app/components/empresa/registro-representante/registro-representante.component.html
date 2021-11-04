@@ -35,8 +35,11 @@
                     <span class="form-text text-danger"
                         *ngIf="!validador">
                         
-                        Campo Requerido
+                        Escriba un número de documento válido
                     </span>
+                    <small *ngIf="campoEsValido('nodocumento')" class="text-danger">
+                        Campo Obligatorio
+                    </small>
                 </div>
             </div>
 
