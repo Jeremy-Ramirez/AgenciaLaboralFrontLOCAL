@@ -147,7 +147,7 @@
         </div>
 
 
-        <div class="mb-3 row">
+        <!--div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Posibilidad Viajar</label>
             <div class="col-sm-9">
                 <input type="text"
@@ -161,7 +161,25 @@
                         Campo obligatorio
                     </span>
             </div>
+        </div-->
+
+   <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Posibilidad Viajar</label>
+    <div class="col-sm-9">
+     
+    
+        <input type="radio" value="si" formControlName="posibilidadviajar"> Si
+     <input type="radio" value="no" formControlName="posibilidadviajar"> No
+        <span class="form-text text-danger"
+                        *ngIf="campoEsValido('posibilidadviajar')">
+                        
+                        Campo obligatorio
+                    </span> 
+                    
+        
+    </div>
         </div>
+
 
 
         <div class="mb-3 row">
