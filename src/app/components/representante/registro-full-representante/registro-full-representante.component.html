@@ -7,8 +7,10 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Tipo de Documento</label>
                 <div class="col-sm-9">
+
+                    {{nombredoc}}
                     
-                    <select name="doc" id="doc" formControlName="tipodocumento_idtipodocumento">
+                    <!-- <select name="doc" id="doc" formControlName="tipodocumento_idtipodocumento">
                         <option *ngFor="let documento of tipoDocumento" value="{{documento.idtipodocumento}}">
                             {{documento.descripcion}}
                         </option>
@@ -18,7 +20,7 @@
                         *ngIf="campoEsValido('tipodocumento_idtipodocumento')">
                         
                         Campo Requerido
-                    </span>
+                    </span> -->
                 </div>
             </div>
 
@@ -26,7 +28,7 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">No de Documento</label>
                 <div class="col-sm-9">
-                    <input type="text"
+                    <!-- <input type="text"
                            class="form-control"
                            formControlName ="nodocumento" 
                            placeholder="">
@@ -34,7 +36,8 @@
                         *ngIf="campoEsValido('nodocumento')">
                         
                         Campo Requerido
-                    </span>
+                    </span> -->
+                    {{usuarioActual.nodocumento}}
                 </div>
             </div>
 
@@ -42,7 +45,9 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Nombres Completos</label>
                 <div class="col-sm-9">
-                    <input type="text"
+
+                    {{usuarioActual.nombre}}
+                    <!-- <input type="text"
                            class="form-control"
                            formControlName="nombre"
                            placeholder=""
@@ -51,14 +56,15 @@
                         *ngIf="campoEsValido('nombre')">
                         
                         Campo Requerido
-                    </span>
+                    </span> -->
                 </div>
             </div>
 
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Apellidos Completos</label>
                 <div class="col-sm-9">
-                    <input type="text"
+                    {{usuarioActual.apellido}}
+                    <!-- <input type="text"
                            class="form-control"
                            formControlName="apellido"
                            placeholder="">
@@ -66,7 +72,7 @@
                         *ngIf="campoEsValido('apellido')">
                         
                         Campo Requerido
-                    </span>
+                    </span> -->
                 </div>
             </div>
 
@@ -189,7 +195,8 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Correo </label>
                 <div class="col-sm-9">
-                    <input type="text"
+                    {{usuarioActual.correo}}
+                    <!-- <input type="text"
                            class="form-control"
                            formControlName="correo"
                            placeholder="">
@@ -197,7 +204,7 @@
                         *ngIf="campoEsValido('correo')">
                         
                         Campo Requerido
-                    </span>
+                    </span> -->
                 </div>
             </div>
 
