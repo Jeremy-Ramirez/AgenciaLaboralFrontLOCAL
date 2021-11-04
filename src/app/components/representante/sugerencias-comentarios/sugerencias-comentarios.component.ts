@@ -15,6 +15,7 @@ export class SugerenciasComentariosComponent implements OnInit {
   correo:any='';
   id:'';
   file: any;
+  imagenValida: boolean=true;
 
   message = '';
   usuarioActual: any;
@@ -23,7 +24,7 @@ export class SugerenciasComentariosComponent implements OnInit {
     titulo: ["", Validators.required],
     descripcion: ["", Validators.required],
     usuario_idusuario: 1,
-    imagen: ["", Validators.required],
+    imagen: ["", [Validators.required, Validators.pattern("^.*\.(jpg|jpeg|png)$")]],
     
 
   })
@@ -39,8 +40,16 @@ export class SugerenciasComentariosComponent implements OnInit {
    
    handleFileInput(event: Event){
 
+    if((<HTMLInputElement>event.target).files[0].size>2000000){
+      this.imagenValida=false;
+      alert('El archivo supera los 6Mb.');
+    }else{
+      this.imagenValida=true;
       this.file=(<HTMLInputElement>event.target).files[0];
       console.log("archivo", this.file)
+    }
+    
+      
 
     
    }
