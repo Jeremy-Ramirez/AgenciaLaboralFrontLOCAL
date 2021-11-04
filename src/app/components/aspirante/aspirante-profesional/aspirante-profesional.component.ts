@@ -18,6 +18,7 @@ export class AspiranteProfesionalComponent implements OnInit {
   fechaCorrecta=true;
   profesiones:any[]=[];
   aspirantes:any[]=[];
+  niveles:any[]=[];
   id: any;
   message = '';
   constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute ) { }
@@ -34,7 +35,11 @@ export class AspiranteProfesionalComponent implements OnInit {
     aniosexperiencia:["",[Validators.required]],
     fechanacimiento:["",[Validators.required, ]],
     posibilidadviajar:["",[Validators.required,Validators.maxLength(2),Validators.pattern("(si|no)+")]],
+    posibilidadcambioresidencia:["",[Validators.required,Validators.maxLength(2),Validators.pattern("(si|no)+")]],
+    estadoestudios:["",[Validators.required, ]],
     profesiones_idprofesiones:["",[Validators.required]],
+    idiomas:["",[Validators.required]],
+    nivelestudios_idnivelestudios:["",[Validators.required, ]],
     usuario_idusuario:null,
   })
 
@@ -73,6 +78,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     })
 
     this.getAspirantes();
+    this.getNivelesEstudios();
 
   }
 
@@ -80,6 +86,14 @@ export class AspiranteProfesionalComponent implements OnInit {
     this.http.get('http://localhost:8000/api/aspirantes/').subscribe((doc:any)=>{
       this.aspirantes=doc;
     console.log("getaspirantes",this.aspirantes)
+    })
+  }
+
+
+  getNivelesEstudios(){
+    this.http.get('http://localhost:8000/api/nivelestudios/').subscribe((nivel:any)=>{
+    this.niveles=nivel;
+    console.log(this.niveles)
     })
   }
 

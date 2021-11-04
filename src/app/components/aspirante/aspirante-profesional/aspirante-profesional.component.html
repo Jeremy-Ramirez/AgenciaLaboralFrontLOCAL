@@ -189,14 +189,24 @@
 
 
         <div class="mb-3 row">
-            <label class="col-sm-3 col-form-label">Disponibilidad para cambio de residencia</label>
+            <label class="col-sm-3 col-form-label">Posibilidad cambio de residencia</label>
             <div class="col-sm-9">
              
             
-            <input type="radio" value="si" formControlName="experiencialaboral"> Si
-            <input type="radio" value="no" formControlName="experiencialaboral"> No
-
-               
+            <input type="radio" value="si" formControlName="posibilidadcambioresidencia"> Si
+            <input type="radio" value="no" formControlName="posibilidadcambioresidencia"> No
+        
+        
+        
+        
+        
+        
+        
+                <span class="form-text text-danger"
+                                *ngIf="campoEsValido('posibilidadcambioresidencia')">
+                                
+                                Campo obligatorio
+                            </span> 
                             
                 
             </div>
@@ -207,12 +217,18 @@
                     <label class="col-sm-3 col-form-label">Nivel de Estudios</label>
                     <div class="col-sm-9">
                         
-                        <select name="doc" id="doc" >
-                            <!-- <option *ngFor="let p of profesiones" value="{{p.idprofesiones}}">
-                                {{p.profesion}}
-                            </option> -->
+                        <select name="doc" id="doc" formControlName="nivelestudios_idnivelestudios">
+                             <option *ngFor="let n of niveles" value="{{n.idnivelestudios}}" value="{{n.idnivelestudios}}">
+                                {{n.descripcion}}
+                            </option> 
                         </select>
         
+
+                        <span class="form-text text-danger"
+                        *ngIf="campoEsValido('nivelestudios_idnivelestudios')">
+                        
+                        Campo obligatorio
+                    </span>
                        
                     </div>
                 </div>
@@ -222,10 +238,14 @@
                     <div class="col-sm-9">
                      
                     
-                        <input type="radio" value="Cursando" formControlName="">Cursando
-                     <input type="radio" value="Completado" formControlName="">Completado
+                        <input type="radio" value="Cursando" formControlName="estadoestudios">Cursando
+                     <input type="radio" value="Completado" formControlName="estadoestudios">Completado
                        
-                                    
+                     <span class="form-text text-danger"
+                     *ngIf="campoEsValido('estadoestudios')">
+                     
+                     Campo obligatorio
+                 </span>              
                         
                     </div>
                         </div>
@@ -236,11 +256,11 @@
                             <div class="col-sm-9">
                                 <input type="text"
                                        class="form-control"
-                                       formControlName ="campolaboral" 
+                                       formControlName ="idiomas" 
                                        placeholder="Ingrese los idiomas que sabe " >
                 
                                        <span class="form-text text-danger"
-                                       *ngIf="campoEsValido('campolaboral')">
+                                       *ngIf="campoEsValido('idiomas')">
                                        
                                        Campo requerido
                                        
