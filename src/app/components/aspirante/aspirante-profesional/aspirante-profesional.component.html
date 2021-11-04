@@ -164,12 +164,19 @@
         </div-->
 
    <div class="mb-3 row">
-    <label class="col-sm-3 col-form-label">Posibilidad Viajar</label>
+    <label class="col-sm-3 col-form-label">Disponibilidad para viajar</label>
     <div class="col-sm-9">
      
     
-        <input type="radio" value="si" formControlName="posibilidadviajar"> Si
-     <input type="radio" value="no" formControlName="posibilidadviajar"> No
+    <input type="radio" value="si" formControlName="posibilidadviajar"> Si
+    <input type="radio" value="no" formControlName="posibilidadviajar"> No
+
+
+
+
+
+
+
         <span class="form-text text-danger"
                         *ngIf="campoEsValido('posibilidadviajar')">
                         
@@ -179,6 +186,71 @@
         
     </div>
         </div>
+
+
+        <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Disponibilidad para cambio de residencia</label>
+            <div class="col-sm-9">
+             
+            
+            <input type="radio" value="si" formControlName="experiencialaboral"> Si
+            <input type="radio" value="no" formControlName="experiencialaboral"> No
+
+               
+                            
+                
+            </div>
+                </div>
+
+
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Nivel de Estudios</label>
+                    <div class="col-sm-9">
+                        
+                        <select name="doc" id="doc" >
+                            <!-- <option *ngFor="let p of profesiones" value="{{p.idprofesiones}}">
+                                {{p.profesion}}
+                            </option> -->
+                        </select>
+        
+                       
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Estado estudios</label>
+                    <div class="col-sm-9">
+                     
+                    
+                        <input type="radio" value="Cursando" formControlName="">Cursando
+                     <input type="radio" value="Completado" formControlName="">Completado
+                       
+                                    
+                        
+                    </div>
+                        </div>
+
+
+                        <div class="mb-3 row">
+                            <label class="col-sm-3 col-form-label">Idiomas</label>
+                            <div class="col-sm-9">
+                                <input type="text"
+                                       class="form-control"
+                                       formControlName ="campolaboral" 
+                                       placeholder="Ingrese los idiomas que sabe " >
+                
+                                       <span class="form-text text-danger"
+                                       *ngIf="campoEsValido('campolaboral')">
+                                       
+                                       Campo requerido
+                                       
+                                   </span> 
+                            </div>
+                        </div>
+
+
+
+
 
 
 
