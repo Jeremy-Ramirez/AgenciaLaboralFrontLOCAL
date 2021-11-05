@@ -27,12 +27,19 @@
             <label>RUC/Cédula </label>
             </div>
             <div class="col-sm-9">
-                <input type="text" formControlName="ruc_cedula" placeholder="Ingrese número del documento">
+                <input type="text" formControlName="ruc_cedula" placeholder="Ingrese número del documento"
+                (change)="validadorDeCedula()" >
                 <span class="form-text text-danger" *ngIf="campoEsValido('ruc_cedula')">
                     Campo Requerido
                 </span>
+                <small *ngIf="!validador" class="text-danger">
+                    Escriba un número de documento válido
+                </small>
+                    
             </div>
         </div>
+
+
         <div class="row">
             <div class="col-25">
             <label >Tipo de Persona</label>
@@ -297,7 +304,7 @@
         </div>
        
         <div id="lower">
-            <button type="submit" class="btn btn-primary float-end" >
+            <button type="submit" class="btn btn-primary float-end" [disabled]="formEmpresa.invalid || !validador" >
                 Registrarse
             </button>
 
