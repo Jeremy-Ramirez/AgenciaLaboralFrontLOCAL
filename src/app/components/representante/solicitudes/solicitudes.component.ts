@@ -22,6 +22,10 @@ export class SolicitudesComponent implements OnInit {
   sectores: any[]=[];
   empresas: any []=[];
   representantes: any []=[];
+  profesiones:any[]=[];
+  fechaCorrectaInicio=true;
+  fechaCorrectaCierre=true;
+  niveles:any[]=[];
 
   id:'';
   message = '';
@@ -54,7 +58,8 @@ export class SolicitudesComponent implements OnInit {
         this.representantes=doc;
       console.log(this.representantes)
       })
-    
+      this.getProfesiones()
+      this.getNivelesEstudios()
 
     this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
@@ -72,7 +77,7 @@ export class SolicitudesComponent implements OnInit {
   }
   
   formSolicitud: FormGroup = this.form.group({
-    profesion: ["", [Validators.required]],
+    profesiones_idprofesiones:["",[Validators.required]],
     aniosexperiencia: ["",[Validators.required]],
     rangoedad: ["",[Validators.required]],
     experticia: ["",[Validators.required]],
@@ -86,11 +91,11 @@ export class SolicitudesComponent implements OnInit {
     descripcioncargo: ["",[Validators.required]],
     ciudad_idciudad: ["",[Validators.required]],
     provincia_idprovincia: ["",[Validators.required]],
-    educacion_minima: ["",[Validators.required]],
+    nivelestudios_idnivelestudios:["",[Validators.required, ]],
     jornada: ["",[Validators.required]],
     discapacidad: ["",[Validators.required]],
-    disponibilidad_viajar: ["",[Validators.required]],
-    disponibilidad_cambioresidencia: ["",[Validators.required]],
+    posibilidadviajar:["",[Validators.required,Validators.maxLength(2),Validators.pattern("(si|no)+")]],
+    posibilidadcambioresidencia:["",[Validators.required,Validators.maxLength(2),Validators.pattern("(si|no)+")]],
     licencia: ["",[Validators.required]],
     idiomas: ["",[Validators.required]]
   })
@@ -128,4 +133,62 @@ export class SolicitudesComponent implements OnInit {
   campoEsValido( campo: string){
     return this.formSolicitud.controls[campo].errors  && this.formSolicitud.controls[campo].touched;
   }
+
+  getProfesiones(){
+    this.http.get('http://localhost:8000/api/profesiones/').subscribe((doc:any)=>{
+      this.profesiones=doc;
+    console.log("getprofesiones",this.profesiones)
+    })
+  }
+
+  getNivelesEstudios(){
+    this.http.get('http://localhost:8000/api/nivelestudios/').subscribe((nivel:any)=>{
+    this.niveles=nivel;
+    console.log(this.niveles)
+    })
+  }
+
+
+
+
+  validarFechainicio(){
+    
+    let fechaNacimiento=this.formSolicitud.controls['fechainicio'].value
+    console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
+    let fechaActual=new Date().toISOString().split('T')[0]  
+    
+
+    if(fechaActual<=this.formSolicitud.controls['fechainicio'].value){
+      this.fechaCorrectaInicio=true;
+      
+      console.log("entra")
+    }else{
+      this.fechaCorrectaInicio=false;
+
+    }
+
+  }
+
+
+  validarFechacierre(){
+    
+    
+    let fechaNacimiento=this.formSolicitud.controls['fechacierre'].value
+    console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
+    let fechaActual=new Date().toISOString().split('T')[0]  
+    
+
+    if(fechaActual<=this.formSolicitud.controls['fechacierre'].value){
+      this.fechaCorrectaCierre=true;
+      
+      console.log("entra")
+    }
+    else{
+      this.fechaCorrectaCierre=false;
+
+    }
+
+  }
+
+
 }
