@@ -4,13 +4,33 @@
         <i class="glyphicon glyphicon-search"></i>
         <input type="text" class="form-control" placeholder="Search" />
     </div>
-    <div class= "contenedor-empleo" >
-        
-        <div class="empleo"  #empleos >
-           
-        </div>
+    
+    <h4><small>OFERTAS DE EMPLEO</small></h4>
+    <div class="card" *ngFor= "let i of ofertasEmpleo">        
        
+        <div class="card-body"> 
+            <h2 class="card-title">Cargo: {{i.cargo}}</h2>
+            <h3>{{i.profesion}}</h3> 
+            <p></p>
+            <ul>
+              <li >Descripción: {{i.descripcioncargo}}</li>
+              <p></p>
+              <li >Educacion minima: {{i.nivelestudios}}</li>
+              <li >Jornada:  {{i.jornada}} </li>
+              <li >Licencia: {{i.licencia}}</li>
+              <li >Idiomas: {{i.idiomas}}</li>
+              <li >Personas con discapacidad: {{i.discapacidad}}</li>
+              <li >Disponibilidad de viajar: {{i.posibilidadviajar}} </li>              
+              <li >Disponibilidad de cambio de residencia: {{i.posibilidadcambioresidencia}} </li>
+            </ul>
+            <p class="card-text">Empresa: {{i.nombreEmpresa}}</p>
+            <ul>
+              <li>Fecha de inicio {{i.fechainicio}}</li>
+              <li>Fecha de cierre {{i.fechacierre}}</li>
+            </ul>
+
+            <button class="button" (click)="aceptar()">Aceptar</button>
+            <button class="button2" (click)="rechazar()">Rechazar</button>
+        </div>
     </div>
-    
-    
   </div>

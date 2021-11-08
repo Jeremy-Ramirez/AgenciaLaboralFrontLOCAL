@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Emitters } from '../emitters/emitters';
+import { Emitters } from '../clases/emitters';
 
 @Component({
   selector: 'app-sugerencias-comentarios',

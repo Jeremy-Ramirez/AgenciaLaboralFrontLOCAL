@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Emitters } from '../emitters/emitters';
+import { Emitters } from '../clases/emitters';
 
 @Component({
   selector: 'app-menu-lateral',

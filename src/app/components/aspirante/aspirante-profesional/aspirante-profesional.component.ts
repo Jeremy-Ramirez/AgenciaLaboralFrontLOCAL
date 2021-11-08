@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProfesionesService } from '../../../servicios/profesiones.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Emitters } from '../emitters/emitters';
+import { Emitters } from '../clases/emitters';
 
 @Component({
   selector: 'app-aspirante-profesional',

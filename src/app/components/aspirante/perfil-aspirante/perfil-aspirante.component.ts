@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Emitters } from '../emitters/emitters';
+import { Emitters } from '../clases/emitters';
 @Component({
   selector: 'app-perfil-aspirante',
   templateUrl: './perfil-aspirante.component.html',

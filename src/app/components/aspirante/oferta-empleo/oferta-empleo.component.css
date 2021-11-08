@@ -19,7 +19,8 @@
 .right-addon input { padding-right: 30px; }
 
 
-.empleo {
+.card {
+  margin-top: 15px;
     border: 30px;
     padding: 20px;
     background-color: rgb(207, 228, 241);
@@ -29,12 +30,28 @@
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
 }
-.empleo:first-child {
-  margin: 10px0;
-}
 
-.card-text{
-  border: 30px;
-  padding: 20px;
-  background-color: rgrgb(19, 100, 151)
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.button {
+  background-color: #8ce2f8; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 15px;
+}
+.button2 {
+  background-color: #ec8585; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }

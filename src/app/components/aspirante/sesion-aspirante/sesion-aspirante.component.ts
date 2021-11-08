@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Emitters } from '../emitters/emitters';
+import { Emitters } from '../clases/emitters';
 
 @Component({
   selector: 'app-sesion-aspirante',
