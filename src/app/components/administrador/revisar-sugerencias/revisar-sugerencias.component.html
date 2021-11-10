@@ -7,8 +7,26 @@
             </div>
         </div>
         Descripción: {{sugerencia.descripcion}}
-        <div >
-            <img class="imgsug" src="http://localhost:8000{{sugerencia.imagen}}">      
+        <div *ngIf="sugerencia.imagen != null">
+            <div >
+                <img class="imgsug" src="http://localhost:8000{{sugerencia.imagen}}">      
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div>
+    <div class="aspiranteIndividual" *ngFor="let sugerencia of sugerenciasEmpresa">
+        <div *ngFor="let empresa of empresas">
+            <div *ngIf="empresa.idusuario==sugerencia.usuario_idusuario">
+                Nombres: {{empresa.nombrecomercial}} 
+            </div>
+        </div>
+        Descripción: {{sugerencia.descripcion}}
+        <div *ngIf="sugerencia.imagen != null">
+            <div >
+                <img class="imgsug" src="http://localhost:8000{{sugerencia.imagen}}">      
+            </div>
         </div>
         
     </div>

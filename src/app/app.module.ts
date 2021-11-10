@@ -56,13 +56,6 @@ import { MatListModule } from '@angular/material/list';
     RegisterComponent,
     SolicitudesComponent,
 
-
-
-
-
-
-    
-    
   ],
   imports: [
     BrowserModule,

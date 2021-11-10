@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ArchivosAspiranteService } from 'src/app/servicios/archivos-aspirante.service';
 
 @Component({
   selector: 'app-vista-perfil-aspirante',
   templateUrl: './vista-perfil-aspirante.component.html',
   styleUrls: ['./vista-perfil-aspirante.component.css']
 })
-export class VistaPerfilAspiranteComponent implements OnInit {
+export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
   @Input() idAspirante: any;
   //aspirantes:any[]=[];
   file:any;
@@ -20,9 +22,17 @@ export class VistaPerfilAspiranteComponent implements OnInit {
   profesiones:any[]=[];
   archivos:any[]=[];
   id='';
-  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) {
+  archivoValido:boolean =true;
+  suscription: Subscription; 
+
+
+
+  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,
+    private archivosAspiranteService: ArchivosAspiranteService) {
     //this.idAspirante=3;
     console.log("hereda",this.idAspirante)
+
+
    }
   
 
@@ -37,6 +47,14 @@ export class VistaPerfilAspiranteComponent implements OnInit {
     this.getCategoria();
     this.getUsuariosId();
     this.getArchivos();
+
+    this.suscription = this.archivosAspiranteService.refresh$.subscribe(()=>{
+      this.getArchivos();
+    })
+  }
+  ngOnDestroy():void{
+    this.suscription.unsubscribe();
+    console.log('Observable cerrado');
   }
 
 
@@ -65,8 +83,8 @@ export class VistaPerfilAspiranteComponent implements OnInit {
   }
 
   getArchivos(){
-    this.http.get('http://localhost:8000/api/archivosaspirante/').subscribe((resp:any)=>{
-      this.archivos=resp;
+    this.archivosAspiranteService.getArchivosAspirante().subscribe(archivos=>{
+      this.archivos=archivos;
       console.log(this.archivos)
     })
   }
@@ -94,7 +112,7 @@ export class VistaPerfilAspiranteComponent implements OnInit {
     
     nombredocumento: ["", [Validators.required]],
     categoriaDocumento_idcategoriadocumento: ["", [Validators.required]],
-    archivo:["",[Validators.required]],
+    archivo:["",[Validators.required, Validators.pattern("^.*\.(pdf|docx)$")]],
     fechacreacion:["",[Validators.required]],
     aspirante_idaspirante:1,
     usuario_idusuario:1,
@@ -116,8 +134,16 @@ export class VistaPerfilAspiranteComponent implements OnInit {
 
   handleFileInput(event: Event){
 
-    this.file=(<HTMLInputElement>event.target).files[0];
-    console.log("archivo", this.file)
+    
+
+    if((<HTMLInputElement>event.target).files[0].size>2000000){
+      this.archivoValido=false;
+      //alert('El archivo supera los 6Mb.');
+    }else{
+      this.archivoValido=true;
+      this.file=(<HTMLInputElement>event.target).files[0];
+      console.log("archivo", this.file)
+    }
 
   
  }
@@ -137,11 +163,12 @@ export class VistaPerfilAspiranteComponent implements OnInit {
     
     
         console.log(this.miFormulario.value);
-        this.http.post('http://localhost:8000/api/archivosaspirante/', formData).subscribe(
-          resp => console.log(resp),
-          err => console.log(err)
-    
-        )
+        this.archivosAspiranteService.postArchivosAspirante(
+          formData).subscribe(data=>{
+            console.log("Datos del post",data)
+            alert('Archivo Guardado')
+            this.miFormulario.reset();
+          });
       }
     }
 

@@ -52,17 +52,18 @@
                            placeholder="Nombres Completos"
                            (change)="handleFileInput($event)"
                            >
-                        <span class="form-text text-danger"
-                           *ngIf="campoEsValido('imagen')">
-                           
-                           El archivo debe ser una imagen.
-                       </span>
-                       <span class="form-text text-danger"
-                           *ngIf="!imagenValida">
-                           
-                           El archivo supera los 6Mb.
-                           
-                       </span>
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('imagen')">
+                        
+                        El archivo debe ser una imagen.
+                    </span>
+                    <span class="form-text text-danger"
+                        *ngIf="!imagenValida">
+                        
+                        El archivo supera los 6Mb.
+                        
+                    </span>
+                    
                 </div>
             </div>
 

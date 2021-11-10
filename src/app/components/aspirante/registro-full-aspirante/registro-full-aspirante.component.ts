@@ -192,18 +192,24 @@ get generoNoValido(){
       this.http.post('http://localhost:8000/api/aspirantes/', formData).subscribe(
         resp => console.log(resp),
         err => console.log(err)
+
+        
   
       )
+
+      setTimeout(() => {
+        alert('USUARIO CREADO')
+        window.location.href='/aspirante/registroAspirante';
+      }, 3000);
+
+      
         },3000)
   
       
       }, 3000);
 
       
-    setTimeout(() => {
-      alert('USUARIO CREADO')
-      window.location.href='/aspirante/registroAspirante';
-    }, 6000);
+    
     
    
 

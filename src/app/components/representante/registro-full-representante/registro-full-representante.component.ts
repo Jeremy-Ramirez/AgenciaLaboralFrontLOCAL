@@ -53,12 +53,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private rutaActiva: ActivatedRoute) {
     //this.getUsuarios();
-    this.getGenero();
-    this.getTipodocumento();
-    this.getProvincias();
-    this.getCiudades();
-    this.getEstadoCivil();
-
+    
 
     
   }
@@ -172,7 +167,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
 
 
     
-    }, 100);
+    }, 3000);
 
 
     this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
