@@ -2,6 +2,8 @@ import { Component, OnInit,ViewChild ,ElementRef, Input} from '@angular/core';
 import {AspirantessolicitadosService} from '../../../servicios/aspirantessolicitados.service'
 import { OfertaView } from '../clases/oferta';
 import {SolicitudService} from '../../../servicios/solicitud.service'
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-oferta-empleo',
   templateUrl: './oferta-empleo.component.html',
@@ -10,13 +12,15 @@ import {SolicitudService} from '../../../servicios/solicitud.service'
 export class OfertaEmpleoComponent implements OnInit {
   aspirantessolicitados:any[]=[]; 
   aspirantessolicitados2:any[]=[]; 
-  aspi:any[]=[];
   idAspirante ='';
+  idAspiranteSolicitados ='1';
   ofertasEmpleo: Array<OfertaView>= [];
 
   constructor(
     private _aspirantessolicitadosService: AspirantessolicitadosService,
-    private _solicitudesService: SolicitudService
+    private _solicitudesService: SolicitudService,    
+    private httpClient:HttpClient,
+    private form: FormBuilder,
     ) { 
       
   }
@@ -26,6 +30,7 @@ export class OfertaEmpleoComponent implements OnInit {
     this._aspirantessolicitadosService.getAspirantessolicitados().subscribe((resp:any)=>{
       this.aspirantessolicitados=resp
       this.aspirantessolicitados2=resp
+      this.aspiranteSolicitado(resp)
       this._solicitudesService.loginUsuario().subscribe((resp2:any)=>{
         this.idUsuarioLogin(resp2);
         this.addhtml2()
@@ -34,11 +39,16 @@ export class OfertaEmpleoComponent implements OnInit {
     });
     
   }
+  formEmpresa: FormGroup = this.form.group({
+    estado_idestado: 2
+  })
   addhtml2(){
     
     for(let i=0;i<this.aspirantessolicitados2.length;i++){
-      if(this.aspirantessolicitados2[i].aspirante_idaspirante.idaspirante==this.idAspirante){
+      if(this.aspirantessolicitados2[i].aspirante_idaspirante.idaspirante==this.idAspirante
+        && this.aspirantessolicitados2[i].estado_idestado.estado =="activo"){
         var oferta = new OfertaView();
+        oferta.id = i;
         oferta.cargo= this.aspirantessolicitados2[i].solicitud_idsolicitud.cargo
         oferta.profesion =this.aspirantessolicitados2[i].solicitud_idsolicitud.profesion
         oferta.descripcioncargo =this.aspirantessolicitados2[i].solicitud_idsolicitud.descripcioncargo
@@ -70,13 +80,31 @@ export class OfertaEmpleoComponent implements OnInit {
     }
     } 
   }
-  
-  aceptar() {
-    console.log("enviado")
-    alert('OFERTA ACEPTADA')
+  aspiranteSolicitado(resp){
+    //this.idAspiranteSolicitados=resp.idaspirantessolicitados
+    
   }
-  rechazar() {
+  aceptar(idOferta) {
+    console.log("numOferta " +  idOferta)
     console.log("enviado")
+    /*if(this.formEmpresa.invalid) {
+      return Object.values(this.formEmpresa.controls).forEach(control=>{
+        control.markAsTouched();
+      })
+    }
+  
+      console.log(this.formEmpresa.value);
+      this.httpClient.put('http://localhost:8000/api/aspirantessolicitados/'+this.idAspiranteSolicitados, this.formEmpresa.value).subscribe(
+        resp => console.log(resp),
+        err => console.log(err)
+  
+      )*/
+    alert('OFERTA ACEPTADA')    
+  }
+  rechazar(idOferta) {
+    console.log("rechazado")
+    console.log("numOferta " + idOferta)
     alert('OFERTA RECHAZADA')
   }
+ 
 }

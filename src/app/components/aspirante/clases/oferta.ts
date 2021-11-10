@@ -1,4 +1,5 @@
 export class OfertaView {
+  id: number;
   cargo: String;
   profesion: String;
   descripcioncargo: String;
@@ -13,11 +14,12 @@ export class OfertaView {
   fechainicio: String;
   fechacierre: String;
   
-  constructor( cargo?: string, profesion?: string, 
+  constructor( id?:number, cargo?: string, profesion?: string, 
     descripcioncargo?: string, nivelestudios?: string, jornada?: string,
     licencia?: string, idiomas?: string, discapacidad?: string, posibilidadviajar?: string,
     posibilidadcambioresidencia?: string,nombreEmpresa?: string,
     fechainicio?: string,fechacierre?: string) {
+    this.id = id;
     this.cargo = cargo;
     this.profesion = profesion;
     this.descripcioncargo = descripcioncargo;

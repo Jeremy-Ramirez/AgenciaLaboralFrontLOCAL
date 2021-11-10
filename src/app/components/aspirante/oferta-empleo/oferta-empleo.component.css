@@ -23,7 +23,7 @@
   margin-top: 15px;
     border: 30px;
     padding: 20px;
-    background-color: rgb(207, 228, 241);
+    background-color: rgb(197, 233, 255);
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -35,7 +35,7 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .button {
-  background-color: #8ce2f8; /* Green */
+  background-color: #63bfd6; /* Green */
   border: none;
   color: white;
   padding: 10px 20px;

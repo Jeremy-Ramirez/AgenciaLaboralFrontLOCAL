@@ -29,8 +29,15 @@ export class RegistroFullEmpresaComponent implements OnInit {
   empresas: any []=[];
   new_empresa: any []=[];
   hide: boolean = true;
+  idDoc: any;
+  selectedValue = '';
   public validador= true; 
-
+  public validadorruc= true; 
+  
+  telCelularValue = '';
+  public validadorDeTelCelular= true; 
+  telOficinaValue = '';
+  public validadorDeTelOficina= true; 
   constructor(
     private _tipodocumentoService: TipodocumentoService,
     private _tipopersonaService: TipopersonaService,
@@ -109,8 +116,8 @@ export class RegistroFullEmpresaComponent implements OnInit {
     paginaweb: [""],
     ciudad_idciudad: ["",[Validators.required]],
     correo:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
-    celular:["",[Validators.required,Validators.pattern("^[0-9-+]{9,10}$"),Validators.maxLength(10)]],
-    telefonooficina:["",[Validators.required,Validators.maxLength(9)]],
+    celular:["",[Validators.required]],
+    telefonooficina:["",[Validators.required]],
     contrasenia:["", [Validators.required]],
   })
 
@@ -144,16 +151,18 @@ export class RegistroFullEmpresaComponent implements OnInit {
 
   //esta es la variable de validación
   validadorDeCedula() {
+    this.validador = true;
     let cedulaCorrecta = false;
-    console.log("entró al validador")
-    let cedula=this.formEmpresa.controls['ruc_cedula'].value
-    console.log(cedula.length)
-    if (cedula.length == 10)
+    
+    let cedula_ruc=this.formEmpresa.controls['ruc_cedula'].value
+    console.log(cedula_ruc.length)
+    
+    if (cedula_ruc.length == 10 && this.selectedValue=="1")
     {   
-        console.log("igual a 10")
+        
+        let cedula = cedula_ruc ;
         let tercerDigito = parseInt(cedula.substring(2, 3));
         if (tercerDigito < 6) {
-          console.log("menor a 6")
         
             // El ultimo digito se lo considera dígito verificador
             let coefValCedula = [2, 1, 2, 1, 2, 1, 2, 1, 2];       
@@ -174,6 +183,7 @@ export class RegistroFullEmpresaComponent implements OnInit {
   
             if ((Math.round(suma % 10) == 0) && (Math.round(suma % 10)== verificador)) {
                 cedulaCorrecta = true;
+                
             } else if ((10 - (Math.round(suma % 10))) == verificador) {
                 cedulaCorrecta = true;
             } else {
@@ -186,11 +196,47 @@ export class RegistroFullEmpresaComponent implements OnInit {
         cedulaCorrecta = false;
     }
   
-  
+    
   this.validador= cedulaCorrecta;
-  
     
   }
 
+  validadorDeRuc() {
+    this.validadorruc = true;
+    let rucCorrecto = false;
+    let ruc=this.formEmpresa.controls['ruc_cedula'].value
+    if (ruc.length == 13 && this.selectedValue=="2"){
+      let verificador = ruc.substring(10, 13);
+      if(verificador =="001"){
+        rucCorrecto= true;
+      }
+    }else {
+      rucCorrecto = false;
+    }
+    this.validadorruc= rucCorrecto;
+  }
+  print(){
+    //console.log(this.selectedValue)
+  }
   
+  validadorDeTelefonoOficina(){
+    this.validadorDeTelOficina = true;
+    //console.log(this.telOficinaValue.length)
+    if (this.telOficinaValue.length==9){
+      this.validadorDeTelOficina = true;
+    }else {
+      this.validadorDeTelOficina = false;
+    }
+    //console.log(this.validadorDeTelOficina)
+  }
+  
+  validadorDeTelefonoCelular(){
+    this.validadorDeTelCelular = true;
+    let verificador = this.telCelularValue.substring(0, 2);
+    if (this.telCelularValue.length==10 && verificador == '09'){
+      this.validadorDeTelCelular = true;
+    }else {
+      this.validadorDeTelCelular = false;
+    }
+  }
 }

@@ -107,23 +107,6 @@
             </div>
             <div class="row">
                 <div class="col-25">
-                  <!-- Ciudad  -->
-                <label>Ciudad: </label>
-                </div>
-                <div class="col-sm-9">
-                    <select formControlName="ciudades">
-                        <option value="" disabled selected>{{ciudadDesc}}</option>
-                        <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
-                            {{c.nombreciudad}}
-                        </option>
-                    </select>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('ciudades')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
                     <!-- Provincia -->
                     <label>Provincia:</label>
                 </div>
@@ -139,6 +122,24 @@
                     </span>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-25">
+                  <!-- Ciudad  -->
+                <label>Ciudad: </label>
+                </div>
+                <div class="col-sm-9">
+                    <select formControlName="ciudades">
+                        <option value="" disabled selected>{{ciudadDesc}}</option>
+                        <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
+                            {{c.nombreciudad}}
+                        </option>
+                    </select>
+                    <span class="form-text text-danger" *ngIf="campoEsValido('ciudades')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="col-25">
                     <!-- Sector -->
@@ -214,15 +215,19 @@
                     </span>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-25">
                     <label>Teléfono Celular</label>
                 </div>
                 <div  class="col-sm-9">
-                    <input type="text" formControlName="celular"  placeholder={{celular}}>
+                    <input  [(ngModel)]="telCelularValue" (change)="validadorDeTelefonoCelular()" type="text" formControlName="celular"   placeholder={{celular}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('celular')">
                         Campo Requerido
                     </span>
+                    <small *ngIf="!validadorDeTelCelular" class="text-danger">
+                        Escriba un teléfono válido
+                    </small>
                 </div>
             </div>
             <div class="row">
@@ -231,10 +236,14 @@
                     <label>Teléfono de Oficina</label>
                 </div>
                 <div  class="col-sm-9">
-                    <input type="text" formControlName="telefonooficina"  placeholder={{telefonooficina}}>
+                    <input  [(ngModel)]="telOficinaValue" (change)="validadorDeTelefonoOficina()" type="text" formControlName="telefonooficina"  placeholder={{telefonooficina}}>
                     <span class="form-text text-danger" *ngIf="campoEsValido('telefonooficina')">
                         Campo Requerido
                     </span>
+                    <small *ngIf="!validadorDeTelOficina" class="text-danger">
+                        Escriba un teléfono válido 
+                    </small>
+                   
                 </div>
             </div>
             <div class="row">
@@ -249,30 +258,7 @@
                     </span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-25">
-                    <!-- Correo -->
-                    <label>Correo electrónico:</label>
-                </div>
-                <div  class="col-sm-9">
-                    <input type="text"  formControlName="correo" placeholder={{correo}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('correo')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <!-- Contraseña -->
-                    <label >Contraseña:</label>  
-                </div>
-                <div  class="col-sm-9">
-                    <input type="password"  class="form-control" formControlName="contrasenia" placeholder="password">
-                    <span class="form-text text-danger" *ngIf="campoEsValido('contrasenia')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
+            
            
             <div id="lower">
                 <button type="submit" class="btn btn-primary float-end" >

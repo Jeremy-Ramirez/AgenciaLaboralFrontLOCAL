@@ -51,6 +51,11 @@ export class InformacionComponent implements OnInit {
   empresas: any []=[];
   ruc_cedula='';
   idempresa = '';
+  
+  telCelularValue = '';
+  public validadorDeTelCelular= true; 
+  telOficinaValue = '';
+  public validadorDeTelOficina= true; 
   constructor(
     private _tipodocumentoService: TipodocumentoService,
     private _tipopersonaService: TipopersonaService,
@@ -172,35 +177,35 @@ export class InformacionComponent implements OnInit {
       
       this._ciudadService.getCiudades().subscribe((resp2:any)=>{
         this.ciudades=resp2
-        console.log(resp2)
+        //console.log(resp2)
         for(let i=0;i<this.ciudades.length;i++){
           if(this.ciudades[i].idciudad==resp.ciudad_idciudad){
             this.ciudadDesc= this.ciudades[i].nombreciudad;
           }
         }
-        console.log(this.ciudadDesc)
+        //console.log(this.ciudadDesc)
   
       });
       this._provinciaService.getProvincias().subscribe((resp2:any)=>{
         this.provincias=resp2
-        console.log(resp2)
+        //console.log(resp2)
         for(let i=0;i<this.provincias.length;i++){
           if(this.provincias[i].idprovincia==resp.provincia_idprovincia){
             this.provinciaDesc= this.provincias[i].nombreprovincia;
           }
         }
-        console.log(this.provinciaDesc)
+        //console.log(this.provinciaDesc)
   
       });
       this._sectorService.getSector().subscribe((resp2:any)=>{
         this.sectores=resp2
-        console.log(resp2)
+        //console.log(resp2)
         for(let i=0;i<this.sectores.length;i++){
           if(this.sectores[i].idsector==resp.sector_idsector){
             this.sectorDesc= this.sectores[i].descripcion;
           }
         }
-        console.log(this.sectorDesc)
+        //console.log(this.sectorDesc)
   
       });
       
@@ -224,12 +229,10 @@ export class InformacionComponent implements OnInit {
     mz: ["", [Validators.required]],
     villa: ["", [Validators.required]],
     referencia: ["", [Validators.required]],
-    paginaweb: ["", [Validators.required]],
+    paginaweb: [""],
     ciudades: ["", Validators.required],
-    correo:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
-    celular:["",[Validators.required,Validators.minLength(10)]],
-    telefonooficina:["",[Validators.required,Validators.minLength(10)]],
-    contrasenia:["", [Validators.required]],
+    celular:["",[Validators.required]],
+    telefonooficina:["",[Validators.required]],
   })
 
   guardar(){
@@ -254,5 +257,24 @@ export class InformacionComponent implements OnInit {
     return this.formEmpresa.controls[campo].errors  && this.formEmpresa.controls[campo].touched;
   }
 
-  
+  validadorDeTelefonoOficina(){
+    this.validadorDeTelOficina = true;
+    //console.log(this.telOficinaValue.length)
+    if (this.telOficinaValue.length==9){
+      this.validadorDeTelOficina = true;
+    }else {
+      this.validadorDeTelOficina = false;
+    }
+    //console.log(this.validadorDeTelOficina)
+  }
+
+  validadorDeTelefonoCelular(){
+    this.validadorDeTelCelular = true;
+    let verificador = this.telCelularValue.substring(0, 2);
+    if (this.telCelularValue.length==10 && verificador == '09'){
+      this.validadorDeTelCelular = true;
+    }else {
+      this.validadorDeTelCelular = false;
+    }
+  }
 }
