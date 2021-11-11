@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterContentInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -6,10 +6,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './registro-full-aspirante.component.html',
   styleUrls: ['./registro-full-aspirante.component.css']
 })
-export class RegistroFullAspiranteComponent implements OnInit {
+export class RegistroFullAspiranteComponent implements OnInit,AfterContentInit {
 
   hide: boolean = true;
   public validador= true; 
+
+  public correov= false;
+  public cedulaunica=false;
 
   generos:any[]=[];
   usuarios:any[]=[];
@@ -20,6 +23,11 @@ export class RegistroFullAspiranteComponent implements OnInit {
 
   seleccionado:string;
   seleccionuser:string;
+
+
+  usuarios2: any[]=[];
+
+  correos: any[]=[];
 
   miFormulario: FormGroup = this.fb.group({
     
@@ -51,11 +59,22 @@ export class RegistroFullAspiranteComponent implements OnInit {
     //this.getTipodocumento();
     this.getProvincias();
     this.getCiudades();
+
     this.getTipodocumento();
+
+    this.getUsuarios2();
+    
   }
 
   ngOnInit(): void {
+  
+
   }
+  ngAfterContentInit(): void{
+
+    
+  }
+
 
 get tipoDocumentoNoValido(){
   return this.miFormulario.get('tipodocumento_idtipodocumento').invalid && this.miFormulario.get('tipodocumento_idtipodocumento').touched
@@ -152,7 +171,14 @@ get generoNoValido(){
   getUsuarios(){
     this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios=doc;
-    console.log("getusuarios",this.usuarios)
+    //console.log("getusuarios",this.usuarios)
+    })
+  }
+
+  getUsuarios2(){
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((usr:any)=>{
+      this.usuarios2= usr;
+      //console.log(this.usuarios2)
     })
   }
 
@@ -160,7 +186,7 @@ get generoNoValido(){
   
   guardar(){
 
-    
+    let valorc=this.miFormulario.controls['correo'].value;
     if(this.miFormulario.invalid) {
       return Object.values(this.miFormulario.controls).forEach(control=>{
         control.markAsTouched();
@@ -168,13 +194,13 @@ get generoNoValido(){
     }
   
       console.log(this.miFormulario.value);
-      this.http.post('http://localhost:8000/api/usuarios/', this.miFormulario.value).subscribe(
-        resp => console.log(resp),
-        err => console.log(err)
-  
-      )
+
       
 
+
+      this.http.post('http://localhost:8000/api/usuarios/', this.miFormulario.value).subscribe(
+        (resp:any)=>{
+        
       setTimeout(()=>{ 
         this.getUsuarios();
         setTimeout(()=>{
@@ -184,17 +210,10 @@ get generoNoValido(){
       console.log(idFinal)
       let formData = new FormData();
 
-
-   
-
-
       formData.append("usuario_idusuario",idFinal)
       this.http.post('http://localhost:8000/api/aspirantes/', formData).subscribe(
         resp => console.log(resp),
         err => console.log(err)
-
-        
-  
       )
 
       setTimeout(() => {
@@ -207,6 +226,30 @@ get generoNoValido(){
   
       
       }, 3000);
+        } ,
+        (err:any)=>{
+          
+          
+          if(err.error.correo=='Usuario with this correo already exists.'){
+            this.correov=true;
+          }
+          else{
+            console.log(err)
+            this.cedulaunica=true;
+          }
+            
+          
+          
+          
+
+
+
+
+        } 
+  
+      )
+      
+
 
       
     
@@ -218,19 +261,6 @@ get generoNoValido(){
 
 
 
-  mostrarPassword(){
-   
-    
-    const tipo = <HTMLInputElement>document.getElementById('password');
-    //console.log(tipo.type)
-
-    if(tipo.type == 'password'){
-      tipo.type= 'text';
-    }else{
-      tipo.type='password';
-    }
-
-  }
 
   show() {
     this.hide = !this.hide;

@@ -67,7 +67,7 @@ export class RegistroAspiranteComponent implements OnInit {
   getAspirante(){
     this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
       this.aspirantes=doc;
-    console.log(this.aspirantes)
+    //console.log(this.aspirantes)
     })
   }
 

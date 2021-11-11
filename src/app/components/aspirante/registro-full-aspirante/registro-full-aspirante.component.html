@@ -47,6 +47,11 @@
                        (change)="validadorDeCedula()" 
                        >
                        
+
+                       <small *ngIf="cedulaunica" class="text-danger">
+                        Cedula ya existente
+                    </small>
+
                        <small *ngIf="!validador" class="text-danger">
                         Escriba un número de documento válido
                         </small>
@@ -113,22 +118,6 @@
             </div>
         </div>
 
-        <div class="mb-3 row">
-            <label class="col-sm-3 col-form-label">Ciudad </label>
-            <div class="col-sm-9">
-                <select   formControlName="ciudad_idciudad" [class.is-invalid]="ciudadNoValido">
-                    <option value="" disabled selected>Seleccione una ciudad</option>
-                    <option *ngFor="let c of ciudades" value="{{c.idciudad}}">
-
-                        {{c.nombreciudad}}
-                    </option>
-                </select>
-                <small *ngIf="ciudadNoValido" class="text-danger">
-                    Seleccione una ciudad
-                </small>
-               
-            </div>
-        </div>
 
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Povincia</label>
@@ -148,6 +137,24 @@
             </div>
         </div>
         <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Ciudad </label>
+            <div class="col-sm-9">
+                <select   formControlName="ciudad_idciudad" [class.is-invalid]="ciudadNoValido">
+                    <option value="" disabled selected>Seleccione una ciudad</option>
+                    <option *ngFor="let c of ciudades" value="{{c.idciudad}}">
+
+                        {{c.nombreciudad}}
+                    </option>
+                </select>
+                <small *ngIf="ciudadNoValido" class="text-danger">
+                    Seleccione una ciudad
+                </small>
+               
+            </div>
+        </div>
+
+        
+        <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Correo </label>
             <div class="col-sm-9">
                 <input type="text"
@@ -155,6 +162,12 @@
                        formControlName="correo"
                        placeholder="Ingrese su correo electrónico" [class.is-invalid]="correoNoValido">
                      
+
+
+                       <small *ngIf="correov" class="text-danger">
+                        Correo ya existente
+                    </small>
+
                        <small *ngIf="correoNoValido" class="text-danger">
                         Escriba un correo válido
                     </small>
@@ -207,7 +220,7 @@
         
 
         <div id="lower">
-            <button type="submit" class="btn btn-primary float-end" [disabled]="miFormulario.invalid || !validador" >
+            <button type="submit" class="btn btn-primary float-end" [disabled]="miFormulario.invalid || !validador " >
                 Registrarse
             </button>
 
