@@ -15,17 +15,183 @@
 <!-- </div>
 </div> -->
 
-
 <h1>Datos Personales</h1>
+<form autocomplete="off" class='formulario' >
 
-<!-- <div class="contenedorInformacion" *ngFor="let u of usuarios" >
-    <div *ngIf="u.idusuario==id"> -->
-    <p>Número documento: {{usuarioActual.nodocumento}}</p>
-    <p>Correo: {{usuarioActual.correo}}</p>
-    <p>Teléfono: {{usuarioActual.telefono}}</p>
-    <p>Dirección: {{usuarioActual.direccion}}</p>
-<!-- </div>
-</div> -->
+
+  
+    
+            <p>Correo: {{usuarioActual.correo}}</p>
+            <p>Teléfono: {{usuarioActual.telefono}}</p>
+            <p>Dirección: {{usuarioActual.direccion}}</p>
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Usuario</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    placeholder="{{usuarioActual.nombreusuario}}"
+                
+                    disabled>
+                  
+                   
+                </div>
+            </div>
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Tipo de Documento</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    placeholder="{{tipodocumentodesc}}"
+                
+                    disabled>
+                  
+                   
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Número de documento</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    value="{{usuarioActual.nodocumento}}"
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Nombres</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    value="{{usuarioActual.nombre}}"
+                    
+                    disabled>
+                  
+                   
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Apellidos</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    value="{{usuarioActual.apellido}}"
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Correo</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    value="{{usuarioActual.correo}}"
+                    
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Telefono</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                   
+                    value={{usuarioActual.telefono}}
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Dirección</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                    
+                    value={{usuarioActual.direccion}}
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+
+
+</form>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <h1>Datos Profesionales</h1>
 

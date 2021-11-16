@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Emitters } from '../clases/emitters';
+import {TipodocumentoService} from '../../../servicios/tipodocumento.service'
 @Component({
   selector: 'app-perfil-aspirante',
   templateUrl: './perfil-aspirante.component.html',
@@ -14,10 +15,13 @@ export class PerfilAspiranteComponent implements OnInit {
   id='';
   message = '';
   usuarioActual: any;
+  tipodocumentodesc ='';
+  tipoDocumentos:any[]=[];
+  
   aspirantes:any[]=[];
   usuarios:any[]=[];
   archivos:any[]=[];
-  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute) { }
+  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,private _tipodocumentoService: TipodocumentoService,) { }
 
   ngOnInit(): void {
     this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
@@ -25,7 +29,24 @@ export class PerfilAspiranteComponent implements OnInit {
         this.message = `Hi ${res.idusuario}`;
         this.id=res.idusuario
         this.usuarioActual=res;
+        console.log(this.usuarioActual)
         Emitters.authEmitter.emit(true);
+
+        this._tipodocumentoService.getTipodocumentos().subscribe((resp:any)=>{
+          this.tipoDocumentos=resp;
+          console.log(this.tipoDocumentos);
+          for(let doc of this.tipoDocumentos){
+            if(doc.idtipodocumento ===res.tipodocumento_idtipodocumento ){
+              this.tipodocumentodesc=doc.descripcion
+            }
+          }
+        })
+
+
+
+
+
+
       },
       err => {
         this.message = 'You are not logged in';
