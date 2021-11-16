@@ -7,7 +7,6 @@ import { RegistroEmpresaComponent } from './registro-empresa/registro-empresa.co
 import { SesionEmpresaComponent } from './sesion-empresa/sesion-empresa.component';
 import { RegistroRepresentanteComponent } from './registro-representante/registro-representante.component';
 import { RegistroFullEmpresaComponent } from './registro-full-empresa/registro-full-empresa.component';
-import { RegistroFullRepresentanteComponent } from '../representante/registro-full-representante/registro-full-representante.component';
 import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
 import { InformacionComponent } from './informacion/informacion.component';
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
@@ -31,8 +30,7 @@ const routes: Routes = [
         
         { path: 'registroEmpresa', component: RegistroEmpresaComponent},
         { path: 'registroFullEmpresa', component: RegistroFullEmpresaComponent},
-        { path: 'registroFullRepresentante', component: RegistroRepresentanteComponent},
-        { path: '**', redirectTo: 'sesionEmpresa' }
+        { path: '**', redirectTo: 'sesionEmpresa/perfilEmpresa' }
       ]
     }
   ];

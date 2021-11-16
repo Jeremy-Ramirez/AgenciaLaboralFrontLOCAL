@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Emitters } from '../emitters/emitters';
 @Component({
   selector: 'app-registro-representante',
   templateUrl: './registro-representante.component.html',
@@ -16,13 +17,13 @@ export class RegistroRepresentanteComponent implements OnInit {
   tipoDocumento:any[]=[];
   usuarios:any[]=[];
   correo:any='';
-  id:'';
+  id:any;
   idFinal1:any;
   seleccionado:string;
   seleccionuser:string;
   numUsuario: number=0;
   hide: boolean = true;
-
+  message = '';
 
   miFormulario: FormGroup = this.fb.group({
     nombreusuario: null,
@@ -89,7 +90,7 @@ export class RegistroRepresentanteComponent implements OnInit {
     
     console.log(idFinal)
     let formData = new FormData();
-    formData.append("empresa_idempresa", "1");
+    formData.append("empresa_idempresa",this.id);
     formData.append("usuario_idusuario",idFinal)
     this.http.post('http://localhost:8000/api/representantes/', formData).subscribe(
       resp => console.log(resp),
@@ -102,7 +103,7 @@ export class RegistroRepresentanteComponent implements OnInit {
     }, 3000);
     
     alert('USUARIO CREADO')
-    this.miFormulario.reset();
+    //this.miFormulario.reset();
   }
 
   public register() {
@@ -110,11 +111,26 @@ export class RegistroRepresentanteComponent implements OnInit {
     console.log(user);
   }
   ngOnInit(): void {
-    this.rutaActiva.params.subscribe(
+    /*this.rutaActiva.params.subscribe(
       (params:  Params) => {
         this.id = params.id;
       }
-    )
+    )*/
+
+    this.http.get('http://localhost:8000/api/userempresa/', {withCredentials: true}).subscribe(
+      (res: any) => {
+        this.message = `Hi ${res.idempresa}`;
+        this.id=res.idempresa
+        console.log(this.id)
+        Emitters.authEmitter.emit(true);
+      },
+      err => {
+        this.message = 'You are not logged in';
+        Emitters.authEmitter.emit(false);
+      }
+    );
+
+    
 
     //this.getUsuarios();
   }

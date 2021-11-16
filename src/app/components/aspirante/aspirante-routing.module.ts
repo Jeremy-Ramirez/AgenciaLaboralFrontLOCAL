@@ -28,7 +28,7 @@ const routes: Routes = [
         },
         { path: 'registroAspirante', component: RegistroAspiranteComponent },
         { path: 'registroFullAspirante', component: RegistroFullAspiranteComponent },
-        { path: '**', redirectTo: 'sesionAspirante' },
+        { path: '**', redirectTo: 'sesionAspirante/perfilAspirante' },
       ]
     }
   ];

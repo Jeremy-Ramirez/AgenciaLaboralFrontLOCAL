@@ -67,7 +67,8 @@ export class RegistroFullRepresentanteComponent implements OnInit {
   getTipodocumento(){
     this.http.get('http://localhost:8000/api/tipodocumento/').subscribe((doc:any)=>{
       this.tipoDocumento=doc;
-    console.log(this.tipoDocumento)
+      console.log(this.tipoDocumento)
+      
     })
     
   }
@@ -162,12 +163,12 @@ export class RegistroFullRepresentanteComponent implements OnInit {
     this.getCiudades();
     this.getEstadoCivil();
 
-    setTimeout(()=>{ 
+    /*setTimeout(()=>{ 
       this.obtenerNumero()
 
 
     
-    }, 3000);
+    }, 1000);*/
 
 
     this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
@@ -175,6 +176,11 @@ export class RegistroFullRepresentanteComponent implements OnInit {
         this.message = `Hi ${res.idusuario}`;
         this.id=res.idusuario
         this.usuarioActual=res;
+        for( let doc of this.tipoDocumento){
+          console.log(doc.idtipodocumento)
+          if(doc.idtipodocumento == this.usuarioActual.tipodocumento_idtipodocumento)
+            this.nombredoc=  doc.descripcion;
+        }
         Emitters.authEmitter.emit(true);
       },
       err => {

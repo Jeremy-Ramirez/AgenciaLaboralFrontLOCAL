@@ -23,7 +23,7 @@ const routes: Routes = [
             { path: 'showSolicitudes', component: ShowsolicitudesComponent},
           ]
         },
-        { path: '**', redirectTo: 'sesionRepresentante' }
+        { path: '**', redirectTo: 'sesionRepresentante/perfilRepresentante' }
       ]
     }
   ];

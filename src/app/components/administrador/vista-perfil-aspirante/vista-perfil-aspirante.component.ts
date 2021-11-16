@@ -177,6 +177,24 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
   
   }
 
+  eliminarArchivo(event: Event){
+    if(confirm("¿Seguro desea eliminar el archivo?")){
+      for(let doc of this.archivos){
+        if(doc.idarchivosaspirante == event){
+          this.archivos.splice(this.archivos.findIndex(item=> item.idarchivosaspirante === event),1)
+          this.archivosAspiranteService.deleteArchivosAspirante(
+            event).subscribe(data=>{
+              
+              alert('Archivo Borrado')
+              
+            });
+        }
+      }
+    }
+  }
+
+
+  
  
 
 
