@@ -6,12 +6,20 @@
         <!-- Username -->
         <label for="name">Correo electrónico:</label>
         <input type="name" formControlName="correo">
+
+        <small *ngIf="correov" class="text-danger">
+            Correo no registrado
+        </small>
         <!-- Password -->
         <label for="username">Contraseña:</label>
         <div  class="col">
             <p><a href="#">Olvidaste tu contraseña?</a>    
             <input type="password" [type]="hide ? 'password' : 'text'"  class="form-control" formControlName="contrasenia" placeholder="password">
             <mat-icon class=" field-icon " (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+            <small *ngIf="passwordc" class="text-danger">
+                Contraseña incorrecta
+            </small>
         </div>
         
         

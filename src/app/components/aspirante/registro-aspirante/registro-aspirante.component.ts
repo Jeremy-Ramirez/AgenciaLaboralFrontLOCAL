@@ -22,6 +22,11 @@ export class RegistroAspiranteComponent implements OnInit {
   miFormulario: FormGroup;
   hide: boolean = true;
   aspirantes: any[]=[];
+  public correov= false;
+  public passwordc=false;
+
+
+
   httpOptions={
     headers: new HttpHeaders({
       'Content-Type' : 'Application/json'
@@ -91,7 +96,27 @@ export class RegistroAspiranteComponent implements OnInit {
              //localStorage.setItem('auth_token', res.token);
      
              
-           },err => alert('USUARIO O CONTRASEÑA INCORRECTA')
+           },
+           (err:any)=>{
+            console.log(err)
+          
+            if(err.error.correo=='User not found!'){
+
+              this.correov=true;
+            }
+            else{
+              console.log(err)
+              this.passwordc=true;
+            }
+              
+            
+            
+            
+  
+  
+  
+  
+          }
           )
         }
       }
