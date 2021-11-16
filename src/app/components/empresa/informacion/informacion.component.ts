@@ -251,6 +251,8 @@ export class InformacionComponent implements OnInit {
     
     
     alert('Se han guardado los cambios')
+    
+    window.location.reload()
   }
 
   campoEsValido( campo: string){

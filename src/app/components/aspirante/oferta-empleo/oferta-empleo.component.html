@@ -6,9 +6,10 @@
     </div>
     
     <h4><small>OFERTAS DE EMPLEO</small></h4>
-    <div class="card" *ngFor= "let i of ofertasEmpleo">        
+    <div  *ngFor= "let i of ofertasEmpleo" >
+      <div class="card" *ngIf="i.estado===1" >        
        
-        <div class="card-body"> 
+        <div class="card-body"  > 
             <h2 class="card-title">Cargo: {{i.cargo}}</h2>
             <h3>{{i.profesion}}</h3> 
             <p></p>
@@ -33,4 +34,6 @@
             <button class="button2" (click)="rechazar(i.id)">Rechazar</button>
         </div>
     </div>
+    </div>
+    
   </div>

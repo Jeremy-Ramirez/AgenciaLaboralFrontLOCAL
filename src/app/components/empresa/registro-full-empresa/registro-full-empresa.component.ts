@@ -31,9 +31,10 @@ export class RegistroFullEmpresaComponent implements OnInit {
   hide: boolean = true;
   idDoc: any;
   selectedValue = '';
+  public validadorDocs= false; 
   public validador= true; 
   public validadorruc= true; 
-  
+   
   telCelularValue = '';
   public validadorDeTelCelular= true; 
   telOficinaValue = '';
@@ -94,7 +95,13 @@ export class RegistroFullEmpresaComponent implements OnInit {
       console.log(resp)
 
     });
-    
+
+    if(this.validador==true && this.validadorruc==false ){
+      this.validadorDocs = true;
+    }
+    if(this.validador==false && this.validadorruc==true ){
+      this.validadorDocs = true;
+    }
   }
 
   formEmpresa: FormGroup = this.form.group({
@@ -239,4 +246,5 @@ export class RegistroFullEmpresaComponent implements OnInit {
       this.validadorDeTelCelular = false;
     }
   }
+
 }

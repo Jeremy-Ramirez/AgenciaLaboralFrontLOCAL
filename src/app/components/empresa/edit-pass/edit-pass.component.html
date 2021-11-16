@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col">
+
+        <form autocomplete="off" [formGroup]="formEmpresa" (ngSubmit)="guardar()">
+        
+            <div class="row">
+                <div class="col-25">
+                    <!-- Correo -->
+                    <label>Correo electrónico:</label>
+                </div>
+                <div  class="col-sm-9">
+                    <input type="text"  formControlName="correo" placeholder="Ingrese un correo electrónico">
+                    <span class="form-text text-danger" *ngIf="campoEsValido('correo')">
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <!-- Contraseña -->
+                    <label >Contraseña:</label>  
+                </div>
+                
+                <div  class="col-sm-9">
+                    <div class="col">
+                        <input type="password" [type]="hide ? 'password' : 'text'"  class="form-control" formControlName="contrasenia" placeholder="Ingrese una contraseña">
+                        <mat-icon class=" field-icon " (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </div>
+                    <span class="form-text text-danger" *ngIf="campoEsValido('contrasenia')">
+                        Campo Requerido
+                    </span>
+                </div>
+                
+            </div>            
+            
+           
+            <div id="lower">
+                <button type="submit" class="btn btn-primary float-end" [disabled]="formEmpresa.invalid ">
+                    Guardar
+                </button>
+    
+            </div>
+        </form>       
+
+    </div>
+</div>

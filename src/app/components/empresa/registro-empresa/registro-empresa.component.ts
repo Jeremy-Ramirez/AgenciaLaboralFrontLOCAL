@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { CompileReflector } from '@angular/compiler';
 
 @Component({
   selector: 'app-registro-empresa',
@@ -15,6 +16,7 @@ export class RegistroEmpresaComponent implements OnInit {
   usuarios:any[]=[];
   empresas:any[]=[];
   hide: boolean = true;
+  comprobadorEmpresa = false;
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -28,6 +30,8 @@ export class RegistroEmpresaComponent implements OnInit {
     });
     this.getEmpresa()
     this.getRepresentante()
+
+    
   }
 
   getRepresentante(){
@@ -45,43 +49,52 @@ export class RegistroEmpresaComponent implements OnInit {
   }
 
   submit(): void {
+    
     for(let emp of this.empresas){
-      console.log(emp.correo)
-      console.log(this.form.getRawValue().correo)
+      
+      //console.log(emp.correo)
+      //console.log(this.form.getRawValue().correo)
       if(emp.correo==this.form.getRawValue().correo){
         this.http.post('http://localhost:8000/api/loginempresa/', this.form.getRawValue(), {
           withCredentials: true
         }).subscribe((res: any)=>{
-          console.log(res.jwt)
-          console.log(this.getDecodedAccessToken(res.jwt));
+          //console.log(res.jwt)
+          //console.log(this.getDecodedAccessToken(res.jwt));
           this.id=this.getDecodedAccessToken(res.jwt).id;
           this.router.navigate(['/empresa/sesionEmpresa/perfilEmpresa'])
-          console.log(res.id)
+          
         },err => alert('USUARIO O CONTRASEÑA INCORRECTA'));
-
+        this.comprobadorEmpresa=true;
       }
-      
-      
     }
+   
+    
     for(let rep of this.usuarios){
-      console.log("rep",rep.correo)
-      console.log("inicio",this.form.getRawValue().correo)
+      //console.log("rep",rep.correo)
+      //console.log("inicio",this.form.getRawValue().correo)
       if(rep.correo==this.form.getRawValue().correo){
         if(rep.rol_idrol==1){
           this.http.post('http://localhost:8000/api/loginusuario/', this.form.getRawValue(), {
           withCredentials: true
           }).subscribe((res: any)=>{
-          console.log(res.jwt)
-          console.log(this.getDecodedAccessToken(res.jwt));
+          //console.log(res.jwt)
+          //console.log(this.getDecodedAccessToken(res.jwt));
           this.id=this.getDecodedAccessToken(res.jwt).id;
           this.router.navigate(['/representante/sesionRepresentante'])
-          console.log(res.id)
-          },err => alert('USUARIO O CONTRASEÑA INCORRECTA'));
+          //console.log(res.id)
+          },err => alert('USUARIO O CONTRASEÑA INCORRECTA'));  
         }
+        
       }
+      
     }
-  }
 
+    if(this.comprobadorEmpresa==false){
+      alert('USUARIO NO EXISTE');
+    }
+    
+  }
+  
   getDecodedAccessToken(token: string): any {
     try{
         return jwt_decode(token);

@@ -22,6 +22,7 @@ import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.component';
 import { InformacionComponent } from './informacion/informacion.component';
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
+import { EditPassComponent } from './edit-pass/edit-pass.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SugerenciasComentariosComponent } from './sugerencias-comentarios/suger
     MenuLateralComponent,
     InformacionComponent,
     SugerenciasComentariosComponent,
+    EditPassComponent,
     
 
   ],

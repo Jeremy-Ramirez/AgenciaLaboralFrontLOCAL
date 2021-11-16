@@ -316,7 +316,7 @@
         </div>
        
         <div id="lower">
-            <button type="submit" class="btn btn-primary float-end" [disabled]="formEmpresa.invalid" >
+            <button type="submit" class="btn btn-primary float-end" [disabled]="formEmpresa.invalid || !validadorDeTelOficina || !validadorDeTelCelular "  >
                 Registrarse
             </button>
 

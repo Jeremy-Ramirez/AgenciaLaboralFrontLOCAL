@@ -13,12 +13,13 @@ export class OfertaView {
   nombreEmpresa: String;
   fechainicio: String;
   fechacierre: String;
+  estado : number;
   
   constructor( id?:number, cargo?: string, profesion?: string, 
     descripcioncargo?: string, nivelestudios?: string, jornada?: string,
     licencia?: string, idiomas?: string, discapacidad?: string, posibilidadviajar?: string,
     posibilidadcambioresidencia?: string,nombreEmpresa?: string,
-    fechainicio?: string,fechacierre?: string) {
+    fechainicio?: string,fechacierre?: string,estado?:number) {
     this.id = id;
     this.cargo = cargo;
     this.profesion = profesion;
@@ -33,6 +34,7 @@ export class OfertaView {
     this.nombreEmpresa = nombreEmpresa;
     this.fechainicio = fechainicio;
     this.fechacierre = fechacierre;
+    this.estado = estado;
   }
   
 }

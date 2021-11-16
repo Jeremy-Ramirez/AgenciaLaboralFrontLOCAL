@@ -13,8 +13,4 @@ export class SolicitudService {
   getSolicitudes(){
     return this.httpClient.get('http://localhost:8000/api/solicitudes/')
   }
-
-  loginUsuario() {    
-    return this.httpClient.get('http://localhost:8000/api/userusuario/', {withCredentials: true});
-  }
 }
