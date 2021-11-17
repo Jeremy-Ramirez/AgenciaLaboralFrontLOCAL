@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Emitters } from '../clases/emitters';
 import {TipodocumentoService} from '../../../servicios/tipodocumento.service'
+import {ProvinciaService} from '../../../servicios/provincia.service'
+import { GeneroService } from '../../../servicios/genero.service';
+
 @Component({
   selector: 'app-perfil-aspirante',
   templateUrl: './perfil-aspirante.component.html',
@@ -17,11 +20,19 @@ export class PerfilAspiranteComponent implements OnInit {
   usuarioActual: any;
   tipodocumentodesc ='';
   tipoDocumentos:any[]=[];
-  
+  provincias:any[]=[];
+  provinciadesc= '';
+  generos:any[]=[];
+  generodesc='';
+
+
   aspirantes:any[]=[];
   usuarios:any[]=[];
   archivos:any[]=[];
-  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,private _tipodocumentoService: TipodocumentoService,) { }
+  constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,
+    private _tipodocumentoService: TipodocumentoService,private _provinciaService:ProvinciaService ,
+    private _generoService:GeneroService
+    ) { }
 
   ngOnInit(): void {
     this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
@@ -42,7 +53,24 @@ export class PerfilAspiranteComponent implements OnInit {
           }
         })
 
+        this._provinciaService.getProvincias().subscribe((resp:any)=>{
+          this.provincias= resp;
+          for(let pr of this.provincias){
+            if(pr.idprovincia=== res.provincia_idprovincia){
+              this.provinciadesc=pr.nombreprovincia
+            }
+          }
+        })
 
+        this._generoService.getGeneros().subscribe((resp:any)=>{
+          this.generos=resp;
+          for(let g of this.generos){
+            if(g.idgenero === res.genero_idgenero){
+              this.generodesc=g.genero
+            }
+          }
+
+        })
 
 
 
@@ -62,21 +90,6 @@ export class PerfilAspiranteComponent implements OnInit {
     this.getArchivos();
   }
 
-  
-
-  miFormulario: FormGroup= this.fb.group({
-    
-    numerohijos: ["", [Validators.required]],
-    experiencialaboral: ["", [Validators.required]],
-    campolaboral:["",[Validators.required]],
-    experticia:["",[Validators.required]],
-    videopresentacion:["",[Validators.required]],
-    aniosexperiencia:["",[Validators.required]],
-    fechanacimiento:["",[Validators.required]],
-    posibilidadviajar:["",[Validators.required]],
-    profesiones_idprofesiones:["",[Validators.required]],
-    usuario_idusuario:this.id,
-  })
 
   getAspirantes(){
     this.http.get('http://localhost:8000/api/aspirantes/').subscribe((resp:any)=>{

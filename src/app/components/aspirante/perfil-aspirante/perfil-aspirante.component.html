@@ -19,12 +19,6 @@
 <form autocomplete="off" class='formulario' >
 
 
-  
-    
-            <p>Correo: {{usuarioActual.correo}}</p>
-            <p>Teléfono: {{usuarioActual.telefono}}</p>
-            <p>Dirección: {{usuarioActual.direccion}}</p>
-
 
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Usuario</label>
@@ -32,9 +26,9 @@
                     <input 
                     class="form-control"
                   
-                    placeholder="{{usuarioActual.nombreusuario}}"
+                    value="{{usuarioActual.nombreusuario}}"
                 
-                    disabled>
+                    >
                   
                    
                 </div>
@@ -47,9 +41,9 @@
                     <input 
                     class="form-control"
                   
-                    placeholder="{{tipodocumentodesc}}"
+                    value="{{tipodocumentodesc}}"
                 
-                    disabled>
+                    >
                   
                    
                 </div>
@@ -76,8 +70,7 @@
                     class="form-control"
                   
                     value="{{usuarioActual.nombre}}"
-                    
-                    disabled>
+                    >
                   
                    
                 </div>
@@ -139,6 +132,41 @@
                     
                     >
                   
+                   
+                </div>
+            </div>
+
+
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Provincia</label>
+                <div class="col-sm-9">
+                   
+                    <select   >
+                        <option value='{{provinciadesc}}'disabled selected >{{provinciadesc}}</option>
+                        <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                            {{p.nombreprovincia}}
+                            
+                        </option>
+                    </select>
+                   
+                </div>
+            </div>
+
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Genero</label>
+                <div class="col-sm-9">
+                   
+                    <select   >
+                        <option value='{{generodesc}}'disabled selected >{{generodesc}}</option>
+                        <option *ngFor="let g of generos"  value="{{g.idgenero}}">
+                            {{g.genero}}
+                            
+                        </option>
+                    </select>
                    
                 </div>
             </div>
