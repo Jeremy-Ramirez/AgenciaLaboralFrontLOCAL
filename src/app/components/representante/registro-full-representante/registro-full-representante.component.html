@@ -82,7 +82,10 @@
                     <input type="text"
                            class="form-control"
                            formControlName="nombreusuario"
-                           placeholder="">
+                           placeholder=""
+                           
+                           >
+                           
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('nombreusuario')">
                         
@@ -251,7 +254,6 @@
                             
                             (click)="updateUsuario()"
                             class="btn btn-primary float-end" 
-                            [disabled]="miFormulario.invalid"
                             >
                             
                         Guardar
@@ -265,3 +267,5 @@
 
     </div>
 </div>
+
+<!-- [disabled]="miFormulario.invalid" -->

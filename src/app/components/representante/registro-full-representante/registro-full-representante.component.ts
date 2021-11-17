@@ -32,21 +32,21 @@ export class RegistroFullRepresentanteComponent implements OnInit {
   
 
   miFormulario: FormGroup = this.fb.group({
-    nombreusuario: ["", Validators.required],
-    contrasenia:["", [Validators.required]],
-    tipodocumento_idtipodocumento: ["", [Validators.required, Validators.pattern("^[0-9]{10}$")]],
-    nodocumento:["",[Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-    nombre: ["", [Validators.required]],
-    apellido: ["", [Validators.required]],
-    correo:["", [Validators.required, Validators.email]],
-    telefono: ["", [Validators.required, Validators.maxLength(10), Validators.minLength(9), Validators.pattern("^[0-9-+]{9,10}$")]],
-    direccion: ["", [Validators.required]],
+    nombreusuario: [""],
+    contrasenia:[""],
+    //tipodocumento_idtipodocumento: ["", [ Validators.pattern("^[0-9]{10}$")]],
+    //nodocumento:["",[ Validators.minLength(10), Validators.maxLength(10)]],
+    //nombre: [""],
+    //apellido: [""],
+    //correo:["", [ Validators.email]],
+    telefono: ["", [Validators.maxLength(10), Validators.minLength(9), Validators.pattern("^[0-9-+]{9,10}$")]],
+    direccion: [""],
     estado_idestado: 1,
-    genero_idgenero:["", [Validators.required]],
+    genero_idgenero:[""],
     rol_idrol: 1,
-    estadocivil_idestadocivil: ["",[Validators.required]],
-    provincia_idprovincia:["", [Validators.required]],
-    ciudad_idciudad:["", [Validators.required]],
+    estadocivil_idestadocivil: [""],
+    provincia_idprovincia:[""],
+    ciudad_idciudad:[""],
     //confirmacion:["", [Validators.required]],
 
   })
@@ -127,7 +127,7 @@ export class RegistroFullRepresentanteComponent implements OnInit {
     //this.correo=this.miFormulario.get("correo").value;
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    this.http.put<any>("http://localhost:8000/api/usuarios/"+this.id,this.miFormulario.value,{headers: headers}).subscribe(
+    this.http.patch<any>("http://localhost:8000/api/usuarios/"+this.id,this.miFormulario.value,{headers: headers}).subscribe(
       resp => console.log(resp),
       err => console.log(err)
         );

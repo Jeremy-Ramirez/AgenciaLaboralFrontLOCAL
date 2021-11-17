@@ -89,9 +89,9 @@ export class RegistroEmpresaComponent implements OnInit {
       
     }
 
-    if(this.comprobadorEmpresa==false){
+    /*if(this.comprobadorEmpresa==false){
       alert('USUARIO NO EXISTE');
-    }
+    }*/
     
   }
   
