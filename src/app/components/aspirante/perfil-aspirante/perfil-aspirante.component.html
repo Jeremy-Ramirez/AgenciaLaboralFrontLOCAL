@@ -154,6 +154,22 @@
                 </div>
             </div>
 
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Ciudad</label>
+                <div class="col-sm-9">
+                   
+                    <select   >
+                        <option value='{{ciudadesdesc}}'disabled selected >{{ciudadesdesc}}</option>
+                        <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
+                            {{c.nombreciudad}}
+                            
+                        </option>
+                    </select>
+                   
+                </div>
+            </div>
+
+
 
 
             <div class="mb-3 row">
@@ -178,53 +194,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <h1>Datos Profesionales</h1>
 
 <div class="contenedorInformacion" *ngFor="let a of aspirantes" >
-    <!-- <div *ngFor="let u of usuarios"> -->
     <div *ngIf="a.usuario_idusuario==usuarioActual.idusuario">
         <div *ngIf="a.experiencialaboral != null">
             <p>Número de hijos: {{a.numerohijos}}</p>
@@ -256,7 +228,6 @@
         </div>
     
 </div>
-<!-- </div> -->
+
         
-</div>
-</div>
+

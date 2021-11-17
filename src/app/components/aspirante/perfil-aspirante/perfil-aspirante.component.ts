@@ -6,6 +6,7 @@ import { Emitters } from '../clases/emitters';
 import {TipodocumentoService} from '../../../servicios/tipodocumento.service'
 import {ProvinciaService} from '../../../servicios/provincia.service'
 import { GeneroService } from '../../../servicios/genero.service';
+import { CiudadService } from '../../../servicios/ciudad.service';
 
 @Component({
   selector: 'app-perfil-aspirante',
@@ -24,14 +25,15 @@ export class PerfilAspiranteComponent implements OnInit {
   provinciadesc= '';
   generos:any[]=[];
   generodesc='';
-
+  ciudades: any[]=[];
+  ciudadesdesc='';
 
   aspirantes:any[]=[];
   usuarios:any[]=[];
   archivos:any[]=[];
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,
     private _tipodocumentoService: TipodocumentoService,private _provinciaService:ProvinciaService ,
-    private _generoService:GeneroService
+    private _generoService:GeneroService, private _ciudadService:CiudadService
     ) { }
 
   ngOnInit(): void {
@@ -72,6 +74,14 @@ export class PerfilAspiranteComponent implements OnInit {
 
         })
 
+        this._ciudadService.getCiudades().subscribe((resp:any)=>{
+          this.ciudades=resp;
+          for(let c of this.ciudades){
+            if(c.idciudad === res.ciudad_idciudad){
+              this.ciudadesdesc= c.nombreciudad
+            }
+          }
+        })
 
 
 
