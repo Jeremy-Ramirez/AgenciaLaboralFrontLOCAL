@@ -53,7 +53,10 @@ export class FiltroComponent implements OnInit {
         if(c.provincia_idprovincia == prov){
           //this.ciudesE=c;
           //console.log(c)
-          this.ciudesE.push(c)
+        
+            this.ciudesE.push(c)
+          
+          
           
         }
         
@@ -68,7 +71,7 @@ export class FiltroComponent implements OnInit {
         }
       }*/
       ///console.log(this.ciudades)
-
+      
     });
       /*this._ciudadService.getCiudadesID(prov).subscribe((ciudads:any)=>{
         this.ciudades=ciudads;
@@ -77,8 +80,8 @@ export class FiltroComponent implements OnInit {
 
 
     })
+    
     this.ciudesE=[];
-
   }
 
   solicitar(){
