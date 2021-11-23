@@ -61,6 +61,7 @@ this.miFormulario.get('provincia')?.valueChanges.subscribe(prov=>{
 this.miFormulario.get('provincia')?.valueChanges.pipe(
 tap((_)=>{
   this.miFormulario.get('ciudad').reset(" ");
+  this.ciudesE=[];
 }),
 switchMap(cx=>this._ciudadService.getCiudades())
 
