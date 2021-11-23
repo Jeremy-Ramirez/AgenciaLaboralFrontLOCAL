@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-filtro',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filtro.component.css']
 })
 export class FiltroComponent implements OnInit {
+  miFormulario: FormGroup= this.fb.group({
+    provincia:['',Validators.required]
+  })
 
-  constructor() { }
+  constructor(private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
 
+  solicitar(){
+    console.log(this.miFormulario.value);
+  }
 }
