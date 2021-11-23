@@ -7,10 +7,25 @@
             <label class="form-label" style="margin-left: 50px;">Provincia</label>
             <select class="form-control"style="margin-left: 50px; width:200px" formControlName='provincia'>
                 <option  value="">---Seleccione Provincia---</option>
-                <option value="1">Azuay</option>
+                <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                    {{p.nombreprovincia}}
+                </option>
             </select>
         </div>
     </div>
+<!-- 
+    <div class="row">
+        <div class="col-75">
+            <label class="form-label" style="margin-left: 50px;">Ciudad</label>
+            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='ciudad'>
+                <option  value="">---Seleccione Ciudad---</option>
+                <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
+                    {{c.nombreciudad}}
+                </option>
+            </select>
+        </div>
+    </div> -->
+
 
 
 <div class="row">

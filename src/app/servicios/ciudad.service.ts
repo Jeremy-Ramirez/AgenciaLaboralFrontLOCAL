@@ -13,4 +13,9 @@ export class CiudadService {
   getCiudades(){
     return this.httpClient.get('http://localhost:8000/api/ciudades/')
   }
+
+  getCiudadesID(id: String){
+    const ciudadurl:string=`http://localhost:8000/api/ciudades/${id}`
+    return this.httpClient.get(ciudadurl)
+  }
 }
