@@ -40,18 +40,28 @@ export class FiltroComponent implements OnInit {
       
     this._ciudadService.getCiudades().subscribe((resp:any)=>{
       this.ciudades=resp
+      //console.log(resp)
+     
+     
+      
       for (let c of this.ciudades){
-        //console.log(c)
+      //console.log(c)
 
         ///console.log(c.provincia_idprovincia)
         ///console.log('prrov:'+prov)
 
         if(c.provincia_idprovincia == prov){
-          console.log(c)
+          //this.ciudesE=c;
+          //console.log(c)
+          this.ciudesE.push(c)
           
         }
+        
+        
         //console.log(this.ciudesE)
+        
       }
+      
       /*for(let ci of this.ciudades){
         if (ci.provincia_idprovincia === prov){
           this.ciudesE=ci
@@ -67,6 +77,7 @@ export class FiltroComponent implements OnInit {
 
 
     })
+    this.ciudesE=[];
 
   }
 
