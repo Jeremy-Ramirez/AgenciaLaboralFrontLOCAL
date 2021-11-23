@@ -26,6 +26,18 @@
         </div>
     </div>  
 
+
+    <div class="row">
+        <div class="col-75">
+            <label class="form-label" style="margin-left: 50px;">Profesion</label>
+            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='profesiones_idprofesiones'>
+                <option  value="">---Seleccione Profesión---</option>
+                <option *ngFor="let p of profesiones" value="{{p.idprofesiones}}">
+                   {{p.profesion}}
+                </option>
+            </select>
+        </div>
+    </div>  
  
 
 <div class="row">

@@ -4,6 +4,7 @@ import {CiudadService} from '../../../servicios/ciudad.service'
 import {ProvinciaService} from '../../../servicios/provincia.service'
 
 import {switchMap,tap} from 'rxjs/operators'
+import { ProfesionesService } from '../../../servicios/profesiones.service';
 
 
 @Component({
@@ -18,14 +19,18 @@ export class FiltroComponent implements OnInit {
   ciudades: any[]=[];
   ciudesE:any[]=[];
   PROV:any;
+  profesiones: any[]=[];
 
   miFormulario: FormGroup= this.fb.group({
-    provincia:['',Validators.required],
-    ciudad:['',Validators.required]
+    provincia:['',],
+    ciudad:['',],
+    profesiones_idprofesiones:['',]
+
   })
 
   constructor(private fb:FormBuilder,private _ciudadService: CiudadService,
-    private _provinciaService: ProvinciaService) { }
+    private _provinciaService: ProvinciaService,
+    private _profesionService: ProfesionesService) { }
 
   ngOnInit(): void {
 
@@ -34,6 +39,10 @@ export class FiltroComponent implements OnInit {
       console.log(this.provincias)
 
     });
+
+    this._profesionService.getProfesiones().subscribe((resp:any)=>{
+      this.profesiones=resp
+    })
     
 
     //Cuando cambie mi primer selector
