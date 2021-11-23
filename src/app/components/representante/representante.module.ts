@@ -23,6 +23,7 @@ import { SugerenciasComentariosComponent } from './sugerencias-comentarios/suger
 
 import { SolicitudesComponent } from '../representante/solicitudes/solicitudes.component';
 import { ShowsolicitudesComponent } from './showsolicitudes/showsolicitudes.component';
+import { FiltroComponent } from './filtro/filtro.component';
 @NgModule({
   declarations: [
     MenuLateralComponent,
@@ -32,6 +33,7 @@ import { ShowsolicitudesComponent } from './showsolicitudes/showsolicitudes.comp
     SugerenciasComentariosComponent,
     SolicitudesComponent,
     ShowsolicitudesComponent,
+    FiltroComponent,
 
   ],
   imports: [

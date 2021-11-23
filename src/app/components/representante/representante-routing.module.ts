@@ -8,6 +8,8 @@ import { RegistroFullRepresentanteComponent } from './registro-full-representant
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
 import { SolicitudesComponent } from '../representante/solicitudes/solicitudes.component';
 import { ShowsolicitudesComponent } from '../representante/showsolicitudes/showsolicitudes.component'; 
+import { FiltroComponent } from './filtro/filtro.component';
+
 const routes: Routes = [
     {
       path: '',
@@ -21,6 +23,7 @@ const routes: Routes = [
             { path: 'sugerencias', component: SugerenciasComentariosComponent},           
             { path: 'solicitudesRepresentante', component: SolicitudesComponent},
             { path: 'showSolicitudes', component: ShowsolicitudesComponent},
+            { path: 'filtroAspirantes', component: FiltroComponent},
           ]
         },
         { path: '**', redirectTo: 'sesionRepresentante/perfilRepresentante' }
