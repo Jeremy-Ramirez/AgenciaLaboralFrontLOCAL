@@ -25,6 +25,7 @@ export class FiltroComponent implements OnInit {
   generos: any[]=[];
   usuarios:any[]=[];
   Genero:any;
+  Provincia:any;
 
 
   miFormulario: FormGroup= this.fb.group({
@@ -63,7 +64,7 @@ export class FiltroComponent implements OnInit {
 
     //this.Genero=this.miFormulario.controls['genero'].value
     this.Genero=this.miFormulario.get('genero')
-
+    this.Provincia= this.miFormulario.get('provincia')
 
 
 
