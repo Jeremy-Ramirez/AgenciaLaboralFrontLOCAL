@@ -74,7 +74,9 @@
     <div class="col-75">
         <label class="form-label" style="margin-left: 50px;">Usuarios</label>
         <div *ngFor="let u of usuarios">
-            <div *ngIf="u.genero_idgenero == this.Genero.value && u.provincia_idprovincia == this.Provincia.value ">
+            <div *ngIf="u.genero_idgenero == this.Genero.value && 
+                        u.provincia_idprovincia == this.Provincia.value && 
+                        u.ciudad_idciudad == this.Ciudad.value">
                 <p>{{u.nombre}}</p>
 
             </div> 

@@ -8,6 +8,7 @@ import { ProfesionesService } from '../../../servicios/profesiones.service';
 import { GeneroService } from '../../../servicios/genero.service';
 
 import { HttpClient } from '@angular/common/http';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-filtro',
@@ -26,6 +27,7 @@ export class FiltroComponent implements OnInit {
   usuarios:any[]=[];
   Genero:any;
   Provincia:any;
+  Ciudad:any;
 
 
   miFormulario: FormGroup= this.fb.group({
@@ -65,6 +67,7 @@ export class FiltroComponent implements OnInit {
     //this.Genero=this.miFormulario.controls['genero'].value
     this.Genero=this.miFormulario.get('genero')
     this.Provincia= this.miFormulario.get('provincia')
+    this.Ciudad= this.miFormulario.get('ciudad')
 
 
 
