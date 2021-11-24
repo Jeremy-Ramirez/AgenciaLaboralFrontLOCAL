@@ -21,6 +21,7 @@ import { MatListModule } from '@angular/material/list';
 import { AdministradorRoutingModule } from './administrador-routing.module';
 import { RouterModule } from '@angular/router';
 import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
+import { AutorizarComponent } from './autorizar/autorizar.component';
 
 
 
@@ -34,6 +35,7 @@ import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-pe
     RevisarSugerenciasComponent,
     RevisarEmpresasComponent,
     VistaPerfilAspiranteComponent,
+    AutorizarComponent,
   ],
   imports: [
     CommonModule,
