@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {CiudadService} from '../../../servicios/ciudad.service'
 import {ProvinciaService} from '../../../servicios/provincia.service'
 
 import {switchMap,tap} from 'rxjs/operators'
 import { ProfesionesService } from '../../../servicios/profesiones.service';
+import { GeneroService } from '../../../servicios/genero.service';
 
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-filtro',
@@ -20,17 +22,24 @@ export class FiltroComponent implements OnInit {
   ciudesE:any[]=[];
   PROV:any;
   profesiones: any[]=[];
+  generos: any[]=[];
+  usuarios:any[]=[];
+  Genero:any;
+
 
   miFormulario: FormGroup= this.fb.group({
     provincia:['',],
     ciudad:['',],
-    profesiones_idprofesiones:['',]
+    profesiones_idprofesiones:['',],
+    genero:[''],
 
   })
 
   constructor(private fb:FormBuilder,private _ciudadService: CiudadService,
     private _provinciaService: ProvinciaService,
-    private _profesionService: ProfesionesService) { }
+    private _profesionService: ProfesionesService,
+    private _generoService: GeneroService,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
 
@@ -43,7 +52,31 @@ export class FiltroComponent implements OnInit {
     this._profesionService.getProfesiones().subscribe((resp:any)=>{
       this.profesiones=resp
     })
-    
+
+    this._generoService.getGeneros().subscribe((resp:any)=>{
+      this.generos=resp;
+    })
+
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((resp:any)=>{
+      this.usuarios=resp
+    })
+
+    //this.Genero=this.miFormulario.controls['genero'].value
+    this.Genero=this.miFormulario.get('genero')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //Cuando cambie mi primer selector
 
@@ -121,9 +154,10 @@ switchMap(cx=>this._ciudadService.getCiudades())
 
 
 
-
   solicitar(){
     console.log(this.miFormulario.value);
+    console.log(this.Genero.value)
+    
   }
 
 
