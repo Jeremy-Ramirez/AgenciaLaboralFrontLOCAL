@@ -7,6 +7,7 @@ import { AspirantesNuevosComponent } from './aspirantes-nuevos/aspirantes-nuevos
 import { RevisarEmpresasComponent } from './revisar-empresas/revisar-empresas.component';
 import { RevisarSugerenciasComponent } from './revisar-sugerencias/revisar-sugerencias.component';
 import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
+import { AutorizarComponent } from './autorizar/autorizar.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,10 @@ const routes: Routes = [
             { path: 'aspirantesNuevos', component: AspirantesNuevosComponent},
             { path: 'perfilAspirante/:id', component: VistaPerfilAspiranteComponent},
             { path: 'empresas', component: RevisarEmpresasComponent},
-            { path: 'sugerencias', component: RevisarSugerenciasComponent},
+            { path: 'revisarempresas', component: RevisarEmpresasComponent},
+            
+            { path: 'revisarempresas', component: RevisarEmpresasComponent},
+            { path: 'autorizarEmpresas', component: AutorizarComponent},
           ]
         },
         { path: '**', redirectTo: 'sesionAdministrador' }
