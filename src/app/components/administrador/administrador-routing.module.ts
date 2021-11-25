@@ -34,7 +34,7 @@ const routes: Routes = [
           ]
         },
         { path: 'registroAdministrador', component: RegistroAdministradorComponent },
-        { path: '**', redirectTo: 'registroAdministrador' }
+        { path: '**', redirectTo: 'sesionAdministrador/perfilAdministrador' }
       ]
     }
   ];
