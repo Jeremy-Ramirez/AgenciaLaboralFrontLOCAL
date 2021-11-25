@@ -1,0 +1,26 @@
+<div class="col-sm-9">
+    <h4><small>AUTORIZAR EMPRESAS AL LISTADO</small></h4>
+    <div class="inner-addon right-addon">
+        <i class="glyphicon glyphicon-search"></i>
+        <input type="text" class="form-control" placeholder="Search" />
+    </div>
+    
+    <h4><small>Solicitudes</small></h4>
+    <div  *ngFor= "let i of listaEmpresas" >
+      <div class="card" *ngIf="i.estado===1" >        
+       
+        <div class="card-body"> 
+            
+            <p class="card-text">Empresa: {{i.nombrecomercial}}</p>
+            <ul>
+              <li>Ruc/Cédula {{i.ruc_cedula}}</li>
+              <li>Razón Social {{i.razonsocial}}</li>
+            </ul>
+
+            <button class="button" (click)="autorizar(i.id)" >Autorizar</button>
+            <button class="button2" (click)="noautorizar(i.id)">No autorizar</button>
+        </div>
+    </div>
+    </div>
+    
+  </div>

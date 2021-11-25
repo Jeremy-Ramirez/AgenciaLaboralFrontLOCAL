@@ -7,10 +7,52 @@
             <label class="form-label" style="margin-left: 50px;">Provincia</label>
             <select class="form-control"style="margin-left: 50px; width:200px" formControlName='provincia'>
                 <option  value="">---Seleccione Provincia---</option>
-                <option value="1">Azuay</option>
+                <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                    {{p.nombreprovincia}}
+                </option>
             </select>
         </div>
     </div>
+
+      <div class="row">
+        <div class="col-75">
+            <label class="form-label" style="margin-left: 50px;">Ciudad</label>
+            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='ciudad'>
+                <option  value="">---Seleccione Ciudad---</option>
+                <option *ngFor="let c of ciudesE" value="{{c.provincia_idprovincia}}">
+                   {{c.nombreciudad}}
+                </option>
+            </select>
+        </div>
+    </div>  
+
+
+    <div class="row">
+        <div class="col-75">
+            <label class="form-label" style="margin-left: 50px;">Profesion</label>
+            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='profesiones_idprofesiones'>
+                <option  value="">---Seleccione Profesión---</option>
+                <option *ngFor="let p of profesiones" value="{{p.idprofesiones}}">
+                   {{p.profesion}}
+                </option>
+            </select>
+        </div>
+    </div>  
+ 
+
+    <div class="row">
+        <div class="col-75">
+            <label class="form-label" style="margin-left: 50px;">Género</label>
+            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='genero'>
+                <option  value="">---Seleccione Género---</option>
+                <option *ngFor="let g of generos" value="{{g.idgenero}}">
+                   {{g.genero}}
+                </option>
+            </select>
+        </div>
+    </div>  
+
+
 
 
 <div class="row">
@@ -27,3 +69,18 @@
 <h3>Formulario</h3>
 <pre>Valid: {{miFormulario.valid}}</pre>
 <pre>{{miFormulario.value | json}}</pre>
+
+<div class="row borde" style="margin-left: 50px;">
+    <div class="col-75">
+        <label class="form-label" style="margin-left: 50px;">Usuarios</label>
+        <div *ngFor="let u of usuarios">
+            <div *ngIf=" u.rol_idrol ==2 && u.genero_idgenero == this.Genero.value && 
+                        u.provincia_idprovincia == this.Provincia.value && 
+                        u.ciudad_idciudad == this.Ciudad.value">
+                <p>{{u.nombre}}</p>
+
+            </div> 
+            
+        </div>
+    </div>
+</div>  

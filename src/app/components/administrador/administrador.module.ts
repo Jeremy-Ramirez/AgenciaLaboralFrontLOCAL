@@ -23,6 +23,7 @@ import { RouterModule } from '@angular/router';
 import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
 import { RegistroAdministradorComponent } from './registro-administrador/registro-administrador.component';
 import { AsignarAspiranteComponent } from './asignar-aspirante/asignar-aspirante.component';
+import { AutorizarComponent } from './autorizar/autorizar.component';
 
 
 
@@ -38,6 +39,7 @@ import { AsignarAspiranteComponent } from './asignar-aspirante/asignar-aspirante
     VistaPerfilAspiranteComponent,
     RegistroAdministradorComponent,
     AsignarAspiranteComponent,
+    AutorizarComponent,
   ],
   imports: [
     CommonModule,
