@@ -1,3 +1,6 @@
 .borde{
     border: 1px solid black;
 }
+td{
+    padding:0 5px 0 0;
+}

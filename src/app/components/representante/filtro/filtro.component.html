@@ -72,13 +72,38 @@
 
 <div class="row borde" style="margin-left: 50px;">
     <div class="col-75">
-        <label class="form-label" style="margin-left: 50px;">Usuarios</label>
+        <label class="form-label" style="margin-left: 50px;">ASPIRANTES </label>
         <div *ngFor="let u of usuarios">
             <div *ngIf=" u.rol_idrol ==2 && u.genero_idgenero == this.Genero.value && 
                         u.provincia_idprovincia == this.Provincia.value && 
                         u.ciudad_idciudad == this.Ciudad.value">
-                <p>{{u.nombre}}</p>
+               
 
+
+                    <table>
+                        <tr>
+                            <td>NOMBRES</td>
+                            <td>APELLIDOS</td>
+                            <td>PROFESIÓN</td>
+                            <td >ACCIÓN</td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                {{u.nombre | uppercase}}
+                            </td>
+                            <td>
+                                {{u.apellido | uppercase}}
+                            </td>
+                            <td>
+                                {{profesiondesc}}
+                            </td>
+                            <td>
+                                <button>Ver perfil</button>
+                            </td>
+                            
+                        </tr>
+                    </table>
             </div> 
             
         </div>

@@ -23,11 +23,13 @@ export class FiltroComponent implements OnInit {
   ciudesE:any[]=[];
   PROV:any;
   profesiones: any[]=[];
+  profesiondesc ='';
   generos: any[]=[];
   usuarios:any[]=[];
   Genero:any;
   Provincia:any;
   Ciudad:any;
+  aspirantes: any[]=[];
 
 
   miFormulario: FormGroup= this.fb.group({
@@ -53,7 +55,19 @@ export class FiltroComponent implements OnInit {
     });
 
     this._profesionService.getProfesiones().subscribe((resp:any)=>{
-      this.profesiones=resp
+      this.profesiones=resp;
+    })
+        /*Aspirantes*/ 
+    this.http.get('http://127.0.0.1:8000/api/aspirantes/').subscribe((resp:any)=>{
+        this.aspirantes=resp;
+        for(let p of this.profesiones){
+          for(let a of this.aspirantes){
+              if(p.idprofesiones == a.profesiones_idprofesiones){
+                this.profesiondesc=p.profesion;
+              }
+          }
+          
+        }
     })
 
     this._generoService.getGeneros().subscribe((resp:any)=>{
