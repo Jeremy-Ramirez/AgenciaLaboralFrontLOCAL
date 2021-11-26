@@ -30,6 +30,8 @@ export class FiltroComponent implements OnInit {
   Provincia:any;
   Ciudad:any;
   aspirantes: any[]=[];
+  Posibilidad: any;
+  Cambio:any;
 
 
   miFormulario: FormGroup= this.fb.group({
@@ -37,6 +39,8 @@ export class FiltroComponent implements OnInit {
     ciudad:['',],
     profesiones_idprofesiones:['',],
     genero:[''],
+    posibilidadviajar:[''],
+    posibilidadcambioresidencia:[''],
 
   })
 
@@ -70,6 +74,7 @@ export class FiltroComponent implements OnInit {
         }
     })
 
+
     this._generoService.getGeneros().subscribe((resp:any)=>{
       this.generos=resp;
     })
@@ -82,7 +87,8 @@ export class FiltroComponent implements OnInit {
     this.Genero=this.miFormulario.get('genero')
     this.Provincia= this.miFormulario.get('provincia')
     this.Ciudad= this.miFormulario.get('ciudad')
-
+    this.Posibilidad= this.miFormulario.get('posibilidadviajar')
+    this.Cambio= this.miFormulario.get('posibilidadcambioresidencia')
 
 
 
