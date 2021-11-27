@@ -7,12 +7,12 @@ import { HttpClient } from '@angular/common/http';
 export class NivelEstudiosService {
 
   constructor(private httpClient:HttpClient) {
-    this.getProfesiones();
+    this.getNivel();
 
    }
 
 
-  getProfesiones(){
+  getNivel(){
     return this.httpClient.get('http://localhost:8000/api/nivelestudios/')
   }
 }

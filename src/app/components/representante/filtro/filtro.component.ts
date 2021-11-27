@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {CiudadService} from '../../../servicios/ciudad.service'
 import {ProvinciaService} from '../../../servicios/provincia.service'
@@ -8,7 +8,9 @@ import { ProfesionesService } from '../../../servicios/profesiones.service';
 import { GeneroService } from '../../../servicios/genero.service';
 
 import { HttpClient } from '@angular/common/http';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+import { NivelEstudiosService } from '../../../servicios/nivel-estudios.service';
+import { RegistroFullEmpresaComponent } from '../../empresa/registro-full-empresa/registro-full-empresa.component';
 
 @Component({
   selector: 'app-filtro',
@@ -17,7 +19,10 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class FiltroComponent implements OnInit {
 
+  //@Input() usuarioActual:RegistroFullEmpresaComponent;
 
+  @Input() usuarioActual:any;
+  
   provincias:any[]=[];
   ciudades: any[]=[];
   ciudesE:any[]=[];
@@ -26,12 +31,14 @@ export class FiltroComponent implements OnInit {
   profesiondesc ='';
   generos: any[]=[];
   usuarios:any[]=[];
+  niveles: any[]=[];
   Genero:any;
   Provincia:any;
   Ciudad:any;
   aspirantes: any[]=[];
   Posibilidad: any;
   Cambio:any;
+  Nivel:any;
 
 
   miFormulario: FormGroup= this.fb.group({
@@ -41,13 +48,15 @@ export class FiltroComponent implements OnInit {
     genero:[''],
     posibilidadviajar:[''],
     posibilidadcambioresidencia:[''],
-
+    tiposolicitud_idtiposolicitud:2,
+    nivelestudios_idnivelestudios:[''],
   })
 
   constructor(private fb:FormBuilder,private _ciudadService: CiudadService,
     private _provinciaService: ProvinciaService,
     private _profesionService: ProfesionesService,
     private _generoService: GeneroService,
+    private _nivelestudiosService: NivelEstudiosService,
     private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -61,6 +70,12 @@ export class FiltroComponent implements OnInit {
     this._profesionService.getProfesiones().subscribe((resp:any)=>{
       this.profesiones=resp;
     })
+
+    this._nivelestudiosService.getNivel().subscribe((resp:any)=>{
+      this.niveles=resp;
+    })
+
+
         /*Aspirantes*/ 
     this.http.get('http://127.0.0.1:8000/api/aspirantes/').subscribe((resp:any)=>{
         this.aspirantes=resp;
@@ -74,6 +89,7 @@ export class FiltroComponent implements OnInit {
         }
     })
 
+    
 
     this._generoService.getGeneros().subscribe((resp:any)=>{
       this.generos=resp;
@@ -89,6 +105,7 @@ export class FiltroComponent implements OnInit {
     this.Ciudad= this.miFormulario.get('ciudad')
     this.Posibilidad= this.miFormulario.get('posibilidadviajar')
     this.Cambio= this.miFormulario.get('posibilidadcambioresidencia')
+    this.Nivel= this.miFormulario.get('nivelestudios_idnivelestudios')
 
 
 

@@ -1,5 +1,6 @@
 <h1 class="mt-5">Selectores anidados</h1>
 
+{{this.usuarioActual}}
 <div>
 <form [formGroup]="miFormulario" (ngSubmit)="solicitar()">
     <div class="row">
@@ -75,7 +76,18 @@
     </div>  
 
         
-    
+    <div class="row">
+        <div class="col-75">
+            <label class="form-label" style="margin-left: 50px;">Nivel Estudios</label>
+            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='nivelestudios_idnivelestudios'>
+                <option  value="">---Seleccione Nivel de estudios---</option>
+                <option *ngFor="let n of niveles" value="{{n.idnivelestudios}}">
+                   {{n.descripcion}}
+                </option>
+            </select>
+        </div>
+        
+    </div>  
             
       
     
@@ -107,7 +119,8 @@
                               u.provincia_idprovincia == this.Provincia.value && 
                               u.ciudad_idciudad == this.Ciudad.value &&
                               a.posibilidadviajar == this.Posibilidad.value && 
-                              a.posibilidadcambioresidencia == this.Cambio.value">
+                              a.posibilidadcambioresidencia == this.Cambio.value &&
+                              a.nivelestudios_idnivelestudios == this.Nivel.value">
 
                     
 
@@ -137,10 +150,12 @@
                                 </tr>
                             </table>
                 </div>
+               
             </div>
             
             
         </div>
+     
     </div>
 </div> 
 

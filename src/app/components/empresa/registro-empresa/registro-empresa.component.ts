@@ -17,6 +17,8 @@ export class RegistroEmpresaComponent implements OnInit {
   empresas:any[]=[];
   hide: boolean = true;
   comprobadorEmpresa = false;
+  usuarioActua:any;
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -77,6 +79,8 @@ export class RegistroEmpresaComponent implements OnInit {
           this.http.post('http://localhost:8000/api/loginusuario/', this.form.getRawValue(), {
           withCredentials: true
           }).subscribe((res: any)=>{
+          console.log(res)
+          this.usuarioActua=res;
           //console.log(res.jwt)
           //console.log(this.getDecodedAccessToken(res.jwt));
           this.id=this.getDecodedAccessToken(res.jwt).id;
