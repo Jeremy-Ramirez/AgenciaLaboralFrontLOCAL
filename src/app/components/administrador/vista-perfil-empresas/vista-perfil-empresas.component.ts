@@ -12,7 +12,7 @@ import {SectorService} from '../../../servicios/sector.service'
 import {EmpresaService} from '../../../servicios/empresa.service'
 import {throwError} from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
-import {Emitters} from '../emitters/emitters';
+import {Emitters} from '../clases/emitters';
 @Component({
   selector: 'app-vista-perfil-empresas',
   templateUrl: './vista-perfil-empresas.component.html',
