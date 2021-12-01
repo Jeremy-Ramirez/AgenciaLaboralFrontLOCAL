@@ -24,6 +24,7 @@ import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-pe
 import { RegistroAdministradorComponent } from './registro-administrador/registro-administrador.component';
 import { AsignarAspiranteComponent } from './asignar-aspirante/asignar-aspirante.component';
 import { AutorizarComponent } from './autorizar/autorizar.component';
+import { VistaPerfilEmpresasComponent } from './vista-perfil-empresas/vista-perfil-empresas.component';
 
 
 
@@ -40,6 +41,7 @@ import { AutorizarComponent } from './autorizar/autorizar.component';
     RegistroAdministradorComponent,
     AsignarAspiranteComponent,
     AutorizarComponent,
+    VistaPerfilEmpresasComponent,
   ],
   imports: [
     CommonModule,

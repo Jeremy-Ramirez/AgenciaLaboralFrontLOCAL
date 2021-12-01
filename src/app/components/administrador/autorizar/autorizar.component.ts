@@ -30,7 +30,7 @@ export class AutorizarComponent implements OnInit {
     estado_idestado: 4 //id estado -autorizado //por ahora se mostrarán todas las empresas, las que hayan enviado puede ser con estado pendiente
   })
   formEmpresa2: FormGroup = this.form.group({
-    estado_idestado: 5 //id estado -no autorizado
+    estado_idestado: 5 //id estado -no autorizado en mi base 12
   })
   
   addhtml(){
@@ -52,16 +52,22 @@ export class AutorizarComponent implements OnInit {
       })
     }  
     //console.log(this.formEmpresa.value);
-    this.httpClient.put('http://localhost:8000/api/empresas/'+idempresa, this.formEmpresa.value).subscribe(
+    
+    //alert('EMPRESA AUTORIZADA')   
+    if (confirm('Está seguro de autorizar esta empresa?')) {
+      this.httpClient.put('http://localhost:8000/api/empresas/'+idempresa, this.formEmpresa.value).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 
     )
-    alert('EMPRESA AUTORIZADA')    
+      console.log('Thing was saved to the database.');
+    } else {
+      console.log('Thing was not saved to the database.');
+    }
     window.location.reload()
 
   }
-  noautorizar(idempresa) {
+  noautorizar(idempresa2) {
     
     if(this.formEmpresa2.invalid) {
       return Object.values(this.formEmpresa2.controls).forEach(control=>{
@@ -69,13 +75,17 @@ export class AutorizarComponent implements OnInit {
       })
     }  
     //console.log(this.formEmpresa2.value);
-    this.httpClient.put('http://localhost:8000/api/empresas/'+idempresa, this.formEmpresa2.value).subscribe(
+    
+    if (confirm('Está seguro de rechazar esta empresa?')) {
+      this.httpClient.put('http://localhost:8000/api/empresas/'+idempresa2, this.formEmpresa2.value).subscribe(
       resp => console.log(resp),
       err => console.log(err)
 
     )
-    alert('AUTORIZACIÓN NEGADA')
-    
+      console.log('Thing was saved to the database.');
+    } else {
+      console.log('Thing was not saved to the database.');
+    }
     window.location.reload()
   }
     

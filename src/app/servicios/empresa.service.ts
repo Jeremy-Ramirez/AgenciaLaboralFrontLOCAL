@@ -13,6 +13,9 @@ export class EmpresaService {
   getEmpresas(){
     return this.httpClient.get('http://localhost:8000/api/empresas/')
   }
+  getEmpresasbyid(id){
+    return this.httpClient.get('http://localhost:8000/api/empresas/'+id)
+  }
   
   create(empresa) {    
     return this.httpClient.post('http://localhost:8000/api/empresas/', JSON.stringify(empresa));

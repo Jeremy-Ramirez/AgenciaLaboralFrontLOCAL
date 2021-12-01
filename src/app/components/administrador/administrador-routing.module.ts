@@ -11,6 +11,7 @@ import { RegistroAdministradorComponent } from './registro-administrador/registr
 import { PerfilAdministradorComponent } from '../../perfil-administrador/perfil-administrador.component';
 import { AsignarAspiranteComponent } from './asignar-aspirante/asignar-aspirante.component';
 import { AutorizarComponent } from './autorizar/autorizar.component';
+import { VistaPerfilEmpresasComponent } from './vista-perfil-empresas/vista-perfil-empresas.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
             { path: 'asignarAspirante', component: AsignarAspiranteComponent},
             { path: 'perfilAdministrador', component: PerfilAdministradorComponent},
             { path: 'perfilAspirante/:id', component: VistaPerfilAspiranteComponent},
+            { path: 'perfilEmpresa/:id', component: VistaPerfilEmpresasComponent},
             { path: 'empresas', component: RevisarEmpresasComponent},
             { path: 'revisarempresas', component: RevisarEmpresasComponent},
             
