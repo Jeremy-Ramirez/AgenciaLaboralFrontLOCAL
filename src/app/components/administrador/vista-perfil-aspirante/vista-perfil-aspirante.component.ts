@@ -25,12 +25,14 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
   archivoValido:boolean =true;
   suscription: Subscription; 
 
+  loading: boolean;
 
 
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,
     private archivosAspiranteService: ArchivosAspiranteService) {
     //this.idAspirante=3;
     console.log("hereda",this.idAspirante)
+    this.loading=false;
 
 
    }
@@ -165,8 +167,10 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
         console.log(this.miFormulario.value);
         this.archivosAspiranteService.postArchivosAspirante(
           formData).subscribe(data=>{
+            this.loading=true;
             console.log("Datos del post",data)
             alert('Archivo Guardado')
+            this.loading=false;
             this.miFormulario.reset();
           });
       }

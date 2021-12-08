@@ -23,6 +23,7 @@ import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 import { PerfilAspiranteComponent } from './perfil-aspirante/perfil-aspirante.component';
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
 import { AspiranteProfesionalComponent } from './aspirante-profesional/aspirante-profesional.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AspiranteProfesionalComponent } from './aspirante-profesional/aspirante
     PerfilAspiranteComponent,
     SugerenciasComentariosComponent,
     AspiranteProfesionalComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,

@@ -25,6 +25,8 @@ export class RegistroAspiranteComponent implements OnInit {
   public correov= false;
   public passwordc=false;
 
+  loading: boolean;
+
 
 
   httpOptions={
@@ -32,8 +34,12 @@ export class RegistroAspiranteComponent implements OnInit {
       'Content-Type' : 'Application/json'
     })
   };
-  constructor(private fb: FormBuilder, private http: HttpClient, private rutaActiva: ActivatedRoute, private router: Router){ }
+
   
+  constructor(private fb: FormBuilder, private http: HttpClient, private rutaActiva: ActivatedRoute, private router: Router){ 
+    this.loading=false;
+  }
+
   
 
   ngOnInit(): void {
@@ -86,10 +92,13 @@ export class RegistroAspiranteComponent implements OnInit {
           {
             withCredentials: true
            }).subscribe(
+            
            (res: any)=>{
+            this.loading=true;
              console.log(res.jwt)
              console.log(this.getDecodedAccessToken(res.jwt));
              this.id=this.getDecodedAccessToken(res.jwt).id;
+              this.loading=true;
              ///${this.id}
                //this.getUsuarioActual()
              this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
@@ -100,8 +109,8 @@ export class RegistroAspiranteComponent implements OnInit {
            (err:any)=>{
             console.log(err)
           
-            if(err.error.correo=='User not found!'){
-
+            if(err.correo=='User not found!'){
+              this.loading=true;
               this.correov=true;
             }
             else{

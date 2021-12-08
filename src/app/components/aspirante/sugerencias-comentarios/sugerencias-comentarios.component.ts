@@ -16,7 +16,7 @@ export class SugerenciasComentariosComponent implements OnInit {
   id:'';
   file: any;
   message = '';
-
+  loading: boolean;
 
   ngOnInit(): void {
     /*this.rutaActiva.params.subscribe(
@@ -54,6 +54,7 @@ export class SugerenciasComentariosComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder, private http: HttpClient, private rutaActiva: ActivatedRoute) {
+    this.loading=false;
    }
    
    handleFileInput(event: Event){
@@ -87,11 +88,17 @@ export class SugerenciasComentariosComponent implements OnInit {
     formData.append('usuario_idusuario',this.id)
     
     this.http.post('http://localhost:8000/api/sugerencias/', formData,options).subscribe(
-      resp => console.log(resp),
+      resp => {
+        console.log(resp) 
+        this.loading=true;
+      
+      }
+        ,
       err => console.log(err)
     )
+
     alert('SUGERENCIA ENVIADA')
-    
+    this.loading=true;
     this.miFormulario.reset();
     
     

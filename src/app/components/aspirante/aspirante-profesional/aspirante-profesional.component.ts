@@ -21,7 +21,10 @@ export class AspiranteProfesionalComponent implements OnInit {
   niveles:any[]=[];
   id: any;
   message = '';
-  constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute ) { }
+  loading: boolean;
+  constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute ) {
+    this.loading=true;
+   }
 
 
  
