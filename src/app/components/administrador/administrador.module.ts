@@ -25,6 +25,9 @@ import { RegistroAdministradorComponent } from './registro-administrador/registr
 import { AsignarAspiranteComponent } from './asignar-aspirante/asignar-aspirante.component';
 import { AutorizarComponent } from './autorizar/autorizar.component';
 import { VistaPerfilEmpresasComponent } from './vista-perfil-empresas/vista-perfil-empresas.component';
+import { PerfilAdministradorComponent } from './perfil-administrador/perfil-administrador.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -42,6 +45,7 @@ import { VistaPerfilEmpresasComponent } from './vista-perfil-empresas/vista-perf
     AsignarAspiranteComponent,
     AutorizarComponent,
     VistaPerfilEmpresasComponent,
+    PerfilAdministradorComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +58,8 @@ import { VistaPerfilEmpresasComponent } from './vista-perfil-empresas/vista-perf
     MatListModule,
     AdministradorRoutingModule,
     RouterModule,
+    MatTableModule,
+    MatInputModule,
   ],
 
 })

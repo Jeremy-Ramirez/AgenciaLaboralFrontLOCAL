@@ -16,10 +16,10 @@
 </div>
 </div>
 
-<div>
+<!-- <div>
     USUARIOOOO
     {{usuariosId}}
-</div>
+</div> -->
 <div class="hey">
 
 </div>
@@ -30,6 +30,7 @@
 
 <!-- <div class="contenedorInformacion" *ngFor="let u of usuarios" > -->
     <!-- <div *ngIf="u.idusuario==idAspirante"> -->
+    <h2>Nombre: {{usuariosId.nombreusuario}}</h2>
     <p>Número documento: {{usuariosId.nodocumento}}</p>
     <p>Correo: {{usuariosId.correo}}</p>
     <p>Teléfono: {{usuariosId.telefono}}</p>
@@ -43,7 +44,7 @@
     <!-- <div *ngFor="let u of usuarios"> -->
     <div *ngIf="a.usuario_idusuario==id">
 
-        <div *ngIf="a.experiencialaboral != null">
+        <div *ngIf="a.aniosexperiencia != null">
             <p>Número de hijos: {{a.numerohijos}}</p>
             <p>Experiencia Laboral: {{a.experiencialaboral}}</p>
             <p>Experticia: {{a.experticia}}</p>
@@ -62,7 +63,7 @@
                         <a href="http://localhost:8000{{ar.archivo}}" download="A.pdf"> {{ar.nombredocumento}}</a>
                         <mat-icon class="field-icon" (click)="eliminarArchivo(ar.idarchivosaspirante)">delete</mat-icon>
                         
-                        </div>
+                    </div>
                 <!-- </div> -->
                     </div>
                     <!-- </div> -->

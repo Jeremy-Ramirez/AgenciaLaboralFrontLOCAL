@@ -8,10 +8,10 @@ import { RevisarEmpresasComponent } from './revisar-empresas/revisar-empresas.co
 import { RevisarSugerenciasComponent } from './revisar-sugerencias/revisar-sugerencias.component';
 import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
 import { RegistroAdministradorComponent } from './registro-administrador/registro-administrador.component';
-import { PerfilAdministradorComponent } from '../../perfil-administrador/perfil-administrador.component';
 import { AsignarAspiranteComponent } from './asignar-aspirante/asignar-aspirante.component';
 import { AutorizarComponent } from './autorizar/autorizar.component';
 import { VistaPerfilEmpresasComponent } from './vista-perfil-empresas/vista-perfil-empresas.component';
+import { PerfilAdministradorComponent } from './perfil-administrador/perfil-administrador.component';
 
 
 const routes: Routes = [

@@ -2,3 +2,16 @@
 .aspiranteIndividual{
     border: 2px solid black;
 }
+
+.filtros{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+table{
+    width: 100%;
+}
+
+.boton{
+    margin-top: 5px;
+}

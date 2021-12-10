@@ -35,7 +35,9 @@ export class AsignarAspirantesService {
   getNivelEstudios()  : Observable<any> {
     return this.httpClient.get(this.API + 'nivelestudios/')
   }
-
+  getFormaciones()  : Observable<any> {
+    return this.httpClient.get(this.API + 'formacionprofesional/')
+  }
  
 
   

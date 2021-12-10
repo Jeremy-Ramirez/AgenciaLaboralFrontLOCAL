@@ -9,11 +9,74 @@
         <br>
         <br>
         <br>
-        <div *ngFor="let user of usuarios">
+        <div class="row filtros">
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Buscar Usuario</mat-label>
+                    <input matInput (keyup)="filtrar($event)" placeholder="buscar">
+                  </mat-form-field>
+                  <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                  
+                      <ng-container matColumnDef="nombreusuario">
+                        <th mat-header-cell *matHeaderCellDef> Nombre de Usuario </th>
+                        <td mat-cell *matCellDef="let usuario"> {{usuario.nombreusuario}} </td>
+                    
+                      </ng-container>
+
+                      <ng-container matColumnDef="nombre">
+                        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                        <td mat-cell *matCellDef="let usuario"> {{usuario.nombre}} </td>
+                    
+                      </ng-container>
+                      
+                      <ng-container matColumnDef="apellido">
+                        <th mat-header-cell *matHeaderCellDef> Apellido </th>
+                        <td mat-cell *matCellDef="let usuario"> {{usuario.apellido}} </td>
+                    
+                      </ng-container>
+
+                      <ng-container matColumnDef="correo">
+                        <th mat-header-cell *matHeaderCellDef> Correo </th>
+                        <td mat-cell *matCellDef="let usuario"> {{usuario.correo}} </td>
+                    
+                      </ng-container>
+
+                      <ng-container matColumnDef="nodocumento">
+                        <th mat-header-cell *matHeaderCellDef> Número de Documento </th>
+                        <td mat-cell *matCellDef="let usuario"> {{usuario.nodocumento}} </td>
+                    
+                      </ng-container>
+
+                      <ng-container matColumnDef="boton">
+                        <th mat-header-cell *matHeaderCellDef> Perfil de Usuario </th>
+                        <td>
+                            <div>
+                              <button ngClass="boton" mat-button color="primary" mat-cell *matCellDef="let usuario" routerLink="/administrador/sesionAdministrador/perfilAspirante/{{usuario.idusuario}}" class="btn btn-primary float-end"  >
+                    
+                                Ver Perfil
+                            </button> 
+                            </div>
+                        </td>
+                      </ng-container>
+
+                      
+
+
+                  
+                             
+                      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+                      <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+                    </table>
+                  </div>
+            </div>
+        </div>
+
+        <!-- <div *ngFor="let user of usuarios">
             <div *ngIf="user.rol_idrol==2">
                 <br>
                 Usuario: {{user.nombreusuario}}
-                <!-- <app-vista-perfil-aspirante [idAspirante]="user.idusuario"></app-vista-perfil-aspirante> -->
+                <app-vista-perfil-aspirante [idAspirante]="user.idusuario"></app-vista-perfil-aspirante>
                 <button type="button" routerLink="/administrador/sesionAdministrador/perfilAspirante/{{user.idusuario}}" class="btn btn-primary float-end"  >
                     
                     Ver Perfil
@@ -21,13 +84,13 @@
                 <div class="aspiranteIndividual">
 
                 </div>
-                <!-- <div *ngIf="asp==true">
+                <div *ngIf="asp==true">
                     <app-vista-perfil-aspirante [idAspirante]="user.idusuario"></app-vista-perfil-aspirante>
 
-                </div> -->
+                </div>
             </div>
             <br>
-        </div>
+        </div> -->
 
 
 

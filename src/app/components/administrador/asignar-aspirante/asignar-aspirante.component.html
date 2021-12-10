@@ -9,38 +9,96 @@
             <select class="form-control"
                     formControlName="profesiones_idprofesiones">
                 <option value="">--Seleccione una profesión--</option>
+                <option value="todos">-- Todos --</option>
                 <option *ngFor="let profesion of profesiones"
                         [value]="profesion.idprofesiones">{{ profesion.profesion }}</option>
 
             </select>
+            <!-- <div>
+                <input list="profesion" name="profesion">
+
+                <datalist id="profesion" formControlName="profesiones_idprofesiones">
+                    <option value="">--Seleccione una profesión--</option>
+                    <option data-value="todos" >-- Todos --</option>
+                    <option *ngFor="let profesion of profesiones"
+                        [value]="profesion.idprofesiones">{{ profesion.profesion }}</option>
+                </datalist>
+            </div> -->
         </div>
     </div>
 
-    <div class="row mb-3">
+    <div class="row mb-3" *ngIf="aspirantesSeleccionadosProf.length > 0">
         <div class="col">
             <label class="form-label">Nivel:</label>
             <select class="form-control"
                     formControlName = "nivelestudios_idnivelestudios">
                 <option value="">-- Seleccione estadoEstudios --</option>
+                <option value="todos">-- Todos --</option>
                 <option *ngFor="let nivelestudios of nivelesestudios"
                         [value]="nivelestudios.idnivelestudios">{{ nivelestudios.descripcion }}</option>
             </select>
         </div>
     </div>
 
-    <div class="row mb-3">
+    <div class="row mb-3" *ngIf="aspirantesSeleccionadosNiv.length > 0">
+        <div class="col">
+            <label class="form-label">Estado de Estudios:</label>
+            <select class="form-control"
+                    formControlName = "estadoestudios">
+                <option value="">-- Seleccione Estado de Estudios --</option>
+                <option value="todos">-- Todos --</option>
+                <option value="Cursando"> Cursando </option>
+                <option value="Completado"> Completado </option>
+                <!-- <option *ngFor="let estadoestudios of formacionesProfesionales"
+                        [value]="estadoestudios.estadoestudios">{{ estadoestudios.estadoestudios }}</option> -->
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3" *ngIf="aspirantesSeleccionadosEst.length > 0">
+        <div class="col">
+            <label class="form-label">Provincias:</label>
+            <select class="form-control"
+                    formControlName = "provincia_idprovincia">
+                <option value="">-- Seleccione Provincia --</option>
+                <option value="todos">-- Todos --</option>
+                <option *ngFor="let provincia of provincias"
+                        [value]="provincia.idprovincia">{{ provincia.nombreprovincia }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3" *ngIf="aspirantesSeleccionadosProv.length > 0">
         <div class="col">
             <label class="form-label">Ciudades:</label>
             <select class="form-control"
                     formControlName = "ciudad_idciudad">
                 <option value="">-- Seleccione Ciudad --</option>
-                <option *ngFor="let ciudad of ciudades"
+                <option value="todos">-- Todos --</option>
+                <option *ngFor="let ciudad of ciudadesPorProvincia"
                         [value]="ciudad.idciudad">{{ ciudad.nombreciudad }}</option>
             </select>
         </div>
     </div>
 
+    <!-- <input list="menace" name="menace">
+
+    <datalist id="menace">
+        <option *ngFor="let menace of ciudades">{{menace.nombreciudad}} </option>
+    </datalist> -->
     
+
+
+    
+    <!-- <div class="row" *ngIf="cargando">
+        <div class="col">
+            <div class="alert alert-primary">
+                Cargando...
+            </div>
+        </div>
+    </div> -->
+
+
 
     <div class="row">
         <div class="col">
@@ -80,6 +138,15 @@
 
 <div class="row">
     <div class="col">
+        prov
+        <div *ngFor="let aspirante of aspirantesSeleccionadosProv">
+            {{aspirante.idaspirante}}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
         ciu
         <div *ngFor="let aspirante of aspirantesSeleccionadosCiu">
             {{aspirante.idaspirante}}
@@ -101,7 +168,7 @@
         user
         <div *ngFor="let aspirante of aspirantesSeleccionados">
             <!-- {{aspirante.idaspirante}} -->
-            <div *ngFor="let usuario of usuariosSeleccionados">
+            <div *ngFor="let usuario of usuarios">
                 <div *ngIf="aspirante.usuario_idusuario == usuario.idusuario">
                     {{usuario.nombre}}
 
@@ -111,3 +178,4 @@
         </div>
     </div>
 </div>
+

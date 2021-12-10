@@ -37,7 +37,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { PerfilAdministradorComponent } from './perfil-administrador/perfil-administrador.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 
@@ -56,7 +58,7 @@ import { PerfilAdministradorComponent } from './perfil-administrador/perfil-admi
     MainComponent,
     RegisterComponent,
     SolicitudesComponent,
-    PerfilAdministradorComponent,
+    
 
   ],
   imports: [
@@ -70,7 +72,10 @@ import { PerfilAdministradorComponent } from './perfil-administrador/perfil-admi
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatInputModule,
+    
   ],
   providers: [TipodocumentoService,
     TipopersonaService,

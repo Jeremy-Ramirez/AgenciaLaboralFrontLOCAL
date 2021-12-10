@@ -113,7 +113,7 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     nombredocumento: ["", [Validators.required]],
     categoriaDocumento_idcategoriadocumento: ["", [Validators.required]],
     archivo:["",[Validators.required, Validators.pattern("^.*\.(pdf|docx)$")]],
-    fechacreacion:["",[Validators.required]],
+    fechacreacion:[""],
     aspirante_idaspirante:1,
     usuario_idusuario:1,
 
