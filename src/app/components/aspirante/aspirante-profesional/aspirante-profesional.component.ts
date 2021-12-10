@@ -35,9 +35,14 @@ export class AspiranteProfesionalComponent implements OnInit {
   fechaCorrectaInicio=true;
   fechaCorrectaCierre=true;
   siguiente=false;
+  loading: boolean;
 
   constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute, 
-    private formacionProfesionalService: FormacionProfesionalService, private router: Router) { }
+    private formacionProfesionalService: FormacionProfesionalService, private router: Router) {
+      this.loading=true;
+  }
+  
+    
 
 
  
