@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
-import { CursorError } from '@angular/compiler/src/ml_parser/lexer';
+import { MatDialog } from '@angular/material/dialog';
+import { PerfilAspiranteComponent } from '../perfil-aspirante/perfil-aspirante.component';
+import { VistaPerfilAspiranteComponent } from '../vista-perfil-aspirante/vista-perfil-aspirante.component';
 
 @Component({
   selector: 'app-aspirantes-aceptados',
@@ -19,10 +22,35 @@ export class AspirantesAceptadosComponent implements OnInit {
 
   idAspirante: any;
   
-  constructor( private http: HttpClient, private rutaActiva: ActivatedRoute) {
+  constructor( 
+    private http: HttpClient, 
+    private rutaActiva: ActivatedRoute,
+    public dialog: MatDialog
+    ) {
     this.getUsuarios();
     console.log("ASP", this.idAspirante)
   }
+
+  abrirDialogo(aspirante: any) {
+    const dialogo1 = this.dialog.open(VistaPerfilAspiranteComponent, {
+      data: { aspiranteIndividual: aspirante }, 
+      height: '800px',
+      width: '1000px',
+      
+    });
+
+    dialogo1.afterClosed().subscribe(art => {
+      if (art != undefined)
+        this.agregar(art);
+    });
+  }
+
+  agregar(art: any) {
+    this.listausuariosAspirantes.push();
+    //this.tabla1.renderRows();
+    this.dataSource.renderRows();
+  }
+  
 
 
   getUsuarios(){
@@ -36,6 +64,7 @@ export class AspirantesAceptadosComponent implements OnInit {
       this.usuariosAspirantes();
       setTimeout(()=>{
         this.dataSource = new MatTableDataSource(this.listausuariosAspirantes);
+        //this.dataSource.paginator=this.paginator
   
       }, 100);
 

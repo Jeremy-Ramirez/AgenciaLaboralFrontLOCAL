@@ -1,29 +1,30 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AspiranteService } from 'src/app/servicios/aspirante.service';
-import { VistaPerfilAspiranteComponent } from '../vista-perfil-aspirante/vista-perfil-aspirante.component';
+import { SolicitudComponent } from '../solicitud/solicitud.component';
 
 @Component({
-  selector: 'app-aspirantes-nuevos',
-  templateUrl: './aspirantes-nuevos.component.html',
-  styleUrls: ['./aspirantes-nuevos.component.css']
+  selector: 'app-solicitudes-contratacion',
+  templateUrl: './solicitudes-contratacion.component.html',
+  styleUrls: ['./solicitudes-contratacion.component.css']
 })
-export class AspirantesNuevosComponent implements OnInit {
+export class SolicitudesContratacionComponent implements OnInit {
 
   aspirantes: any[]=[];
-  aspirantesNuevos: any[]=[];
+  solicitudes: any[]=[];
   representantes: any[]=[];
   usuarios: any[]=[];
-  listausuariosAspirantes: any[]=[];
+  listaSolicitudes: any[]=[];
   listausuariosAspirantes2: any[]=[];
-  columnas: string[] = ['nombreusuario','nombre', 'apellido','nodocumento', 'correo','boton', 'aceptar'];
+  columnas: string[] = ['cargo','descripcioncargo', 'fechainicio','fechacierre','boton', 'aceptar'];
   dataSource:any; 
+  idSolicitud:any;
+  //@ViewChild(MatTable) tabla1!: MatTable<any>;
 
   suscription: Subscription; 
 
@@ -33,18 +34,16 @@ export class AspirantesNuevosComponent implements OnInit {
     private fb: FormBuilder, 
     private http: HttpClient, 
     private rutaActiva: ActivatedRoute,
-    public dialog: MatDialog) {
+    
+    public dialog: MatDialog
+    ) {
     this.getRepresentantes()
-    this.getAspirantesNuevos();
+    this.getUsuarios();
   }
 
-
-  abrirDialogo(aspirante: any) {
-    const dialogo1 = this.dialog.open(VistaPerfilAspiranteComponent, {
-      data: { aspiranteIndividual: aspirante }, 
-      height: '800px',
-      width: '1000px',
-      
+  abrirDialogo(solicitud: any) {
+    const dialogo1 = this.dialog.open(SolicitudComponent, {
+      data: { solicitudIndividual: solicitud }
     });
 
     dialogo1.afterClosed().subscribe(art => {
@@ -53,8 +52,12 @@ export class AspirantesNuevosComponent implements OnInit {
     });
   }
 
+  
+
+
+
   agregar(art: any) {
-    this.listausuariosAspirantes.push();
+    this.listaSolicitudes.push();
     //this.tabla1.renderRows();
     this.dataSource.renderRows();
   }
@@ -67,7 +70,14 @@ export class AspirantesNuevosComponent implements OnInit {
     })
   }
 
-  getAspirantesNuevos(){
+  getSolicitudes(){
+    this.http.get('http://localhost:8000/api/solicitudes/').subscribe((solicitudes:any)=>{
+      this.solicitudes=solicitudes
+        console.log("SOLICS",this.solicitudes)
+
+    })
+  }
+  getUsuarios(){
     this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios =doc
       console.log("USUARIOS",this.usuarios)
@@ -91,46 +101,46 @@ export class AspirantesNuevosComponent implements OnInit {
   }
 
   usuariosAspirantes(){
-    for( let user of this.usuarios){
-      for(let asp of this.aspirantes){
-        if(user.idusuario==asp.usuario_idusuario){
-          if (user.rol_idrol==2 && asp.estadoaspirantes_idestadoaspirantes == 2){
+    for( let rep of this.representantes){
+      for(let sol of this.solicitudes){
+        if(rep.idrepresentanteempresa==sol.representante_idrepresentante){
+          //if (rep.rol_idrol==2 && sol.representante_idrepresentante == 2){
             //this.listausuariosAspirantes.push(user)
-            this.listausuariosAspirantes.indexOf(user) === -1 ? this.listausuariosAspirantes.push(user):
+            this.listaSolicitudes.indexOf(sol) === -1 ? this.listaSolicitudes.push(sol):
             console.log("This item already exists");
-            console.log("usuarios que quedan",this.listausuariosAspirantes)
+            console.log("usuarios que quedan",this.listaSolicitudes)
           
           
-        }
-          if(user.rol_idrol==2 && asp.estadoaspirantes_idestadoaspirantes == 1){
+        //}
+          /*if(user.rol_idrol==2 && asp.estadoaspirantes_idestadoaspirantes == 1){
             const index= this.listausuariosAspirantes.indexOf(user);
             this.listausuariosAspirantes.indexOf(user) > -1 ? this.listausuariosAspirantes.splice(index,1):
             console.log("Borrado prov");
             console.log("usuarios que quedan",this.listausuariosAspirantes)
-          }
+          }*/
         }
       }
     } 
   }
 
 
-  usuariosAspirantesAceptados(){
-    this.listausuariosAspirantes=[]
+  /*usuariosAspirantesAceptados(){
+    this.listaSolicitudes=[]
     for( let user of this.usuarios){
       for(let asp of this.aspirantes){
         if(user.idusuario==asp.usuario_idusuario){
           if (user.rol_idrol==2 && asp.estadoaspirantes_idestadoaspirantes == 2){
             //this.listausuariosAspirantes.push(user)
-            this.listausuariosAspirantes.indexOf(user) === -1 ? this.listausuariosAspirantes.push(user):
+            this.listaSolicitudes.indexOf(user) === -1 ? this.listaSolicitudes.push(user):
             console.log("This item already exists");
-            console.log("usuarios que quedan",this.listausuariosAspirantes)
+            console.log("usuarios que quedan",this.listaSolicitudes)
           
           
       }
         }
       }
     } 
-  }
+  }*/
 
   filtrar(event: Event) {
     const filtro = (event.target as HTMLInputElement).value;
@@ -145,10 +155,12 @@ export class AspirantesNuevosComponent implements OnInit {
 
     })
 
+    this.getSolicitudes()
+
     setTimeout(()=>{
       this.usuariosAspirantes();
       setTimeout(()=>{
-        this.dataSource = new MatTableDataSource(this.listausuariosAspirantes);
+        this.dataSource = new MatTableDataSource(this.listaSolicitudes);
   
       }, 100);
 
@@ -200,40 +212,34 @@ export class AspirantesNuevosComponent implements OnInit {
 
 
   aceptarAspirante(id : any){
+    for(let asp of this.aspirantes){
+      if(asp.usuario_idusuario==id){
+        let headers = new HttpHeaders();
+        let formData= new FormData();
+        formData.append("estadoaspirantes_idestadoaspirantes", '1')
+        console.log(asp.idaspirante)
+        headers.append('Content-Type', 'application/json');
 
-    if(confirm("¿Está seguro de que desea aceptar este aspirante?")){
-      for(let asp of this.aspirantes){
-        if(asp.usuario_idusuario==id){
-          let headers = new HttpHeaders();
-          let formData= new FormData();
-          formData.append("estadoaspirantes_idestadoaspirantes", '1')
-          console.log(asp.idaspirante)
-          headers.append('Content-Type', 'application/json');
-  
-          
-          this.aspiranteService.patchAspirante(asp.idaspirante,formData).subscribe(data=>{
-            console.log("Datos del post",data)
-            //this.ngOnInit()
-            //this.listausuariosAspirantes2 = this.listausuariosAspirantes
-            alert('ASPIRANTE ACEPTADO');
-            //this.miFormulario.reset();
-          });
-  
-          
-  
-  
-          /*this.http.patch<any>("http://localhost:8000/api/aspirantes/"+asp.idaspirante,formData,{headers: headers}).subscribe(
-            resp => console.log(resp),
-            err => console.log(err)
-              );*/
-              
-          
-  
-        }
+        this.aspiranteService.patchAspirante(asp.idaspirante,formData).subscribe(data=>{
+          console.log("Datos del post",data)
+          //this.ngOnInit()
+          //this.listausuariosAspirantes2 = this.listausuariosAspirantes
+          alert('ASPIRANTE ACEPTADO');
+          //this.miFormulario.reset();
+        });
+
+        
+
+
+        /*this.http.patch<any>("http://localhost:8000/api/aspirantes/"+asp.idaspirante,formData,{headers: headers}).subscribe(
+          resp => console.log(resp),
+          err => console.log(err)
+            );*/
+            
+        
+
       }
     }
-    
   }
- 
 
 }

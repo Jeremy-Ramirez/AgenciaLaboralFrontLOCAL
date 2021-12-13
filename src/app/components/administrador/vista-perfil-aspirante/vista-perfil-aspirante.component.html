@@ -1,68 +1,87 @@
-<!-- <p>perfil-aspirante works!</p> -->
+<div>
+    <h1 mat-dialog-title>Solicitud</h1>
+    <div>
+        <!-- style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;" -->
+        <div >
+            <h1>Datos Personales</h1>
+            <!-- <mat-form-field> -->
+                <p>{{data.aspiranteIndividual.nombreusuario}}</p>
 
-<br>
-<br>
+            <!-- </mat-form-field> -->
 
-<div class="contenedor">
-     
+            <!-- <mat-form-field> -->
+                <p>{{data.aspiranteIndividual.nombre}}</p>
+            <!-- </mat-form-field> -->
 
-<div class='imgperfil'>
+            <!-- <mat-form-field> -->
+                <p>{{data.aspiranteIndividual.apellido}}</p>
+            <!-- </mat-form-field> -->
+            <!-- <mat-form-field> -->
+                <p>{{data.aspiranteIndividual.nodocumento}}</p>
+                
+            <!-- </mat-form-field> -->
 
+            <!-- <mat-form-field> -->
+                <p>{{data.aspiranteIndividual.correo}}</p>
+            <!-- </mat-form-field> -->
+
+            <!-- <mat-form-field> -->
+                <p>{{data.aspiranteIndividual.telefono}}</p>
+            <!-- </mat-form-field> -->
+            <!-- <mat-form-field> -->
+                <p>{{data.aspiranteIndividual.direccion}}</p>
+            <!-- </mat-form-field> -->
+            <!-- <mat-form-field> -->
+                <p>{{data.aspiranteIndividual.idusuario}}</p>
+            <!-- </mat-form-field> -->
+
+
+
+
+            
+            
+
+
+
+
+            
+
+            
+
+        </div>
 </div>
-
-<div *ngFor="let u of usuarios">
-    <div *ngIf="u.idusuario==idAspirante">
-    <p> vista perfil {{u.nombre}} {{u.apellido}}</p>
-</div>
-</div>
-
-<!-- <div>
-    USUARIOOOO
-    {{usuariosId}}
-</div> -->
-<div class="hey">
-
-</div>
-
-<h1>Datos Personales</h1>
-
-
-
-<!-- <div class="contenedorInformacion" *ngFor="let u of usuarios" > -->
-    <!-- <div *ngIf="u.idusuario==idAspirante"> -->
-    <h2>Nombre: {{usuariosId.nombreusuario}}</h2>
-    <p>Número documento: {{usuariosId.nodocumento}}</p>
-    <p>Correo: {{usuariosId.correo}}</p>
-    <p>Teléfono: {{usuariosId.telefono}}</p>
-    <p>Dirección: {{usuariosId.direccion}}</p>
-<!-- </div> -->
-<!-- </div> -->
 
 <h1>Datos Profesionales</h1>
+cwecev
 
-<div class="contenedorInformacion" *ngFor="let a of aspirantes" >
+<!-- <div class="contenedorInformacion" *ngFor="let a of aspirantes" > -->
+    
     <!-- <div *ngFor="let u of usuarios"> -->
-    <div *ngIf="a.usuario_idusuario==id">
+      
+    <!-- <div   *ngIf="a.usuario_idusuario==usuariosId.idusuario"> -->
+        
+        <div *ngIf="aspiranteId != null">
 
-        <div *ngIf="a.aniosexperiencia != null">
-            <p>Número de hijos: {{a.numerohijos}}</p>
-            <p>Experiencia Laboral: {{a.experiencialaboral}}</p>
-            <p>Experticia: {{a.experticia}}</p>
-            <p>Años de experiencia: {{a.aniosexperiencia}}</p>
-            <p>Fecha de Nacimiento: {{a.fechanacimiento}}</p>
-            <p>Posibilidad de viajar: {{a.posibilidadviajar}}</p>
+                
+                <p>Número de hijos: {{aspiranteId.numerohijos}}</p>
+                <p>Experiencia Laboral: {{aspiranteId.experiencialaboral}}</p>
+                <p>Experticia: {{aspiranteId.experticia}}</p>
+                <p>Años de experiencia: {{aspiranteId.aniosexperiencia}}</p>
+                <p>Fecha de Nacimiento: {{aspiranteId.fechanacimiento}}</p>
+                <p>Posibilidad de viajar: {{aspiranteId.posibilidadviajar}}</p>
             <div class="mb-3 row">
                 <div class="col-sm-9">
-                    <video controls src="http://localhost:8000{{a.videopresentacion}}"></video>
+                    <video controls src="http://localhost:8000{{aspiranteId.videopresentacion}}"></video>
                 </div>
             </div>
 
             <div *ngFor="let ar of archivos">
                 <!-- <div *ngIf="ar !=null"> -->
-                    <div *ngIf="a.idaspirante==ar.aspirante_idaspirante">
+                    <div *ngIf="aspiranteId.idaspirante==ar.aspirante_idaspirante">
                         <a href="http://localhost:8000{{ar.archivo}}" download="A.pdf"> {{ar.nombredocumento}}</a>
                         <mat-icon class="field-icon" (click)="eliminarArchivo(ar.idarchivosaspirante)">delete</mat-icon>
-                        
+                        <p>{{ar.fechacreacion}}</p>
+
                     </div>
                 <!-- </div> -->
                     </div>
@@ -75,12 +94,14 @@
 
         </div>
     
-</div>
 <!-- </div> -->
-        
-</div>
+<!-- </div> -->
+
+<!-- </div> -->
+
 
 <h2>Agregar Archivos</h2>
+
 <form autocomplete="off" [formGroup]="miFormulario" enctype="multipart/form-data">
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Documento</label>
@@ -137,7 +158,7 @@
                 </span>
         </div>
     </div>
-    <div class="mb-3 row">
+    <!-- <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Fecha Ingreso</label>
         <div class="col-sm-9">
             <input type="date"
@@ -151,7 +172,7 @@
                 Campo Requerido
             </span>
         </div>
-    </div>
+    </div> -->
     
     <button type="submit"
                             
@@ -165,8 +186,62 @@
     </button>
 
 </form>
-    <br>
-    <br>
+<br>
+<br>
+    <div mat-dialog-actions>
+        <button mat-button (click)="cancelar()">Cancelar</button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+<div class="contenedor">
+     
+
+<div class='imgperfil'>
+
+</div>
+
+<!-- <div *ngFor="let u of usuarios">
+    <div *ngIf="u.idusuario==idAspirante">
+    <p> vista perfil {{u.nombre}} {{u.apellido}}</p>
+</div>
+</div> -->
+
+<!-- <div>
+    USUARIOOOO
+    {{usuariosId}}
+</div> -->
+<!-- <div class="hey">
+
+</div> -->
+
+
+
+
+
+<!-- <div class="contenedorInformacion" *ngFor="let u of usuarios" > -->
+    <!-- <div *ngIf="u.idusuario==idAspirante"> -->
+    <!-- <h2>Nombre: {{usuariosId.nombreusuario}}</h2>
+    <p>Número documento: {{usuariosId.nodocumento}}</p>
+    <p>Correo: {{usuariosId.correo}}</p>
+    <p>Teléfono: {{usuariosId.telefono}}</p>
+    <p>Dirección: {{usuariosId.direccion}}</p> -->
+<!-- </div> -->
+<!-- </div> -->
+
+
+
+
+
 </div>
 
 <app-loading *ngIf="loading"></app-loading>

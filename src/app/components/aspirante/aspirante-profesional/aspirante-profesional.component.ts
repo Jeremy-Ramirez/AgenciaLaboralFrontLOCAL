@@ -86,7 +86,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     fechainicio:["",[Validators.required]],
     fechacierre:["",[Validators.required]],
     aspirante_idaspirante:null,
-    estadoaspirantes_idestadoaspirantes:1,
+    estadoaspirantes_idestadoaspirantes:2,
   })
 
   campoEsValido2(campo: string){
@@ -204,8 +204,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     formData.append('profesiones_idprofesiones',this.miFormulario.controls['profesiones_idprofesiones'].value)
     formData.append('idiomas',this.miFormulario.controls['idiomas'].value)
     formData.append('usuario_idusuario',this.id)
-
-    formData.append('estadoaspirantes_idestadoaspirantes',this.miFormulario.controls['estadoaspirantes_idestadoaspirantes'].value)
+    //formData.append('estadoaspirantes_idestadoaspirantes',this.miFormulario.controls['estadoaspirantes_idestadoaspirantes'].value)
 
 
     for(let asp of this.aspirantes){

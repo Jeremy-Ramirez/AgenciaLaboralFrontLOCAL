@@ -9,6 +9,7 @@ import { SugerenciasComentariosComponent } from './sugerencias-comentarios/suger
 import { SolicitudesComponent } from '../representante/solicitudes/solicitudes.component';
 import { ShowsolicitudesComponent } from '../representante/showsolicitudes/showsolicitudes.component'; 
 import { FiltroComponent } from './filtro/filtro.component';
+import { SolicitudesContratacionComponent } from './solicitudes-contratacion/solicitudes-contratacion.component';
 
 const routes: Routes = [
     {
@@ -24,6 +25,7 @@ const routes: Routes = [
             { path: 'solicitudesRepresentante', component: SolicitudesComponent},
             { path: 'showSolicitudes', component: ShowsolicitudesComponent},
             { path: 'filtroAspirantes', component: FiltroComponent},
+            { path: 'consultarSolicitudes', component: SolicitudesContratacionComponent}
           ]
         },
         { path: '**', redirectTo: 'sesionRepresentante/perfilRepresentante' }

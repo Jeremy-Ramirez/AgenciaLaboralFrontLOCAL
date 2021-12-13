@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
@@ -29,6 +29,8 @@ import { PerfilAdministradorComponent } from './perfil-administrador/perfil-admi
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { LoadingComponent } from './loading/loading.component';
+import { PerfilAspiranteComponent } from './perfil-aspirante/perfil-aspirante.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -49,6 +51,7 @@ import { LoadingComponent } from './loading/loading.component';
     VistaPerfilEmpresasComponent,
     PerfilAdministradorComponent,
     LoadingComponent,
+    PerfilAspiranteComponent,
    
   ],
   imports: [
@@ -64,6 +67,8 @@ import { LoadingComponent } from './loading/loading.component';
     RouterModule,
     MatTableModule,
     MatInputModule,
+    FormsModule,
+    MatDialogModule,
   ],
 
 })

@@ -1,0 +1,36 @@
+<div>
+    <h1 mat-dialog-title>Solicitud</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+
+            <mat-form-field>
+                {{data.solicitudIndividual.cargo}}
+                
+            </mat-form-field>
+
+            <mat-form-field>
+                {{data.solicitudIndividual.descripcioncargo}}
+            </mat-form-field>
+
+            <mat-form-field>
+                {{data.solicitudIndividual.fechainicio}}
+            </mat-form-field>
+            <mat-form-field>
+                {{data.solicitudIndividual.fechacierre}}
+                
+            </mat-form-field>
+
+            <mat-form-field>
+                {{data.solicitudIndividual.aniosexperiencia}}
+            </mat-form-field>
+
+            <mat-form-field>
+                {{data.solicitudIndividual.rangoedad}}
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="cancelar()">Cancelar</button>
+    </div>
+</div>

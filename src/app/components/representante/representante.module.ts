@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
@@ -24,6 +24,11 @@ import { SugerenciasComentariosComponent } from './sugerencias-comentarios/suger
 import { SolicitudesComponent } from '../representante/solicitudes/solicitudes.component';
 import { ShowsolicitudesComponent } from './showsolicitudes/showsolicitudes.component';
 import { FiltroComponent } from './filtro/filtro.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { SolicitudesContratacionComponent } from './solicitudes-contratacion/solicitudes-contratacion.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   declarations: [
     MenuLateralComponent,
@@ -34,6 +39,7 @@ import { FiltroComponent } from './filtro/filtro.component';
     SolicitudesComponent,
     ShowsolicitudesComponent,
     FiltroComponent,
+    SolicitudesContratacionComponent,
 
   ],
   imports: [
@@ -47,6 +53,10 @@ import { FiltroComponent } from './filtro/filtro.component';
     MatListModule,
     RepresentanteRoutingModule,
     RouterModule,
+    MatTableModule,
+    MatInputModule,
+    MatDialogModule,
+    FormsModule,
     
   ],
 })

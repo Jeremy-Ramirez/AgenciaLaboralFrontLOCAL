@@ -1,0 +1,27 @@
+
+.aspiranteIndividual{
+    border: 1px solid black;
+}
+
+
+.filtros{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+table{
+    width: 100%;
+}
+
+.boton{
+    margin-top: 5px;
+}
+
+
+.field-icon {
+    float: right;
+    margin-right: -60px;
+    margin-top: 5px;
+    position: relative;
+    z-index: 2;
+}

@@ -39,6 +39,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { SolicitudComponent } from './components/representante/solicitud/solicitud.component';
+import { SolicitudAspirantesComponent } from './components/representante/solicitud-aspirantes/solicitud-aspirantes.component';
 
 
 
@@ -58,7 +60,8 @@ import { MatInputModule } from '@angular/material/input';
     MainComponent,
     RegisterComponent,
     SolicitudesComponent,
-    
+    SolicitudComponent,
+    SolicitudAspirantesComponent,
 
   ],
   imports: [
@@ -75,6 +78,7 @@ import { MatInputModule } from '@angular/material/input';
     MatListModule,
     MatTableModule,
     MatInputModule,
+    
     
   ],
   providers: [TipodocumentoService,
