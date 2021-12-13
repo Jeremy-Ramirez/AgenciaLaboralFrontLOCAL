@@ -126,6 +126,7 @@ export class RegistroFullEmpresaComponent implements OnInit {
     celular:["",[Validators.required]],
     telefonooficina:["",[Validators.required]],
     contrasenia:["", [Validators.required]],
+    estado_idestado: 1 
   })
 
   crear(){
