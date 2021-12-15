@@ -37,9 +37,26 @@ export class AspiranteProfesionalComponent implements OnInit {
   siguiente=false;
   loading: boolean;
 
+  bandera=false;
+/*DATOS DEL FORM PROFESIONAL*/
+
+  Profesiones:any;
+  DescripcionProf:any;
+  Salario:any;
+  Video:any;
+  AniosExperiencia:any;
+  FechaNacimiento:any;
+  NumeroHijos:any;
+  PViajar:any;
+  PCambiar:any;
+  Idiomas:any;
+
+
+
+
   constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute, 
     private formacionProfesionalService: FormacionProfesionalService, private router: Router) {
-      this.loading=true;
+      this.loading=false;
   }
   
     
@@ -59,6 +76,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     profesiones_idprofesiones:["",[Validators.required]],
     idiomas:["",[Validators.required]],
     usuario_idusuario:null,
+    estadoaspirantes_idestadoaspirantes:2,
 
     
     /*nivelestudios_idnivelestudios: ["", [Validators.required]],
@@ -86,7 +104,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     fechainicio:["",[Validators.required]],
     fechacierre:["",[Validators.required]],
     aspirante_idaspirante:null,
-    estadoaspirantes_idestadoaspirantes:2,
+    
   })
 
   campoEsValido2(campo: string){
@@ -100,13 +118,32 @@ export class AspiranteProfesionalComponent implements OnInit {
     this.getFormacionProfesional();
     this.getAspirantes();
     this.getNivelesEstudios();
+
+
+
+    /*
+  
+  
+
+  
     
-    /*this.rutaActiva.params.subscribe(
-      (params:  Params) => {
-        this.id = params.id;
-      }
-    )*/
-    
+
+  
+  */ 
+
+
+    this.NumeroHijos=this.miFormulario.get('numerohijos');
+    this.Salario=this.miFormulario.get('salarioMinimoAceptado');
+    this.DescripcionProf=this.miFormulario.get('descripcionPerfilProfesional');
+    this.Video=this.miFormulario.get('videopresentacion');
+    this.AniosExperiencia=this.miFormulario.get('aniosexperiencia');
+    this.FechaNacimiento=this.miFormulario.get('fechanacimiento');
+    this.PViajar=this.miFormulario.get('posibilidadviajar');
+    this.PCambiar=this.miFormulario.get('posibilidadcambioresidencia');
+    this.Profesiones=this.miFormulario.get('profesiones_idprofesiones');
+    this.Idiomas=this.miFormulario.get('idiomas');
+
+
 
     this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
@@ -189,10 +226,24 @@ export class AspiranteProfesionalComponent implements OnInit {
   
  }
 
-
+/*siguiente*/ 
   guardar(){
 
-    let formData= new FormData();
+    /*console.log(this.Profesiones.value);
+    console.log(this.DescripcionProf.value);
+    console.log(this.Salario.value);
+    console.log(this.Video.value);
+    console.log(this.AniosExperiencia.value);
+    console.log(this.FechaNacimiento.value);
+    console.log(this.NumeroHijos.value);
+    console.log(this.PViajar.value);
+    console.log(this.PCambiar.value);
+    console.log(this.Idiomas.value);
+  */
+
+
+
+    /*let formData= new FormData();
     formData.append('numerohijos',this.miFormulario.controls['numerohijos'].value)
     formData.append('salarioMinimoAceptado',this.miFormulario.controls['salarioMinimoAceptado'].value)
     formData.append('descripcionPerfilProfesional',this.miFormulario.controls['descripcionPerfilProfesional'].value)
@@ -223,7 +274,14 @@ export class AspiranteProfesionalComponent implements OnInit {
     /*for(let formacion of this.listaFormaciones){
       this.guardarFormación(formacion)
     }*/
-    this.siguientePagina()
+
+
+
+
+
+
+
+    this.siguientePagina();
 
     
     
@@ -362,10 +420,110 @@ export class AspiranteProfesionalComponent implements OnInit {
   }
 
   finalizar(){
-    alert('DATOS PROFESIONALES GUARDADOS');
-    this.miFormulario.reset();
-    this.miFormularioFormacion.reset();
-    this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+    
+    /*if(
+      this.Salario.value == '' || 
+      this.NumeroHijos.value == ''||
+      this.DescripcionProf.value == '' ||
+      this.AniosExperiencia.value ||
+      this.FechaNacimiento.value ||
+      this.file == null ||
+      this.PViajar.value == '' || 
+      this.PCambiar.value== '' || 
+      this.Profesiones.value== '' || 
+      this.Idiomas.value == '' 
+    ){
+      alert('DATOS PROFESIONALES GUARDADOS');
+      this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+    }*/
+    
+    /*Object.keys(this.miFormulario.controls).forEach(key=>{
+      console.log(this.miFormulario.get(key).value);
+      if(this.miFormulario.get(key).value == '' || this.miFormulario.get(key).value == null){
+        
+        this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+      }
+      
+    })*/
+
+    
+  //FORMULARIO PROFESIONES
+  
+    let formData= new FormData();
+    formData.append('numerohijos',this.NumeroHijos.value)
+    formData.append('salarioMinimoAceptado',this.Salario.value)
+    formData.append('descripcionPerfilProfesional',this.DescripcionProf.value)
+    formData.append('aniosexperiencia',this.AniosExperiencia.value)
+    formData.append('fechanacimiento',this.FechaNacimiento.value)
+    formData.append('videopresentacion',this.file)
+    formData.append('posibilidadviajar',this.PViajar.value)
+    formData.append('posibilidadcambioresidencia',this.PCambiar.value)
+    formData.append('profesiones_idprofesiones',this.Profesiones.value)
+    formData.append('idiomas',this.Idiomas.value)
+    formData.append('usuario_idusuario',this.id)
+    formData.append('estadoaspirantes_idestadoaspirantes',this.miFormulario.controls['estadoaspirantes_idestadoaspirantes'].value)
+
+
+    for(let asp of this.aspirantes){
+      if(asp.usuario_idusuario==this.id){
+
+        console.log(asp.idaspirante);
+          //verifica si el form esta lleno o no
+
+        if(
+        
+        this.Salario.value != '' || 
+        this.NumeroHijos.value !='' || 
+        this.DescripcionProf.value != '' ||
+        this.AniosExperiencia.value !=''||
+        this.FechaNacimiento.value!='' ||
+        this.file != null ||
+        this.PViajar.value != '' || 
+        this.PCambiar.value!= '' || 
+        this.Profesiones.value!= '' || 
+        this.Idiomas.value != '' 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        ){
+          this.http.patch('http://localhost:8000/api/aspirantes/'+ asp.idaspirante, formData).subscribe(
+            resp => {
+              console.log(resp)
+            
+              alert('DATOS PROFESIONALES GUARDADOS');
+              this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+            
+            
+            },
+            err => {
+              console.log(err);
+              
+            }
+      
+          )
+        }else{
+          
+          alert('DATOS PROFESIONALES GUARDADOS');
+          this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
+        }
+        
+      }
+
+    }
+
+
+    
+
+    
+    /*FORMULARIO ESTUDIOS*/ 
+
+
   }
 
 

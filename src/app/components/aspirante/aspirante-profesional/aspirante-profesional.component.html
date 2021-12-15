@@ -4,13 +4,13 @@
  
 
 
-    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
+    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()" >
 
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Profesiones</label>
             <div class="col-sm-9">
                 
-                <select name="doc" id="doc" formControlName="profesiones_idprofesiones">
+                <select name="doc" id="doc" formControlName="profesiones_idprofesiones" style="width: 250px;" class="form-control">
                     <option *ngFor="let p of profesiones" value="{{p.idprofesiones}}">
                         {{p.profesion}}
                     </option>
@@ -31,7 +31,7 @@
                        class="form-control"
                        formControlName ="descripcionPerfilProfesional" 
                        placeholder="Ingrese su experiencia laboral"
-                       style="height: 100px;"  >
+                       style="width: 500px; height: 100px;" >
 
                        <span class="form-text text-danger"
                        *ngIf="campoEsValido('descripcionPerfilProfesional')">
@@ -48,7 +48,9 @@
                 <input type="number"
                        class="form-control"
                        formControlName ="salarioMinimoAceptado" 
-                       placeholder="Ingrese la cantidad de hijos que tiene">
+                       placeholder="Ingrese sueldo deseado"
+                       style="width: 250px;"
+                       >
 
                        <span class="form-text text-danger"
                        *ngIf="campoEsValido('salarioMinimoAceptado')">
@@ -59,44 +61,6 @@
             </div>
         </div>
       
-        
-
-        
-
-        
-        <!-- <div class="mb-3 row">
-            <label class="col-sm-3 col-form-label">Campo Laboral</label>
-            <div class="col-sm-9">
-                <input type="text"
-                       class="form-control"
-                       formControlName ="campolaboral" 
-                       placeholder="Ingrese su campo laboral" >
-
-                       <span class="form-text text-danger"
-                       *ngIf="campoEsValido('campolaboral')">
-                       
-                       Campo requerido
-                       
-                   </span> 
-            </div>
-        </div> -->
-
-        <!-- <div class="mb-3 row">
-            <label class="col-sm-3 col-form-label">Experticia</label>
-            <div class="col-sm-9">
-                <input type="text"
-                       class="form-control"
-                       formControlName ="experticia" 
-                       placeholder="Ingrese su experticia" >
-
-                       <span class="form-text text-danger"
-                       *ngIf="campoEsValido('experticia')">
-                       
-                       Campo requerido
-                       
-                   </span> 
-            </div>
-        </div> -->
 
        
 
@@ -110,6 +74,7 @@
                        formControlName="videopresentacion"
                        placeholder=""
                        (change)="handleFileInput($event)"
+                       style="width: 250px;"
                        >
                        <span class="form-text text-danger"
                         *ngIf="!videoValido">
@@ -134,7 +99,9 @@
                 <input type="number"
                        class="form-control"
                        formControlName ="aniosexperiencia" 
-                       placeholder="Ingrese sus años de experiencia" >
+                       placeholder="Ingrese sus años de experiencia"
+                       style="width: 250px;"
+                       >
 
                        <span class="form-text text-danger"
                         *ngIf="campoEsValido('aniosexperiencia')">
@@ -155,6 +122,7 @@
                        formControlName ="fechanacimiento" 
                        (change)="validarFechaNacimiento()"
                        placeholder="Numero" 
+                       style="width: 250px;"
                        >
                        <span class="form-text text-danger"
                         *ngIf="!fechaCorrecta">
@@ -177,7 +145,8 @@
                 <input type="number"
                        class="form-control"
                        formControlName ="numerohijos" 
-                       placeholder="Ingrese la cantidad de hijos que tiene">
+                       placeholder="Ingrese la cantidad de hijos que tiene"
+                       style="width: 250px;">
 
                        <span class="form-text text-danger"
                        *ngIf="campoEsValido('numerohijos')">
@@ -188,22 +157,6 @@
             </div>
         </div>
 
-
-        <!--div class="mb-3 row">
-            <label class="col-sm-3 col-form-label">Posibilidad Viajar</label>
-            <div class="col-sm-9">
-                <input type="text"
-                       class="form-control"
-                       formControlName ="posibilidadviajar" 
-                       placeholder="Escriba si o no" >
-
-                       <span class="form-text text-danger"
-                        *ngIf="campoEsValido('posibilidadviajar')">
-                        
-                        Campo obligatorio
-                    </span>
-            </div>
-        </div-->
 
    <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Disponibilidad para viajar</label>
@@ -255,51 +208,15 @@
                 </div>
 
 
-                <!-- <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Nivel de Estudios</label>
-                    <div class="col-sm-9">
-                        
-                        <select name="doc" id="doc" formControlName="nivelestudios_idnivelestudios">
-                             <option *ngFor="let n of niveles" value="{{n.idnivelestudios}}" value="{{n.idnivelestudios}}">
-                                {{n.descripcion}}
-                            </option> 
-                        </select>
-        
-
-                        <span class="form-text text-danger"
-                        *ngIf="campoEsValido('nivelestudios_idnivelestudios')">
-                        
-                        Campo obligatorio
-                    </span>
-                       
-                    </div>
-                </div> -->
-
-                <!-- <div class="mb-3 row">
-                    <label class="col-sm-3 col-form-label">Estado estudios</label>
-                    <div class="col-sm-9">
-                     
-                    
-                        <input type="radio" value="Cursando" formControlName="estadoestudios">Cursando
-                     <input type="radio" value="Completado" formControlName="estadoestudios">Completado
-                       
-                     <span class="form-text text-danger"
-                     *ngIf="campoEsValido('estadoestudios')">
-                     
-                     Campo obligatorio
-                 </span>              
-                        
-                    </div>
-                        </div> -->
-
-
                         <div class="mb-3 row" *ngIf="agregarUnaFormacion">
                             <label class="col-sm-3 col-form-label">Idiomas</label>
                             <div class="col-sm-9">
                                 <input type="text"
                                        class="form-control"
                                        formControlName ="idiomas" 
-                                       placeholder="Ingrese los idiomas que sabe " >
+                                       placeholder="Ingrese los idiomas que sabe " 
+                                       style="width: 500px;"
+                                       >
                 
                                        <span class="form-text text-danger"
                                        *ngIf="campoEsValido('idiomas')">
@@ -345,29 +262,30 @@
         <h2>Añada sus estudios</h2>
     </div>
     <hr>
-
-    <div class="mb-3 row" style="margin-left: 50px;">
+    
+    <div class="mb-3 row" style="margin-left: 50px; " >
         <div class="col-sm-9">
             <div *ngFor="let formaciones of listaFormaciones">
-                <!-- {{formaciones.centroeducativo}}
-                {{idAspirante}} -->
+                    
                 <div *ngIf="formaciones.aspirante_idaspirante == idAspirante">
-                    <!-- {{formaciones.centroeducativo}} -->
+                 
                     <div *ngFor="let niv of niveles">
-                        <!-- {{niv.descripcion}} -->
+                        
                         <div *ngIf="niv.idnivelestudios== formaciones.nivelestudios_idnivelestudios ">
                             <h3>{{niv.descripcion}}</h3>
                         </div>
 
                     </div>
-                    <h4>{{formaciones.centroeducativo}}</h4>
-                    <h4>{{formaciones.estadoEstudios}}</h4>
-                    <h4>{{formaciones.fechainicio}}</h4>
-                    <h4>{{formaciones.fechacierre}}</h4>
-                    <h4>{{formaciones.areaestudios}}</h4>
-                
-                <mat-icon class="field-icon" (click)="eliminarFormacion(formaciones.idformacionprofesional)">delete</mat-icon>
+                    <div style="border: 1px solid black;"> 
+                    <h4>Centro Educativo: {{formaciones.centroeducativo}}</h4>
+                    <h4>Estado:{{formaciones.estadoestudios}}</h4>
+                    <h4>Fecha Inicio:{{formaciones.fechainicio}}</h4>
+                    <h4>Fecha Cierre:{{formaciones.fechacierre}}</h4>
+                    <h4>Área de Estudio:{{formaciones.areaestudios}}</h4>
+                    
 
+                    <mat-icon class="field-icon" (click)="eliminarFormacion(formaciones.idformacionprofesional)">delete</mat-icon>
+                    </div>
                 </div>
 
 
@@ -381,7 +299,7 @@
 
 
 
-    <form autocomplete="off" [formGroup]="miFormularioFormacion" (ngSubmit)="guardarFormacion()" *ngIf="agregarUnaFormacion" >
+    <form autocomplete="off" [formGroup]="miFormularioFormacion" (ngSubmit)="guardarFormacion()" *ngIf="agregarUnaFormacion" class="ms-5">
         
 
 
