@@ -213,13 +213,136 @@
 
 <div class="contenedorInformacion" *ngFor="let a of aspirantes" >
     <div *ngIf="a.usuario_idusuario==usuarioActual.idusuario">
-        <div *ngIf="a.numerohijos!= null">
+         <div *ngIf="a.numerohijos!= null"> 
+
+
+
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Descripcion Perfil Profesional</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                   
+                    value={{a.descripcionPerfilProfesional}}
+                    style="width: 250px;"
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+            
+
+            
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Años de experiencia</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                   
+                    value={{a.aniosexperiencia}}
+                    style="width: 250px;"
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Número de hijos</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                  
+                   
+                    value={{a.numerohijos}}
+                    style="width: 250px;"
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Fecha de Nacimiento</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                    type="date"
+                   
+                    value={{a.fechanacimiento}}
+                    style="width: 250px;"
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Posibilidad Viajar</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                    
+                   
+                    value={{a.posibilidadviajar}}
+                    style="width: 250px;"
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Posibilidad cambio de residencia</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                    
+                   
+                    value={{a.posibilidadcambioresidencia}}
+                    style="width: 250px;"
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+            
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Salario mínimo aceptado(Mensual)</label>
+                <div class="col-sm-9">
+                    <input 
+                    class="form-control"
+                    
+                   
+                    value={{a.salarioMinimoAceptado}}$ 
+                    style="width: 250px;"
+                    
+                    >
+                  
+                   
+                </div>
+            </div>
+            <br>
+            <br>
+<!-- 
+
+
+
             <p>Número de hijos: {{a.numerohijos}}</p>
             <p>Salario Mínimo Aceptado: {{a.salarioMinimoAceptado}}</p>
             <p>descripcion Perfil Profesional: {{a.descripcionPerfilProfesional}}</p>
             <p>Años de experiencia: {{a.aniosexperiencia}}</p>
             <p>Fecha de Nacimiento: {{a.fechanacimiento}}</p>
-            <p>Posibilidad de viajar: {{a.posibilidadviajar}}</p>
+            <p>Posibilidad de viajar: {{a.posibilidadviajar}}</p> -->
             <div class="mb-3 row">
                 <div class="col-sm-9">
                     <video  width="400" height="400"  controls src="http://localhost:8000{{a.videopresentacion}}"></video>
@@ -240,8 +363,10 @@
                     <!-- </div> -->
                     <br>
                     <br>
-        </div>
-    
+         </div> 
+        <button  class="btn btn-warning ms-1 fa-2x" (click)="editarProfesional()">
+            <i class="far fa-edit"></i>
+        </button>
 </div>
 
         

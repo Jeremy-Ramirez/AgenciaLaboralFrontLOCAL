@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class AspiranteProfesionalComponent implements OnInit {
 
 
-  file: any;
+  file:any='';
   videoValido: boolean=true;
   fechaCorrecta=true;
   profesiones:any[]=[];
@@ -527,7 +527,6 @@ export class AspiranteProfesionalComponent implements OnInit {
   }
 
 
-  
 
 
 

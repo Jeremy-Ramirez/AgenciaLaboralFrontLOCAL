@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params,Router } from '@angular/router';
 import { Emitters } from '../clases/emitters';
 import {TipodocumentoService} from '../../../servicios/tipodocumento.service'
 import {ProvinciaService} from '../../../servicios/provincia.service'
@@ -33,7 +33,7 @@ export class PerfilAspiranteComponent implements OnInit {
   archivos:any[]=[];
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,
     private _tipodocumentoService: TipodocumentoService,private _provinciaService:ProvinciaService ,
-    private _generoService:GeneroService, private _ciudadService:CiudadService
+    private _generoService:GeneroService, private _ciudadService:CiudadService, private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -137,4 +137,7 @@ export class PerfilAspiranteComponent implements OnInit {
 
   
 
+  editarProfesional(){
+    this.router.navigate( [`/aspirante/sesionAspirante/aspiranteProfesional`]);
+  }
 }
