@@ -74,7 +74,7 @@
                         <th ngClass="aceptartitulo"  mat-header-cell *matHeaderCellDef> Eliminar Solicitud </th>
                         <td  >
                           <div class="aceptar" >
-                            <mat-icon mat-icon mat-cell *matCellDef="let usuario" class="field-icon" (click)="aceptarAspirante(usuario.idusuario)"  >done</mat-icon>
+                            <mat-icon mat-icon mat-cell *matCellDef="let solicitud" class="field-icon" (click)="eliminarSolicitud(solicitud.idsolicitud)"  >delete</mat-icon>
                           </div>
 
                         </td>
@@ -89,6 +89,8 @@
                   </div>
             </div>
         </div>
+
+        <br>
 
         <!-- <div *ngFor="let user of usuarios">
             <div *ngIf="user.rol_idrol==2">

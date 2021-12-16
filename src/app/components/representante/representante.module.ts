@@ -28,6 +28,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { SolicitudesContratacionComponent } from './solicitudes-contratacion/solicitudes-contratacion.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SolicitudComponent } from './solicitud/solicitud.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ShowsolicitudesComponent,
     FiltroComponent,
     SolicitudesContratacionComponent,
+    SolicitudComponent,
 
   ],
   imports: [

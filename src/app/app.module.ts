@@ -16,7 +16,6 @@ import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/shared/main/main.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { HttpClientModule } from '@angular/common/http';
 import {TipodocumentoService} from './servicios/tipodocumento.service';
 import {TipoempresaService} from './servicios/tipoempresa.service';
@@ -28,8 +27,6 @@ import {EmpresaService} from './servicios/empresa.service';
 import {ActividadeconomicaService} from './servicios/actividadeconomica.service';
 import {CiudadService} from './servicios/ciudad.service';
 import {SectorService} from './servicios/sector.service';
-import { SugerenciasComentariosComponent } from './components/representante/sugerencias-comentarios/sugerencias-comentarios.component';
-import { AspiranteProfesionalComponent } from './components/aspirante/aspirante-profesional/aspirante-profesional.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -39,7 +36,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import { SolicitudComponent } from './components/representante/solicitud/solicitud.component';
 
 
 
@@ -58,8 +54,6 @@ import { SolicitudComponent } from './components/representante/solicitud/solicit
     LoginComponent,
     MainComponent,
     RegisterComponent,
-    SolicitudesComponent,
-    SolicitudComponent,
 
 
   ],

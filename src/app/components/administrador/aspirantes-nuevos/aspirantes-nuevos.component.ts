@@ -150,9 +150,9 @@ export class AspirantesNuevosComponent implements OnInit {
       setTimeout(()=>{
         this.dataSource = new MatTableDataSource(this.listausuariosAspirantes);
   
-      }, 100);
+      }, 300);
 
-    }, 100);
+    }, 500);
 
     this.suscription = this.aspiranteService.refresh$.subscribe(()=>{
       this.ngOnInit()

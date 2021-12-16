@@ -3,9 +3,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AspiranteService } from 'src/app/servicios/aspirante.service';
+import { SolicitudService } from 'src/app/servicios/solicitud.service';
 import { SolicitudComponent } from '../solicitud/solicitud.component';
 
 @Component({
@@ -34,12 +35,14 @@ export class SolicitudesContratacionComponent implements OnInit {
     private fb: FormBuilder, 
     private http: HttpClient, 
     private rutaActiva: ActivatedRoute,
+    private solicitudService: SolicitudService,
+    private router: Router,
     
-    public dialog: MatDialog
+    public dialog: MatDialog,
     ) {
-    this.getRepresentantes()
-    this.getUsuarios();
-  }
+      
+    
+    }
 
   abrirDialogo(solicitud: any) {
     const dialogo1 = this.dialog.open(SolicitudComponent, {
@@ -71,12 +74,14 @@ export class SolicitudesContratacionComponent implements OnInit {
   }
 
   getSolicitudes(){
-    this.http.get('http://localhost:8000/api/solicitudes/').subscribe((solicitudes:any)=>{
+    this.solicitudService.getSolicitud().subscribe((solicitudes:any)=>{
       this.solicitudes=solicitudes
         console.log("SOLICS",this.solicitudes)
 
     })
   }
+
+  
   getUsuarios(){
     this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
       this.usuarios =doc
@@ -100,7 +105,7 @@ export class SolicitudesContratacionComponent implements OnInit {
     })
   }
 
-  usuariosAspirantes(){
+  solicitudesLista(){
     for( let rep of this.representantes){
       for(let sol of this.solicitudes){
         if(rep.idrepresentanteempresa==sol.representante_idrepresentante){
@@ -108,7 +113,7 @@ export class SolicitudesContratacionComponent implements OnInit {
             //this.listausuariosAspirantes.push(user)
             this.listaSolicitudes.indexOf(sol) === -1 ? this.listaSolicitudes.push(sol):
             console.log("This item already exists");
-            console.log("usuarios que quedan",this.listaSolicitudes)
+            console.log("solicitudes que quedan",this.listaSolicitudes)
           
           
         //}
@@ -118,6 +123,12 @@ export class SolicitudesContratacionComponent implements OnInit {
             console.log("Borrado prov");
             console.log("usuarios que quedan",this.listausuariosAspirantes)
           }*/
+        }
+        if(rep.idrepresentanteempresa!=sol.representante_idrepresentante){
+          const index= this.listaSolicitudes.indexOf(sol);
+          this.listaSolicitudes.indexOf(sol) > -1 ? this.listaSolicitudes.splice(index,1):
+          console.log("Borrado prov");
+          console.log("solicitudes que quedan",this.listaSolicitudes)
         }
       }
     } 
@@ -146,6 +157,12 @@ export class SolicitudesContratacionComponent implements OnInit {
     const filtro = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filtro.trim().toLowerCase();
   } 
+  reloadComponent() {
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
+  }
 
   ngOnInit(): void {
     this.http.get('http://localhost:8000/api/aspirantes/').subscribe((doc:any)=>{
@@ -154,20 +171,30 @@ export class SolicitudesContratacionComponent implements OnInit {
       console.log(this.aspirantes)
 
     })
+    this.getRepresentantes();
+    this.getUsuarios();
+    this.getSolicitudes();
+    //this.getRepresentantes();
+    //console.log("repsonini",this.representantes)
+    //this.getUsuarios();
+    
+    //console.log("useronini",this.usuarios)
 
-    this.getSolicitudes()
+    //this.getSolicitudes();
+    //console.log("SOLICSonini",this.solicitudes)
 
     setTimeout(()=>{
-      this.usuariosAspirantes();
+      this.solicitudesLista();
       setTimeout(()=>{
         this.dataSource = new MatTableDataSource(this.listaSolicitudes);
   
-      }, 100);
+      }, 300);
 
-    }, 100);
+    }, 500);
 
-    this.suscription = this.aspiranteService.refresh$.subscribe(()=>{
-      this.ngOnInit()
+    this.suscription = this.solicitudService.refresh$.subscribe(()=>{
+      this.reloadComponent();
+      
 
 
 
@@ -228,18 +255,28 @@ export class SolicitudesContratacionComponent implements OnInit {
           //this.miFormulario.reset();
         });
 
-        
-
-
-        /*this.http.patch<any>("http://localhost:8000/api/aspirantes/"+asp.idaspirante,formData,{headers: headers}).subscribe(
-          resp => console.log(resp),
-          err => console.log(err)
-            );*/
-            
-        
-
       }
     }
   }
+
+  eliminarSolicitud(event: Event){
+    if(confirm("¿Seguro desea eliminar esta solicitud?")){
+      for(let solicitud of this.listaSolicitudes){
+        if(solicitud.idsolicitud==event){
+          //this.solicitudes.splice(this.listaSolicitudes.findIndex(item=> item.idsolicitud === event),1)
+          this.solicitudService.deleteSolicitud(
+            event).subscribe(data=>{
+              console.log("Datos del post",data)
+              alert('Solicitud Borrada')
+              
+            });
+        }
+
+      }
+    }
+
+  }
+
+  
 
 }
