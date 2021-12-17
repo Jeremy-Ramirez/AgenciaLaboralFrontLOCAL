@@ -419,36 +419,9 @@ export class AspiranteProfesionalComponent implements OnInit {
 
   }
 
-  finalizar(){
-    
-    /*if(
-      this.Salario.value == '' || 
-      this.NumeroHijos.value == ''||
-      this.DescripcionProf.value == '' ||
-      this.AniosExperiencia.value ||
-      this.FechaNacimiento.value ||
-      this.file == null ||
-      this.PViajar.value == '' || 
-      this.PCambiar.value== '' || 
-      this.Profesiones.value== '' || 
-      this.Idiomas.value == '' 
-    ){
-      alert('DATOS PROFESIONALES GUARDADOS');
-      this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
-    }*/
-    
-    /*Object.keys(this.miFormulario.controls).forEach(key=>{
-      console.log(this.miFormulario.get(key).value);
-      if(this.miFormulario.get(key).value == '' || this.miFormulario.get(key).value == null){
-        
-        this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
-      }
-      
-    })*/
 
-    
-  //FORMULARIO PROFESIONES
-  
+  guardarInfoProfesional(){
+
     let formData= new FormData();
     formData.append('numerohijos',this.NumeroHijos.value)
     formData.append('salarioMinimoAceptado',this.Salario.value)
@@ -463,35 +436,13 @@ export class AspiranteProfesionalComponent implements OnInit {
     formData.append('usuario_idusuario',this.id)
     formData.append('estadoaspirantes_idestadoaspirantes',this.miFormulario.controls['estadoaspirantes_idestadoaspirantes'].value)
 
-
     for(let asp of this.aspirantes){
       if(asp.usuario_idusuario==this.id){
 
         console.log(asp.idaspirante);
           //verifica si el form esta lleno o no
 
-        if(
-        
-        this.Salario.value != '' || 
-        this.NumeroHijos.value !='' || 
-        this.DescripcionProf.value != '' ||
-        this.AniosExperiencia.value !=''||
-        this.FechaNacimiento.value!='' ||
-        this.file != null ||
-        this.PViajar.value != '' || 
-        this.PCambiar.value!= '' || 
-        this.Profesiones.value!= '' || 
-        this.Idiomas.value != '' 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        ){
+       
           this.http.patch('http://localhost:8000/api/aspirantes/'+ asp.idaspirante, formData).subscribe(
             resp => {
               console.log(resp)
@@ -507,22 +458,22 @@ export class AspiranteProfesionalComponent implements OnInit {
             }
       
           )
-        }else{
-          
-          alert('DATOS PROFESIONALES GUARDADOS');
-          this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
-        }
+      
+      
         
       }
 
     }
 
+  }
 
+
+
+
+  finalizar(){
     
-
-    
-    /*FORMULARIO ESTUDIOS*/ 
-
+    alert('DATOS PROFESIONALES GUARDADOS');
+    this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
 
   }
 

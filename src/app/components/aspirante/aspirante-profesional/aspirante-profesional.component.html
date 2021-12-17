@@ -4,7 +4,7 @@
  
 
 
-    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()" >
+    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardarInfoProfesional()" >
 
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Profesiones</label>
@@ -237,7 +237,7 @@
             <button type="submit" class="btn btn-primary float-end"
             
             >
-                Siguiente
+                Guardar
             </button>
 
         </div>
@@ -246,6 +246,11 @@
 
 
     </form>
+    <button type="submit" class="btn btn-primary float-end" (click)="siguientePagina()" style="margin-left: 700px;">
+        Siguiente
+    </button>
+
+
 
     <!-- [disabled]="miFormulario.invalid || !fechaCorrecta || !videoValido" -->
 
