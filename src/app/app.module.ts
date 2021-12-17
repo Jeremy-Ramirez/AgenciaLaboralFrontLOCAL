@@ -36,6 +36,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { PaquetePagoComponent } from './components/administrador/paquete-pago/paquete-pago.component';
+import { NuevoPaqueteComponent } from './components/administrador/nuevo-paquete/nuevo-paquete.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
@@ -54,6 +58,8 @@ import { MatInputModule } from '@angular/material/input';
     LoginComponent,
     MainComponent,
     RegisterComponent,
+    PaquetePagoComponent,
+    NuevoPaqueteComponent,
 
 
   ],
@@ -71,6 +77,8 @@ import { MatInputModule } from '@angular/material/input';
     MatListModule,
     MatTableModule,
     MatInputModule,
+    MatCardModule,
+    MatGridListModule,
     
     
   ],

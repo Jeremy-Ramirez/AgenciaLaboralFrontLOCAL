@@ -1,0 +1,141 @@
+<div class="row">
+    <div class="col">
+        <h1>Nuevo Paquete de Pago</h1>
+
+        <form autocomplete="off" [formGroup]="miFormulario" enctype="multipart/form-data">
+            
+            <!-- Campo de existencias -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Nombre del paquete</label>
+                <div class="col-sm-9">
+
+                    <input type="text"
+                           class="form-control"
+                           formControlName="nombrepaquete"
+                           placeholder=""
+                           >
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('nombrepaquete')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Descripción </label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="descripcion"
+                           placeholder="">
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('descripcion')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Precio</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="precio"
+                           placeholder=""
+                           
+                           >
+                           
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('precio')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Duración</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           formControlName="duracion"
+                           placeholder=""
+                           
+                           >
+                           
+                    <span class="form-text text-danger"
+                        *ngIf="campoEsValido('duracion')">
+                        
+                        Campo Requerido
+                    </span>
+                </div>
+            </div>
+
+
+            
+
+            <div class="row">
+                <div class="col-25">
+                <!-- fechainicio -->
+                <label>Fecha de inicio</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="date" formControlName="fecharegistro" placeholder="Ingrese la fecha de inicio "
+                    (change)="validarFechainicio()">
+                    <span class="form-text text-danger" *ngIf="campoEsValido('fecharegistro')"
+                    >
+                        Campo Requerido
+                    </span>
+                    <span class="form-text text-danger"
+                        *ngIf="!fechaCorrectaInicio">
+                        
+                        Ingrese una fecha correcta.
+                        
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                <!-- fechacierre -->
+                <label>Fecha de cierre</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="date" formControlName="fechacaducidad" placeholder="Ingrese la fecha de cierre"
+                    (change)="validarFechacierre()" >
+                    <span class="form-text text-danger" *ngIf="campoEsValido('fechacaducidad')">
+                        Campo Requerido
+                    </span>
+                    <span class="form-text text-danger"
+                        *ngIf="!fechaCorrectaCierre">
+                        
+                        Ingrese una fecha correcta.
+                        
+                    </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit"
+                            (click)="createPaquete()"
+                            
+                            class="btn btn-primary float-end" 
+                            >
+                        Guardar
+                    </button>
+                </div>
+            </div>
+
+
+
+
+            
+        </form>
+
+    </div>
+</div>
+
+<!-- (click)="updato(eUsuari)" -->
+
+<!-- [disabled]="miFormulario.invalid" -->

@@ -40,7 +40,9 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     private rutaActiva: ActivatedRoute,
     private archivosAspiranteService: ArchivosAspiranteService,
     public dialogRef: MatDialogRef<VistaPerfilAspiranteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {aspiranteIndividual: any},) {
+    @Inject(MAT_DIALOG_DATA) public data: {aspiranteIndividual: any},
+    
+    ) {
     //this.idAspirante=3;
     console.log("hereda",this.idAspirante)
     this.loading=false;

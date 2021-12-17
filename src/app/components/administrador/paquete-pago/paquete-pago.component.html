@@ -1,0 +1,52 @@
+
+<section id="contenedor">
+  <h1>Paquetes de Pago</h1>
+
+  <!-- <div class="row"> -->
+    <div class="col">
+      <button mat-button color="primary" (click)="abrirDialogo()" >crear Paquete</button>
+      <!-- routerLink="/administrador/sesionAdministrador/nuevoPaquete" -->
+    </div>
+  <!-- </div> -->
+  
+  <div class="row" class="paqueteslista">
+        <div class="row" *ngFor="let paquete of paquetes" class="paqueteindividual">
+            <div class="col">
+                <mat-card class="example-card">
+                  <mat-card-actions class="iconoborrar">
+                    <!-- <button mat-button>LIKE</button> -->
+                    <button mat-button>Editar</button>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"  (click)="eliminarPaquete(paquete.idpaquetepago)" >delete</mat-icon>
+  
+  
+                  </mat-card-actions>
+                    <mat-card-header>
+                      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                      <mat-card-title>{{paquete.nombrepaquete}}</mat-card-title>
+                      <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                    </mat-card-header>
+                    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+                    <mat-card-content>
+                      <p>
+                        Descripción: {{paquete.descripcion}}
+                      </p>
+                      <p>
+                        Precio: {{paquete.precio}}
+                      </p>
+                      <p>
+                        Duración: {{paquete.duracion}}
+                      </p>
+                      <p>
+                        Fecha de Creación: {{paquete.fecharegistro}}
+                      </p>
+                      <p>
+                        Fecha de Caducidad: {{paquete.fechacaducidad}}
+                      </p>
+                    </mat-card-content>
+                    
+                </mat-card>
+            </div>
+        </div>
+  </div>
+
+</section>

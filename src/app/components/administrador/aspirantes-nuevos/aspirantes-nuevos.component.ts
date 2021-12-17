@@ -33,7 +33,8 @@ export class AspirantesNuevosComponent implements OnInit {
     private fb: FormBuilder, 
     private http: HttpClient, 
     private rutaActiva: ActivatedRoute,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    ) {
     this.getRepresentantes()
     this.getAspirantesNuevos();
   }
