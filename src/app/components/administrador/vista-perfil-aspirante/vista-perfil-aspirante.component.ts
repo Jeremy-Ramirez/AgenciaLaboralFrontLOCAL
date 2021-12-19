@@ -23,6 +23,7 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
   categoria:any[]=[];
   profesiones:any[]=[];
   archivos:any[]=[];
+  profesiondesc='';
   id: any;
   archivoValido:boolean =true;
   suscription: Subscription; 
@@ -63,6 +64,7 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     )*/
     this.id=this.data.aspiranteIndividual.idusuario
     console.log("ID DE LA DATAAAAA",this.id)
+    this.getProfesiones()
     this.getAspirantes();
     this.getUsuarios();
     this.getCategoria();
@@ -72,6 +74,7 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
 
     this.suscription = this.archivosAspiranteService.refresh$.subscribe(()=>{
       this.getArchivos();
+      //this.ngOnInit()
     })
   }
   ngOnDestroy():void{
@@ -84,6 +87,12 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     for(let asp of this.aspirantes){
       if(this.usuariosId.idusuario==asp.usuario_idusuario){
         this.aspiranteId=asp;
+        for(let profesion of this.profesiones){
+          if(asp.profesiones_idprofesiones==profesion.idprofesiones){
+            this.profesiondesc=profesion.profesion
+          }
+
+        }
         console.log("ASPIRANTEID")
         console.log("ASPIRANTEID", this.aspiranteId)
 
@@ -122,6 +131,12 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
     this.archivosAspiranteService.getArchivosAspirante().subscribe(archivos=>{
       this.archivos=archivos;
       console.log(this.archivos)
+    })
+  }
+  getProfesiones(){
+    this.http.get('http://localhost:8000/api/profesiones/').subscribe((resp:any)=>{
+      this.profesiones=resp;
+      console.log(this.profesiones)
     })
   }
 

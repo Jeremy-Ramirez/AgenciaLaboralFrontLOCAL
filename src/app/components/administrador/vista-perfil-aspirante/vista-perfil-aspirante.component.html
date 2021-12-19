@@ -5,34 +5,34 @@
         <div >
             <h1>Datos Personales</h1>
             <!-- <mat-form-field> -->
-                <p>{{data.aspiranteIndividual.nombreusuario}}</p>
+                <p>Nombre de usuario: {{data.aspiranteIndividual.nombreusuario}}</p>
 
             <!-- </mat-form-field> -->
 
             <!-- <mat-form-field> -->
-                <p>{{data.aspiranteIndividual.nombre}}</p>
+                <p>Nombres: {{data.aspiranteIndividual.nombre}}</p>
             <!-- </mat-form-field> -->
 
             <!-- <mat-form-field> -->
-                <p>{{data.aspiranteIndividual.apellido}}</p>
+                <p>Apellidos: {{data.aspiranteIndividual.apellido}}</p>
             <!-- </mat-form-field> -->
             <!-- <mat-form-field> -->
-                <p>{{data.aspiranteIndividual.nodocumento}}</p>
+                <p>Número de documento: {{data.aspiranteIndividual.nodocumento}}</p>
                 
             <!-- </mat-form-field> -->
 
             <!-- <mat-form-field> -->
-                <p>{{data.aspiranteIndividual.correo}}</p>
+                <p>Correo: {{data.aspiranteIndividual.correo}}</p>
             <!-- </mat-form-field> -->
 
             <!-- <mat-form-field> -->
-                <p>{{data.aspiranteIndividual.telefono}}</p>
+                <p>Teléfono: {{data.aspiranteIndividual.telefono}}</p>
             <!-- </mat-form-field> -->
             <!-- <mat-form-field> -->
-                <p>{{data.aspiranteIndividual.direccion}}</p>
+                <p>Dirección: {{data.aspiranteIndividual.direccion}}</p>
             <!-- </mat-form-field> -->
             <!-- <mat-form-field> -->
-                <p>{{data.aspiranteIndividual.idusuario}}</p>
+                <!-- <p>{{data.aspiranteIndividual.idusuario}}</p> -->
             <!-- </mat-form-field> -->
 
 
@@ -52,7 +52,6 @@
 </div>
 
 <h1>Datos Profesionales</h1>
-cwecev
 
 <!-- <div class="contenedorInformacion" *ngFor="let a of aspirantes" > -->
     
@@ -60,18 +59,21 @@ cwecev
       
     <!-- <div   *ngIf="a.usuario_idusuario==usuariosId.idusuario"> -->
         
-        <div *ngIf="aspiranteId != null">
+        <div *ngIf="aspiranteId.posibilidadviajar != null">
 
-                
-                <p>Número de hijos: {{aspiranteId.numerohijos}}</p>
-                <p>Experiencia Laboral: {{aspiranteId.experiencialaboral}}</p>
-                <p>Experticia: {{aspiranteId.experticia}}</p>
+                <p>Profesión: {{profesiondesc}}</p>
+                <p>Descripcion Perfil Profesional: {{aspiranteId.descripcionPerfilProfesional}}</p>
                 <p>Años de experiencia: {{aspiranteId.aniosexperiencia}}</p>
+                <p>Número de hijos: {{aspiranteId.numerohijos}}</p>
                 <p>Fecha de Nacimiento: {{aspiranteId.fechanacimiento}}</p>
                 <p>Posibilidad de viajar: {{aspiranteId.posibilidadviajar}}</p>
-            <div class="mb-3 row">
+                <p>Posibilidad cambio de residencia: {{aspiranteId.posibilidadcambioresidencia}}</p>
+                <p>Salario mínimo aceptado(Mensual): {{aspiranteId.salarioMinimoAceptado}}</p>
+
+                <div class="mb-3 row">
+                <div class="mb-3 row">
                 <div class="col-sm-9">
-                    <video controls src="http://localhost:8000{{aspiranteId.videopresentacion}}"></video>
+                    <video width="400" height="400" controls src="http://localhost:8000{{aspiranteId.videopresentacion}}"></video>
                 </div>
             </div>
 

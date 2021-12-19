@@ -108,6 +108,28 @@ export class PerfilAspiranteComponent implements OnInit {
           }
         })
 
+        this._profesionesService.getProfesiones().subscribe((resp: any)=>{
+          this.profesiones= resp;
+          for(let a of this.aspirantes){
+            if(res.idusuario==a.usuario_idusuario){
+              for(let profesion of this.profesiones){
+                if(profesion.idprofesiones === a.profesiones_idprofesiones){
+                  this.profesiondesc= profesion.profesion
+                }
+    
+              }
+            }
+          }
+
+
+
+          
+          
+        })
+
+
+        
+
       },
       err => {
         this.message = 'You are not logged in';
@@ -131,7 +153,7 @@ export class PerfilAspiranteComponent implements OnInit {
     //this.http.get(`http://127.0.0.1:8000/api/profesiones/${{id}}`);
     this.http.get('http://localhost:8000/api/profesiones/').subscribe((rep:any)=>{
     this.profesiones=rep;
-      console.table(this.profesiones) 
+    console.log(this.profesiones) 
 
 
 

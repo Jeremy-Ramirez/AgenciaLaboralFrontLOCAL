@@ -21,6 +21,8 @@ export class PaquetePagoComponent implements OnInit {
 
   paquetes: any[]=[];
   suscription: Subscription;
+  duracionHoras:any;
+  duracionMeses:any;
   constructor(
     private http: HttpClient,
     public dialog: MatDialog,
@@ -63,8 +65,31 @@ export class PaquetePagoComponent implements OnInit {
     this.http.get('http://localhost:8000/api/paquetePago/').subscribe((doc:any)=>{
       this.paquetes=doc;
       console.log(this.paquetes)
+      this.convertirDuracion()
       
     })
+    
+  }
+
+  convertirDuracion(){
+    for(let paquete of this.paquetes){
+      let duracion = paquete.duracion;
+      if(duracion.split(' ')[0]=='30'){
+        paquete.duracion= "1 Mes"
+      }
+      if(duracion.split(' ')[0]=='60'){
+        paquete.duracion= "2 Meses"
+      }
+      if(duracion.split(' ')[0]=='90'){
+        paquete.duracion= "3 Meses"
+      }
+      if(duracion.split(' ')[0]=='180'){
+        paquete.duracion= "6 Meses"
+      }
+      
+      //console.log(this.paquetes)
+      //this.duracionHoras= duracion.split(' ')[1]+ " Horas"
+    }
     
   }
 

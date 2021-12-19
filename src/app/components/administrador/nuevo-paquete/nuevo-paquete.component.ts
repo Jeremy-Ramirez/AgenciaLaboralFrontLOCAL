@@ -25,6 +25,7 @@ export class NuevoPaqueteComponent implements OnInit {
   correo:any='';
   id:'';
   message = '';
+  duracionMes: any;
   usuarioActual: any;
   hide: boolean = true;
 
@@ -93,13 +94,38 @@ export class NuevoPaqueteComponent implements OnInit {
         if(element.id===this.id){
             this.correo=element.correo;
         }
-      });
     })
   }*/
+  establecerDuracion(){
+    let dur= this.miFormulario.get('duracion').value;
+    let valor='';
+    if(dur=="0"){
+      valor='30 00:00:00';
+      return valor;
+    }
+    if(dur=="1"){
+      valor='60 00:00:00';
+      return valor;
+    }
+    if(dur=="2"){
+      valor='90 00:00:00';
+      return valor;
+    }
+    if(dur=="3"){
+      valor='180 00:00:00';
+      return valor;
+    }
+    return valor;
+  }
 
   createPaquete(){
     console.log(this.miFormulario.value);
     this.miFormulario.get('usuario_idusuario').setValue(this.id);
+    console.log(this.miFormulario.get('duracion').value)
+    this.miFormulario.get('duracion').setValue(this.establecerDuracion());
+    
+    //let dur= this.miFormulario.get('duracion').value.split(' ')
+    //console.log(dur[0])
     
     this.http.post('http://localhost:8000/api/paquetePago/', this.miFormulario.value).subscribe(
       resp => {

@@ -9,7 +9,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 
@@ -29,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SolicitudesContratacionComponent } from './solicitudes-contratacion/solicitudes-contratacion.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SolicitudComponent } from './solicitud/solicitud.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
