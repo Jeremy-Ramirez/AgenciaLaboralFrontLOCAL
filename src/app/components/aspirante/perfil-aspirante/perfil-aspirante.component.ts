@@ -7,6 +7,7 @@ import {TipodocumentoService} from '../../../servicios/tipodocumento.service'
 import {ProvinciaService} from '../../../servicios/provincia.service'
 import { GeneroService } from '../../../servicios/genero.service';
 import { CiudadService } from '../../../servicios/ciudad.service';
+import { ProfesionesService } from '../../../servicios/profesiones.service';
 
 @Component({
   selector: 'app-perfil-aspirante',
@@ -31,12 +32,31 @@ export class PerfilAspiranteComponent implements OnInit {
   aspirantes:any[]=[];
   usuarios:any[]=[];
   archivos:any[]=[];
+
+
+  profesiones:any[]=[];
+  profesiondesc='';
+
   constructor(private http:HttpClient,private fb: FormBuilder,private rutaActiva: ActivatedRoute,
-    private _tipodocumentoService: TipodocumentoService,private _provinciaService:ProvinciaService ,
-    private _generoService:GeneroService, private _ciudadService:CiudadService, private router: Router
+    private _tipodocumentoService: TipodocumentoService,
+    private _provinciaService:ProvinciaService ,
+    private _generoService:GeneroService, 
+    private _ciudadService:CiudadService, 
+    private router: Router, 
+    private _profesionesService:ProfesionesService
     ) { }
 
+
+
+
+
+
   ngOnInit(): void {
+
+
+
+
+
     this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(
       (res: any) => {
         this.message = `Hi ${res.idusuario}`;
@@ -47,13 +67,18 @@ export class PerfilAspiranteComponent implements OnInit {
 
         this._tipodocumentoService.getTipodocumentos().subscribe((resp:any)=>{
           this.tipoDocumentos=resp;
-          console.log(this.tipoDocumentos);
+          //console.log(this.tipoDocumentos);
           for(let doc of this.tipoDocumentos){
             if(doc.idtipodocumento ===res.tipodocumento_idtipodocumento ){
               this.tipodocumentodesc=doc.descripcion
             }
           }
         })
+
+      
+
+
+
 
         this._provinciaService.getProvincias().subscribe((resp:any)=>{
           this.provincias= resp;
@@ -83,8 +108,6 @@ export class PerfilAspiranteComponent implements OnInit {
           }
         })
 
-
-
       },
       err => {
         this.message = 'You are not logged in';
@@ -98,27 +121,45 @@ export class PerfilAspiranteComponent implements OnInit {
     this.getUsuarios();
     this.getAspirantes();
     this.getArchivos();
+    
+    this.getProfesiones();
+
+    
+  }
+
+  getProfesiones(){
+    //this.http.get(`http://127.0.0.1:8000/api/profesiones/${{id}}`);
+    this.http.get('http://localhost:8000/api/profesiones/').subscribe((rep:any)=>{
+    this.profesiones=rep;
+      console.table(this.profesiones) 
+
+
+
+
+    })
   }
 
 
   getAspirantes(){
     this.http.get('http://localhost:8000/api/aspirantes/').subscribe((resp:any)=>{
       this.aspirantes=resp;
-      console.log(this.aspirantes)
-    })
-  }
+      //console.log(this.aspirantes);
+     
+  })
+
+}
 
   getUsuarios(){
     this.http.get('http://localhost:8000/api/usuarios/').subscribe((resp:any)=>{
       this.usuarios=resp;
-      console.log(this.usuarios)
+      //console.log(this.usuarios);
     })
   }
 
   getArchivos(){
     this.http.get('http://localhost:8000/api/archivosaspirante/').subscribe((resp:any)=>{
       this.archivos=resp;
-      console.log(this.archivos)
+      //console.log(this.archivos)
     })
   }
 
@@ -140,4 +181,10 @@ export class PerfilAspiranteComponent implements OnInit {
   editarProfesional(){
     this.router.navigate( [`/aspirante/sesionAspirante/aspiranteProfesional`]);
   }
+
+
+
+
+
+
 }

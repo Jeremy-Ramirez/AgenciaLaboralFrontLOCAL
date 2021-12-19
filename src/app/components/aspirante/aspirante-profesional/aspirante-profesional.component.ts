@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ControlContainer, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProfesionesService } from '../../../servicios/profesiones.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Emitters } from '../clases/emitters';
 import { FormacionProfesionalService } from '../../../servicios/formacion-profesional.service';
-import { Subscription } from 'rxjs';
+import { Subscription,observable, Observable, pipe } from 'rxjs';
+
+import {map,startWith,debounceTime} from 'rxjs/operators';
+
 
 
 @Component({
@@ -20,6 +23,9 @@ export class AspiranteProfesionalComponent implements OnInit {
   videoValido: boolean=true;
   fechaCorrecta=true;
   profesiones:any[]=[];
+  onlyprofesiones=[];
+
+
   aspirantes:any[]=[];
   niveles:any[]=[];
   id: any;
@@ -51,8 +57,31 @@ export class AspiranteProfesionalComponent implements OnInit {
   PCambiar:any;
   Idiomas:any;
 
+  //control= new FormControl();
+  //filProfesiones: Observable<any[]>;
 
 
+  //options=['hola','ç','estas'];
+
+
+
+/*INTENTO FILTRO DINAMICO*/
+
+public keyword="profesion";
+
+data = [
+  {
+    id: 1,
+    name: 'Usa'
+  },
+  {
+    id: 2,
+    name: 'England'
+  }
+];
+
+public data$ :Observable<any[]>;
+Valor:any;
 
   constructor(private fb: FormBuilder,private _profesiones:ProfesionesService,private http:HttpClient, private rutaActiva: ActivatedRoute, 
     private formacionProfesionalService: FormacionProfesionalService, private router: Router) {
@@ -60,7 +89,13 @@ export class AspiranteProfesionalComponent implements OnInit {
   }
   
     
-
+  selectEvent(item) {
+    // do something with selected item
+    //console.log(item.idprofesiones)
+    //item.idprofesiones=this.miFormulario.get('profesiones_idprofesiones').value
+    this.Valor= item.idprofesiones;
+    console.log(this.Valor)
+  }
 
  
   miFormulario: FormGroup= this.fb.group({
@@ -118,7 +153,7 @@ export class AspiranteProfesionalComponent implements OnInit {
     this.getFormacionProfesional();
     this.getAspirantes();
     this.getNivelesEstudios();
-
+    this.getProfesiones();
 
 
     /*
@@ -166,18 +201,51 @@ export class AspiranteProfesionalComponent implements OnInit {
       }
     );
    
-    this._profesiones.getProfesiones().subscribe((resp:any)=>{
-      this.profesiones=resp;
-      console.log(this.profesiones)
-    })
-
+   
     this.suscription = this.formacionProfesionalService.refresh$.subscribe(()=>{
       this.getFormacionProfesional();
     })
-
+/*
+    setTimeout(() => {
+      this._profesiones.getOnlyProfesiones().subscribe((resp:any)=>{
+        this.onlyprofesiones=resp;
+        console.log(resp)
+      })
+    }, 500);
     
+    */
 
+
+
+/*
+    setTimeout(() => {
+      this.filProfesiones = this.control.valueChanges.pipe(
+        debounceTime(500),
+        startWith(''),
+        map(val=> this._filter(val))
+  
+  
+      );
+    }, 500);
+
+*/
+    
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   ngOnDestroy():void{
     this.suscription.unsubscribe();
@@ -431,10 +499,16 @@ export class AspiranteProfesionalComponent implements OnInit {
     formData.append('videopresentacion',this.file)
     formData.append('posibilidadviajar',this.PViajar.value)
     formData.append('posibilidadcambioresidencia',this.PCambiar.value)
-    formData.append('profesiones_idprofesiones',this.Profesiones.value)
+    formData.append('profesiones_idprofesiones',this.Profesiones.value.idprofesiones)
     formData.append('idiomas',this.Idiomas.value)
     formData.append('usuario_idusuario',this.id)
     formData.append('estadoaspirantes_idestadoaspirantes',this.miFormulario.controls['estadoaspirantes_idestadoaspirantes'].value)
+
+    //formData.set('profesiones_idprofesiones','1');
+      console.log(this.NumeroHijos.value)
+      console.log(this.Profesiones.value.idprofesiones)
+
+    
 
     for(let asp of this.aspirantes){
       if(asp.usuario_idusuario==this.id){
@@ -518,5 +592,17 @@ export class AspiranteProfesionalComponent implements OnInit {
 
     }
 
+  }
+
+
+
+  getProfesiones():void{
+
+    this.data$= this._profesiones.getProfesiones();
+    /* this._profesiones.getProfesiones().subscribe((resp:any)=>{
+      this.profesiones=resp;
+      console.log('PROFESIONES:',this.profesiones)
+    })
+*/
   }
 }

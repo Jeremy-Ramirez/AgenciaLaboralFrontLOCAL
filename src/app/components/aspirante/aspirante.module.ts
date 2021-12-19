@@ -25,6 +25,19 @@ import { SugerenciasComentariosComponent } from './sugerencias-comentarios/suger
 import { AspiranteProfesionalComponent } from './aspirante-profesional/aspirante-profesional.component';
 import { LoadingComponent } from './loading/loading.component';
 
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+
+
+
 @NgModule({
   declarations: [
     
@@ -50,6 +63,10 @@ import { LoadingComponent } from './loading/loading.component';
     MatListModule,
     AspiranteRoutingModule,
     RouterModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    AutocompleteLibModule
+
   ],
 
 })

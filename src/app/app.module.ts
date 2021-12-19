@@ -41,8 +41,15 @@ import { NuevoPaqueteComponent } from './components/administrador/nuevo-paquete/
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
+
+/*INTENTO FILTRO DINAMICO*/ 
+
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 
 @NgModule({
@@ -79,6 +86,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatInputModule,
     MatCardModule,
     MatGridListModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    AutocompleteLibModule
     
     
   ],

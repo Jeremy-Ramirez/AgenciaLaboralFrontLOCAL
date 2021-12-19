@@ -2,11 +2,85 @@
 <app-loading *ngIf="loading"></app-loading>    
 <div id="container" *ngIf="!siguiente">
  
+    <!-- <form >
+        <mat-form-field>
+            <mat-label>
+                Profesiones
+            </mat-label>
+
+            <input type="text"
+                matInput
+                [formControl]="control"
+                [matAutocomplete]="auto"
+            >
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+
+                <mat-option *ngFor="let profesion of filProfesiones | async " [value]="profesion.id">
+                    {{profesion.profesion}}
+                </mat-option>
+
+
+            </mat-autocomplete>
+
+
+        </mat-form-field>
+    </form> -->
+ <!-- <form >
+    <mat-form-field>
+        <mat-label>
+            Profesiones
+        </mat-label>
+        <input type="text" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let p of options">
+                {{p}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>  -->
+
+
 
 
     <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardarInfoProfesional()" >
 
         <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Profesiones</label>
+            <div class="col-sm-9"  style="width: 400px;">
+
+                <ng-autocomplete  
+                    formControlName="profesiones_idprofesiones"
+                    [data]="data$ | async "
+                    [searchKeyword]="keyword"
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate"
+                    placeholder='Enter name'
+                    (selected)='selectEvent($event)'
+                    >
+                    
+                    
+                    </ng-autocomplete>
+                    <ng-template #itemTemplate let-item >
+                        <a [innerHTML]="item.profesion" ></a>
+                        </ng-template>
+                        
+                        <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                    
+                    
+
+
+
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Profesiones</label>
             <div class="col-sm-9">
                 
@@ -22,7 +96,7 @@
                 Campo obligatorio
             </span>
             </div>
-        </div>
+        </div> -->
 
         <div class="mb-3 row">
             <label class="col-sm-3 col-form-label">Descripción del perfil profesional</label>
