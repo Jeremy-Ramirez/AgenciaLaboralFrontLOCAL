@@ -375,8 +375,10 @@ Valor:any;
 
         this.formacionProfesionalService.postFormacionProfesional(
           this.miFormularioFormacion.value).subscribe(data=>{
+            this.loading=true;
             console.log("Datos del post",data)
             this.miFormularioFormacion.reset();
+            this.loading=false;
           });
         
       }
@@ -519,9 +521,12 @@ Valor:any;
        
           this.http.patch('http://localhost:8000/api/aspirantes/'+ asp.idaspirante, formData).subscribe(
             resp => {
+              this.loading=true;
               console.log(resp)
             
               alert('DATOS PROFESIONALES GUARDADOS');
+              this.loading=false;
+
               this.router.navigate( [`/aspirante/sesionAspirante/perfilAspirante`]);
             
             
