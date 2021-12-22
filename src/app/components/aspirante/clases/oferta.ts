@@ -1,5 +1,13 @@
 export class OfertaView {
   id: number;
+  aniosexperiencia: number;
+  rangoedad: String;
+  experticia: String;
+  sueldo: number;
+  provincia: String;
+  ciudad: String;
+  fechainicio: String;
+  fechacierre: String;
   cargo: String;
   profesion: String;
   descripcioncargo: String;
@@ -10,17 +18,22 @@ export class OfertaView {
   discapacidad: String;
   posibilidadviajar: String;
   posibilidadcambioresidencia: String;
-  nombreEmpresa: String;
-  fechainicio: String;
-  fechacierre: String;
+  nombreEmpresa: String;  
   estado : number;
   
-  constructor( id?:number, cargo?: string, profesion?: string, 
+  constructor( id?:number,aniosexperiencia?:number, rangoedad?: string,experticia?: string,sueldo?: number,
+    provincia?: string,ciudad?: string,cargo?: string, profesion?: string, 
     descripcioncargo?: string, nivelestudios?: string, jornada?: string,
     licencia?: string, idiomas?: string, discapacidad?: string, posibilidadviajar?: string,
     posibilidadcambioresidencia?: string,nombreEmpresa?: string,
     fechainicio?: string,fechacierre?: string,estado?:number) {
     this.id = id;
+    this.aniosexperiencia = aniosexperiencia;
+    this.rangoedad = rangoedad;
+    this.experticia = experticia;
+    this.sueldo = sueldo;
+    this.provincia = provincia;
+    this.ciudad = ciudad;
     this.cargo = cargo;
     this.profesion = profesion;
     this.descripcioncargo = descripcioncargo;

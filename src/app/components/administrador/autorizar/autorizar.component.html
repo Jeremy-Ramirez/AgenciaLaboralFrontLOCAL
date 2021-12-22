@@ -7,7 +7,7 @@
     
     <h4><small>Solicitudes</small></h4>
     <div  *ngFor= "let i of listaEmpresas" >
-      <div class="card" *ngIf="i.estado===1" >        
+      <div class="card" *ngIf="i.estado===13" >        
        
         <div class="card-body"> 
             
@@ -16,7 +16,7 @@
               <li>Ruc/Cédula {{i.ruc_cedula}}</li>
               <li>Razón Social {{i.razonsocial}}</li>
             </ul>
-
+            
             <button class="button" (click)="autorizar(i.id)" >Autorizar</button>
             <button class="button2" (click)="noautorizar(i.id)">No autorizar</button>
             <button class="button3" routerLink="/administrador/sesionAdministrador/perfilEmpresa/{{i.id}}" >Ver perfil</button>

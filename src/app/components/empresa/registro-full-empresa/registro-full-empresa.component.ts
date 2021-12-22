@@ -213,7 +213,7 @@ export class RegistroFullEmpresaComponent implements OnInit {
     this.validadorruc = true;
     let rucCorrecto = false;
     let ruc=this.formEmpresa.controls['ruc_cedula'].value
-    if (ruc.length == 13 && this.selectedValue=="2"){
+    if (ruc.length == 13 && this.selectedValue=="2"){ //1 natural 2 juridica 1 cedula 2 ruc 
         rucCorrecto= true;
     }else {
       rucCorrecto = false;

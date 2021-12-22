@@ -11,7 +11,8 @@ import { PerfilEmpresaComponent } from './perfil-empresa/perfil-empresa.componen
 import { InformacionComponent } from './informacion/informacion.component';
 import { SugerenciasComentariosComponent } from './sugerencias-comentarios/sugerencias-comentarios.component';
 import { EditPassComponent } from './edit-pass/edit-pass.component';
-  
+import { SolicitudEmpresaComponent } from './solicitud-empresa/solicitud-empresa.component';
+
 const routes: Routes = [
     {
       path: '',
@@ -25,6 +26,7 @@ const routes: Routes = [
             { path: 'informacionEmpresa', component: InformacionComponent},
             { path: 'sugerencias', component: SugerenciasComentariosComponent},
             { path: 'editpass', component: EditPassComponent},
+            { path: 'solicitudEmpresa', component: SolicitudEmpresaComponent},
           ]
         },
         

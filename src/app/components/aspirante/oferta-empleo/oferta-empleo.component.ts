@@ -11,7 +11,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class OfertaEmpleoComponent implements OnInit {
   aspirantessolicitados:any[]=[]; 
-  aspirantessolicitados2:any[]=[]; 
   idUsuariologeado ='';
   idAspirante ='';
   idAspiranteSolicitados ='';
@@ -22,6 +21,8 @@ export class OfertaEmpleoComponent implements OnInit {
   listaEmpresas:any[]=[];
   listaProfesiones:any[]=[];
   listaNivel:any[]=[];
+  listaCiudades:any[]=[];
+  listaProvincias:any[]=[];
   constructor(
     private _aspirantessolicitadosService: AspirantessolicitadosService,
     private _solicitudesService: SolicitudService,    
@@ -35,7 +36,6 @@ export class OfertaEmpleoComponent implements OnInit {
    
     this._aspirantessolicitadosService.getAspirantessolicitados().subscribe((resp:any)=>{
       this.aspirantessolicitados=resp
-      this.aspirantessolicitados2=resp
 
       this.httpClient.get('http://localhost:8000/api/solicitudes/').subscribe((respSolicitudes:any)=>{
         this.listaSolicitudes=respSolicitudes;
@@ -51,17 +51,25 @@ export class OfertaEmpleoComponent implements OnInit {
       })
       this.httpClient.get('http://localhost:8000/api/profesiones/').subscribe((respProfesiones:any)=>{
         this.listaProfesiones=respProfesiones;
+      })      
+      this.httpClient.get('http://localhost:8000/api/ciudades/').subscribe((respCiudades:any)=>{
+        this.listaCiudades=respCiudades;
+      })
+      this.httpClient.get('http://localhost:8000/api/provincias/').subscribe((respProvincias:any)=>{
+        this.listaProvincias=respProvincias;
       })
       this.httpClient.get('http://localhost:8000/api/nivelestudios/').subscribe((respNivel:any)=>{
         this.listaNivel=respNivel;
+        //console.log(this.listaNivel)
       })
       this.httpClient.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe((resp2:any)=>{
-        this.idUsuariologeado= resp2.idusuario;
-        this.addhtml();
-        //this.addhtml2()
+      this.idUsuariologeado= resp2.idusuario;      
+      this.addhtml();
       })
       
+      
     });
+    
     
     
   }
@@ -72,37 +80,9 @@ export class OfertaEmpleoComponent implements OnInit {
     estado_idestado: 3
   })
   
-  yanosirve(){
-    console.log(this.aspirantessolicitados2[2])
-    for(let i=0;i<this.aspirantessolicitados2.length;i++){
-      if(this.aspirantessolicitados2[i].aspirante_idaspirante.idaspirante==this.idAspirante
-        && this.aspirantessolicitados2[i].estado_idestado.estado =="activo"){
-        var oferta = new OfertaView();
-        oferta.id = i;
-        oferta.cargo= this.aspirantessolicitados2[i].solicitud_idsolicitud.cargo
-        oferta.profesion =this.aspirantessolicitados2[i].solicitud_idsolicitud.profesion
-        oferta.descripcioncargo =this.aspirantessolicitados2[i].solicitud_idsolicitud.descripcioncargo
-        oferta.nivelestudios = this.aspirantessolicitados2[i].solicitud_idsolicitud.nivelestudios_idnivelestudios.descripcion
-        oferta.jornada = this.aspirantessolicitados2[i].solicitud_idsolicitud.jornada
-        oferta.licencia = this.aspirantessolicitados2[i].solicitud_idsolicitud.licencia
-        oferta.idiomas = this.aspirantessolicitados2[i].solicitud_idsolicitud.idiomas
-        oferta.discapacidad = this.aspirantessolicitados2[i].solicitud_idsolicitud.discapacidad
-        oferta.posibilidadviajar = this.aspirantessolicitados2[i].solicitud_idsolicitud.posibilidadviajar        
-        oferta.posibilidadcambioresidencia = this.aspirantessolicitados2[i].solicitud_idsolicitud.posibilidadcambioresidencia
-        oferta.nombreEmpresa = this.aspirantessolicitados2[i].solicitud_idsolicitud.representante_idrepresentante.empresa_idempresa.nombrecomercial
-        oferta.fechainicio = this.aspirantessolicitados2[i].solicitud_idsolicitud.fechainicio
-        oferta.fechacierre = this.aspirantessolicitados2[i].solicitud_idsolicitud.fechacierre
-        
-
-
-
-        this.ofertasEmpleo.push(oferta);
-      }
-      
-    }
-  }
-
+ 
   addhtml(){
+    
   var cont = 1; 
   for(let i=0;i<this.aspirantessolicitados.length;i++){
     for(let j=0;j<this.listaAspirantes.length;j++){
@@ -111,7 +91,6 @@ export class OfertaEmpleoComponent implements OnInit {
         if(this.idUsuariologeado==idUsuario ){ //&& (this.aspirantessolicitados[i].estado_idestado==1)
           for(let x=0;x<this.listaSolicitudes.length;x++){
             if(this.aspirantessolicitados[i].solicitud_idsolicitud==this.listaSolicitudes[x].idsolicitud){
-              
               var oferta = new OfertaView();
               oferta.id = cont;
               oferta.estado =this.aspirantessolicitados[i].estado_idestado;
@@ -121,15 +100,30 @@ export class OfertaEmpleoComponent implements OnInit {
                   oferta.profesion = this.listaProfesiones[p].profesion
                 }
               }   
-             
               oferta.descripcioncargo =this.listaSolicitudes[x].descripcioncargo
-
+              
               for(let n=0;n<this.listaNivel.length;n++){
                 if(this.listaNivel[n].idnivelestudios==this.listaSolicitudes[x].nivelestudios_idnivelestudios){
                   oferta.nivelestudios = this.listaNivel[n].descripcion
+                  
                 }
               } 
-              
+              for(let c=0;c<this.listaCiudades.length;c++){
+                if(this.listaCiudades[c].idciudad==this.listaSolicitudes[x].ciudad_idciudad){
+                  oferta.ciudad = this.listaCiudades[c].nombreciudad
+                 
+                }
+              } 
+              for(let c=0;c<this.listaProvincias.length;c++){
+                if(this.listaProvincias[c].idprovincia==this.listaSolicitudes[x].provincia_idprovincia){
+                  oferta.provincia = this.listaProvincias[c].nombreprovincia
+                  console.log(oferta.provincia)
+                }
+              } 
+              oferta.aniosexperiencia = this.listaSolicitudes[x].aniosexperiencia
+              oferta.rangoedad = this.listaSolicitudes[x].rangoedad
+              oferta.experticia = this.listaSolicitudes[x].experticia
+              oferta.sueldo = this.listaSolicitudes[x].sueldo
               oferta.jornada = this.listaSolicitudes[x].jornada
               oferta.licencia = this.listaSolicitudes[x].licencia
               oferta.idiomas = this.listaSolicitudes[x].idiomas
@@ -142,6 +136,7 @@ export class OfertaEmpleoComponent implements OnInit {
                   for(let e=0;e<this.listaEmpresas.length;e++){
                     if(this.listaEmpresas[e].idempresa==idEmpresa){
                       oferta.nombreEmpresa = this.listaEmpresas[y].nombrecomercial
+                      
                     }
                   }                  
                 }
@@ -149,7 +144,7 @@ export class OfertaEmpleoComponent implements OnInit {
               
               oferta.fechainicio = this.listaSolicitudes[x].fechainicio
               oferta.fechacierre = this.listaSolicitudes[x].fechacierre
-        
+              
               this.ofertasEmpleo.push(oferta);
               cont++;
             }
