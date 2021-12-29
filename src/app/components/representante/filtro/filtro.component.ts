@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { NivelEstudiosService } from '../../../servicios/nivel-estudios.service';
 import { RegistroFullEmpresaComponent } from '../../empresa/registro-full-empresa/registro-full-empresa.component';
+import { Subscription,observable, Observable, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-filtro',
@@ -20,6 +21,18 @@ import { RegistroFullEmpresaComponent } from '../../empresa/registro-full-empres
 export class FiltroComponent implements OnInit {
 
   //@Input() usuarioActual:RegistroFullEmpresaComponent;
+  public keyword="profesion";
+  public data$ :Observable<any[]>;
+  Valor:any;
+
+  opcionSeleccionado: string  = '';
+  verSeleccion: string        = '';
+
+  opcionSeleccionadoC: string  = '';
+  verSeleccionC: string        = '';
+
+  disponibilidadSeleccionada: string ='';
+  cambioresidenciaSeleccionada: string ='';
 
   @Input() usuarioActual:any;
   
@@ -60,17 +73,23 @@ export class FiltroComponent implements OnInit {
     private http: HttpClient) { }
 
   ngOnInit(): void {
-
+    this.getProfesiones();
     this._provinciaService.getProvincias().subscribe((resp:any)=>{
       this.provincias=resp
       console.log(this.provincias)
 
     });
+/*
+    this._ciudadService.getCiudades().subscribe((resp:any)=>{
+      this.ciudades=resp
+    })
 
+*/
+/*
     this._profesionService.getProfesiones().subscribe((resp:any)=>{
       this.profesiones=resp;
     })
-
+*/
     this._nivelestudiosService.getNivel().subscribe((resp:any)=>{
       this.niveles=resp;
     })
@@ -100,13 +119,14 @@ export class FiltroComponent implements OnInit {
     })
 
     //this.Genero=this.miFormulario.controls['genero'].value
+    /*
     this.Genero=this.miFormulario.get('genero')
     this.Provincia= this.miFormulario.get('provincia')
     this.Ciudad= this.miFormulario.get('ciudad')
     this.Posibilidad= this.miFormulario.get('posibilidadviajar')
     this.Cambio= this.miFormulario.get('posibilidadcambioresidencia')
     this.Nivel= this.miFormulario.get('nivelestudios_idnivelestudios')
-
+*/
 
 
 
@@ -190,8 +210,23 @@ switchMap(cx=>this._ciudadService.getCiudades())
 
 
 
+  getProfesiones():void{
 
+    this.data$= this._profesionService.getProfesiones();
+    /* this._profesiones.getProfesiones().subscribe((resp:any)=>{
+      this.profesiones=resp;
+      console.log('PROFESIONES:',this.profesiones)
+    })
+*/
+  }
 
+  selectEvent(item) {
+    // do something with selected item
+    //console.log(item.idprofesiones)
+    //item.idprofesiones=this.miFormulario.get('profesiones_idprofesiones').value
+    this.Valor= item.idprofesiones;
+    console.log(this.Valor)
+  }
 
 
 
@@ -200,6 +235,24 @@ switchMap(cx=>this._ciudadService.getCiudades())
     console.log(this.Genero.value)
     
   }
+
+  capturar() {
+    // Pasamos el valor seleccionado a la variable verSeleccion
+    this.verSeleccion = this.opcionSeleccionado;
+}
+
+
+capturarCiudad(){
+  this.verSeleccionC = this.opcionSeleccionadoC;
+}
+
+radioChangeHandler(event:any){
+  this.disponibilidadSeleccionada= event.target.value;
+}
+radioChangeHandler2(event:any){
+  
+  this.cambioresidenciaSeleccionada= event.target.value;
+}
 
 
 }

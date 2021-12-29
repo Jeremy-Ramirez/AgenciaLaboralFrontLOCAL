@@ -1,7 +1,202 @@
 <h1 class="mt-5">Selectores anidados</h1>
 
-{{this.usuarioActual}}
-<div>
+
+
+
+<div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Profesiones</label>
+    <div class="col-sm-9"  style="width: 400px;">
+
+        <ng-autocomplete  
+            formControlName="profesiones_idprofesiones"
+            [data]="data$ | async "
+            [searchKeyword]="keyword"
+            [itemTemplate]="itemTemplate"
+            [notFoundTemplate]="notFoundTemplate"
+            placeholder='Ingrese una profesión'
+            (selected)='selectEvent($event)'
+
+            >
+            
+            
+            </ng-autocomplete>
+            <ng-template #itemTemplate let-item >
+                <a [innerHTML]="item.profesion" ></a>
+                </ng-template>
+                
+                <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+                </ng-template>
+            
+            
+
+
+
+
+
+    </div>
+
+
+
+   
+
+
+</div>
+
+<br>
+
+<!-- <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Provincias</label>
+    <select class="form-control"style="margin-left: 50px; width:200px" (change)="capturar()" [(ngModel)]="opcionSeleccionado">
+            <option  value="">---Seleccione Provincia---</option>
+            <option  value="0">Todas</option>
+            <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                {{p.nombreprovincia}}
+            </option>
+        </select>
+
+        <p >Haz seleccionado la opción # {{ verSeleccion }}</p>
+</div> -->
+<!-- 
+
+<div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Ciudades</label>
+    <select class="form-control"style="margin-left: 50px; width:200px" >
+            <option  value="">---Seleccione Ciudad---</option>
+            <option *ngFor="let c of ciudades"  value="{{c.idprovincia}}">
+                {{c.nombreciudad}}
+            </option>
+        </select>
+
+     
+</div> -->
+
+
+<form [formGroup]="miFormulario" >
+
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Provincias</label>
+        <select class="form-control"style="margin-left: 50px; width:200px" formControlName='provincia' (change)="capturar()" [(ngModel)]="opcionSeleccionado">
+                <option  value="">---Seleccione Provincia---</option>
+                <option  value="0">Todas</option>
+                <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                    {{p.nombreprovincia}}
+                </option>
+            </select>
+            <p class="col-sm-3 col-form-label">Haz seleccionado la opción # {{ verSeleccion }}</p>
+        
+    </div>
+
+      <div class="mb-3 row"  *ngIf="this.verSeleccion !='0' ">
+            <label class="col-sm-3 col-form-label">Ciudad</label>
+            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='ciudad' (change)="capturarCiudad()" [(ngModel)]="opcionSeleccionadoC">
+                <option  value="">---Seleccione Ciudad---</option>
+                <option *ngFor="let c of ciudesE" value="{{c.idciudad}}">
+                   {{c.nombreciudad}}
+                </option>
+            </select>
+            <p class="col-sm-3 col-form-label">Haz seleccionado la opción # {{ verSeleccionC }}</p>
+
+    </div>  
+
+
+
+    
+</form>
+
+
+
+<div class="mb-3 row" *ngIf="this.verSeleccion !='0'">
+
+        <label class="col-sm-3 col-form-label">Disponibilidad para viajar</label>
+    <input type="radio" value="si"  style="margin-left: 50px;" (change)="radioChangeHandler($event)" ngModel> Si
+    <input type="radio" value="no"  style="margin-left: 50px;" (change)="radioChangeHandler($event)" ngModel > No
+
+    <p >Haz seleccionado la opción # {{ disponibilidadSeleccionada }}</p>
+
+</div>
+
+<form >
+<div class="mb-3 row" *ngIf="this.verSeleccion !='0'" >
+    <label class="col-sm-3 col-form-label">Cambio residencia</label>
+    <input type="radio" value="si"  style="margin-left: 50px;" (change)="radioChangeHandler2($event)"  ngModel> Si
+    <input type="radio" value="no"  style="margin-left: 50px;" (change)="radioChangeHandler2($event)"  ngModel > No
+
+
+    <p >Haz seleccionado la opción # {{cambioresidenciaSeleccionada }}</p>
+
+
+</div>  
+</form>
+
+
+
+
+
+
+
+
+<br>
+<br><br><br>
+
+
+
+
+
+<div class="row borde" style="margin-left: 50px;">
+    <div class="col-75">
+        <label class="form-label" style="margin-left: 50px;">ASPIRANTES </label>
+
+
+        
+
+
+
+
+        <div *ngFor="let u of usuarios">
+            <div *ngFor= "let a of aspirantes">
+                    <div *ngIf="u.rol_idrol ==2 && u.idusuario == a.usuario_idusuario">
+                        
+
+
+                            <div *ngIf="a.profesiones_idprofesiones == this.Valor  
+                            && u.provincia_idprovincia == this.verSeleccion 
+                            && u.ciudad_idciudad == this.verSeleccionC
+                            && a.posibilidadviajar == this.disponibilidadSeleccionada
+                            && a.posibilidadcambioresidencia == this.cambioresidenciaSeleccionada
+                            ">
+
+                                <p>{{u.nombreusuario}}</p>
+
+                            </div>
+
+                            <div *ngIf=" a.profesiones_idprofesiones == this.Valor && this.verSeleccion == '0'">
+                                <p> {{u.nombreusuario}}</p>
+                            </div>
+
+                            
+
+
+
+
+                    </div>
+            </div>
+            
+        </div>
+    </div>
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div>
 <form [formGroup]="miFormulario" (ngSubmit)="solicitar()">
     <div class="row">
         <div class="col-75">
@@ -97,66 +292,13 @@
 
 
 </form>
-</div>
+</div> -->
 
-<h3>Formulario</h3>
-<pre>Valid: {{miFormulario.valid}}</pre>
-<pre>{{miFormulario.value | json}}</pre>
-
+<!-- <pre>Valid: {{miFormulario.valid}}</pre>
+<pre>{{miFormulario.value | json}}</pre> -->
 
 
-
-
-<div class="row borde" style="margin-left: 50px;">
-    <div class="col-75">
-        <label class="form-label" style="margin-left: 50px;">ASPIRANTES </label>
-        <div *ngFor="let u of usuarios">
-            <div *ngFor="let a of aspirantes">
-
-                <div *ngIf= " u.rol_idrol == 2 &&
-                              u.idusuario == a.usuario_idusuario 
-                              && u.genero_idgenero == this.Genero.value && 
-                              u.provincia_idprovincia == this.Provincia.value && 
-                              u.ciudad_idciudad == this.Ciudad.value &&
-                              a.posibilidadviajar == this.Posibilidad.value && 
-                              a.posibilidadcambioresidencia == this.Cambio.value ">
-
-                    
-
-                              <table>
-                                <tr>
-                                    <td>NOMBRES</td>
-                                    <td>APELLIDOS</td>
-                                    <td>PROFESIÓN</td>
-                                    <td >ACCIÓN</td>
-        
-                                </tr>
-                                <tr>
-                                    <td>
-                                        {{u.nombre | uppercase}}
-                                    </td>
-                                    <td>
-                                        {{u.apellido | uppercase}}
-                                    </td>
-                                    <td>
-                                        {{profesiondesc}}
-                                    </td>
-                                    <td>
-                                        <button>Ver perfil</button>
-                                    </td>
-
-                                    
-                                </tr>
-                            </table>
-                </div>
-               
-            </div>
-            
-            
-        </div>
-     
-    </div>
-</div> 
+  
 
 
 <!-- <div class="row borde" style="margin-left: 50px;">
