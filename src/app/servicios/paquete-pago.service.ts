@@ -44,6 +44,18 @@ export class PaquetePagoService {
 
   }
 
+  public patchPaquetePago(idPaquete: any, infoPaquete: any, headers: any): Observable<any>{
+    return this.http.patch(this.API_PaquetePago+idPaquete, infoPaquete, headers)
+    .pipe(
+      tap(()=>{
+        console.log("Entró a tap")
+        this._refresh$.next();
+      })
+    )
+  }
+
+
+
 
 
   

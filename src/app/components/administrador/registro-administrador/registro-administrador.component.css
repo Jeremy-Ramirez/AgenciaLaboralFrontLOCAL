@@ -11,6 +11,9 @@ html, body {
 }
  
 #container {
+    display: grid;
+    grid-template-rows: 35px 150px;
+    justify-items: center;
     position: fixed;
     width: 340px;
     height: 280px;
@@ -19,9 +22,10 @@ html, body {
     margin-top: -140px;
     margin-left: -170px;
     background: #fff;
-    border-radius: 3px;
-    border: 1px solid #ccc;
+    border-radius: 30px;
+    /* border: 1px solid #ccc; */
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+    background-color: #33C1CF;
     -webkit-animation-name: bounceIn;
     -webkit-animation-fill-mode: both;
     -webkit-animation-duration: 1s;
@@ -38,23 +42,53 @@ html, body {
     animation-iteration-count: 1;
     animation-timing-function: linear;
 }
+
+#cerrar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-end;
+    width: 90%;
+
+}
+
+.close{
+    width: 30px;
+    height: 30px;
+    margin-right: -10px;
+    margin-top: 5px;
+}
  
 form {
+    display: grid;
+    grid-template-rows: 170px 15px 50px;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 0px;
+    width: 100%;
+    height: 100%;
 }
  
 label {
-    color: #555;
-    display: inline-block;
-    margin-left: 18px;
-    padding-top: 10px;
+    color: white;
+    display: block;
+    margin-left: 0px;
+    padding-top: 5px;
     font-size: 14px;
+    text-align: center;
+    background: #5F5858;
+}
+
+#datos{
+    display: grid;
+    grid-template-rows: 30px 50px 30px 50px;
 }
  
 p a{
     font-size: 11px;
-    color: #aaa;
+    color: black;
     float: right;
     margin-top: -13px;
     margin-right: 20px;
@@ -72,45 +106,73 @@ input{
     font-size: 12px;
     outline: none;
 }
+
+/* .divinput{
+    text-align:center;
+} */
  
-input[type=name], input[type=text],
+input[type=email], input[type=text],
 input[type=password] {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 15px;
+    margin-bottom: auto;
     color: #777;
-    padding-left: 10px;
+    /* padding-left: 10px;
     margin: 10px;
     margin-top: 12px;
-    margin-left: 18px;
-    width: 290px;
-    height: 35px;
+    margin-left: 18px; */
+    width: 90%;
+    height: 60%;
     border: 1px solid #c7d0d2;
-    border-radius: 2px;
-    box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 5px #f5f7f8;
-    -webkit-transition: all .4s ease;
+    border-radius: 10px;
+    /* box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 1px #f5f7f8; */
+    /* -webkit-transition: all .4s ease;
     -moz-transition: all .4s ease;
-    transition: all .4s ease;
+    transition: all .4s ease; */
 }
  
-input[type=name]:hover,
+/* input[type=name]:hover,
 input[type=password]:hover {
     border: 1px solid #b6bfc0;
     box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .7), 0 0 0 5px #f5f7f8;
-}
+} */
  
-input[type=name]:focus,
+/* input[type=name]:focus,
 input[type=password]:focus {
     border: 1px solid #a8c9e4;
     box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 5px #e6f2f9;
+} */
+
+#topcenterbar {
+    background: #5F5858;
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    box-shadow: inset 0 1px 1px #fff;
+    /* border-top: 1px solid #5F5858; */
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    
 }
  
 #lower {
-    background: #ecf2f5;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    background: #33C1CF;
     width: 100%;
-    height: 69px;
-    margin-top: 20px;
-    box-shadow: inset 0 1px 1px #fff;
-    border-top: 1px solid #ccc;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
+    height: 60px;
+    margin-top: 0px;
+    /* box-shadow: inset 0 1px 1px #fff; */
+    /* border-top: 1px solid #ccc; */
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
 }
  
 input[type=checkbox] {
@@ -127,33 +189,34 @@ input[type=checkbox] {
  
 input[type=submit] {
     float: right;
-    margin-right: 20px;
-    margin-top: 20px;
+    margin-right: 0px;
+    margin-top: -15px;
     width: 80px;
     height: 30px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #77D4FD;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#77D4FD), to(#77D4FD));
-    background-image: -moz-linear-gradient(top left 90deg, #77D4FD 0%, #6ec2e8 100%);
-    background-image: linear-gradient(top left 90deg, #77D4FD 0%, #6ec2e8 100%);
+    font-size: 12px;
+    font-weight: 600px;
+    color: white;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#F89624), to(#F89624));
+    background-image: -moz-linear-gradient(top left 90deg, #F89624 0%, #F89624 100%);
+    background-image: linear-gradient(top left 90deg, #F89624 0%, #F89624 100%);
     border-radius: 30px;
-    border: 1px solid #66add6;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(119, 212, 253, .5);
+    border: 1px solid #F89624;
+    /* box-shadow: 0 1px 2px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(119, 212, 253, .5); */
     cursor: pointer;
+    background-color: #F89624;
 }
  
-input[type=submit]:hover {
+/* input[type=submit]:hover {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#b6e2ff), to(#6ec2e8));
     background-image: -moz-linear-gradient(top left 90deg, #b6e2ff 0%, #6ec2e8 100%);
     background-image: linear-gradient(top left 90deg, #b6e2ff 0%, #6ec2e8 100%);
-}
+} */
  
-input[type=submit]:active {
+/* input[type=submit]:active {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#6ec2e8), to(#b6e2ff));
     background-image: -moz-linear-gradient(top left 90deg, #6ec2e8 0%, #b6e2ff 100%);
     background-image: linear-gradient(top left 90deg, #6ec2e8 0%, #b6e2ff 100%);
-}
+} */
 
 button {
     float: right;
@@ -173,7 +236,7 @@ button {
 .field-icon {
     float: right;
     margin-right: 35px;
-    margin-top: -42px;
+    margin-top: -25px;
     position: relative;
     z-index: 2;
 }

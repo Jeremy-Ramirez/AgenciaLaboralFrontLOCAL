@@ -14,7 +14,6 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/shared/main/main.component';
-import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {TipodocumentoService} from './servicios/tipodocumento.service';
@@ -48,6 +47,12 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 /*INTENTO FILTRO DINAMICO*/ 
 
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { EditarPaqueteComponent } from './components/administrador/editar-paquete/editar-paquete.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ListaSolicitudAspirantesService } from './servicios/lista-solicitud-aspirantes.service';
+import { ContratacionComponent } from './components/representante/contratacion/contratacion.component';
+import { SharedModule } from './components/shared/shared.module';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -63,6 +68,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     LoginComponent,
     MainComponent,
     RegisterComponent,
+    EditarPaqueteComponent,
     
 
 
@@ -85,8 +91,10 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     MatGridListModule,
     MatFormFieldModule,
     MatAutocompleteModule,
-    AutocompleteLibModule
-    
+    AutocompleteLibModule,
+    MatDialogModule,
+    SharedModule,
+
     
   ],
   providers: [TipodocumentoService,
@@ -98,7 +106,8 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     ActividadeconomicaService,
     CiudadService,
     EmpresaService,
-    SectorService
+    SectorService, 
+    ListaSolicitudAspirantesService,
   ],
   bootstrap: [AppComponent]
 })

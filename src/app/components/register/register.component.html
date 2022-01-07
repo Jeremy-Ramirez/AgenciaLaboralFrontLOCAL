@@ -1,19 +1,31 @@
+<app-navbar></app-navbar>
 
+
+<section id="page">
+        
 <div id="container">
        
+        <div id="cerrar">
                 <button type="button" routerLink="/main" class="close" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <!-- <span aria-hidden="true">&times;</span> -->
+                        <img src="assets/img/IconosAgenciaLaboral-38.png" alt="cerrar">
                 </button>
-                <div id="lower">
-                        <!-- Seleccione un perfil -->
-                        <label for="name">Seleccione un perfil</label>
-                        <button class="registro" routerLink="/empresa/registroEmpresa">Empresa</button>
-                        <button class="registro" routerLink="/aspirante/registroAspirante">Aspirante</button>
-                        <button class="registro" routerLink="/administrador/registroAdministrador">Administrador</button>
-
-                </div>
-
-
+        </div>
+        <div id="lower">
+                <!-- Seleccione un perfil -->
+                <label for="name">Seleccione un perfil</label>
                 
 
+        </div>
+
+        <div id="buttoncontainer">
+                <button class="registro usersbutton" routerLink="/aspirante/registroAspirante">Aspirante</button>
+                <button class="registro usersbutton" routerLink="/empresa/registroEmpresa">Empresa</button>
+                <button class="registro adminbutton"  routerLink="/administrador/registroAdministrador">Administrador</button>
+        </div>
+
+
+        
+
 </div>
+</section>

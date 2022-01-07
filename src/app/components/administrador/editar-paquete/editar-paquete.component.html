@@ -1,6 +1,8 @@
 <div class="row">
     <div class="col">
-        <h1>Nuevo Paquete de Pago</h1>
+
+        <mat-icon mat-icon-button (click)="cancelar()">close</mat-icon>
+        <h1>Editar Paquete de Pago</h1>
 
         <form autocomplete="off" [formGroup]="miFormulario" enctype="multipart/form-data">
             
@@ -22,6 +24,9 @@
                 </div>
             </div>
 
+            <button (click)="editarNombrePaquete()">Editar</button>
+            <button *ngIf="botonGuardarNombre" (click)="guardarPaquete()">Guardar</button>
+
 
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Descripción </label>
@@ -38,6 +43,9 @@
                     </span>
                 </div>
             </div>
+
+            <button (click)="editarDescripcionPaquete()">Editar</button>
+            <button *ngIf="botonGuardardescripcion" (click)="guardarPaquete()">Guardar</button>
 
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Precio</label>
@@ -57,6 +65,9 @@
                     
                 </div>
             </div>
+
+            <button (click)="editarPrecioPaquete()">Editar</button>
+            <button *ngIf="botonGuardarprecio" (click)="guardarPaquete()">Guardar</button>
             <!-- <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Duración</label>
                 <div class="col-sm-9">
@@ -99,6 +110,10 @@
                 </div>
             </div>
 
+            <button (click)="editarDuracionPaquete()">Editar</button>
+            <button *ngIf="botonGuardarduracionpaquetes" (click)="guardarPaquete()">Guardar</button>
+
+
 
             
 
@@ -122,6 +137,10 @@
                     </span>
                 </div>
             </div>
+
+            <button (click)="editarfechaCreacionPaquete()">Editar</button>
+            <button *ngIf="botonGuardarfecharegistro" (click)="guardarPaquete()">Guardar</button>
+
             <div class="row">
                 <div class="col-25">
                 <!-- fechacierre -->
@@ -142,14 +161,17 @@
                 </div>
             </div>
 
+            <button (click)="editarfechaCaducidadPaquete()">Editar</button>
+            <button *ngIf="botonGuardarfechacaducidad" (click)="guardarPaquete()">Guardar</button>
+
             <div class="row">
                 <div class="col">
                     <button type="submit"
-                            (click)="createPaquete()"
+                            (click)="cancelar()"
                             [disabled]="miFormulario.invalid"
                             class="btn btn-primary float-end" 
                             >
-                        Guardar
+                        Cerrar
                     </button>
                 </div>
             </div>

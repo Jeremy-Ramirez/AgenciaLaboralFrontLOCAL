@@ -11,11 +11,14 @@
   
   <div class="row" class="paqueteslista">
         <div class="row" *ngFor="let paquete of paquetes" class="paqueteindividual">
-            <div class="col">
+          <div class="col">
                 <mat-card class="example-card">
                   <mat-card-actions class="iconoborrar">
                     <!-- <button mat-button>LIKE</button> -->
-                    <button mat-button>Editar</button>
+                    <button ngClass="boton" mat-button color="primary" (click)="abrirDialogoEdicion(paquete.idpaquetepago)" class="btn btn-primary float-end"  >
+                    
+                      Editar
+                    </button> 
                     <mat-icon aria-hidden="false" aria-label="Example home icon"  (click)="eliminarPaquete(paquete.idpaquetepago)" >delete</mat-icon>
   
   
@@ -33,9 +36,16 @@
                       <p>
                         Precio: {{paquete.precio}} USD
                       </p>
-                      <p>
-                        Duración: {{paquete.duracion}}
-                      </p>
+                      <div *ngFor="let duracion of duracionPaquete">
+                        <div *ngIf="paquete.duracionpaquetes_idduracionpaquetes == duracion.idduracionpaquetes">
+
+                          <p>
+                            Duración: {{duracion.descripcion}}
+                          </p>
+
+                        </div>
+                      </div>
+                      
                       <p>
                         Fecha de Creación: {{paquete.fecharegistro}}
                       </p>
@@ -46,6 +56,7 @@
                     
                 </mat-card>
             </div>
+            
         </div>
   </div>
 

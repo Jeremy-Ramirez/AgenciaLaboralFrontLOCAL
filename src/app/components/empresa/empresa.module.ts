@@ -25,6 +25,7 @@ import { SugerenciasComentariosComponent } from './sugerencias-comentarios/suger
 import { EditPassComponent } from './edit-pass/edit-pass.component';
 import { FiltroComponent } from '../representante/filtro/filtro.component';
 import { SolicitudEmpresaComponent } from './solicitud-empresa/solicitud-empresa.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SolicitudEmpresaComponent } from './solicitud-empresa/solicitud-empresa
     MatListModule,
     EmpresaRoutingModule,
     RouterModule,
+    SharedModule,
     
   ],
 })

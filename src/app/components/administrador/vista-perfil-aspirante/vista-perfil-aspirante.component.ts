@@ -212,14 +212,15 @@ export class VistaPerfilAspiranteComponent implements OnInit, OnDestroy {
         formData.append('usuario_idusuario',this.id)
         formData.append('archivo',this.file)
     
-    
+        this.loading=true;
         console.log(this.miFormulario.value);
         this.archivosAspiranteService.postArchivosAspirante(
           formData).subscribe(data=>{
-            this.loading=true;
+            
+            this.loading=false;
             console.log("Datos del post",data)
             alert('Archivo Guardado')
-            this.loading=false;
+            
             this.miFormulario.reset();
           });
       }

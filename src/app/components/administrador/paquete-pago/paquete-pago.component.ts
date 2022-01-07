@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NuevoPaqueteComponent } from '../nuevo-paquete/nuevo-paquete.component';
 import { Subscription } from 'rxjs';
 import { PaquetePagoService } from '../../../servicios/paquete-pago.service';
+import { EditarPaqueteComponent } from '../editar-paquete/editar-paquete.component';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class PaquetePagoComponent implements OnInit {
   suscription: Subscription;
   duracionHoras:any;
   duracionMeses:any;
+  duracionPaquete: any[]=[];
+
   constructor(
     private http: HttpClient,
     public dialog: MatDialog,
@@ -45,6 +48,13 @@ export class PaquetePagoComponent implements OnInit {
         this.agregar(art);
     });
   }
+  abrirDialogoEdicion(idPaquete){
+    const dialogoEdicion = this.dialog.open(EditarPaqueteComponent,{
+      data: {Paquete: idPaquete},
+      height: '800px',
+      width: '1000px'
+    })
+  }
 
   reloadComponent() {
     let currentUrl = this.router.url;
@@ -65,14 +75,26 @@ export class PaquetePagoComponent implements OnInit {
     this.http.get('http://localhost:8000/api/paquetePago/').subscribe((doc:any)=>{
       this.paquetes=doc;
       console.log(this.paquetes)
-      this.convertirDuracion()
+      
+      
+
+      
+    })
+    
+  }
+
+  getDuracionPaquete(){
+    this.http.get('http://localhost:8000/api/duracionpaquetes/').subscribe((duracionPaquete:any)=>{
+      this.duracionPaquete=duracionPaquete;
+      console.log(this.duracionPaquete)
+
       
     })
     
   }
 
   convertirDuracion(){
-    for(let paquete of this.paquetes){
+    /*for(let paquete of this.paquetes){
       let duracion = paquete.duracion;
       if(duracion.split(' ')[0]=='30'){
         paquete.duracion= "1 Mes"
@@ -89,12 +111,34 @@ export class PaquetePagoComponent implements OnInit {
       
       //console.log(this.paquetes)
       //this.duracionHoras= duracion.split(' ')[1]+ " Horas"
+
+      
+    }*/
+
+    for(let paquete of this.paquetes){
+      for(let duracion of this.duracionPaquete){
+        if(paquete.duracionpaquetes_idduracionpaquetes == duracion.idduracionpaquete){
+          paquete.duracionpaquetes_idduracionpaquetes=duracion.descripcion
+        }
+      }
+      
+      //console.log(this.paquetes)
+      //this.duracionHoras= duracion.split(' ')[1]+ " Horas"
     }
     
   }
 
   ngOnInit(): void {
+    this.getDuracionPaquete()
     this.getPaquetePago();
+
+    /*setTimeout(()=>{
+      this.convertirDuracion()
+    }, 200);*/
+
+    
+
+
     this.suscription = this.paquetePagoService.refresh$.subscribe(()=>{
       this.ngOnInit()
 

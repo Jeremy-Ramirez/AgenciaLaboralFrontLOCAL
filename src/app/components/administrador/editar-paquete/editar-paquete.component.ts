@@ -1,19 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Emitters } from '../clases/emitters';
-
+import { PaquetePagoService } from '../../../servicios/paquete-pago.service';
 
 @Component({
-  selector: 'app-nuevo-paquete',
-  templateUrl: './nuevo-paquete.component.html',
-  styleUrls: ['./nuevo-paquete.component.css']
+  selector: 'app-editar-paquete',
+  templateUrl: './editar-paquete.component.html',
+  styleUrls: ['./editar-paquete.component.css']
 })
-export class NuevoPaqueteComponent implements OnInit {
+export class EditarPaqueteComponent implements OnInit {
 
   genero:any[]=[];
   tipoDocumento:any[]=[];
@@ -33,6 +31,14 @@ export class NuevoPaqueteComponent implements OnInit {
   seleccionado:string;
   seleccionuser:string;
   nombredoc:any;
+
+  //Guardar campos individuales
+  botonGuardarNombre: boolean= false;
+  botonGuardardescripcion: boolean= false;
+  botonGuardarprecio: boolean= false;
+  botonGuardarduracionpaquetes: boolean= false;
+  botonGuardarfecharegistro: boolean= false;
+  botonGuardarfechacaducidad: boolean= false;
   
 
   miFormulario: FormGroup = this.fb.group({
@@ -55,8 +61,9 @@ export class NuevoPaqueteComponent implements OnInit {
     private http: HttpClient, 
     private router: Router,
     private rutaActiva: ActivatedRoute,
-    public dialogRef: MatDialogRef<NuevoPaqueteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {aspiranteIndividual: any},
+    private paquetePagoService: PaquetePagoService,
+    public dialogRef: MatDialogRef<EditarPaqueteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: {Paquete: any},
     ) {
     //this.getUsuarios();
     
@@ -164,11 +171,17 @@ export class NuevoPaqueteComponent implements OnInit {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     this.http.patch<any>("http://localhost:8000/api/paquetePago/"+this.id,this.miFormulario.value,{headers: headers}).subscribe(
-      resp => console.log(resp),
-      err => console.log(err)
-        );
-        
-    alert('INFORMACIÓN ACTUALIZADA');
+      resp => {
+        console.log(resp),
+        alert('INFORMACIÓN ACTUALIZADA'),
+        this.cancelar()
+        this.reloadComponent()
+      },
+      err => {
+        console.log(err)
+      }
+      
+      );
 
   }
 
@@ -217,6 +230,84 @@ export class NuevoPaqueteComponent implements OnInit {
   }
 
 
+
+  editarNombrePaquete(){
+    this.miFormulario.controls['nombrepaquete'].enable();
+    this.botonGuardarNombre =true
+  }
+  editarDescripcionPaquete(){
+    this.miFormulario.controls['descripcion'].enable();
+    this.botonGuardardescripcion =true
+  }
+  editarPrecioPaquete(){
+    this.miFormulario.controls['precio'].enable();
+    this.botonGuardarprecio =true
+  }
+  editarDuracionPaquete(){
+    this.miFormulario.controls['duracionpaquetes_idduracionpaquetes'].enable();
+    this.botonGuardarduracionpaquetes =true
+  }
+  editarfechaCreacionPaquete(){
+    this.miFormulario.controls['fecharegistro'].enable();
+    this.botonGuardarfecharegistro =true
+  }
+  editarfechaCaducidadPaquete(){
+    this.miFormulario.controls['fechacaducidad'].enable();
+    this.botonGuardarfechacaducidad =true
+  }
+  
+
+  guardarPaquete(){
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    let formData= new FormData();
+    
+    
+    if(this.botonGuardarNombre){
+      formData.append("nombrepaquete", this.miFormulario.get('nombrepaquete').value)
+    }
+    if(this.botonGuardardescripcion){
+      formData.append("descripcion", this.miFormulario.get('descripcion').value)
+    }
+    if(this.botonGuardarprecio){
+      formData.append("precio", this.miFormulario.get('precio').value)
+    }
+    if(this.botonGuardarduracionpaquetes){
+      formData.append("duracionpaquetes_idduracionpaquetes", this.miFormulario.get('duracionpaquetes_idduracionpaquetes').value)
+    }
+    if(this.botonGuardarfecharegistro){
+      formData.append("fecharegistro", this.miFormulario.get('fecharegistro').value)
+    }
+    if(this.botonGuardarfechacaducidad){
+      formData.append("fechacaducidad", this.miFormulario.get('fechacaducidad').value)
+    }
+    
+    
+    
+    
+    
+    this.paquetePagoService.patchPaquetePago(this.data.Paquete, formData,{headers: headers}).subscribe(
+      resp => {
+        console.log(resp),
+        alert('INFORMACIÓN ACTUALIZADA')
+        //this.cancelar()
+        //this.reloadComponent()
+      },
+      err => {
+        console.log(err)
+      }
+    );
+        
+
+    
+
+
+
+    
+  }
+
+
+
   
 
 
@@ -229,6 +320,14 @@ export class NuevoPaqueteComponent implements OnInit {
     this.getTipodocumento();
     this.getDuracionPaquete();
 
+    this.miFormulario.controls['nombrepaquete'].disable();
+    this.miFormulario.controls['descripcion'].disable();
+    this.miFormulario.controls['precio'].disable();
+    this.miFormulario.controls['duracionpaquetes_idduracionpaquetes'].disable();
+    this.miFormulario.controls['fecharegistro'].disable();
+    this.miFormulario.controls['fechacaducidad'].disable();
+
+    
 
 
     this.http.get('http://localhost:8000/api/userusuario/', {withCredentials: true}).subscribe(

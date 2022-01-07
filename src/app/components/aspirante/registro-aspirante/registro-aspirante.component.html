@@ -1,37 +1,58 @@
+<app-navbar></app-navbar>
+
 <app-loading *ngIf="loading"></app-loading>
 
 
 
 <div id="container">
-    <button type="button" routerLink="/register" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+    <div id="cerrar">
+        <button type="button" routerLink="/register" class="close" aria-label="Close">
+            <!-- <span aria-hidden="true">&times;</span> -->
+            <img src="assets/img/IconosAgenciaLaboral-38.png" alt="cerrar">
+        </button>
+    </div>
     <form autocomplete="off" [formGroup]="miFormulario" enctype="multipart/form-data">
         <!-- Username -->
-        <label for="name">Correo electrónico:</label>
-        <input type="name" formControlName="correo">
-
-        <small *ngIf="correov" class="text-danger">
-            Correo no registrado
-        </small>
-        <!-- Password -->
-        <label for="username">Contraseña:</label>
-        <div  class="col">
-            <p><a href="#">Olvidaste tu contraseña?</a>    
-            <input type="password" [type]="hide ? 'password' : 'text'"  class="form-control" formControlName="contrasenia" placeholder="password">
-            <mat-icon class=" field-icon " (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-
-            <small *ngIf="passwordc" class="text-danger">
-                Contraseña incorrecta
+        <div id="datos">
+            <div id="topcenterbar">
+                <label for="name">Correo electrónico</label>
+    
+            </div>
+            <div class="divinput">
+                <input type="email" formControlName="correo">
+    
+                <small *ngIf="correov" class="text-danger">
+                    Correo no registrado
             </small>
+            </div>
+            <!-- Password -->
+            <div id="topcenterbar">
+                <label for="username">Contraseña</label>
+    
+            </div>
+            <div  class="col divinput">
+                  
+                <input type="password" [type]="hide ? 'password' : 'text'"  class="form-control" formControlName="contrasenia" placeholder="password">
+                
+                <mat-icon class="field-icon" (click)="show()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    
+                <small *ngIf="passwordc" class="text-danger">
+                    Contraseña incorrecta
+                </small>
+            </div>
+
+
+        </div>
+        <div>
+            <p><a href="#">Olvidaste tu contraseña?</a>  
         </div>
         
         
 
         <div id="lower">
             <!-- Submit Button -->
-            <input type="submit" value="Login " (click)="login()">
-            <input type="submit" routerLink="/aspirante/registroFullAspirante" value="Register">
+            <input class="usersbutton" type="submit" value="Login " (click)="login()">
+            <input class="usersbutton" type="submit" routerLink="/aspirante/registroFullAspirante" value="Register">
 
         </div>
     </form>       

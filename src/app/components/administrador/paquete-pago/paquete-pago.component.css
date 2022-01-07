@@ -30,7 +30,11 @@
     /* border: 1px blue solid; */
     height: 300px;
     width: 400px;
+    margin: 10px;
+    overflow: scroll;
+    text-align: justify;
   }
+
 
   #contenedor{
     /* border: 1px red solid; */

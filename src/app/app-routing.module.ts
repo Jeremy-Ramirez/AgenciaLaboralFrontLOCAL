@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { MainComponent } from './components/shared/main/main.component';
 import { SugerenciasComentariosComponent } from './components/representante/sugerencias-comentarios/sugerencias-comentarios.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 import { AspiranteProfesionalComponent } from './components/aspirante/aspirante-profesional/aspirante-profesional.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 const routes: Routes = [  
   { path: '', pathMatch: 'full', redirectTo: 'main', },
   //{ path: 'registroRepresentante/:id', component: RegistroFullRepresentanteComponent},
-  { path: 'register', component: RegisterComponent },
   { path: 'main', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'solicitudes', component: SolicitudesComponent },
-  { path: 'datosProfesionales', component: AspiranteProfesionalComponent},
-  { path: 'sugerencias', component: SugerenciasComentariosComponent},
  
 
   { 
@@ -39,7 +35,8 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'main'
-  }
+  },
+  
 ];
   
 @NgModule({
