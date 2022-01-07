@@ -107,7 +107,7 @@ import { RegisterComponent } from './components/register/register.component';
     CiudadService,
     EmpresaService,
     SectorService, 
-    ListaSolicitudAspirantesService,
+    //ListaSolicitudAspirantesService,
   ],
   bootstrap: [AppComponent]
 })
