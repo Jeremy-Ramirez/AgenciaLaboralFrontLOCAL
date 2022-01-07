@@ -49,8 +49,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { EditarPaqueteComponent } from './components/administrador/editar-paquete/editar-paquete.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ListaSolicitudAspirantesService } from './servicios/lista-solicitud-aspirantes.service';
-import { ContratacionComponent } from './components/representante/contratacion/contratacion.component';
+//import { ListaSolicitudAspirantesService } from './servicios/lista-solicitud-aspirantes.service';
+//import { ContratacionComponent } from './components/representante/contratacion/contratacion.component';
 import { SharedModule } from './components/shared/shared.module';
 import { RegisterComponent } from './components/register/register.component';
 
