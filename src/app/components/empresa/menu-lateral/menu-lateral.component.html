@@ -3,8 +3,9 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar class="menu">Menu</mat-toolbar>
     <mat-nav-list>
+      
       <ul class="nav nav-pills nav-stacked"  *ngIf="authenticated" >
         <!-- <li ><a  mat-list-item routerLink="/administrador/sesionAdministrador/aspirantesAceptados">Datos Personales</a></li> -->
         <li ><a mat-list-item routerLink="/empresa/sesionEmpresa/perfilEmpresa">Perfil</a></li>
@@ -16,20 +17,19 @@
         <li><a mat-list-item routerLink="/empresa/sesionEmpresa/editpass">Modificar contraseña</a></li>
         <li><a mat-list-item (click)="logout()" routerLink="/">Salir</a></li> 
       </ul><br>
-      
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar>
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon aria-label="Side nav toggle icon">Menu</mat-icon>
       </button>
-      <span>app</span>
+      <span>App</span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>

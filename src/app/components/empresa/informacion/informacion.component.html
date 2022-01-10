@@ -1,272 +1,282 @@
-<div class="row">
-    <div class="col">
+<div class="container">
+    <h2 class="titulo">SUBIR INFORMACIÓN</h2>
 
-        <form autocomplete="off" [formGroup]="formEmpresa" (ngSubmit)="guardar()">
-        
-     
-            <div class="row">
-                <div class="col-25">
-                  <!-- Documanto -->
-                <label>Tipo de Documento:</label>
-                </div>
-                <div class="col-sm-9">                    
-                    <p>{{tipodocumentoDesc}}</p>                
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                  <!-- No del Documento  -->
-                <label>RUC/Cédula </label>
-                </div>
-                <div class="col-sm-9">
-                    <p>{{ruc_cedula}}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                <label >Tipo de Persona</label>
-                </div>
-                <div class="col-sm-9">
-                    <p>{{tipopersonaDesc}}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                  <!-- Razón Social -->
-                <label >Razón Social</label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text"  formControlName="razonsocial" placeholder={{razonsocial}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('razonsocial')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                  <!-- Nombres -->
-            <label>Nombre Comercial</label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" formControlName="nombrecomercial"  placeholder={{nombrecomercial}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('nombrecomercial')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                  <!-- Tipo de Empresa -->
-                <label>Tipo de Empresa </label>
-                </div>
-                <div class="col-sm-9">
-                    <select  formControlName="tipoempresas"  >
-                        <option value="" disabled selected>{{tipoempresaDesc}}</option>
-                        <option *ngFor="let t of tipoempresas" value="{{t.idtipoempresa}}"  >
-                            {{t.descripcion}}
-                        </option>
-                    </select>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('tipoempresas')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                  <!-- Actividad Economica -->
-                <label > Actividad Economica</label>
-                </div>
-                <div class="col-sm-9">
-                    <select formControlName="actividadeconomicas">
-                    <option value="" disabled selected>{{actDesc}}</option>
-                    <option *ngFor="let a of actividadeconomicas" value="{{a.idactividadeconomica}}">
-                        {{a.descripcion}}
-                    </option>
-                    </select >
-                    <span class="form-text text-danger" *ngIf="campoEsValido('actividadeconomicas')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                  <!-- Rama de Actividad -->
-                <label > Rama de Actividad </label>
-                </div>
-                <div  class="col-sm-9">
-                    <select formControlName="ramaactividads" >
-                        <option value="" disabled selected>{{ramaDesc}}</option>
-                        <option *ngFor="let r of ramaactividads" value="{{r.idramaactividad}}">
-                            {{r.descripcion}}
-                        </option>
-                    </select>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('ramaactividads')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <!-- Provincia -->
-                    <label>Provincia:</label>
-                </div>
-                <div class="col-sm-9" >
-                    <select formControlName="provincias">
-                        <option value="" disabled selected>{{provinciaDesc}}</option>
-                        <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
-                            {{p.nombreprovincia}}
-                        </option>
-                    </select>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('provincias')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                  <!-- Ciudad  -->
-                <label>Ciudad: </label>
-                </div>
-                <div class="col-sm-9">
-                    <select formControlName="ciudades">
-                        <option value="" disabled selected>{{ciudadDesc}}</option>
-                        <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
-                            {{c.nombreciudad}}
-                        </option>
-                    </select>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('ciudades')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-25">
-                    <!-- Sector -->
-                    <label >Sector</label>
-                </div>
-                <div class="col-sm-9">
-                    <select formControlName="sectores" >
-                        <option value="" disabled selected>{{sectorDesc}}</option>
-                        <option *ngFor="let s of sectores" value="{{s.idsector}}">
-                            {{s.descripcion}}
-                        </option>
-                    </select>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('sectores')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <!-- Calle Principal -->
-                    <label>Calle Principal</label>
-                </div>
-                <div  class="col-sm-9">
-                    <input type="text" formControlName="calleprincipal" placeholder={{calleprincipal}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('calleprincipal')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <!-- Calle Secundaria -->
-                    <label>Calle Secundaria</label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" formControlName="callesecundaria"  placeholder={{callesecundaria}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('callesecundaria')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label>Manzana</label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" formControlName="mz"  placeholder={{mz}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('mz')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <label>Villa</label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" formControlName="villa"  placeholder={{villa}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('villa')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <!-- Referencia -->
-                    <label> Referencia</label>
-                </div>
-                <div  class="col-sm-9">
-                    <input type="text"  formControlName="referencia" placeholder={{referencia}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('referencia')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-25">
-                    <label>Teléfono Celular</label>
-                </div>
-                <div  class="col-sm-9">
-                    <input  [(ngModel)]="telCelularValue" (change)="validadorDeTelefonoCelular()" type="text" formControlName="celular"   placeholder={{celular}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('celular')">
-                        Campo Requerido
-                    </span>
-                    <small *ngIf="!validadorDeTelCelular" class="text-danger">
-                        Escriba un teléfono válido
-                    </small>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <!-- Numero de telefono de oficina -->
-                    <label>Teléfono de Oficina</label>
-                </div>
-                <div  class="col-sm-9">
-                    <input  [(ngModel)]="telOficinaValue" (change)="validadorDeTelefonoOficina()" type="text" formControlName="telefonooficina"  placeholder={{telefonooficina}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('telefonooficina')">
-                        Campo Requerido
-                    </span>
-                    <small *ngIf="!validadorDeTelOficina" class="text-danger">
-                        Escriba un teléfono válido 
-                    </small>
-                   
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-25">
-                    <!-- Web -->
-                    <label>Pagina Web:</label>
-                </div>
-                <div  class="col-sm-9">
-                    <input type="text" formControlName="paginaweb"  placeholder={{paginaweb}}>
-                    <span class="form-text text-danger" *ngIf="campoEsValido('paginaweb')">
-                        Campo Requerido
-                    </span>
-                </div>
-            </div>
-             
-           
-            <div id="lower">
-                <button type="submit" class="btn btn-primary float-end" >
-                    Guardar
-                </button>
     
+            <form autocomplete="off" [formGroup]="formEmpresa" (ngSubmit)="guardar()">
+                <div class="flexbox-container">
+                <div class="row">
+                    <div class="col">
+         
+                <div class="row">
+                    <div class="col-25">
+                      <!-- Documanto -->
+                    <label>Tipo de Documento:</label>
+                    </div>
+                    <div class="col-sm-9">                    
+                        <p>{{tipodocumentoDesc}}</p>                
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                      <!-- No del Documento  -->
+                    <label>RUC/Cédula </label>
+                    </div>
+                    <div class="col-sm-9">
+                        <p>{{ruc_cedula}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                    <label >Tipo de Persona</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <p>{{tipopersonaDesc}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                      <!-- Razón Social -->
+                    <label >Razón Social</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text"  formControlName="razonsocial" placeholder={{razonsocial}}>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('razonsocial')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                      <!-- Nombres -->
+                <label>Nombre Comercial</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="nombrecomercial"  placeholder={{nombrecomercial}}>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('nombrecomercial')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                      <!-- Tipo de Empresa -->
+                    <label>Tipo de Empresa </label>
+                    </div>
+                    <div class="col-sm-9">
+                        <select  formControlName="tipoempresas"  >
+                            <option value="" disabled selected>{{tipoempresaDesc}}</option>
+                            <option *ngFor="let t of tipoempresas" value="{{t.idtipoempresa}}"  >
+                                {{t.descripcion}}
+                            </option>
+                        </select>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('tipoempresas')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                      <!-- Actividad Economica -->
+                    <label > Actividad Economica</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <select formControlName="actividadeconomicas">
+                        <option value="" disabled selected>{{actDesc}}</option>
+                        <option *ngFor="let a of actividadeconomicas" value="{{a.idactividadeconomica}}">
+                            {{a.descripcion}}
+                        </option>
+                        </select >
+                        <span class="form-text text-danger" *ngIf="campoEsValido('actividadeconomicas')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                      <!-- Rama de Actividad -->
+                    <label > Rama de Actividad </label>
+                    </div>
+                    <div  class="col-sm-9">
+                        <select formControlName="ramaactividads" >
+                            <option value="" disabled selected>{{ramaDesc}}</option>
+                            <option *ngFor="let r of ramaactividads" value="{{r.idramaactividad}}">
+                                {{r.descripcion}}
+                            </option>
+                        </select>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('ramaactividads')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <!-- Provincia -->
+                        <label>Provincia:</label>
+                    </div>
+                    <div class="col-sm-9" >
+                        <select formControlName="provincias">
+                            <option value="" disabled selected>{{provinciaDesc}}</option>
+                            <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                                {{p.nombreprovincia}}
+                            </option>
+                        </select>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('provincias')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                      <!-- Ciudad  -->
+                    <label>Ciudad: </label>
+                    </div>
+                    <div class="col-sm-9">
+                        <select formControlName="ciudades">
+                            <option value="" disabled selected>{{ciudadDesc}}</option>
+                            <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
+                                {{c.nombreciudad}}
+                            </option>
+                        </select>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('ciudades')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-25">
+                        <!-- Sector -->
+                        <label >Sector</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <select formControlName="sectores" >
+                            <option value="" disabled selected>{{sectorDesc}}</option>
+                            <option *ngFor="let s of sectores" value="{{s.idsector}}">
+                                {{s.descripcion}}
+                            </option>
+                        </select>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('sectores')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                
+        </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-25">
+                        <!-- Calle Principal -->
+                        <label>Calle Principal</label>
+                    </div>
+                    <div  class="col-sm-9">
+                        <input type="text" formControlName="calleprincipal" placeholder={{calleprincipal}}>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('calleprincipal')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <!-- Calle Secundaria -->
+                        <label>Calle Secundaria</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="callesecundaria"  placeholder={{callesecundaria}}>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('callesecundaria')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label>Manzana</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="mz"  placeholder={{mz}}>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('mz')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label>Villa</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" formControlName="villa"  placeholder={{villa}}>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('villa')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <!-- Referencia -->
+                        <label> Referencia</label>
+                    </div>
+                    <div  class="col-sm-9">
+                        <input type="text"  formControlName="referencia" placeholder={{referencia}}>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('referencia')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-25">
+                        <label>Teléfono Celular</label>
+                    </div>
+                    <div  class="col-sm-9">
+                        <input  [(ngModel)]="telCelularValue" (change)="validadorDeTelefonoCelular()" type="text" formControlName="celular"   placeholder={{celular}}>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('celular')">
+                            Campo Requerido
+                        </span>
+                        <small *ngIf="!validadorDeTelCelular" class="text-danger">
+                            Escriba un teléfono válido
+                        </small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <!-- Numero de telefono de oficina -->
+                        <label>Teléfono de Oficina</label>
+                    </div>
+                    <div  class="col-sm-9">
+                        <input  [(ngModel)]="telOficinaValue" (change)="validadorDeTelefonoOficina()" type="text" formControlName="telefonooficina"  placeholder={{telefonooficina}}>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('telefonooficina')">
+                            Campo Requerido
+                        </span>
+                        <small *ngIf="!validadorDeTelOficina" class="text-danger">
+                            Escriba un teléfono válido 
+                        </small>
+                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <!-- Web -->
+                        <label>Pagina Web:</label>
+                    </div>
+                    <div  class="col-sm-9">
+                        <input type="text" formControlName="paginaweb"  placeholder={{paginaweb}}>
+                        <span class="form-text text-danger" *ngIf="campoEsValido('paginaweb')">
+                            Campo Requerido
+                        </span>
+                    </div>
+                </div>
+                <div id="lower">
+                    <button type="submit" >
+                        Actualizar
+                    </button>
+        
+                </div>
             </div>
-        </form>       
+        </div>
+               
+            </div>
+            </form>       
+    
 
-    </div>
 </div>

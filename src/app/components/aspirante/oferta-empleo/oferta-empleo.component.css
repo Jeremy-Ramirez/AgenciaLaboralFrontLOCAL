@@ -1,6 +1,11 @@
 /* enable absolute positioning */
 .inner-addon { 
     position: relative; 
+    border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  
 }
 
 /* style icon */
@@ -8,6 +13,8 @@
   position: absolute;
   padding: 10px;
   pointer-events: none;
+  
+  color: white;
 }
 
 /* align icon */
@@ -16,7 +23,14 @@
 
 /* add padding  */
 .left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
+.right-addon input { padding-right: 30px; 
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  background-color: #81DCFF;
+
+ }
 
 
 .card {
@@ -35,7 +49,7 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .button {
-  background-color: #63bfd6; /* Green */
+  background-color: #81DCFF; /* Green */
   border: none;
   color: white;
   padding: 10px 20px;
@@ -53,5 +67,28 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  font-size: 16px;
+}
+.ofertas-empleo{
+  padding: 10px 10px;
+  border: #F6C45C 5px solid;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  width: 250px;
+  height: 60px;
+  margin-right: 50px;
+  font-size: 20px;
+  color:#F6C45C;
+  font-family:verdana;
+  text-shadow: 1px 1px;
+}
+.contenedor{
+  margin-top: 25px;
+  margin-left: 25px;
+}
+::placeholder{
+  color:#ffffff;
   font-size: 16px;
 }

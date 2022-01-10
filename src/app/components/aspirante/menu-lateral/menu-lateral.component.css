@@ -6,7 +6,7 @@
   width: 200px;
 }
 
-.sidenav .mat-toolbar {
+.sidenav {
   background: inherit;
 }
 
@@ -14,4 +14,17 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+.mat-toolbar{
+  background-color:#F6C45C;
+  font-size: 30px;
+  color:white;
+  font-family:verdana;
+  text-shadow: 1px 1px;
+}
+.menu {
+  background-color:#5E5858;
+  justify-content: center;
+  font-family:verdana;
+  text-shadow: 1px 1px;
 }

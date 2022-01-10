@@ -1,11 +1,11 @@
-<div class="col-sm-9">
-    <h4><small>OFERTAS DE EMPLEO</small></h4>
+<div class="contenedor">
+  <div class="col-sm-9">
+    <h2 class="ofertas-empleo">OFERTAS DE EMPLEO</h2>
     <div class="inner-addon right-addon">
-        <i class="glyphicon glyphicon-search"></i>
-        <input type="text" class="form-control" placeholder="Search" />
+        <i class="glyphicon glyphicon-search"> </i>
+        <input type="text" class="form-control" placeholder="Buscar vacantes de empleo" />
     </div>
     
-    <h4><small>OFERTAS DE EMPLEO</small></h4>
     <div  *ngFor= "let i of ofertasEmpleo" >
       <div class="card" *ngIf="i.estado===1" >        
        
@@ -43,3 +43,4 @@
     </div>
     
   </div>
+</div>
