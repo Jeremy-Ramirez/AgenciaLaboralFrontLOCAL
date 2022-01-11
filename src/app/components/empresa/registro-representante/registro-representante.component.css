@@ -3,23 +3,85 @@
     box-sizing: border-box;
     margin: 2px;
   }
+
+  .container{
+    width: 50%;
+    position: relative;
+    left: 100px;
+  }
+
+  .container2{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+  }
+
+  form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .mb-3{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+
+  }
+
+  #containerTitulo{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+
+  #titulo{
+    width: 70%;
+    height: 70%;
+  }
   
   input[type=text], select, textarea {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
+    border: 0px;
+    border-bottom: 2px solid #40A9DE;
     border-radius: 4px;
     resize: vertical;
+  }
+  input[type=password]{
+    width: 100%;
+    padding: 8px;
+    border-radius: 30px;
+  }
+
+  .col-sm-9{
+    width: 100%;
+  }
+  .col-sm-3{
+    width: 100%;
   }
   
   label {
     padding: 8px 8px 0 0;
     display: inline-block;
+    margin-left: 20px;
   }
   
   input[type=submit] {
     background-color: #77D4FD;
-    width: 50%;
+    width: 100%;
     color: white;
     padding: 12px 20px;
     border: none;
@@ -49,7 +111,7 @@
     background-color: #77D4FD;
   }
   
-  #container {
+  /* #container {
     width: auto;
     height: auto;
     top: auto;
@@ -58,14 +120,14 @@
     background: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  }
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+  } */
   
   .col-25 {
     float: left;
@@ -96,8 +158,30 @@
 
   .field-icon {
     float: right;
-    margin-left: -40px;
+    margin-right: 10px;
     margin-top: -32px;
     position: relative;
     z-index: 2;
+  }
+
+  label{
+    width: 100%;
+    text-align: left;
+  }
+
+  .buttonContainer{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+
+  .btn{
+    background-color: #81DCFF;
+    font-weight: bold;
+    font-size: medium;
+    width: 300px;
+    height: 40px;
+    border: 0px;
+    border-radius: 30px;
   }

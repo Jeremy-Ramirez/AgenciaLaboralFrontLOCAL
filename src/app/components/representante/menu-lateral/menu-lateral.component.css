@@ -1,9 +1,20 @@
+.example-container {
+  display: grid;
+  grid-template-rows: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
 .sidenav-container {
   height: 100%;
 }
 
 .sidenav {
-  width: 200px;
+  width: 250px;
 }
 
 .sidenav .mat-toolbar {
@@ -14,4 +25,123 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.example-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+/* .pantallas{
+  position: fixed;
+  z-index: 5;
+} */
+
+.container-fluid {
+  padding-top: 80px;}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  /* background-color: white; */
+/* background-color: #f1f1f1; */
+  padding: 15px;
+  width: 350px;
+  border: 0px;
+  
+}
+/* Set black background color, white text and some padding */
+footer {
+background-color: #555;
+color: white;
+padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+.sidenav {
+    height: auto;
+    padding: 15px;
+}
+.row.content {height: auto;} 
+}
+
+#tituloMenu{
+  /* background-color: violet; */
+}
+
+#menuContainer{
+  height: 400px;
+  display: grid;
+  grid-template-rows: 300px 100px;
+  background-color: #40A9DE;
+  border-radius: 0px 80px 80px 0px ;
+}
+
+#menu{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+
+  /* padding: 12px; */
+
+  /* width: 200px; */
+}
+
+.itemMenu{
+  /* margin-left: 30px; */
+  display: block;
+  /* width: 200px; */
+  /* background-color: tomato; */
+  
+  /* margin-left: auto;
+  margin-right: auto; */
+  font-weight: 400;
+  color: white;
+  font-size: medium;
+}
+
+
+#imgContainer{
+  margin-top: 20px;
+  display: block;
+  margin: auto;
+}
+
+img{
+  width: 60px;
+  height: 60px;
+}
+
+li a{
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+
+}
+
+ul>li{
+  width: 250px;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 0px 30px 30px 0px;
+  /* align-items: center;
+  text-align: center; */
+  
+}
+
+
+/* li>a:focus{
+  cursor: pointer;
+  background-color: orange;
+} */
+
+.active-link{background-color:#F6C45C;}
+
+.nav-stacked{
+  margin-top: 25px;
 }

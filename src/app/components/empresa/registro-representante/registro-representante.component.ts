@@ -15,6 +15,7 @@ export class RegistroRepresentanteComponent implements OnInit {
 
 
   tipoDocumento:any[]=[];
+  tipoPersona:any[]=[];
   usuarios:any[]=[];
   correo:any='';
   id:any;
@@ -29,6 +30,7 @@ export class RegistroRepresentanteComponent implements OnInit {
     nombreusuario: null,
     contrasenia:["", [Validators.required]],
     tipodocumento_idtipodocumento: ["", Validators.required],
+    tipopersona_idtipopersona: ["", Validators.required],
     nodocumento:["",[Validators.required, Validators.minLength(10)]],
     nombre: ["", [Validators.required]],
     apellido: ["", [Validators.required]],
@@ -47,6 +49,7 @@ export class RegistroRepresentanteComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private http: HttpClient, private rutaActiva: ActivatedRoute) {
     this.getTipodocumento();
+    this.getTipoPersona();
     
   }
   
@@ -60,6 +63,13 @@ export class RegistroRepresentanteComponent implements OnInit {
     this.http.get('http://localhost:8000/api/tipodocumento/').subscribe((doc:any)=>{
       this.tipoDocumento=doc;
     console.log(this.tipoDocumento)
+    })
+  }
+
+  getTipoPersona(){
+    this.http.get('http://localhost:8000/api/tipopersona/').subscribe((res:any)=>{
+      this.tipoPersona=res;
+      console.log(this.tipoPersona)
     })
   }
 

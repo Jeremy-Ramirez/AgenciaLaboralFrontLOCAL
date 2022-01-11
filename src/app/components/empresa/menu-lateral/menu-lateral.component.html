@@ -1,38 +1,63 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="menu">Menu</mat-toolbar>
-    <mat-nav-list>
+<div class="example-container">
+  <mat-toolbar class="example-toolbar">
+    <button id="boton"
+      type="button"
+      aria-label="Toggle sidenav"
+      mat-icon-button
+      (click)="drawer.toggle()"
       
-      <ul class="nav nav-pills nav-stacked"  *ngIf="authenticated" >
-        <!-- <li ><a  mat-list-item routerLink="/administrador/sesionAdministrador/aspirantesAceptados">Datos Personales</a></li> -->
-        <li ><a mat-list-item routerLink="/empresa/sesionEmpresa/perfilEmpresa">Perfil</a></li>
-        <li><a mat-list-item routerLink="/empresa/sesionEmpresa/informacionEmpresa">Subir Información</a></li>
-        <li><a mat-list-item routerLink="/empresa/sesionEmpresa/registroRepresentante">Agregar Representante</a></li>
-        <li ><a mat-list-item routerLink="/empresa/sesionEmpresa/solicitudEmpresa">Solicitud Empresa</a></li>
-        <li ><a mat-list-item routerLink="/empresa/sesionEmpresa/sugerencias">Sugerencias</a></li>
-        <li><a mat-list-item routerLink="/empresa/sesionEmpresa/">Configuración</a></li>
-        <li><a mat-list-item routerLink="/empresa/sesionEmpresa/editpass">Modificar contraseña</a></li>
-        <li><a mat-list-item (click)="logout()" routerLink="/">Salir</a></li> 
-      </ul><br>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar>
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">Menu</mat-icon>
-      </button>
-      <span>App</span>
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <router-outlet></router-outlet>
+      >
+      <!-- *ngIf="isHandset$ | async" -->
+      <!-- <mat-icon aria-label="Side nav toggle icon">menu</mat-icon> -->
+      <mat-toolbar class="menu" id="tituloMenu" >Menu</mat-toolbar>
+    </button>
+    <span class="app">App</span>
+
+  </mat-toolbar>
+  
+  <mat-sidenav-container class="sidenav-container">
     
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    
+    <mat-sidenav #drawer class="sidenav" fixedInViewport #sidenav 
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      
+      <mat-nav-list id="menuContainer">
+        <!-- <a class="sr-only" mat-list-item routerLink="/administrador/sesionAdministrador/aspirantesAceptados">Argentina</a>
+        <button mat-list-item routerLink="/administrador/aspirantesAceptados">Link 1</button>
+        <button mat-list-item (click) = "showSesionAspirante();drawer.close();">Link 2</button>
+        <button mat-list-item (click) = "showAspirantesAceptados();drawer.close();">Link 3</button>
+        <a mat-list-item routerLink="/administrador/aspirantesAceptados" (click) = "drawer.close();">Argentina</a> -->
+        <!-- <h4>Tu Perfil</h4> -->
+        <ul class="nav nav-pills nav-stacked" id="menu">
+          <!-- <li ><a  mat-list-item routerLink="/administrador/sesionAdministrador/aspirantesAceptados">Datos Personales</a></li> -->
+          <li [ngClass]="{'active-link' : lista.l1}" (click)="changeCategory(null,'l1')" ><a class="itemMenu" mat-list-item routerLink="/empresa/sesionEmpresa/perfilEmpresa">Perfil</a></li>
+          <li [ngClass]="{'active-link' : lista.l2}" (click)="changeCategory(null,'l2')"><a class="itemMenu" mat-list-item routerLink="/empresa/sesionEmpresa/informacionEmpresa">Subir Información</a></li>
+          <li [ngClass]="{'active-link' : lista.l3}" (click)="changeCategory(null,'l3')"><a class="itemMenu" mat-list-item routerLink="/empresa/sesionEmpresa/registroRepresentante">Agregar Representante</a></li>
+          <li [ngClass]="{'active-link' : lista.l4}" (click)="changeCategory(null,'l4')" ><a class="itemMenu" mat-list-item routerLink="/empresa/sesionEmpresa/solicitudEmpresa">Solicitud Empresa</a></li>
+          <li [ngClass]="{'active-link' : lista.l5}" (click)="changeCategory(null,'l5')" ><a class="itemMenu" mat-list-item routerLink="/empresa/sesionEmpresa/sugerencias">Sugerencias</a></li>
+          <li [ngClass]="{'active-link' : lista.l6}" (click)="changeCategory(null,'l6')"><a class="itemMenu" mat-list-item routerLink="/empresa/sesionEmpresa/">Configuración</a></li>
+          <li [ngClass]="{'active-link' : lista.l7}" (click)="changeCategory(null,'l7')"><a class="itemMenu" mat-list-item routerLink="/empresa/sesionEmpresa/editpass">Modificar contraseña</a></li>
+          <li [ngClass]="{'active-link' : lista.l8}" (click)="changeCategory(null,'l8')"><a class="itemMenu" mat-list-item (click)="logout()" routerLink="/">Salir</a></li>
+        </ul>
+        <div id="imgContainer">
+          <button mat-button (click)="sidenav.toggle()">
+            
+            <img src="assets/img/Iconos agencia laboral-64.png" alt="">
+          </button>
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class=".pantallas">
+      <br>
+      <br>
+      <br>
+      <br>
+      <!-- Add Content Here -->
+      <!-- <app-aspirantes-aceptados *ngIf="aspirantesAceptados"></app-aspirantes-aceptados> -->
+      <!-- <app-sesion-aspirante *ngIf="sesionAspirante"></app-sesion-aspirante> -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

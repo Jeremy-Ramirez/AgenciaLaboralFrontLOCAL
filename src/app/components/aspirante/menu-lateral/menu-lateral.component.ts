@@ -18,6 +18,10 @@ export class MenuLateralComponent implements OnInit {
   usuarioActual:any;
   authToken: any;
 
+  opened: boolean;
+
+  lista={l1:false,l2:false,l3:false,l4:false,l5:false,l6:false,l7:false,l8:false,l9:false}
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -70,5 +74,18 @@ export class MenuLateralComponent implements OnInit {
   logout(): void {
     this.http.post('http://localhost:8000/api/logoutusuario/', {}, {withCredentials: true})
       .subscribe(() => this.authenticated = false);
+  }
+
+  changeCategory(el,event){
+    this.lista.l1=false;
+    this.lista.l2=false;
+    this.lista.l3=false;
+    this.lista.l4=false;
+    this.lista.l5=false;
+    this.lista.l6=false;
+    this.lista.l7=false;
+    this.lista.l8=false;
+    this.lista.l9=false;
+    this.lista[event]=!this.lista[event];
   }
 }

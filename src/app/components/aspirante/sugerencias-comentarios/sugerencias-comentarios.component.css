@@ -85,7 +85,27 @@
     display: table;
     clear: both;
   }
+
+  #titulo{
+    width: 30%;
+    height: 30%;
+  }
   
+  .form-control{
+    border-radius: 10px;
+    background-color: #EDEDED;
+  }
+
+  .btn{
+    background-color: #81DCFF;
+    font-weight: bold;
+    font-size: medium;
+    width: 130px;
+    height: 40px;
+    border: 0px;
+    border-radius: 30px;
+  }
+
   /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 600px) {
     .col-25, .col-75, input[type=submit] {
