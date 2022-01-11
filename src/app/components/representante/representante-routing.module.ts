@@ -25,7 +25,8 @@ const routes: Routes = [
             { path: 'solicitudesRepresentante', component: SolicitudesComponent},
             { path: 'showSolicitudes', component: ShowsolicitudesComponent},
             { path: 'filtroAspirantes', component: FiltroComponent},
-            { path: 'consultarSolicitudes', component: SolicitudesContratacionComponent}
+            { path: 'consultarSolicitudes', component: SolicitudesContratacionComponent},
+
           ]
         },
         { path: '**', redirectTo: 'sesionRepresentante/perfilRepresentante' }

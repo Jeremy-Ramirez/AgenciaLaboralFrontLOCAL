@@ -39,11 +39,11 @@
                     
                       </ng-container>
 
-                      <ng-container matColumnDef="descripcioncargo">
+                      <!-- <ng-container matColumnDef="descripcioncargo">
                         <th mat-header-cell *matHeaderCellDef> Descripción del cargo </th>
                         <td mat-cell *matCellDef="let solicitud"> {{solicitud.descripcioncargo}} </td>
                     
-                      </ng-container>
+                      </ng-container> -->
                       
                       <ng-container matColumnDef="fechainicio">
                         <th mat-header-cell *matHeaderCellDef> Fecha de Inicio </th>
@@ -58,13 +58,25 @@
                       </ng-container>
 
                 
-                      <ng-container matColumnDef="boton">
+                      <ng-container matColumnDef="solicitudCompleta">
                         <th mat-header-cell *matHeaderCellDef> Solicitud </th>
                         <td>
                             <div>
                                 <button ngClass="boton" mat-button color="primary" mat-cell *matCellDef="let solicitud" (click)="abrirDialogo(solicitud)"  class="btn btn-primary float-end"  >
                     
                                     Ver Solicitud Completa
+                                </button> 
+                            </div>
+                        </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="aspirantesPorSolicitud">
+                        <th mat-header-cell *matHeaderCellDef> Ver Aspirantes por solicitud </th>
+                        <td>
+                            <div>
+                                <button ngClass="boton" mat-button color="primary" mat-cell *matCellDef="let solicitud"  (click)="verAspirantes(solicitud)" class="btn btn-primary float-end"  >
+                                  Ver Aspirantes por solicitud
+                                    
                                 </button> 
                             </div>
                         </td>
@@ -122,3 +134,82 @@
 
     
 </div>
+
+<!-- <div class="row">
+  <div class="col">
+    <div *ngFor="let usuarios of usuariosLista">
+      {{usuarios.nombreusuario}}
+
+    </div>
+  </div>
+</div> -->
+
+<section>
+  <!-- <button class="btn btn-primary float-end" (click)="getUsuarios()"></button> -->
+  <br>
+  <br>
+  <br>
+  <h1>{{solicitudActual}}</h1>
+  <div class="row filtros">
+      <div class="col">
+          <mat-form-field>
+              <mat-label>Buscar Usuario</mat-label>
+              <input matInput (keyup)="filtrar2($event)" placeholder="buscar">
+            </mat-form-field>
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
+            
+                <ng-container matColumnDef="nombre">
+                  <th mat-header-cell *matHeaderCellDef> Cargo </th>
+                  <td mat-cell *matCellDef="let usuario"> {{usuario.nombre}} </td>
+              
+                </ng-container>
+
+                
+                <ng-container matColumnDef="apellido">
+                  <th mat-header-cell *matHeaderCellDef> Cargo </th>
+                  <td mat-cell *matCellDef="let usuario"> {{usuario.apellido}} </td>
+              
+                </ng-container>
+
+
+                <ng-container matColumnDef="aceptar">
+                  <th mat-header-cell *matHeaderCellDef> Ver Perfil del Aspirante </th>
+                  <td>
+                      <div>
+                          <button ngClass="boton" mat-button color="primary" mat-cell *matCellDef="let usuario"  (click)="abrirPerfil(usuario)" class="btn btn-primary float-end"  >
+                            Ver Aspirantes por solicitud
+                              
+                          </button> 
+                      </div>
+                  </td>
+                </ng-container>
+
+                <ng-container  matColumnDef="rechazar">
+                  <th ngClass="aceptartitulo"  mat-header-cell *matHeaderCellDef> Eliminar Solicitud </th>
+                  <td  >
+                    <div class="aceptar" >
+                      <mat-icon mat-icon mat-cell *matCellDef="let usuario" class="field-icon"  >delete</mat-icon>
+                    </div>
+
+                  </td>
+                </ng-container>
+
+                <!-- (click)="eliminarArchivo(ar.idarchivosaspirante)" -->
+            
+                       
+                <tr mat-header-row *matHeaderRowDef="columnas2"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnas2;"></tr>
+              </table>
+            </div>
+      </div>
+  </div>
+
+  <br>
+
+ 
+
+
+
+</section>
+

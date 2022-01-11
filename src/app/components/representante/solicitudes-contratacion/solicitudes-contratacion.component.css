@@ -25,3 +25,7 @@ table{
     position: relative;
     z-index: 2;
 }
+
+.field-icon{
+    cursor: pointer;
+}

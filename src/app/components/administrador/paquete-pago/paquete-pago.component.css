@@ -38,7 +38,7 @@
 
   #contenedor{
     /* border: 1px red solid; */
-    margin: 100px;
+    /* margin: 100px; */
     display: grid;
     /* grid-template-rows: 20px 80px; */
     gap: 50px;

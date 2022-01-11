@@ -1,0 +1,86 @@
+<mat-dialog-content id="perfil">
+    <h1>Perfil Aspirante</h1>
+    <div>
+        <!-- style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;" -->
+        <div >
+            <h1>Datos Personales</h1>
+            <!-- <mat-form-field> -->
+                <p>Nombre de usuario: {{data.usuarioIndividual.nombreusuario}}</p>
+
+            <!-- </mat-form-field> -->
+
+            <!-- <mat-form-field> -->
+                <p>Nombres: {{data.usuarioIndividual.nombre}}</p>
+            <!-- </mat-form-field> -->
+
+            <!-- <mat-form-field> -->
+                <p>Apellidos: {{data.usuarioIndividual.apellido}}</p>
+            <!-- </mat-form-field> -->
+            <!-- <mat-form-field> -->
+                <p>Número de documento: {{data.usuarioIndividual.nodocumento}}</p>
+                
+            <!-- </mat-form-field> -->
+
+            <!-- <mat-form-field> -->
+                <p>Correo: {{data.usuarioIndividual.correo}}</p>
+            <!-- </mat-form-field> -->
+
+            <!-- <mat-form-field> -->
+                <p>Teléfono: {{data.usuarioIndividual.telefono}}</p>
+            <!-- </mat-form-field> -->
+            <!-- <mat-form-field> -->
+                <p>Dirección: {{data.usuarioIndividual.direccion}}</p>
+            <!-- </mat-form-field> -->
+            <!-- <mat-form-field> -->
+                <!-- <p>{{data.aspiranteIndividual.idusuario}}</p> -->
+            <!-- </mat-form-field> -->
+
+
+        </div>
+</div>
+
+<h1>Datos Profesionales</h1>
+
+        
+        <div *ngIf="aspiranteId.posibilidadviajar != null">
+
+            <p>Profesión: {{profesiondesc}}</p>
+            <p>Descripcion Perfil Profesional: {{data.aspiranteIndividual.descripcionPerfilProfesional}}</p>
+            <p>Años de experiencia: {{data.aspiranteIndividual.aniosexperiencia}}</p>
+            <p>Número de hijos: {{data.aspiranteIndividual.numerohijos}}</p>
+            <p>Fecha de Nacimiento: {{data.aspiranteIndividual.fechanacimiento}}</p>
+            <p>Posibilidad de viajar: {{data.aspiranteIndividual.posibilidadviajar}}</p>
+            <p>Posibilidad cambio de residencia: {{data.aspiranteIndividual.posibilidadcambioresidencia}}</p>
+            <p>Salario mínimo aceptado(Mensual): {{data.aspiranteIndividual.salarioMinimoAceptado}}</p>
+
+            <div class="mb-3 row">
+                <div class="col-sm-9">
+                    <video width="400" height="400" controls src="http://localhost:8000{{data.aspiranteIndividual.videopresentacion}}"></video>
+                </div>
+
+                <div *ngFor="let ar of archivos">
+                    <div *ngIf="data.aspiranteIndividual.idaspirante==ar.aspirante_idaspirante">
+                        <a href="http://localhost:8000{{ar.archivo}}" download="A.pdf"> {{ar.nombredocumento}}</a>
+                        <p>{{ar.fechacreacion}}</p>
+
+                    </div>
+                </div>
+                    
+            </div>
+
+        </div>
+
+
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
+
+
+
+
+</mat-dialog-content>
+
+
+
+<!-- <app-loading *ngIf="loading"></app-loading> -->

@@ -3,8 +3,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
-
-
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,6 +28,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,9 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     FiltroComponent,
     SolicitudesContratacionComponent,
     SolicitudComponent,
+    VistaPerfilAspiranteComponent,
+    LoadingComponent,
+
 
   ],
   imports: [

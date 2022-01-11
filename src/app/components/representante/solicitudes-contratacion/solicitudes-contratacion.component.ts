@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { AspiranteService } from 'src/app/servicios/aspirante.service';
 import { SolicitudService } from 'src/app/servicios/solicitud.service';
 import { SolicitudComponent } from '../solicitud/solicitud.component';
+import { VistaPerfilAspiranteComponent } from '../vista-perfil-aspirante/vista-perfil-aspirante.component';
 
 @Component({
   selector: 'app-solicitudes-contratacion',
@@ -22,13 +23,27 @@ export class SolicitudesContratacionComponent implements OnInit {
   usuarios: any[]=[];
   listaSolicitudes: any[]=[];
   listausuariosAspirantes2: any[]=[];
-  columnas: string[] = ['cargo','descripcioncargo', 'fechainicio','fechacierre','boton', 'aceptar'];
+  columnas: string[] = ['cargo', 'fechainicio','fechacierre','solicitudCompleta', 'aspirantesPorSolicitud', 'aceptar'];
   dataSource:any; 
+
+  columnas2: string[] = ['nombre', 'apellido','aceptar','rechazar'];
+  dataSource2:any; 
+
+
   idSolicitud:any;
   //@ViewChild(MatTable) tabla1!: MatTable<any>;
 
   suscription: Subscription; 
 
+
+  aspirantessolicitados: any[]=[];
+  aspirantesPorSolicitud: any[]=[];
+  aspirantes2: any[]=[];
+  aspirantesLista: any[]=[];
+  usuarios2: any[]=[];
+  usuariosLista: any[]=[];
+
+  solicitudActual: any;
 
   constructor(
     private aspiranteService: AspiranteService, 
@@ -47,6 +62,30 @@ export class SolicitudesContratacionComponent implements OnInit {
   abrirDialogo(solicitud: any) {
     const dialogo1 = this.dialog.open(SolicitudComponent, {
       data: { solicitudIndividual: solicitud }
+    });
+
+    dialogo1.afterClosed().subscribe(art => {
+      if (art != undefined)
+        this.agregar(art);
+    });
+  }
+
+  abrirPerfil(usuario: any) {
+    let aspirante;
+    for(let asp of this.aspirantes){
+      if(usuario.idusuario==asp.usuario_idusuario){
+        aspirante=asp;
+    
+      }
+
+    }
+    console.log("ASPIRANTE ENVIADO AL PERFIL", aspirante)
+    /*const dialogo1 = this.dialog.open(VistaPerfilAspiranteComponent, {
+      data: { aspiranteIndividual: usuario }
+    });*/
+    const dialogo1 = this.dialog.open(VistaPerfilAspiranteComponent, {
+      data: { aspiranteIndividual: aspirante, usuarioIndividual: usuario}, 
+     
     });
 
     dialogo1.afterClosed().subscribe(art => {
@@ -157,6 +196,12 @@ export class SolicitudesContratacionComponent implements OnInit {
     const filtro = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filtro.trim().toLowerCase();
   } 
+
+  filtrar2(event: Event) {
+    const filtro = (event.target as HTMLInputElement).value;
+    this.dataSource2.filter = filtro.trim().toLowerCase();
+  } 
+
   reloadComponent() {
     let currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -187,6 +232,7 @@ export class SolicitudesContratacionComponent implements OnInit {
       this.solicitudesLista();
       setTimeout(()=>{
         this.dataSource = new MatTableDataSource(this.listaSolicitudes);
+        
   
       }, 300);
 
@@ -275,6 +321,84 @@ export class SolicitudesContratacionComponent implements OnInit {
       }
     }
 
+  }
+
+  
+
+
+  verAspirantes(solicitud){
+    this.solicitudActual=solicitud.cargo;
+    this.aspirantesPorSolicitud=[];
+    this.http.get('http://localhost:8000/api/aspirantessolicitados/').subscribe((doc:any)=>{
+      this.aspirantessolicitados=doc;
+      console.log(this.aspirantessolicitados)
+      for(let aspsol of this.aspirantessolicitados){
+        console.log("ASPSOL", aspsol.solicitud_idsolicitud)
+        console.log("this.idsolicitud", solicitud.idsolicitud)
+        if(aspsol.solicitud_idsolicitud == solicitud.idsolicitud){
+          //this.aspirantesPorSolicitud.indexOf(aspsol) === -1? this.aspirantesPorSolicitud.push(aspsol):
+          console.log("está")
+
+          this.aspirantesPorSolicitud.push(aspsol);
+        }
+
+      }
+      console.log("obtenerAspirantePorSolicitud", this.aspirantesPorSolicitud)
+
+          setTimeout(()=>{
+            this.obtenerAspirantes()
+
+          }, 200);
+    })
+  }
+
+  obtenerAspirantes(){
+    this.aspirantesLista=[];
+    this.http.get('http://localhost:8000/api/aspirantes/').subscribe((doc:any)=>{
+      this.aspirantes2=doc;
+      console.log(this.aspirantes2)
+      for(let aspsol of this.aspirantesPorSolicitud){
+        for(let aspirante of this.aspirantes2){
+          if(aspsol.aspirante_idaspirante == aspirante.idaspirante){
+            this.aspirantesLista.indexOf(aspirante) === -1? this.aspirantesLista.push(aspirante):
+
+            //this.aspirantesLista.push(aspirante);
+            console.log("hay")
+            
+          }
+        }
+      }
+
+      console.log("obteneraspirantes", this.aspirantesLista)
+            setTimeout(()=>{
+              this.obtenerUsuarios()
+
+            }, 300);
+    })
+  }
+
+  obtenerUsuarios(){
+    this.usuariosLista=[];
+    this.http.get('http://localhost:8000/api/usuarios/').subscribe((doc:any)=>{
+      this.usuarios2=doc;
+      console.log(this.usuarios)
+      if(this.aspirantesLista!=null){
+        for(let aspirante of this.aspirantesLista){
+          for(let usuario of this.usuarios2){
+            if(aspirante.usuario_idusuario == usuario.idusuario){
+              this.usuariosLista.indexOf(usuario) === -1? this.usuariosLista.push(usuario):
+              console.log("This item already exists");
+              console.log(usuario.nombre)
+              //this.usuariosLista.push(usuario);
+              
+            }
+          }
+        }
+        console.log("usuariosLista", this.usuariosLista)
+        this.dataSource2 = new MatTableDataSource(this.usuariosLista);
+
+      }
+    })
   }
 
   
