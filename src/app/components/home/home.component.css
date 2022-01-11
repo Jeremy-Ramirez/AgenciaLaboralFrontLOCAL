@@ -4,6 +4,7 @@
     background-image: url('src/assets/img/banner.jpg');
     background-size: cover;
     position: relative;
+    background-attachment: fixed;
 }
 
 
