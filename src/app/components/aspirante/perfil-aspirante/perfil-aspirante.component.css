@@ -17,3 +17,60 @@
 .formulario{
     border: 1px solid red;
 }
+.datosP{
+    height: 60px;
+    width: 300px;
+    object-fit: cover;
+}
+
+.datosPersonales{
+    border: 3px solid #F6C45C ;
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
+
+}
+
+.datosPersonales p{
+    color: #F6C45C;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.a{
+    border-radius: 10px;
+    background-color:lightgray;
+    border-color: white;
+    text-align: center;
+    width: 250px;
+}
+
+.inputs{
+    border-radius: 10px;
+    background-color: lightgray;
+    text-align: center;
+}
+
+.selects{
+    font-size: 1.5rem;
+    padding: 1em 1.5em;
+    appearance: none;
+}
+
+
+.custom-select{
+    position: relative;
+}
+
+.custom-arrow{
+    position: absolute;
+    top:0;
+    display: block;
+    background: red;
+    height: 1rem;
+    width: 1rem;
+}
+
+
+ 
