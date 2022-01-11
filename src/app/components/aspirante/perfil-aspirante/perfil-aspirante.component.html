@@ -15,196 +15,169 @@
 <!-- </div>
 </div> -->
 
-<h1>Datos Personales</h1>
+
+<img src="assets/img/Iconos agencia laboral-66.png" class="datosP">
+
+<!-- 
+<div class="datosPersonales">
+    <p>DATOS PERSONALES</p>
+</div> -->
+
+<div class="contenedor">
+
+  
+
+    <div>
+        PROFESIONAL
+    </div>
+
+</div>
+
+
 <form autocomplete="off"  >
 
+    <div >
+        <label >Tipo de Documento</label>
+            <input 
+            class="inputs"
+            value="{{tipodocumentodesc}}"
+            >
+    </div>
+
+    <div >
+        <div >
+            <input 
+            class="inputs"
+            value="{{usuarioActual.nodocumento}}"
+            > 
+        </div>
+    </div>
+
+    <div >
+        <label >Usuario</label>
+        <div >
+            <input 
+            class="inputs"
+            value="{{usuarioActual.nombreusuario}}"
+            >
+        </div>
+    </div>
 
 
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Usuario</label>
-                <div class="col-sm-9">
-                    <input 
-                    class="form-control"
-                  
-                    value="{{usuarioActual.nombreusuario}}"
-                
-                    style="width: 250px;"
+    
+
+   
+
+    <div >
+        <label>Nombres</label>
+        <div >
+            <input 
+            class="inputs"
+            value="{{usuarioActual.nombre}}"
+            >
+        </div>
+    </div>
+
+    <div >
+        <label>Apellidos</label>
+        <div >
+            <input 
+            class="inputs"
+            value="{{usuarioActual.apellido}}"
+            >
+        </div>
+    </div>
+
+    <div >
+        <label >Correo</label>
+        <div >
+            <input 
+            class="inputs"
+            value="{{usuarioActual.correo}}"
+            >
+        </div>
+    </div>
+
+
+    <div >
+        <label >Telefono</label>
+        <div >
+            <input 
+            class="inputs"
+            value={{usuarioActual.telefono}}
+            >
+        </div>
+    </div>
+
+    <div >
+        <label >Dirección</label>
+        <div >
+            <input 
+            class="inputs"
+            value={{usuarioActual.direccion}}
+            >
+          
+           
+        </div>
+    </div>
+
+
+
+
+    <div >
+        <label >Provincia</label>
+        <div class="custom-select">
+            <select class="selects">
+                <option value='{{provinciadesc}}' >{{provinciadesc}}</option>
+                <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+                    {{p.nombreprovincia}}     
+                </option>
+            </select>
+           <span class="custom-arrow"></span>
+        </div>
+    </div>
+
+    <div >
+        <label >Ciudad</label>
+        <div >
+           
+            <select >
+                <option value='{{ciudadesdesc}}'disabled selected >{{ciudadesdesc}}</option>
+                <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
+                    {{c.nombreciudad}}
                     
-                    >
-                  
-                   
-                </div>
-            </div>
+                </option>
+            </select>
+           
+        </div>
+    </div>
 
 
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Tipo de Documento</label>
-                <div class="col-sm-9">
-                    <input 
-                    class="form-control"
-                  
-                    value="{{tipodocumentodesc}}"
-                    style="width: 250px;"
+
+
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Genero</label>
+        <div class="col-sm-9">
+           
+            <select     style="width: 250px;" class="form-control">
+                <option value='{{generodesc}}'disabled selected >{{generodesc}}</option>
+                <option *ngFor="let g of generos"  value="{{g.idgenero}}">
+                    {{g.genero}}
                     
-                    >
-                  
-                   
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Número de documento</label>
-                <div class="col-sm-9">
-                    <input 
-                    class="form-control"
-                  
-                    value="{{usuarioActual.nodocumento}}"
-                    style="width: 250px;"
-                    
-                    >
-                  
-                   
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Nombres</label>
-                <div class="col-sm-9">
-                    <input 
-                    class="form-control"
-                  
-                    value="{{usuarioActual.nombre}}"
-                    style="width: 250px;"
-                    
-                    >
-                  
-                   
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Apellidos</label>
-                <div class="col-sm-9">
-                    <input 
-                    class="form-control"
-                  
-                    value="{{usuarioActual.apellido}}"
-                    style="width: 250px;"
-                    
-                    >
-                  
-                   
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Correo</label>
-                <div class="col-sm-9">
-                    <input 
-                    class="form-control"
-                  
-                    value="{{usuarioActual.correo}}"
-                    style="width: 250px;"
-                    
-                    >
-                  
-                   
-                </div>
-            </div>
-
-
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Telefono</label>
-                <div class="col-sm-9">
-                    <input 
-                    class="form-control"
-                  
-                   
-                    value={{usuarioActual.telefono}}
-                    style="width: 250px;"
-                    
-                    >
-                  
-                   
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Dirección</label>
-                <div class="col-sm-9">
-                    <input 
-                    class="form-control"
-                  
-                    
-                    value={{usuarioActual.direccion}}
-                    style="width: 250px;"
-                    
-                    >
-                  
-                   
-                </div>
-            </div>
+                </option>
+            </select>
+           
+        </div>
+    </div>
 
 
 
-
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Provincia</label>
-                <div class="col-sm-9">
-                   
-                    <select    style="width: 250px;" class="form-control" disabled>
-                        <option value='{{provinciadesc}}'disabled selected >{{provinciadesc}}</option>
-                        <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
-                            {{p.nombreprovincia}}
-                            
-                        </option>
-                    </select>
-                   
-                </div>
-            </div>
-
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Ciudad</label>
-                <div class="col-sm-9">
-                   
-                    <select    style="width: 250px;" class="form-control" >
-                        <option value='{{ciudadesdesc}}'disabled selected >{{ciudadesdesc}}</option>
-                        <option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
-                            {{c.nombreciudad}}
-                            
-                        </option>
-                    </select>
-                   
-                </div>
-            </div>
-
-
-
-
-            <div class="mb-3 row">
-                <label class="col-sm-3 col-form-label">Genero</label>
-                <div class="col-sm-9">
-                   
-                    <select     style="width: 250px;" class="form-control">
-                        <option value='{{generodesc}}'disabled selected >{{generodesc}}</option>
-                        <option *ngFor="let g of generos"  value="{{g.idgenero}}">
-                            {{g.genero}}
-                            
-                        </option>
-                    </select>
-                   
-                </div>
-            </div>
-
-
-
-            <button type="button" class="btn btn-warning ms-1 fa-2x">
-                <i class="far fa-edit"></i>
-            </button>
+    <button type="button" class="btn btn-warning ms-1 fa-2x">
+        <i class="far fa-edit"></i>
+    </button>
 
 
 </form>
-    
 
 
 

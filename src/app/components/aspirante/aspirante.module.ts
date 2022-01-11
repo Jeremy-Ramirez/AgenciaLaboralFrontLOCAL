@@ -35,6 +35,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { SharedModule } from '../shared/shared.module';
+import { FootComponent } from './foot/foot.component';
 
 
 
@@ -52,6 +53,7 @@ import { SharedModule } from '../shared/shared.module';
     SugerenciasComentariosComponent,
     AspiranteProfesionalComponent,
     LoadingComponent,
+    FootComponent,
   ],
   imports: [
     CommonModule,
