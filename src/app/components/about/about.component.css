@@ -1,0 +1,46 @@
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.descripcion{
+    height: 200px;
+}
+
+img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+#about{
+    display: block;
+    background: url('src/assets/img/business-leader-interviewing-job-candidate-scaled.jpg');
+    background-size: cover;
+    position: relative;
+
+    z-index: 1;
+    padding-bottom: 0px;
+    height: 800px;
+    
+
+}
+
+.container{
+    background-color: rgb(64, 169, 222, 0.7);
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+}
+.row{
+    margin-top: -50px;
+    z-index: 5;
+}
+.scroll-link{
+    background-color: #F89624;
+    
+}
