@@ -1,6 +1,6 @@
 <div class="example-container">
   <mat-toolbar class="example-toolbar">
-    <button
+    <button id="boton"
       type="button"
       aria-label="Toggle sidenav"
       mat-icon-button
@@ -8,9 +8,11 @@
       
       >
       <!-- *ngIf="isHandset$ | async" -->
-      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      <!-- <mat-icon aria-label="Side nav toggle icon">menu</mat-icon> -->
+      <mat-toolbar class="menu" id="tituloMenu" >Menu</mat-toolbar>
     </button>
-    <a href="#" class="navbar-brand scroll-top"><em>Agencia</em>Laboral</a>
+    <span class="app">App</span>
+
   </mat-toolbar>
   
   <mat-sidenav-container class="sidenav-container">
@@ -20,7 +22,7 @@
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
-      <mat-toolbar id="tituloMenu" >Menu</mat-toolbar>
+      
       <mat-nav-list id="menuContainer">
         <!-- <a class="sr-only" mat-list-item routerLink="/administrador/sesionAdministrador/aspirantesAceptados">Argentina</a>
         <button mat-list-item routerLink="/administrador/aspirantesAceptados">Link 1</button>
