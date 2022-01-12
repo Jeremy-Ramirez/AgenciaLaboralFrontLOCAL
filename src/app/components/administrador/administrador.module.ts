@@ -35,6 +35,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { NuevoPaqueteComponent } from './nuevo-paquete/nuevo-paquete.component';
 import { PaquetePagoComponent } from './paquete-pago/paquete-pago.component';
 import { SharedModule } from '../shared/shared.module';
+import { FootComponent } from './foot/foot.component';
 
 
 
@@ -57,7 +58,7 @@ import { SharedModule } from '../shared/shared.module';
     LoadingComponent,
     PaquetePagoComponent,
     NuevoPaqueteComponent,
-   
+    FootComponent,
   ],
   imports: [
     CommonModule,

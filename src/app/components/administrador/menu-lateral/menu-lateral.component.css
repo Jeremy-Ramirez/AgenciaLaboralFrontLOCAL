@@ -8,6 +8,11 @@
   right: 0;
 }
 
+#footer{
+  height: 90%;
+  z-index: 1;
+
+}
 
 .sidenav-container {
   height: 100%;

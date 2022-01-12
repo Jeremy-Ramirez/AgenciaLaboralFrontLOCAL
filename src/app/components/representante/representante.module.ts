@@ -30,6 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-perfil-aspirante.component';
 import { LoadingComponent } from './loading/loading.component';
+import { FootComponent } from './foot/foot.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { LoadingComponent } from './loading/loading.component';
     SolicitudComponent,
     VistaPerfilAspiranteComponent,
     LoadingComponent,
+    FootComponent,
 
 
   ],

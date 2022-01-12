@@ -26,6 +26,7 @@ import { EditPassComponent } from './edit-pass/edit-pass.component';
 import { FiltroComponent } from '../representante/filtro/filtro.component';
 import { SolicitudEmpresaComponent } from './solicitud-empresa/solicitud-empresa.component';
 import { SharedModule } from '../shared/shared.module';
+import { FootComponent } from './foot/foot.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SharedModule } from '../shared/shared.module';
     SugerenciasComentariosComponent,
     EditPassComponent,
     SolicitudEmpresaComponent,
-    
+    FootComponent,
+
     
 
   ],
