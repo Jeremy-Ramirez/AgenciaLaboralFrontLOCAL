@@ -6,10 +6,15 @@
 
 input[type=text], select, textarea {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
+		height: 100%;
+		background: none;
+		padding-top: 10px;		
+		outline: 0px;
+    border-bottom: 5px solid #81DCFF;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+
 }
 
 label {
@@ -38,8 +43,6 @@ border-bottom-left-radius: 40px;
   left: auto;                                            
   margin: 20px;
   background: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
 border-radius: 5px;
 background-color: #f2f2f2;
 padding: 20px;
@@ -105,9 +108,9 @@ color:#292727;
 width: 50%;
 padding: 10px;
 }
-p, input,select {
+p, select {
 padding: 10px 10px;
-background-color: #e6dede;
+background-color: #81DCFF;
 border-top-left-radius: 40px;
 border-top-right-radius: 40px;
 border-bottom-right-radius: 40px;
