@@ -37,6 +37,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 
@@ -53,6 +54,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 //import { ContratacionComponent } from './components/representante/contratacion/contratacion.component';
 import { SharedModule } from './components/shared/shared.module';
 import { RegisterComponent } from './components/register/register.component';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -94,6 +98,9 @@ import { RegisterComponent } from './components/register/register.component';
     AutocompleteLibModule,
     MatDialogModule,
     SharedModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTabsModule,
 
     
   ],

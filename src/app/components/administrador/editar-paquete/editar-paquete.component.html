@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col">
 
-        <mat-icon mat-icon-button (click)="cancelar()">close</mat-icon>
+        <mat-icon mat-icon-button (click)="cerrar()">close</mat-icon>
         <h1>Editar Paquete de Pago</h1>
 
         <form autocomplete="off" [formGroup]="miFormulario" enctype="multipart/form-data">
@@ -14,18 +14,18 @@
                     <input type="text"
                            class="form-control"
                            formControlName="nombrepaquete"
-                           placeholder=""
+                           placeholder="{{data.Paquete.nombrepaquete}}"
                            >
-                    <span class="form-text text-danger"
+                    <!-- <span class="form-text text-danger"
                         *ngIf="campoEsValido('nombrepaquete')">
                         
                         Campo Requerido
-                    </span>
+                    </span> -->
                 </div>
             </div>
 
-            <button (click)="editarNombrePaquete()">Editar</button>
-            <button *ngIf="botonGuardarNombre" (click)="guardarPaquete()">Guardar</button>
+            <!-- <button (click)="editarNombrePaquete()">Editar</button>
+            <button *ngIf="botonGuardarNombre" (click)="guardarPaquete()">Guardar</button> -->
 
 
             <div class="mb-3 row">
@@ -34,40 +34,42 @@
                     <textarea type="text"
                            class="form-control"
                            formControlName="descripcion"
-                           placeholder=""
+                           placeholder="{{data.Paquete.descripcion}}"
                            style="width: 650px; height: 200px;"></textarea>
-                    <span class="form-text text-danger"
+                    <!-- <span class="form-text text-danger"
                         *ngIf="campoEsValido('descripcion')">
                         
                         Campo Requerido
-                    </span>
+                    </span> -->
                 </div>
             </div>
 
-            <button (click)="editarDescripcionPaquete()">Editar</button>
-            <button *ngIf="botonGuardardescripcion" (click)="guardarPaquete()">Guardar</button>
+            <!-- <button (click)="editarDescripcionPaquete()">Editar</button>
+            <button *ngIf="botonGuardardescripcion" (click)="guardarPaquete()">Guardar</button> -->
 
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Precio</label>
                 <div class="col-sm-9">
-                    <input type="number"
+                    <input type="text"
                            class="form-control"
                            formControlName="precio"
-                           placeholder=""
+                           placeholder="{{data.Paquete.precio}}"
                            
                            >
                            
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('precio')">
                         
-                        Campo Requerido
+                            El valor debe ser un número
                     </span>
                     
                 </div>
             </div>
 
-            <button (click)="editarPrecioPaquete()">Editar</button>
-            <button *ngIf="botonGuardarprecio" (click)="guardarPaquete()">Guardar</button>
+        
+
+            <!-- <button (click)="editarPrecioPaquete()">Editar</button>
+            <button *ngIf="botonGuardarprecio" (click)="guardarPaquete()">Guardar</button> -->
             <!-- <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Duración</label>
                 <div class="col-sm-9">
@@ -88,7 +90,7 @@
 
             <div class="row mb-3">
                 <div class="col">
-                    <label class="form-label">Duración:</label>
+                    <label class="form-label">Duración</label>
                     <select class="form-control"
                             formControlName = "duracionpaquetes_idduracionpaquetes">
                         <option value="">-- Seleccione la duración --</option>
@@ -102,56 +104,74 @@
                         <!-- <option *ngFor="let nivelestudios of nivelesestudios"
                                 [value]="nivelestudios.idnivelestudios">{{ nivelestudios.descripcion }}</option> -->
                     </select>
-                    <span class="form-text text-danger"
+                    <!-- <span class="form-text text-danger"
                         *ngIf="campoEsValido('duracionpaquetes_idduracionpaquetes')">
                         
                         Campo Requerido
-                    </span>
+                    </span> -->
                 </div>
             </div>
 
-            <button (click)="editarDuracionPaquete()">Editar</button>
-            <button *ngIf="botonGuardarduracionpaquetes" (click)="guardarPaquete()">Guardar</button>
+            <!-- <button (click)="editarDuracionPaquete()">Editar</button>
+            <button *ngIf="botonGuardarduracionpaquetes" (click)="guardarPaquete()">Guardar</button> -->
 
 
-
+            
             
 
             <div class="row">
                 <div class="col-25">
                 <!-- fechainicio -->
-                <label>Fecha de inicio</label>
+                <label>Fecha de publicación</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="date" formControlName="fecharegistro" placeholder="Ingrese la fecha de inicio "
-                    (change)="validarFechainicio()">
-                    <span class="form-text text-danger" *ngIf="campoEsValido('fecharegistro')"
-                    >
-                        Campo Requerido
-                    </span>
+                    <mat-form-field appearance="fill">
+                        <input matInput [matDatepicker]="picker1" formControlName="fecharegistro" placeholder="{{data.Paquete.fecharegistro}}" 
+                        (dateChange)="validarFechainicio()" >
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        
+                    </mat-form-field>
                     <span class="form-text text-danger"
                         *ngIf="!fechaCorrectaInicio">
                         
                         Ingrese una fecha correcta.
                         
                     </span>
+                    <!-- <span class="form-text text-danger" *ngIf="campoEsValido('fecharegistro')"
+                    >
+                        Campo Requerido
+                    </span> -->
+                    
                 </div>
+                <!-- <button mat-raised-button
+                    matTooltip="Info about the action"
+                    aria-label="Button that displays a tooltip when focused or hovered over">
+                    Action
+                </button> -->
             </div>
 
-            <button (click)="editarfechaCreacionPaquete()">Editar</button>
-            <button *ngIf="botonGuardarfecharegistro" (click)="guardarPaquete()">Guardar</button>
+            <!-- <button (click)="editarfechaCreacionPaquete()">Editar</button>
+            <button *ngIf="botonGuardarfecharegistro" (click)="guardarPaquete()">Guardar</button> -->
+            
 
             <div class="row">
                 <div class="col-25">
                 <!-- fechacierre -->
-                <label>Fecha de cierre</label>
+                <label>Fecha de Caducidad</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="date" formControlName="fechacaducidad" placeholder="Ingrese la fecha de cierre"
-                    (change)="validarFechacierre()" >
-                    <span class="form-text text-danger" *ngIf="campoEsValido('fechacaducidad')">
+                    <mat-form-field appearance="fill">
+                        <input matInput [matDatepicker]="picker2" formControlName="fechacaducidad" placeholder="{{data.Paquete.fechacaducidad}}" 
+                        (dateChange)="validarFechacierre()" >
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                        
+                    </mat-form-field>
+                    
+                    <!-- <span class="form-text text-danger" *ngIf="campoEsValido('fechacaducidad')">
                         Campo Requerido
-                    </span>
+                    </span> -->
                     <span class="form-text text-danger"
                         *ngIf="!fechaCorrectaCierre">
                         
@@ -159,19 +179,26 @@
                         
                     </span>
                 </div>
+                <!-- <button mat-raised-button
+                    matTooltip="Info about the action"
+                    aria-label="Button that displays a tooltip when focused or hovered over">
+                    Clear
+                </button> -->
             </div>
 
-            <button (click)="editarfechaCaducidadPaquete()">Editar</button>
-            <button *ngIf="botonGuardarfechacaducidad" (click)="guardarPaquete()">Guardar</button>
+            
+
+            <!-- <button (click)="editarfechaCaducidadPaquete()">Editar</button>
+            <button *ngIf="botonGuardarfechacaducidad" (click)="guardarPaquete()">Guardar</button> -->
 
             <div class="row">
                 <div class="col">
                     <button type="submit"
-                            (click)="cancelar()"
-                            [disabled]="miFormulario.invalid"
+                            (click)="guardarPaquete()"
+                            [disabled]="miFormulario.invalid || !fechaCorrectaInicio || !fechaCorrectaCierre"
                             class="btn btn-primary float-end" 
                             >
-                        Cerrar
+                        Guardar
                     </button>
                 </div>
             </div>

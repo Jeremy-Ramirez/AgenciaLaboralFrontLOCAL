@@ -1,15 +1,32 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Emitters } from '../clases/emitters';
 import { PaquetePagoService } from '../../../servicios/paquete-pago.service';
 
+import {
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import 'moment/locale/ja';
+import 'moment/locale/fr';
+import { formatDate } from '@angular/common';
+
 @Component({
   selector: 'app-editar-paquete',
   templateUrl: './editar-paquete.component.html',
-  styleUrls: ['./editar-paquete.component.css']
+  styleUrls: ['./editar-paquete.component.css'],
+  providers: [
+    // The locale would typically be provided on the root module of your application. We do it at
+    // the component level here, due to limitations of our example generation script.
+    {provide: MAT_DATE_LOCALE, useValue: 'es'},
+    
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ],
 })
 export class EditarPaqueteComponent implements OnInit {
 
@@ -33,21 +50,21 @@ export class EditarPaqueteComponent implements OnInit {
   nombredoc:any;
 
   //Guardar campos individuales
-  botonGuardarNombre: boolean= false;
-  botonGuardardescripcion: boolean= false;
-  botonGuardarprecio: boolean= false;
-  botonGuardarduracionpaquetes: boolean= false;
-  botonGuardarfecharegistro: boolean= false;
-  botonGuardarfechacaducidad: boolean= false;
+  //botonGuardarNombre: boolean= false;
+  //botonGuardardescripcion: boolean= false;
+  //botonGuardarprecio: boolean= false;
+  //botonGuardarduracionpaquetes: boolean= false;
+  //botonGuardarfecharegistro: boolean= false;
+  //botonGuardarfechacaducidad: boolean= false;
   
 
   miFormulario: FormGroup = this.fb.group({
-    nombrepaquete: ["",[Validators.required]],
-    descripcion:["",[Validators.required]],
-    precio: ["",[Validators.required, Validators.pattern("[0-9]+((,|.)[0-9]+)?")]],
-    duracionpaquetes_idduracionpaquetes: ["",[Validators.required]],
-    fecharegistro:["",[Validators.required]],
-    fechacaducidad: ["",[Validators.required]],
+    nombrepaquete: [""],
+    descripcion:[""],
+    precio: ["",[Validators.pattern("^(?!.*e)[0-9]+((,|.)[0-9]+)?$")]],
+    duracionpaquetes_idduracionpaquetes: [""],
+    fecharegistro:[""],
+    fechacaducidad: [""],
     usuario_idusuario: '',
     estado_idestado:1,
     //confirmacion:["", [Validators.required]],
@@ -56,6 +73,10 @@ export class EditarPaqueteComponent implements OnInit {
   fechaCorrectaInicio: boolean=true;
   fechaCorrectaCierre: boolean=true;
 
+  date = new FormControl(new Date());
+  serializedDate = new FormControl(new Date().toISOString());
+  fecha= this.data.Paquete.fecharegistro
+
   constructor(
     private fb: FormBuilder, 
     private http: HttpClient, 
@@ -63,8 +84,12 @@ export class EditarPaqueteComponent implements OnInit {
     private rutaActiva: ActivatedRoute,
     private paquetePagoService: PaquetePagoService,
     public dialogRef: MatDialogRef<EditarPaqueteComponent>,
+    private _adapter: DateAdapter<any>,
     @Inject(MAT_DIALOG_DATA) public data: {Paquete: any},
     ) {
+      console.log("FECHSSSSS",this.fecha)
+      this._adapter.setLocale('es');
+      
     //this.getUsuarios();
     
 
@@ -76,8 +101,15 @@ export class EditarPaqueteComponent implements OnInit {
             && this.miFormulario.controls[campo].touched;
   }
 
-  cancelar() {
+  cerrar() {
     this.dialogRef.close();
+  }
+  convert(str) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + (date.getDate())).slice(-2);
+      console.log("CONVERSION",[date.getFullYear(), mnth, day].join("-"))
+    return [date.getFullYear(), mnth, day].join("-");
   }
 
 
@@ -148,8 +180,9 @@ export class EditarPaqueteComponent implements OnInit {
     this.http.post('http://localhost:8000/api/paquetePago/', this.miFormulario.value).subscribe(
       resp => {
         console.log(resp)
+        this.cerrar();
         alert("Paquete creado")
-        this.cancelar();
+        
         this.reloadComponent()
         //this.router.navigate(['/administrador/sesionAdministrador/paquetePago'])
       },
@@ -173,8 +206,9 @@ export class EditarPaqueteComponent implements OnInit {
     this.http.patch<any>("http://localhost:8000/api/paquetePago/"+this.id,this.miFormulario.value,{headers: headers}).subscribe(
       resp => {
         console.log(resp),
-        alert('INFORMACIÓN ACTUALIZADA'),
-        this.cancelar()
+        this.dialogRef.close(),
+        //alert('INFORMACIÓN ACTUALIZADA')
+        
         this.reloadComponent()
       },
       err => {
@@ -193,11 +227,13 @@ export class EditarPaqueteComponent implements OnInit {
   validarFechainicio(){
     
     let fechaNacimiento=this.miFormulario.controls['fecharegistro'].value
-    console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
-    let fechaActual=new Date().toISOString().split('T')[0]  
-    
-
-    if(fechaActual<=this.miFormulario.controls['fecharegistro'].value){
+    //console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
+    let fechaActual=new Date().toISOString().split('T')[0]
+    let fechaActual2= this.convert(new Date((new Date()).valueOf()))
+    let fechaForm=this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1))
+    console.log("FECHAACTUAL",this.convert(new Date((new Date()).valueOf())))
+    console.log("FECHA QUE MANDO", this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1)))
+    if(fechaActual2<=fechaForm){
       this.fechaCorrectaInicio=true;
       
       console.log("entra")
@@ -215,9 +251,10 @@ export class EditarPaqueteComponent implements OnInit {
     let fechaNacimiento=this.miFormulario.controls['fechacaducidad'].value
     console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
     let fechaActual=new Date().toISOString().split('T')[0]  
-    
-
-    if(fechaActual<=this.miFormulario.controls['fechacaducidad'].value){
+    let fechaActual2= this.convert(new Date((new Date()).valueOf()))
+    let fechaFormcaducidad=this.convert(new Date(this.miFormulario.controls['fechacaducidad'].value+1))
+    let fechaFormregistro=this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1))
+    if(fechaActual2<=fechaFormcaducidad && fechaFormregistro<=fechaFormcaducidad){
       this.fechaCorrectaCierre=true;
       
       console.log("entra")
@@ -233,27 +270,27 @@ export class EditarPaqueteComponent implements OnInit {
 
   editarNombrePaquete(){
     this.miFormulario.controls['nombrepaquete'].enable();
-    this.botonGuardarNombre =true
+    //this.botonGuardarNombre =true
   }
   editarDescripcionPaquete(){
     this.miFormulario.controls['descripcion'].enable();
-    this.botonGuardardescripcion =true
+    //this.botonGuardardescripcion =true
   }
   editarPrecioPaquete(){
     this.miFormulario.controls['precio'].enable();
-    this.botonGuardarprecio =true
+    //this.botonGuardarprecio =true
   }
   editarDuracionPaquete(){
     this.miFormulario.controls['duracionpaquetes_idduracionpaquetes'].enable();
-    this.botonGuardarduracionpaquetes =true
+    //this.botonGuardarduracionpaquetes =true
   }
   editarfechaCreacionPaquete(){
     this.miFormulario.controls['fecharegistro'].enable();
-    this.botonGuardarfecharegistro =true
+    //this.botonGuardarfecharegistro =true
   }
   editarfechaCaducidadPaquete(){
     this.miFormulario.controls['fechacaducidad'].enable();
-    this.botonGuardarfechacaducidad =true
+    //this.botonGuardarfechacaducidad =true
   }
   
 
@@ -263,22 +300,24 @@ export class EditarPaqueteComponent implements OnInit {
     let formData= new FormData();
     
     
-    if(this.botonGuardarNombre){
+    if(this.miFormulario.get('nombrepaquete').value){
       formData.append("nombrepaquete", this.miFormulario.get('nombrepaquete').value)
     }
-    if(this.botonGuardardescripcion){
+    if(this.miFormulario.get('descripcion').value){
       formData.append("descripcion", this.miFormulario.get('descripcion').value)
     }
-    if(this.botonGuardarprecio){
+    if(this.miFormulario.get('precio').value){
       formData.append("precio", this.miFormulario.get('precio').value)
     }
-    if(this.botonGuardarduracionpaquetes){
+    if(this.miFormulario.get('duracionpaquetes_idduracionpaquetes').value){
       formData.append("duracionpaquetes_idduracionpaquetes", this.miFormulario.get('duracionpaquetes_idduracionpaquetes').value)
     }
-    if(this.botonGuardarfecharegistro){
-      formData.append("fecharegistro", this.miFormulario.get('fecharegistro').value)
+    if(this.miFormulario.get('fecharegistro').value){
+      console.log("CONVERTID",
+        this.convert( this.miFormulario.get('fecharegistro').value))
+      formData.append("fecharegistro",this.convert( this.miFormulario.get('fecharegistro').value))
     }
-    if(this.botonGuardarfechacaducidad){
+    if(this.miFormulario.get('fechacaducidad').value){
       formData.append("fechacaducidad", this.miFormulario.get('fechacaducidad').value)
     }
     
@@ -286,10 +325,11 @@ export class EditarPaqueteComponent implements OnInit {
     
     
     
-    this.paquetePagoService.patchPaquetePago(this.data.Paquete, formData,{headers: headers}).subscribe(
+    this.paquetePagoService.patchPaquetePago(this.data.Paquete.idpaquetepago, formData,{headers: headers}).subscribe(
       resp => {
         console.log(resp),
         alert('INFORMACIÓN ACTUALIZADA')
+        this.cerrar()
         //this.cancelar()
         //this.reloadComponent()
       },
@@ -320,12 +360,12 @@ export class EditarPaqueteComponent implements OnInit {
     this.getTipodocumento();
     this.getDuracionPaquete();
 
-    this.miFormulario.controls['nombrepaquete'].disable();
-    this.miFormulario.controls['descripcion'].disable();
-    this.miFormulario.controls['precio'].disable();
-    this.miFormulario.controls['duracionpaquetes_idduracionpaquetes'].disable();
-    this.miFormulario.controls['fecharegistro'].disable();
-    this.miFormulario.controls['fechacaducidad'].disable();
+    //this.miFormulario.controls['nombrepaquete'].disable();
+    //this.miFormulario.controls['descripcion'].disable();
+    //this.miFormulario.controls['precio'].disable();
+    //this.miFormulario.controls['duracionpaquetes_idduracionpaquetes'].disable();
+    //this.miFormulario.controls['fecharegistro'].disable();
+    //this.miFormulario.controls['fechacaducidad'].disable();
 
     
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 import { AspirantesAceptadosComponent } from './aspirantes-aceptados/aspirantes-aceptados.component';
@@ -36,6 +37,8 @@ import { NuevoPaqueteComponent } from './nuevo-paquete/nuevo-paquete.component';
 import { PaquetePagoComponent } from './paquete-pago/paquete-pago.component';
 import { SharedModule } from '../shared/shared.module';
 import { FootComponent } from './foot/foot.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -78,6 +81,10 @@ import { FootComponent } from './foot/foot.component';
     MatCardModule,
     MatGridListModule,
     SharedModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    
     
   ],
 

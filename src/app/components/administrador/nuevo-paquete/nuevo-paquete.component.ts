@@ -38,7 +38,7 @@ export class NuevoPaqueteComponent implements OnInit {
   miFormulario: FormGroup = this.fb.group({
     nombrepaquete: ["",[Validators.required]],
     descripcion:["",[Validators.required]],
-    precio: ["",[Validators.required, Validators.pattern("[0-9]+((,|.)[0-9]+)?")]],
+    precio: ["",[Validators.required, Validators.pattern("^(?!.*e)[0-9]+((,|.)[0-9]+)?$")]],
     duracionpaquetes_idduracionpaquetes: ["",[Validators.required]],
     fecharegistro:["",[Validators.required]],
     fechacaducidad: ["",[Validators.required]],
