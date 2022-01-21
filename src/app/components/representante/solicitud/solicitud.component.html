@@ -4,27 +4,57 @@
         <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
 
             <mat-form-field>
+                <b>Cargo:</b>
                 {{data.solicitudIndividual.cargo}}
                 
             </mat-form-field>
 
             <mat-form-field>
+                <b>Descripción del cargo:</b>
                 {{data.solicitudIndividual.descripcioncargo}}
+            </mat-form-field>
+            <mat-form-field>
+                <b>Sueldo:</b>
+                {{data.solicitudIndividual.sueldo}} USD
             </mat-form-field>
 
             <mat-form-field>
+                <b>Jornada laboral:</b>
+                {{data.solicitudIndividual.jornada}} 
+            </mat-form-field>
+
+            <mat-form-field>
+                <b>Disponibilidad para viajar:</b>
+                {{data.solicitudIndividual.posibilidadviajar}}
+            </mat-form-field>
+
+            <mat-form-field>
+                <b>Posibilidad cambio de residencia:</b>
+                {{data.solicitudIndividual.posibilidadcambioresidencia}} 
+            </mat-form-field>
+
+            <mat-form-field>
+                <b>Idiomas:</b>
+                {{data.solicitudIndividual.idiomas}} 
+            </mat-form-field>
+            
+            <mat-form-field>
+                <b>Fecha de Inicio:</b>
                 {{data.solicitudIndividual.fechainicio}}
             </mat-form-field>
             <mat-form-field>
+                <b>Fecha de Cierre:</b>
                 {{data.solicitudIndividual.fechacierre}}
                 
             </mat-form-field>
 
             <mat-form-field>
+                <b>Años de Experiencia:</b>
                 {{data.solicitudIndividual.aniosexperiencia}}
             </mat-form-field>
 
             <mat-form-field>
+                <b>Rango de edad:</b>
                 {{data.solicitudIndividual.rangoedad}}
             </mat-form-field>
 

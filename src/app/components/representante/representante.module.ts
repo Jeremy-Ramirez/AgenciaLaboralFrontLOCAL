@@ -32,6 +32,9 @@ import { VistaPerfilAspiranteComponent } from './vista-perfil-aspirante/vista-pe
 import { LoadingComponent } from './loading/loading.component';
 import { FootComponent } from './foot/foot.component';
 
+import {MatTabsModule} from '@angular/material/tabs';
+
+
 @NgModule({
   declarations: [
     MenuLateralComponent,
@@ -66,6 +69,7 @@ import { FootComponent } from './foot/foot.component';
     MatDialogModule,
     FormsModule,
     AutocompleteLibModule,
+    MatTabsModule,
 
     
   ],

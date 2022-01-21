@@ -9,14 +9,53 @@
     margin-right: 50px;
 }
 
-table{
-    width: 100%;
+#tablaAsp, .mat-elevation-z8{
+    width: 750px;
 }
+
+.tablaSolicitudes{
+    width: 650px;
+}
+
+table{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: space-between;
+    justify-self: center;
+    align-items: flex-start;
+    column-gap: 30px;
+}
+
+.campo{
+    width: 100px;
+}
+.mat-column-nombre, .mat-column-apellido, .mat-column-perfil, .mat-column-aceptar, .mat-column-rechazar{
+    width: 150px;
+}
+.mat-column-eliminar{
+    width: 150px;
+}
+
+
 
 .boton{
     margin-top: 5px;
+    width: 250px;
+}
+.mat-column-cargo,
+.mat-column-aspirantesPorSolicitud,
+.mat-column-aspirantesPorSolicitud{
+    width: 250px;
+    text-align: center;
 }
 
+.iconos{
+    width: 50px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
 
 .field-icon {
     float: right;
@@ -29,3 +68,27 @@ table{
 .field-icon{
     cursor: pointer;
 }
+
+/* #tablaAsp{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+ng-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
+} */
+/*.aceptar{
+    margin-right: 80px;
+}
+.eliminar{
+
+    margin-left: 100px;
+
+}*/
