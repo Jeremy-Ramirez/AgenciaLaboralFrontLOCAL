@@ -88,22 +88,21 @@
                 </div>
             </div> -->
 
+            
+
             <div class="row mb-3">
                 <div class="col">
                     <label class="form-label">Duración</label>
-                    <select class="form-control"
-                            formControlName = "duracionpaquetes_idduracionpaquetes">
-                        <option value="">-- Seleccione la duración --</option>
-                        <option  *ngFor="let duracion of duracionPaquete" value="{{duracion.idduracionpaquetes}}">
+                    <mat-form-field appearance="fill">
+                        <!-- <mat-label>Select an option</mat-label> -->
+                        <mat-select [(value)]="selected" placeholder="{{selectedDuration}}"
+                        formControlName = "duracionpaquetes_idduracionpaquetes">
+                        <mat-option>Ninguna</mat-option>
+                          <mat-option *ngFor="let duracion of duracionPaquete" value="{{duracion.idduracionpaquetes}}">
                             {{duracion.descripcion}}
-                        </option>
-                        <!-- <option value="0">1 Mes</option>
-                        <option value="1">2 Meses</option>
-                        <option value="2">3 Meses</option>
-                        <option value="3">6 Meses</option> -->
-                        <!-- <option *ngFor="let nivelestudios of nivelesestudios"
-                                [value]="nivelestudios.idnivelestudios">{{ nivelestudios.descripcion }}</option> -->
-                    </select>
+                          </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                     <!-- <span class="form-text text-danger"
                         *ngIf="campoEsValido('duracionpaquetes_idduracionpaquetes')">
                         
@@ -126,7 +125,7 @@
                 </div>
                 <div class="col-sm-9">
                     <mat-form-field appearance="fill">
-                        <input matInput [matDatepicker]="picker1" formControlName="fecharegistro" placeholder="{{data.Paquete.fecharegistro}}" 
+                        <input matInput [matDatepicker]="picker1" formControlName="fecharegistro" placeholder="{{formatofechainicio}}" 
                         (dateChange)="validarFechainicio()" >
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
@@ -162,7 +161,7 @@
                 </div>
                 <div class="col-sm-9">
                     <mat-form-field appearance="fill">
-                        <input matInput [matDatepicker]="picker2" formControlName="fechacaducidad" placeholder="{{data.Paquete.fechacaducidad}}" 
+                        <input matInput [matDatepicker]="picker2" formControlName="fechacaducidad" placeholder="{{formatofechacaducidad}}" 
                         (dateChange)="validarFechacierre()" >
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>

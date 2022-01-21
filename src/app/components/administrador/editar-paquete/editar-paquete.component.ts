@@ -49,6 +49,8 @@ export class EditarPaqueteComponent implements OnInit {
   seleccionuser:string;
   nombredoc:any;
 
+  formatofechainicio:any;
+  formatofechacaducidad:any;
   //Guardar campos individuales
   //botonGuardarNombre: boolean= false;
   //botonGuardardescripcion: boolean= false;
@@ -56,7 +58,8 @@ export class EditarPaqueteComponent implements OnInit {
   //botonGuardarduracionpaquetes: boolean= false;
   //botonGuardarfecharegistro: boolean= false;
   //botonGuardarfechacaducidad: boolean= false;
-  
+  selected=this.data.Paquete.duracionpaquetes_idduracionpaquetes;
+  selectedDuration:any;
 
   miFormulario: FormGroup = this.fb.group({
     nombrepaquete: [""],
@@ -126,6 +129,13 @@ export class EditarPaqueteComponent implements OnInit {
     this.http.get('http://localhost:8000/api/duracionpaquetes/').subscribe((duracionPaquete:any)=>{
       this.duracionPaquete=duracionPaquete;
       console.log(this.duracionPaquete)
+      for(let duracion of this.duracionPaquete){
+        if(this.data.Paquete.duracionpaquetes_idduracionpaquetes==duracion.idduracionpaquetes){
+            this.selectedDuration=duracion.descripcion;
+            console.log("duracionSeleccionada", this.selectedDuration)
+        }
+
+      }
 
       
     })
@@ -224,6 +234,17 @@ export class EditarPaqueteComponent implements OnInit {
     console.log(user);
   }
 
+  cambiarFormatoFecha(){
+    let formatofechacaducidad = this.data.Paquete.fechacaducidad.split("-")
+    console.log(formatofechacaducidad)
+    this.formatofechacaducidad=formatofechacaducidad[2]+"-"+formatofechacaducidad[1]+"-"+formatofechacaducidad[0];
+
+    let formatofechainicio = this.data.Paquete.fechacaducidad.split("-")
+    this.formatofechainicio=formatofechainicio[2]+"-"+formatofechainicio[1]+"-"+formatofechainicio[0];
+
+    console.log(formatofechainicio)
+  }
+  
   validarFechainicio(){
     
     let fechaNacimiento=this.miFormulario.controls['fecharegistro'].value
@@ -318,7 +339,7 @@ export class EditarPaqueteComponent implements OnInit {
       formData.append("fecharegistro",this.convert( this.miFormulario.get('fecharegistro').value))
     }
     if(this.miFormulario.get('fechacaducidad').value){
-      formData.append("fechacaducidad", this.miFormulario.get('fechacaducidad').value)
+      formData.append("fechacaducidad", this.convert(this.miFormulario.get('fechacaducidad').value))
     }
     
     
@@ -359,6 +380,7 @@ export class EditarPaqueteComponent implements OnInit {
     )*/
     this.getTipodocumento();
     this.getDuracionPaquete();
+    this.cambiarFormatoFecha();
 
     //this.miFormulario.controls['nombrepaquete'].disable();
     //this.miFormulario.controls['descripcion'].disable();

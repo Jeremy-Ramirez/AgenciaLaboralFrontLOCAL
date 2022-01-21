@@ -39,6 +39,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FootComponent } from './foot/foot.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -84,7 +85,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    
+    MatSelectModule,
     
   ],
 

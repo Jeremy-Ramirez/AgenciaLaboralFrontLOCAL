@@ -536,30 +536,33 @@ export class SolicitudesContratacionComponent implements OnInit {
   
 
   acceptAspirantesSolicitados(usuario){
-    console.log("ACEPTASS")
-    let formData= new FormData();
-    formData.append("estadoaspiranteempresa_idestadoaspiranteempresa", '1')
-    for(let asp of this.aspirantes3){
-      //console.log(asp)
-          if(asp.usuario_idusuario==usuario.idusuario){
-            console.log(asp.usuario_idusuario)
-            console.log(usuario.idusuario)
-            for(let solActual of this.aspirantessolicitados){
-              //console.log(this.solicitudActual2.idsolicitud)
-              //console.log(solActual)
-                    if(solActual.solicitud_idsolicitud==this.solicitudEvaluada.idsolicitud && solActual.aspirante_idaspirante==asp.idaspirante){
-                      console.log("PATCH",solActual)
-                      this.aspirantessolicitadosService.patchAspiranteSolicitados(solActual.idaspirantessolicitados,formData).subscribe(data=>{
-                        console.log("Datos del post",data)
-                        //this.ngOnInit()
-                        //this.listausuariosAspirantes2 = this.listausuariosAspirantes
-                        alert('ASPIRANTE ACEPTADO');
-                        //this.miFormulario.reset();
-                      });
-                    }
+    if(confirm("¿Está seguro de que desea aceptar a este aspirante?")){
+      console.log("ACEPTASS")
+      let formData= new FormData();
+      formData.append("estadoaspiranteempresa_idestadoaspiranteempresa", '1')
+      for(let asp of this.aspirantes3){
+        //console.log(asp)
+            if(asp.usuario_idusuario==usuario.idusuario){
+              console.log(asp.usuario_idusuario)
+              console.log(usuario.idusuario)
+              for(let solActual of this.aspirantessolicitados){
+                //console.log(this.solicitudActual2.idsolicitud)
+                //console.log(solActual)
+                      if(solActual.solicitud_idsolicitud==this.solicitudEvaluada.idsolicitud && solActual.aspirante_idaspirante==asp.idaspirante){
+                        console.log("PATCH",solActual)
+                        this.aspirantessolicitadosService.patchAspiranteSolicitados(solActual.idaspirantessolicitados,formData).subscribe(data=>{
+                          console.log("Datos del post",data)
+                          //this.ngOnInit()
+                          //this.listausuariosAspirantes2 = this.listausuariosAspirantes
+                          alert('ASPIRANTE ACEPTADO');
+                          //this.miFormulario.reset();
+                        });
+                      }
+                }
               }
             }
-          }
+    }
+    
     }
 
 
@@ -640,59 +643,66 @@ export class SolicitudesContratacionComponent implements OnInit {
     }
 
     rejecttAspirantesSolicitados(usuario){
-      console.log("ACEPTASS")
-      let formData= new FormData();
-      formData.append("estadoaspiranteempresa_idestadoaspiranteempresa", '2')
-      for(let asp of this.aspirantes3){
-        //console.log(asp)
-            if(asp.usuario_idusuario==usuario.idusuario){
-              console.log(asp.usuario_idusuario)
-              console.log(usuario.idusuario)
-              for(let solActual of this.aspirantessolicitados){
-                //console.log(this.solicitudActual2.idsolicitud)
-                //console.log(solActual)
-                      if(solActual.solicitud_idsolicitud==this.solicitudEvaluada.idsolicitud && solActual.aspirante_idaspirante==asp.idaspirante){
-                        console.log("PATCH",solActual)
-                        this.aspirantessolicitadosService.patchAspiranteSolicitados(solActual.idaspirantessolicitados,formData).subscribe(data=>{
-                          console.log("Datos del post",data)
-                          //this.ngOnInit()
-                          //this.listausuariosAspirantes2 = this.listausuariosAspirantes
-                          alert('ASPIRANTE ACEPTADO');
-                          //this.miFormulario.reset();
-                        });
-                      }
+        if(confirm("¿Está seguro de que desea rechazar a este aspirante?")){
+          console.log("ACEPTASS")
+          let formData= new FormData();
+          formData.append("estadoaspiranteempresa_idestadoaspiranteempresa", '2')
+          for(let asp of this.aspirantes3){
+            //console.log(asp)
+                if(asp.usuario_idusuario==usuario.idusuario){
+                  console.log(asp.usuario_idusuario)
+                  console.log(usuario.idusuario)
+                  for(let solActual of this.aspirantessolicitados){
+                    //console.log(this.solicitudActual2.idsolicitud)
+                    //console.log(solActual)
+                          if(solActual.solicitud_idsolicitud==this.solicitudEvaluada.idsolicitud && solActual.aspirante_idaspirante==asp.idaspirante){
+                            console.log("PATCH",solActual)
+                            this.aspirantessolicitadosService.patchAspiranteSolicitados(solActual.idaspirantessolicitados,formData).subscribe(data=>{
+                              console.log("Datos del post",data)
+                              //this.ngOnInit()
+                              //this.listausuariosAspirantes2 = this.listausuariosAspirantes
+                              alert('ASPIRANTE RECHAZADO');
+                              //this.miFormulario.reset();
+                            });
+                          }
+                    }
+                  }
                 }
-              }
-            }
+        }
       }
 
 
       pendienteAspirantesSolicitados(usuario){
-        console.log("ACEPTASS")
-        let formData= new FormData();
-        formData.append("estadoaspiranteempresa_idestadoaspiranteempresa", '3')
-        for(let asp of this.aspirantes3){
-          //console.log(asp)
-              if(asp.usuario_idusuario==usuario.idusuario){
-                console.log(asp.usuario_idusuario)
-                console.log(usuario.idusuario)
-                for(let solActual of this.aspirantessolicitados){
-                  //console.log(this.solicitudActual2.idsolicitud)
-                  //console.log(solActual)
-                        if(solActual.solicitud_idsolicitud==this.solicitudEvaluada.idsolicitud && solActual.aspirante_idaspirante==asp.idaspirante){
-                          console.log("PATCH",solActual)
-                          this.aspirantessolicitadosService.patchAspiranteSolicitados(solActual.idaspirantessolicitados,formData).subscribe(data=>{
-                            console.log("Datos del post",data)
-                            //this.ngOnInit()
-                            //this.listausuariosAspirantes2 = this.listausuariosAspirantes
-                            alert('ASPIRANTE ACEPTADO');
-                            //this.miFormulario.reset();
-                          });
-                        }
+        if(confirm('¿Está seguro de que desea enviar a este aspirante a "pendientes"?')){
+          console.log("ACEPTASS")
+          let formData= new FormData();
+          formData.append("estadoaspiranteempresa_idestadoaspiranteempresa", '3')
+          for(let asp of this.aspirantes3){
+            //console.log(asp)
+                if(asp.usuario_idusuario==usuario.idusuario){
+                  console.log(asp.usuario_idusuario)
+                  console.log(usuario.idusuario)
+                  for(let solActual of this.aspirantessolicitados){
+                    //console.log(this.solicitudActual2.idsolicitud)
+                    //console.log(solActual)
+                          if(solActual.solicitud_idsolicitud==this.solicitudEvaluada.idsolicitud && solActual.aspirante_idaspirante==asp.idaspirante){
+                            console.log("PATCH",solActual)
+                            this.aspirantessolicitadosService.patchAspiranteSolicitados(solActual.idaspirantessolicitados,formData).subscribe(data=>{
+                              console.log("Datos del post",data)
+                              //this.ngOnInit()
+                              //this.listausuariosAspirantes2 = this.listausuariosAspirantes
+                              alert('ASPIRANTE PUESTO EN LISTA DE PENDIENTES');
+                              //this.miFormulario.reset();
+                            });
+                          }
+                    }
                   }
                 }
-              }
+          }
+
+
         }
+        
 
     
     
