@@ -1,6 +1,21 @@
 .borde{
     border: 1px solid black;
 }
+
+
+table#space {
+    border-collapse: separate;
+    border-spacing: 10px 5px;
+  }
+
+th{
+    padding-left: 50px;
+}
+
 td{
-    padding:0 5px 0 0;
+    padding-left: 50px;
+}
+
+.fa-user-alt{
+    color: black;
 }

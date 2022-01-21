@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {CiudadService} from '../../../servicios/ciudad.service'
 import {ProvinciaService} from '../../../servicios/provincia.service'
@@ -12,6 +12,11 @@ import { HttpClient } from '@angular/common/http';
 import { NivelEstudiosService } from '../../../servicios/nivel-estudios.service';
 import { RegistroFullEmpresaComponent } from '../../empresa/registro-full-empresa/registro-full-empresa.component';
 import { Subscription,observable, Observable, pipe } from 'rxjs';
+//import { ModalComponent } from '../modal/modal.component';
+
+import{MatDialog} from '@angular/material/dialog';
+import { VistaPerfilAspiranteComponent } from '../vista-perfil-aspirante/vista-perfil-aspirante.component';
+
 
 @Component({
   selector: 'app-filtro',
@@ -54,6 +59,16 @@ export class FiltroComponent implements OnInit {
   Nivel:any;
 
 
+  Nombre:any;
+  
+
+  //Nombre2:any;
+  //set2= new Set();
+
+  usuariosId:any;
+  aspiranteId:any;
+
+
   miFormulario: FormGroup= this.fb.group({
     provincia:['',],
     ciudad:['',],
@@ -70,10 +85,51 @@ export class FiltroComponent implements OnInit {
     private _profesionService: ProfesionesService,
     private _generoService: GeneroService,
     private _nivelestudiosService: NivelEstudiosService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private dialogRef: MatDialog
+    
+    ) { }
 
+
+    openDialog(dato:any){
+
+      let aspirante;
+      for(let asp of this.aspirantes){
+      if(dato.idusuario==asp.usuario_idusuario){
+        aspirante=asp;
+    
+      }
+
+    }
+
+
+
+      this.dialogRef.open(VistaPerfilAspiranteComponent,
+      {data:{ aspiranteIndividual: aspirante, usuarioIndividual: dato},
+      height: '800px',
+      width: '800px',});
+
+
+
+
+    }
+
+  
+  
+    /*openDialog(){
+      this.dialogRef.open()
+    }
+*/
   ngOnInit(): void {
+
     this.getProfesiones();
+    
+
+    /*setTimeout(() => {
+      this.valoresFiltro();
+    }, 300);*/
+
+
     this._provinciaService.getProvincias().subscribe((resp:any)=>{
       this.provincias=resp
       console.log(this.provincias)
@@ -252,6 +308,53 @@ radioChangeHandler(event:any){
 radioChangeHandler2(event:any){
   
   this.cambioresidenciaSeleccionada= event.target.value;
+}
+
+
+
+
+/*
+valoresFiltro(){
+
+
+for(let u of this.usuarios){
+  for(let a of this.aspirantes){
+
+      if(u.rol_idrol ==2 && u.idusuario == a.usuario_idusuario){
+
+
+        if(a.profesiones_idprofesiones == this.Valor && this.verSeleccion == '0'){
+
+          console.log(u.nombre);
+          console.log(u.apellido);
+          console.log(u.correo);
+
+        }
+
+
+        
+      }
+
+
+  }
+
+}
+
+
+
+}
+*/
+
+
+obtenerDato( dato:any){
+
+  this.Nombre=dato;
+
+
+  
+  //console.log(dato);
+  //this.set.add(this.Nombre);
+  //console.log(this.set);
 }
 
 

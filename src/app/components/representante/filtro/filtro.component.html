@@ -1,7 +1,5 @@
-<h1 class="mt-5">Selectores anidados</h1>
 
-
-
+<h1>FILTRO ASPIRANTES</h1>
 
 <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Profesiones</label>
@@ -28,48 +26,10 @@
                 <div [innerHTML]="notFound"></div>
                 </ng-template>
             
-            
-
-
-
-
-
     </div>
-
-
-
-   
-
-
 </div>
-
 <br>
 
-<!-- <div class="mb-3 row">
-    <label class="col-sm-3 col-form-label">Provincias</label>
-    <select class="form-control"style="margin-left: 50px; width:200px" (change)="capturar()" [(ngModel)]="opcionSeleccionado">
-            <option  value="">---Seleccione Provincia---</option>
-            <option  value="0">Todas</option>
-            <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
-                {{p.nombreprovincia}}
-            </option>
-        </select>
-
-        <p >Haz seleccionado la opción # {{ verSeleccion }}</p>
-</div> -->
-<!-- 
-
-<div class="mb-3 row">
-    <label class="col-sm-3 col-form-label">Ciudades</label>
-    <select class="form-control"style="margin-left: 50px; width:200px" >
-            <option  value="">---Seleccione Ciudad---</option>
-            <option *ngFor="let c of ciudades"  value="{{c.idprovincia}}">
-                {{c.nombreciudad}}
-            </option>
-        </select>
-
-     
-</div> -->
 
 
 <form [formGroup]="miFormulario" >
@@ -83,8 +43,9 @@
                     {{p.nombreprovincia}}
                 </option>
             </select>
-            <p class="col-sm-3 col-form-label">Haz seleccionado la opción # {{ verSeleccion }}</p>
-        
+            <!-- <p class="col-sm-3 col-form-label">Haz seleccionado la opción # {{ verSeleccion }}</p> -->
+        <br>
+
     </div>
 
       <div class="mb-3 row"  *ngIf="this.verSeleccion !='0' ">
@@ -95,10 +56,10 @@
                    {{c.nombreciudad}}
                 </option>
             </select>
-            <p class="col-sm-3 col-form-label">Haz seleccionado la opción # {{ verSeleccionC }}</p>
+            <br>
+            <!-- <p class="col-sm-3 col-form-label">Haz seleccionado la opción # {{ verSeleccionC }}</p> -->
 
     </div>  
-
 
 
     
@@ -108,82 +69,12 @@
 
 <div class="mb-3 row" *ngIf="this.verSeleccion !='0'">
 
-        <label class="col-sm-3 col-form-label">Disponibilidad para viajar</label>
-    <input type="radio" value="si"  style="margin-left: 50px;" (change)="radioChangeHandler($event)" ngModel> Si
-    <input type="radio" value="no"  style="margin-left: 50px;" (change)="radioChangeHandler($event)" ngModel > No
+        <label class="col-sm-3 col-form-label">Género</label>
+    <input type="radio" value="1"  style="margin-left: 50px;" (change)="radioChangeHandler($event)" ngModel> Masculino
+    <input type="radio" value="2"  style="margin-left: 50px;" (change)="radioChangeHandler($event)" ngModel > Femenino
+    <br>
+    <!-- <p >Haz seleccionado la opción # {{ disponibilidadSeleccionada }}</p> -->
 
-    <p >Haz seleccionado la opción # {{ disponibilidadSeleccionada }}</p>
-
-</div>
-
-<form >
-<div class="mb-3 row" *ngIf="this.verSeleccion !='0'" >
-    <label class="col-sm-3 col-form-label">Cambio residencia</label>
-    <input type="radio" value="si"  style="margin-left: 50px;" (change)="radioChangeHandler2($event)"  ngModel> Si
-    <input type="radio" value="no"  style="margin-left: 50px;" (change)="radioChangeHandler2($event)"  ngModel > No
-
-
-    <p >Haz seleccionado la opción # {{cambioresidenciaSeleccionada }}</p>
-
-
-</div>  
-</form>
-
-
-
-
-
-
-
-
-<br>
-<br><br><br>
-
-
-
-
-
-<div class="row borde" style="margin-left: 50px;">
-    <div class="col-75">
-        <label class="form-label" style="margin-left: 50px;">ASPIRANTES </label>
-
-
-        
-
-
-
-
-        <div *ngFor="let u of usuarios">
-            <div *ngFor= "let a of aspirantes">
-                    <div *ngIf="u.rol_idrol ==2 && u.idusuario == a.usuario_idusuario">
-                        
-
-
-                            <div *ngIf="a.profesiones_idprofesiones == this.Valor  
-                            && u.provincia_idprovincia == this.verSeleccion 
-                            && u.ciudad_idciudad == this.verSeleccionC
-                            && a.posibilidadviajar == this.disponibilidadSeleccionada
-                            && a.posibilidadcambioresidencia == this.cambioresidenciaSeleccionada
-                            ">
-
-                                <p>{{u.nombreusuario}}</p>
-
-                            </div>
-
-                            <div *ngIf=" a.profesiones_idprofesiones == this.Valor && this.verSeleccion == '0'">
-                                <p> {{u.nombreusuario}}</p>
-                            </div>
-
-                            
-
-
-
-
-                    </div>
-            </div>
-            
-        </div>
-    </div>
 </div> 
 
 
@@ -193,159 +84,95 @@
 
 
 
+<div class="row borde" style="margin-left: 50px;">
+    <div class="col-75">
+        <label class="form-label" style="margin-left: 50px;">ASPIRANTES </label>
+
+        <div *ngFor="let u of usuarios">
+            <div *ngFor= "let a of aspirantes">
+                    <div *ngIf="u.rol_idrol ==2 && u.idusuario == a.usuario_idusuario">
+                        
+                            <div *ngIf=" a.profesiones_idprofesiones == this.Valor && this.verSeleccion == '0'">
+                  
+
+                                <table cellspacing="20">
+                                    <tr>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Correo</th>
+                                        <th>Ver perfil</th>
+                                    </tr>
+    
+                                    <tr>
+                                        <td>{{u.nombre}}</td>
+                                        <td>{{u.apellido}}</td>
+                                        <td>{{u.correo}}</td>
+                                        <td> <button class="btn btn-primary float-end" (click)="openDialog(u)">
+                                            VerPerfil
+                                        </button>
+                                        </td>
+                                        
+                                    </tr>
+                                </table>
+                            </div>
+
+                           
+
+
+                            
+                            <div *ngIf="a.profesiones_idprofesiones == this.Valor  
+                            && u.provincia_idprovincia == this.verSeleccion 
+                            && u.ciudad_idciudad == this.verSeleccionC
+                            && u.genero_idgenero == this.disponibilidadSeleccionada
+
+                            ">
 
 
 
-<!-- <div>
-<form [formGroup]="miFormulario" (ngSubmit)="solicitar()">
-    <div class="row">
-        <div class="col-75">
-            <label class="form-label" style="margin-left: 50px;">Provincia</label>
-            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='provincia'>
-                <option  value="">---Seleccione Provincia---</option>
-                <option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
-                    {{p.nombreprovincia}}
-                </option>
-            </select>
+                               
+
+                            <table cellspacing="20">
+                                <tr>
+                                    <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                    <th>Correo</th>
+                                    <th>Ver perfil</th>
+                                </tr>
+
+                                <tr>
+                                    <td>{{u.nombre}}</td>
+                                    <td>{{u.apellido}}</td>
+                                    <td>{{u.correo}}</td>
+                                    <td> 
+                                        <button class="btn btn-light float-end" (click)="openDialog(u)">
+                                            <i class="fas fa-user-alt"></i>
+                                        </button>
+                                    </td>
+                                 
+                                </tr>
+                            </table>
+
+
+                            </div>
+                         
+
+
+
+                    </div>
+            </div>
+            
         </div>
     </div>
 
-      <div class="row">
-        <div class="col-75">
-            <label class="form-label" style="margin-left: 50px;">Ciudad</label>
-            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='ciudad'>
-                <option  value="">---Seleccione Ciudad---</option>
-                <option *ngFor="let c of ciudesE" value="{{c.provincia_idprovincia}}">
-                   {{c.nombreciudad}}
-                </option>
-            </select>
-        </div>
-    </div>  
-
-
-    <div class="row">
-        <div class="col-75">
-            <label class="form-label" style="margin-left: 50px;">Profesion</label>
-            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='profesiones_idprofesiones'>
-                <option  value="">---Seleccione Profesión---</option>
-                <option *ngFor="let p of profesiones" value="{{p.idprofesiones}}">
-                   {{p.profesion}}
-                </option>
-            </select>
-        </div>
-    </div>  
- 
-
-    <div class="row">
-        <div class="col-75">
-            <label class="form-label" style="margin-left: 50px;">Género</label>
-            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='genero'>
-                <option  value="">---Seleccione Género---</option>
-                <option *ngFor="let g of generos" value="{{g.idgenero}}">
-                   {{g.genero}}
-                </option>
-            </select>
-        </div>
-        
-    </div>  
-
-
-
-    <div class="row">
-        <div class="col-75">
-            <label class="form-label" style="margin-left: 50px;">Disponibilidad para viajar</label><br>
-        <input type="radio" value="si" formControlName="posibilidadviajar" style="margin-left: 50px;"> Si
-        <input type="radio" value="no" formControlName="posibilidadviajar" style="margin-left: 50px;"> No
-        </div>
-    </div>  
-
-
-
-
-    <div class="row">
-        <div class="col-75">
-            <label class="form-label" style="margin-left: 50px;">Disponibilidad cambio residencia</label><br>
-        <input type="radio" value="si" formControlName="posibilidadcambioresidencia" style="margin-left: 50px;"> Si
-        <input type="radio" value="no" formControlName="posibilidadcambioresidencia" style="margin-left: 50px;"> No
-        </div>
-    </div>  
-
-        
-    <div class="row">
-        <div class="col-75">
-            <label class="form-label" style="margin-left: 50px;">Nivel Estudios</label>
-            <select class="form-control"style="margin-left: 50px; width:200px" formControlName='nivelestudios_idnivelestudios'>
-                <option  value="">---Seleccione Nivel de estudios---</option>
-                <option *ngFor="let n of niveles" value="{{n.idnivelestudios}}">
-                   {{n.descripcion}}
-                </option>
-            </select>
-        </div>
-        
-    </div>  
-            
-      
-    
 
 
 
 
 
-</form>
-</div> -->
+
 
 <!-- <pre>Valid: {{miFormulario.valid}}</pre>
 <pre>{{miFormulario.value | json}}</pre> -->
 
 
-  
 
-
-<!-- <div class="row borde" style="margin-left: 50px;">
-    <div class="col-75">
-        <label class="form-label" style="margin-left: 50px;">ASPIRANTES </label>
-        <div *ngFor="let u of usuarios">
-            <div *ngIf=" u.rol_idrol ==2 && u.genero_idgenero == this.Genero.value && 
-                        u.provincia_idprovincia == this.Provincia.value && 
-                        u.ciudad_idciudad == this.Ciudad.value ">
-               
-
-
-                    <table>
-                        <tr>
-                            <td>NOMBRES</td>
-                            <td>APELLIDOS</td>
-                            <td>PROFESIÓN</td>
-                            <td >ACCIÓN</td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                {{u.nombre | uppercase}}
-                            </td>
-                            <td>
-                                {{u.apellido | uppercase}}
-                            </td>
-                            <td>
-                                {{profesiondesc}}
-                            </td>
-                            <td>
-                                <button>Ver perfil</button>
-                            </td>
-                            
-                        </tr>
-                    </table>
-            </div> 
-            
-        </div>
-    </div>
-</div>   -->
-
-
-
-<div class="row">
-    <div class="col">
-        <button class="btn btn-primary float-end"
-        type="submit" style="margin-left: 50px;">Solicitar</button>
-    </div>
-</div>
