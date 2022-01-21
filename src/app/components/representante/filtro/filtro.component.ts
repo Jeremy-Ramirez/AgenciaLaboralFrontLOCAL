@@ -105,9 +105,7 @@ export class FiltroComponent implements OnInit {
 
 
       this.dialogRef.open(VistaPerfilAspiranteComponent,
-      {data:{ aspiranteIndividual: aspirante, usuarioIndividual: dato},
-      height: '800px',
-      width: '800px',});
+      {data:{ aspiranteIndividual: aspirante, usuarioIndividual: dato}});
 
 
 
