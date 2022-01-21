@@ -30,7 +30,7 @@
                            class="form-control"
                            formControlName="descripcion"
                            placeholder=""
-                           style="width: 650px; height: 200px;"></textarea>
+                           style="width: 650px; height: 200px; text-align: justify;"></textarea>
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('descripcion')">
                         
@@ -108,31 +108,48 @@
                 <label>Fecha de publicación</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="date" formControlName="fecharegistro" placeholder="Ingrese la fecha de inicio "
-                    (change)="validarFechainicio()">
-                    <span class="form-text text-danger" *ngIf="campoEsValido('fecharegistro')"
-                    >
-                        Campo Requerido
-                    </span>
+                    <mat-form-field appearance="fill">
+                        <input matInput [matDatepicker]="picker1" formControlName="fecharegistro" 
+                        (dateChange)="validarFechainicio()" >
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        
+                    </mat-form-field>
                     <span class="form-text text-danger"
                         *ngIf="!fechaCorrectaInicio">
                         
                         Ingrese una fecha correcta.
                         
                     </span>
+                    <!-- <span class="form-text text-danger" *ngIf="campoEsValido('fecharegistro')"
+                    >
+                        Campo Requerido
+                    </span> -->
+                    
                 </div>
+                <!-- <button mat-raised-button
+                    matTooltip="Info about the action"
+                    aria-label="Button that displays a tooltip when focused or hovered over">
+                    Action
+                </button> -->
             </div>
             <div class="row">
                 <div class="col-25">
                 <!-- fechacierre -->
-                <label>Fecha de caducidad</label>
+                <label>Fecha de Caducidad</label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="date" formControlName="fechacaducidad" placeholder="Ingrese la fecha de cierre"
-                    (change)="validarFechacierre()" >
-                    <span class="form-text text-danger" *ngIf="campoEsValido('fechacaducidad')">
+                    <mat-form-field appearance="fill">
+                        <input matInput [matDatepicker]="picker2" formControlName="fechacaducidad"
+                        (dateChange)="validarFechacierre()" >
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                        
+                    </mat-form-field>
+                    
+                    <!-- <span class="form-text text-danger" *ngIf="campoEsValido('fechacaducidad')">
                         Campo Requerido
-                    </span>
+                    </span> -->
                     <span class="form-text text-danger"
                         *ngIf="!fechaCorrectaCierre">
                         
@@ -140,13 +157,18 @@
                         
                     </span>
                 </div>
+                <!-- <button mat-raised-button
+                    matTooltip="Info about the action"
+                    aria-label="Button that displays a tooltip when focused or hovered over">
+                    Clear
+                </button> -->
             </div>
 
             <div class="row">
                 <div class="col">
                     <button type="submit"
                             (click)="createPaquete()"
-                            [disabled]="miFormulario.invalid"
+                            [disabled]="miFormulario.invalid || !fechaCorrectaCierre || !fechaCorrectaInicio"
                             class="btn btn-primary float-end" 
                             >
                         Guardar

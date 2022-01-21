@@ -8,10 +8,26 @@ import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
 import { Emitters } from '../clases/emitters';
 
 
+import {
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import 'moment/locale/ja';
+import 'moment/locale/fr';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-nuevo-paquete',
   templateUrl: './nuevo-paquete.component.html',
-  styleUrls: ['./nuevo-paquete.component.css']
+  styleUrls: ['./nuevo-paquete.component.css'],
+  providers: [
+    // The locale would typically be provided on the root module of your application. We do it at
+    // the component level here, due to limitations of our example generation script.
+    {provide: MAT_DATE_LOCALE, useValue: 'es'},
+    
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ],
 })
 export class NuevoPaqueteComponent implements OnInit {
 
@@ -107,6 +123,15 @@ export class NuevoPaqueteComponent implements OnInit {
         }
     })
   }*/
+
+  convert(str) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + (date.getDate())).slice(-2);
+      console.log("CONVERSION",[date.getFullYear(), mnth, day].join("-"))
+    return [date.getFullYear(), mnth, day].join("-");
+  }
+
   establecerDuracion(){
     let dur= this.miFormulario.get('duracion').value;
     let valor='';
@@ -132,6 +157,9 @@ export class NuevoPaqueteComponent implements OnInit {
   createPaquete(){
     console.log(this.miFormulario.value);
     this.miFormulario.get('usuario_idusuario').setValue(this.id);
+    this.miFormulario.get('fechacaducidad').setValue(this.convert(this.miFormulario.get('fechacaducidad').value));
+    this.miFormulario.get('fecharegistro').setValue(this.convert( this.miFormulario.get('fecharegistro').value));
+
     //console.log(this.miFormulario.get('duracion').value)
     //this.miFormulario.get('duracion').setValue(this.establecerDuracion());
     
@@ -180,11 +208,13 @@ export class NuevoPaqueteComponent implements OnInit {
   validarFechainicio(){
     
     let fechaNacimiento=this.miFormulario.controls['fecharegistro'].value
-    console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
-    let fechaActual=new Date().toISOString().split('T')[0]  
-    
-
-    if(fechaActual<=this.miFormulario.controls['fecharegistro'].value){
+    //console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
+    let fechaActual=new Date().toISOString().split('T')[0]
+    let fechaActual2= this.convert(new Date((new Date()).valueOf()))
+    let fechaForm=this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1))
+    console.log("FECHAACTUAL",this.convert(new Date((new Date()).valueOf())))
+    console.log("FECHA QUE MANDO", this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1)))
+    if(fechaActual2<=fechaForm){
       this.fechaCorrectaInicio=true;
       
       console.log("entra")
@@ -192,6 +222,7 @@ export class NuevoPaqueteComponent implements OnInit {
       this.fechaCorrectaInicio=false;
 
     }
+    this.validarFechacierre()
 
   }
 
@@ -202,9 +233,10 @@ export class NuevoPaqueteComponent implements OnInit {
     let fechaNacimiento=this.miFormulario.controls['fechacaducidad'].value
     console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
     let fechaActual=new Date().toISOString().split('T')[0]  
-    
-
-    if(fechaActual<=this.miFormulario.controls['fechacaducidad'].value){
+    let fechaActual2= this.convert(new Date((new Date()).valueOf()))
+    let fechaFormcaducidad=this.convert(new Date(this.miFormulario.controls['fechacaducidad'].value+1))
+    let fechaFormregistro=this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1))
+    if(fechaActual2<=fechaFormcaducidad && fechaFormregistro<=fechaFormcaducidad){
       this.fechaCorrectaCierre=true;
       
       console.log("entra")
@@ -213,6 +245,7 @@ export class NuevoPaqueteComponent implements OnInit {
       this.fechaCorrectaCierre=false;
 
     }
+    this.validarFechainicio()
 
   }
 
