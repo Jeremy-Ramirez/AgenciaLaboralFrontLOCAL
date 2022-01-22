@@ -42,7 +42,7 @@
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Precio</label>
                 <div class="col-sm-9">
-                    <input type="number"
+                    <input type="text"
                            class="form-control"
                            formControlName="precio"
                            placeholder="" 
@@ -51,7 +51,7 @@
                     <span class="form-text text-danger"
                         *ngIf="campoEsValido('precio')">
                         
-                        Campo Requerido
+                        Campo Requerido. El valor debe ser un número.
                     </span>
                     
                 </div>
