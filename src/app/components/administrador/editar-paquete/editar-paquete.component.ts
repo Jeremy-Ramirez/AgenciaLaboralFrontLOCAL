@@ -251,18 +251,40 @@ export class EditarPaqueteComponent implements OnInit {
     //console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
     let fechaActual=new Date().toISOString().split('T')[0]
     let fechaActual2= this.convert(new Date((new Date()).valueOf()))
-    let fechaForm=this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1))
+    let fechaFormregistro=this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1))
+    let fechaFormcaducidad=this.convert(new Date(this.miFormulario.controls['fechacaducidad'].value+1))
     console.log("FECHAACTUAL",this.convert(new Date((new Date()).valueOf())))
     console.log("FECHA QUE MANDO", this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1)))
-    if(fechaActual2<=fechaForm){
-      this.fechaCorrectaInicio=true;
+    if(fechaActual2<=fechaFormregistro){
+      if(this.miFormulario.controls['fechacaducidad'].value!=""){
+        console.log("he ingresado fecha", this.miFormulario.controls['fechacaducidad'].value)
+        if(fechaFormregistro<=fechaFormcaducidad){
+          this.fechaCorrectaInicio=true;
+          this.fechaCorrectaCierre=true;
+
+          console.log("entra")
+        }else{
+          this.fechaCorrectaCierre=false;
+    
+        }
+      }
+      else{
+        console.log("no he ingresado fecha")
+        if(fechaFormregistro<=this.data.Paquete.fechacaducidad){
+          this.fechaCorrectaInicio=true;
       
-      console.log("entra")
+          console.log("entra")
+
+        }else{
+          this.fechaCorrectaInicio=false;
+    
+        }
+      }
+      
     }else{
       this.fechaCorrectaInicio=false;
 
     }
-    this.validarFechacierre()
 
   }
 
@@ -276,16 +298,56 @@ export class EditarPaqueteComponent implements OnInit {
     let fechaActual2= this.convert(new Date((new Date()).valueOf()))
     let fechaFormcaducidad=this.convert(new Date(this.miFormulario.controls['fechacaducidad'].value+1))
     let fechaFormregistro=this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1))
-    if(fechaActual2<=fechaFormcaducidad && fechaFormregistro<=fechaFormcaducidad){
-      this.fechaCorrectaCierre=true;
+
+
+    if(fechaActual2<=fechaFormcaducidad){
+      if(this.miFormulario.controls['fecharegistro'].value!=""){
+        console.log("he ingresado fecha", this.miFormulario.controls['fecharegistro'].value)
+        if(fechaFormregistro<=fechaFormcaducidad){
+          this.fechaCorrectaInicio=true;
+          this.fechaCorrectaCierre=true;
+
+          console.log("entra")
+        }else{
+          this.fechaCorrectaInicio=false;
+    
+        }
+      }
+      else{
+        console.log("no he ingresado fecha")
+        if(fechaFormcaducidad>=this.data.Paquete.fecharegistro){
+          this.fechaCorrectaCierre=true;
       
+          console.log("entra")
+
+        }else{
+          this.fechaCorrectaCierre=false;
+    
+        }
+      }
+      
+    }else{
+      this.fechaCorrectaCierre=false;
+
+    }
+
+
+
+
+
+
+
+    /*
+    
+    if( && ){
+      this.fechaCorrectaCierre=true;
+      this.fechaCorrectaInicio=true;
       console.log("entra")
     }
     else{
       this.fechaCorrectaCierre=false;
 
-    }
-    this.validarFechainicio()
+    }*/
 
   }
 

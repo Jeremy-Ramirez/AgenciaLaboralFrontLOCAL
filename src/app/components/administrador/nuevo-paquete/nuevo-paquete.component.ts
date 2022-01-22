@@ -1,6 +1,4 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -71,10 +69,12 @@ export class NuevoPaqueteComponent implements OnInit {
     private http: HttpClient, 
     private router: Router,
     private rutaActiva: ActivatedRoute,
+    private _adapter: DateAdapter<any>,
     public dialogRef: MatDialogRef<NuevoPaqueteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {aspiranteIndividual: any},
     ) {
     //this.getUsuarios();
+    this._adapter.setLocale('es');
     
 
     
@@ -211,18 +211,34 @@ export class NuevoPaqueteComponent implements OnInit {
     //console.log(fechaNacimiento, new Date().toISOString().split('T')[0])
     let fechaActual=new Date().toISOString().split('T')[0]
     let fechaActual2= this.convert(new Date((new Date()).valueOf()))
-    let fechaForm=this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1))
+    let fechaFormregistro=this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1))
+    let fechaFormcaducidad=this.convert(new Date(this.miFormulario.controls['fechacaducidad'].value+1))
     console.log("FECHAACTUAL",this.convert(new Date((new Date()).valueOf())))
     console.log("FECHA QUE MANDO", this.convert(new Date(this.miFormulario.controls['fecharegistro'].value+1)))
-    if(fechaActual2<=fechaForm){
-      this.fechaCorrectaInicio=true;
+    if(fechaActual2<=fechaFormregistro){
+      if(this.miFormulario.controls['fechacaducidad'].value!=""){
+        console.log("he ingresado fecha", this.miFormulario.controls['fechacaducidad'].value)
+        if(fechaFormregistro<=fechaFormcaducidad){
+          this.fechaCorrectaInicio=true;
+          this.fechaCorrectaCierre=true;
+
+          console.log("entra")
+        }else{
+          this.fechaCorrectaCierre=false;
+    
+        }
+      }
+      else{
+       
+
+          this.fechaCorrectaInicio=true;
       
-      console.log("entra")
+      }
+      
     }else{
       this.fechaCorrectaInicio=false;
 
     }
-    this.validarFechacierre()
 
   }
 
